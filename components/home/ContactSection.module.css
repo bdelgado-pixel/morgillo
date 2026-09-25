@@ -1,0 +1,1720 @@
+.section {
+  --red:
+    var(--morgillo-red, #d71920);
+
+  --red-deep:
+    #b9151b;
+
+  --graphite:
+    #252525;
+
+  --steel-050:
+    #f7f7f6;
+
+  --steel-100:
+    #eef0ef;
+
+  --steel-150:
+    #e4e6e5;
+
+  --steel-200:
+    #d6d9d8;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding-block:
+    clamp(70px, 7vw, 110px);
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff 0%,
+      #fff 64%,
+      var(--steel-050) 64%,
+      var(--steel-050) 100%
+    );
+
+  color:
+    var(--foreground);
+
+  isolation: isolate;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+  position: absolute;
+
+  z-index: -1;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.background span {
+  position: absolute;
+
+  top: 44%;
+  right: -0.05em;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    rgba(
+      215,
+      25,
+      32,
+      0.025
+    );
+
+  font-size:
+    clamp(
+      20rem,
+      42vw,
+      46rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.7;
+
+  letter-spacing:
+    -0.14em;
+
+  user-select: none;
+}
+
+.background i {
+  position: absolute;
+
+  top: -20%;
+  left: 64%;
+
+  width: 1px;
+  height: 145%;
+
+  background:
+    rgba(
+      37,
+      37,
+      37,
+      0.045
+    );
+
+  transform:
+    rotate(18deg);
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.eyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 17px;
+}
+
+.eyebrow span {
+  color:
+    var(--red);
+
+  font-size: 0.5rem;
+
+  font-weight: 950;
+}
+
+.eyebrow i {
+  width: 38px;
+  height: 3px;
+
+  background:
+    var(--red);
+}
+
+.eyebrow p {
+  margin: 0;
+
+  color:
+    var(--red);
+
+  font-size: 0.48rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+.title {
+  max-width: 850px;
+
+  margin: 0;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    clamp(
+      2.8rem,
+      5vw,
+      5.45rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.89;
+
+  letter-spacing:
+    -0.067em;
+
+  text-wrap: balance;
+}
+
+.title span {
+  color:
+    var(--red);
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.intro {
+  display: grid;
+
+  max-width: 360px;
+
+  grid-template-columns:
+    auto minmax(0, 1fr);
+
+  align-items: start;
+
+  gap: 12px;
+
+  justify-self: end;
+
+  padding-top: 16px;
+
+  border-top:
+    1px solid
+    var(--steel-200);
+}
+
+.intro svg {
+  color:
+    var(--red);
+}
+
+.intro p {
+  margin: 0;
+
+  color: #666;
+
+  font-size: 0.73rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(360px, 0.8fr)
+    minmax(0, 1.2fr);
+
+  gap:
+    clamp(14px, 2vw, 24px);
+
+  margin-top:
+    clamp(40px, 5vw, 62px);
+}
+
+
+/* =========================================
+   COMMERCIAL
+========================================= */
+
+.commercial {
+  position: relative;
+
+  min-height: 525px;
+
+  overflow: hidden;
+
+  background:
+    var(--red);
+
+  color: #fff;
+
+  isolation: isolate;
+}
+
+.commercial::before {
+  content: "";
+
+  position: absolute;
+
+  right: -160px;
+  bottom: -190px;
+
+  width: 430px;
+  height: 430px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.13
+    );
+
+  border-radius: 50%;
+}
+
+.commercial::after {
+  content: "";
+
+  position: absolute;
+
+  right: -65px;
+  bottom: -90px;
+
+  width: 240px;
+  height: 240px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.13
+    );
+
+  border-radius: 50%;
+}
+
+.commercialTop {
+  position: relative;
+
+  z-index: 3;
+
+  display: grid;
+
+  min-height: 57px;
+
+  grid-template-columns:
+    auto 1fr auto;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding-inline: 17px;
+
+  border-bottom:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.18
+    );
+}
+
+.commercialTop > span {
+  width: 7px;
+  height: 7px;
+
+  background: #fff;
+
+  transform:
+    rotate(45deg);
+}
+
+.commercialTop strong,
+.commercialTop small {
+  font-size: 0.38rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.11em;
+}
+
+.commercialTop small {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.58
+    );
+}
+
+.commercialBody {
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+
+  min-height:
+    calc(
+      525px - 57px
+    );
+
+  flex-direction: column;
+
+  padding:
+    clamp(
+      28px,
+      4vw,
+      50px
+    );
+}
+
+.miniLabel {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.65
+    );
+
+  font-size: 0.38rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.13em;
+}
+
+.commercialBody h3 {
+  max-width: 570px;
+
+  margin:
+    18px 0 0;
+
+  font-size:
+    clamp(
+      2.35rem,
+      4vw,
+      4.4rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.9;
+
+  letter-spacing:
+    -0.06em;
+
+  text-wrap: balance;
+}
+
+.commercialBody > p {
+  max-width: 530px;
+
+  margin:
+    22px 0 0;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.78
+    );
+
+  font-size: 0.76rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   WHATSAPP
+========================================= */
+
+.whatsapp {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 30px;
+
+  padding: 13px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.3
+    );
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  color: #fff;
+
+  backdrop-filter:
+    blur(8px);
+
+  transition:
+    180ms ease;
+}
+
+.whatsappIcon {
+  display: flex;
+
+  width: 46px;
+  height: 46px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #fff;
+
+  color:
+    var(--red);
+}
+
+.whatsapp small,
+.whatsapp strong {
+  display: block;
+}
+
+.whatsapp small {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.6
+    );
+
+  font-size: 0.32rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.1em;
+}
+
+.whatsapp strong {
+  margin-top: 4px;
+
+  font-size: 0.55rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.035em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================
+   COMMERCIAL CODE
+========================================= */
+
+.commercialCode {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: auto;
+
+  padding-top: 28px;
+}
+
+.commercialCode > span {
+  display: flex;
+
+  width: 48px;
+  height: 48px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.32
+    );
+
+  font-size: 1.35rem;
+
+  font-weight: 950;
+}
+
+.commercialCode small,
+.commercialCode strong {
+  display: block;
+
+  font-weight: 950;
+}
+
+.commercialCode small {
+  font-size: 0.31rem;
+
+  letter-spacing:
+    0.13em;
+
+  opacity: 0.65;
+}
+
+.commercialCode strong {
+  margin-top: 4px;
+
+  font-size: 0.4rem;
+
+  letter-spacing:
+    0.08em;
+}
+
+.commercialNumber {
+  position: absolute;
+
+  z-index: 1;
+
+  right: -0.05em;
+  bottom: -0.11em;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.055
+    );
+
+  font-size:
+    clamp(
+      12rem,
+      22vw,
+      22rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.7;
+
+  letter-spacing:
+    -0.1em;
+}
+
+
+/* =========================================
+   CHANNELS
+========================================= */
+
+.channels {
+  min-width: 0;
+
+  border-top:
+    1px solid
+    var(--steel-200);
+
+  border-left:
+    1px solid
+    var(--steel-200);
+}
+
+.channelsHeader {
+  display: flex;
+
+  min-height: 58px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  padding-inline: 16px;
+
+  border-right:
+    1px solid
+    var(--steel-200);
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+
+  background:
+    var(--graphite);
+
+  color: #fff;
+}
+
+.channelsHeader > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.channelsHeader div > span {
+  width: 5px;
+  height: 19px;
+
+  background:
+    var(--red);
+}
+
+.channelsHeader strong,
+.channelsHeader small {
+  font-size: 0.36rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.1em;
+}
+
+.channelsHeader small {
+  opacity: 0.48;
+}
+
+
+/* =========================================
+   CHANNEL
+========================================= */
+
+.channel {
+  position: relative;
+
+  display: grid;
+
+  min-height: 155px;
+
+  grid-template-columns:
+    auto auto minmax(0, 1fr)
+    auto;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      12px,
+      2vw,
+      22px
+    );
+
+  overflow: hidden;
+
+  padding:
+    clamp(
+      18px,
+      2.2vw,
+      27px
+    );
+
+  border-right:
+    1px solid
+    var(--steel-200);
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+
+  background: #fff;
+
+  color: inherit;
+
+  transition:
+    background-color
+      180ms ease;
+}
+
+.channelNumber {
+  align-self:
+    flex-start;
+
+  color:
+    var(--red);
+
+  font-size: 0.37rem;
+
+  font-weight: 950;
+}
+
+.channelIcon {
+  display: flex;
+
+  width: 54px;
+  height: 54px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    var(--steel-200);
+
+  background:
+    var(--steel-050);
+
+  color:
+    var(--red);
+
+  transition:
+    180ms ease;
+}
+
+.channelCopy {
+  min-width: 0;
+}
+
+.channelCopy small,
+.channelCopy strong,
+.channelCopy > span {
+  display: block;
+}
+
+.channelCopy small {
+  color: #8c8c8c;
+
+  font-size: 0.31rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.11em;
+}
+
+.channelCopy strong {
+  margin-top: 5px;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    clamp(
+      1.15rem,
+      1.8vw,
+      1.55rem
+    );
+
+  font-weight: 950;
+
+  letter-spacing:
+    -0.035em;
+}
+
+.channelCopy > span {
+  margin-top: 5px;
+
+  color: #707070;
+
+  font-size: 0.72rem;
+
+  font-weight: 750;
+}
+
+.channelArrow {
+  color:
+    var(--red);
+
+  transition:
+    transform
+      180ms ease;
+}
+
+.channelProgress {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 4px;
+
+  background:
+    var(--red);
+
+  transform:
+    scaleX(0.08);
+
+  transform-origin: left;
+
+  transition:
+    transform 240ms ease;
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.location {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(320px, 0.75fr);
+
+  margin-top:
+    clamp(
+      20px,
+      3vw,
+      34px
+    );
+
+  border:
+    1px solid
+    var(--steel-200);
+
+  background:
+    var(--steel-050);
+}
+
+.mapStage {
+  position: relative;
+
+  min-height: 365px;
+
+  overflow: hidden;
+
+  border-right:
+    1px solid
+    var(--steel-200);
+
+  background:
+    var(--steel-100);
+}
+
+.mapStage::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(
+        37,
+        37,
+        37,
+        0.035
+      )
+        1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(
+        37,
+        37,
+        37,
+        0.035
+      )
+        1px,
+      transparent 1px
+    );
+
+  background-size:
+    32px 32px;
+}
+
+.mapTop {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+
+  min-height: 50px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  padding-inline: 14px;
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    );
+
+  backdrop-filter:
+    blur(8px);
+}
+
+.mapTop > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.mapTop svg {
+  color:
+    var(--red);
+}
+
+.mapTop strong,
+.mapTop > span {
+  font-size: 0.34rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.1em;
+}
+
+.mapTop > span {
+  color: #8a8a8a;
+}
+
+
+/* =========================================
+   MAP SVG
+========================================= */
+
+.map {
+  position: absolute;
+
+  inset:
+    44px 2% 0;
+
+  width: 96%;
+  height:
+    calc(
+      100% - 44px
+    );
+}
+
+.routeSoft,
+.routeMain {
+  fill: none;
+
+  stroke-linecap: round;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+.routeSoft {
+  stroke:
+    var(--graphite);
+
+  stroke-width: 1.2;
+
+  opacity: 0.13;
+}
+
+.routeMain {
+  stroke:
+    var(--red);
+
+  stroke-width: 2.2;
+}
+
+.routePoint {
+  fill:
+    var(--graphite);
+
+  opacity: 0.45;
+}
+
+.destinationOuter {
+  fill:
+    rgba(
+      215,
+      25,
+      32,
+      0.08
+    );
+
+  stroke:
+    var(--red);
+
+  stroke-width: 1;
+
+  transform-origin:
+    center;
+}
+
+.destination {
+  fill:
+    var(--red);
+
+  transform-origin:
+    center;
+}
+
+.mapPin {
+  position: absolute;
+
+  z-index: 5;
+
+  left: 61%;
+  top: 57%;
+
+  display: flex;
+
+  width: 58px;
+  height: 58px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    5px solid
+    var(--steel-100);
+
+  border-radius: 50%;
+
+  background:
+    var(--red);
+
+  color: #fff;
+
+  box-shadow:
+    0 12px 35px
+    rgba(
+      215,
+      25,
+      32,
+      0.24
+    );
+
+  transform:
+    translate(
+      -50%,
+      -50%
+    );
+}
+
+.mapPin span {
+  display: none;
+}
+
+
+/* =========================================
+   LOCATION INFO
+========================================= */
+
+.locationInfo {
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding:
+    clamp(
+      28px,
+      4vw,
+      48px
+    );
+}
+
+.locationLabel {
+  color:
+    var(--red);
+
+  font-size: 0.38rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.13em;
+}
+
+.locationInfo h3 {
+  margin:
+    13px 0 0;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    clamp(
+      1.8rem,
+      3vw,
+      3rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.96;
+
+  letter-spacing:
+    -0.05em;
+}
+
+.hours {
+  display: grid;
+
+  grid-template-columns:
+    auto minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 11px;
+
+  margin-top: 26px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    var(--steel-200);
+}
+
+.hours svg {
+  color:
+    var(--red);
+}
+
+.hours small,
+.hours strong {
+  display: block;
+}
+
+.hours small {
+  color: #888;
+
+  font-size: 0.33rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+.hours strong {
+  margin-top: 4px;
+
+  color:
+    var(--graphite);
+
+  font-size: 0.52rem;
+
+  font-weight: 950;
+}
+
+.mapButton {
+  display: flex;
+
+  min-height: 50px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 12px;
+
+  margin-top: 25px;
+
+  padding-inline: 14px;
+
+  background:
+    var(--graphite);
+
+  color: #fff;
+
+  font-size: 0.4rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background-color
+      180ms ease;
+}
+
+.mapButton svg:first-child {
+  color:
+    var(--red);
+}
+
+
+/* =========================================
+   BOTTOM
+========================================= */
+
+.bottom {
+  display: flex;
+
+  min-height: 58px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 25px;
+
+  margin-top: 14px;
+
+  padding-inline: 16px;
+
+  background:
+    var(--graphite);
+
+  color: #fff;
+}
+
+.bottom > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.bottom > div > span {
+  width: 7px;
+  height: 7px;
+
+  background:
+    var(--red);
+
+  transform:
+    rotate(45deg);
+}
+
+.bottom strong,
+.bottom p,
+.bottom > a {
+  font-size: 0.38rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+.bottom p {
+  margin: 0;
+
+  padding-left: 9px;
+
+  border-left:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.2
+    );
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.55
+    );
+}
+
+.bottom > a {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.bottom > a svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp:hover {
+    background:
+      rgba(
+        255,
+        255,
+        255,
+        0.18
+      );
+
+    transform:
+      translateY(-2px);
+  }
+
+  .channel:hover {
+    background:
+      var(--steel-050);
+  }
+
+  .channel:hover
+    .channelIcon {
+    border-color:
+      var(--red);
+
+    background:
+      var(--red);
+
+    color: #fff;
+  }
+
+  .channel:hover
+    .channelArrow {
+    transform:
+      translate(
+        2px,
+        -2px
+      );
+  }
+
+  .channel:hover
+    .channelProgress {
+    transform:
+      scaleX(1);
+  }
+
+  .mapButton:hover {
+    background:
+      var(--red);
+  }
+
+  .mapButton:hover
+    svg:first-child {
+    color: #fff;
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .intro {
+    max-width: 620px;
+
+    justify-self: start;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .commercial {
+    min-height: 470px;
+  }
+
+  .commercialBody {
+    min-height:
+      calc(
+        470px - 57px
+      );
+  }
+
+  .location {
+    grid-template-columns: 1fr;
+  }
+
+  .mapStage {
+    min-height: 390px;
+
+    border-right: 0;
+
+    border-bottom:
+      1px solid
+      var(--steel-200);
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 640px) {
+  .section {
+    padding-block:
+      52px 58px;
+  }
+
+  .title {
+    font-size:
+      clamp(
+        2.4rem,
+        12vw,
+        3.8rem
+      );
+  }
+
+  .layout {
+    margin-top: 33px;
+  }
+
+  .commercial {
+    min-height: 450px;
+  }
+
+  .commercialBody {
+    min-height:
+      calc(
+        450px - 57px
+      );
+
+    padding:
+      25px 18px;
+  }
+
+  .commercialBody h3 {
+    font-size:
+      clamp(
+        2.15rem,
+        10vw,
+        3.2rem
+      );
+  }
+
+  .whatsapp {
+    margin-top: 24px;
+  }
+
+  .channel {
+    min-height: 130px;
+
+    grid-template-columns:
+      auto
+      minmax(0, 1fr)
+      auto;
+
+    gap: 12px;
+
+    padding:
+      17px 15px;
+  }
+
+  .channelNumber {
+    display: none;
+  }
+
+  .channelIcon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .mapStage {
+    min-height: 320px;
+  }
+
+  .mapTop > span {
+    display: none;
+  }
+
+  .mapPin {
+    width: 50px;
+    height: 50px;
+  }
+
+  .locationInfo {
+    padding:
+      25px 18px;
+  }
+
+  .bottom {
+    padding:
+      12px 14px;
+  }
+
+  .bottom p {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   SMALL
+========================================= */
+
+@media (max-width: 390px) {
+  .eyebrow > span {
+    display: none;
+  }
+
+  .commercialTop small,
+  .channelsHeader small {
+    display: none;
+  }
+
+  .whatsapp {
+    grid-template-columns:
+      auto minmax(0, 1fr);
+  }
+
+  .whatsapp > svg {
+    display: none;
+  }
+
+  .channelArrow {
+    display: none;
+  }
+
+  .channel {
+    grid-template-columns:
+      auto minmax(0, 1fr);
+  }
+
+  .mapStage {
+    min-height: 285px;
+  }
+}
+
+
+/* =========================================
+   DARK
+========================================= */
+
+:global(.dark) .section {
+  --graphite:
+    #f2f2f2;
+
+  --steel-050:
+    #151515;
+
+  --steel-100:
+    #1c1c1c;
+
+  --steel-150:
+    #242424;
+
+  --steel-200:
+    #353535;
+
+  background:
+    linear-gradient(
+      180deg,
+      #111 0%,
+      #111 64%,
+      #151515 64%,
+      #151515 100%
+    );
+}
+
+:global(.dark) .channel {
+  background:
+    #171717;
+}
+
+:global(.dark) .intro p,
+:global(.dark)
+  .channelCopy > span {
+  color: #aaa;
+}
+
+:global(.dark) .mapTop {
+  background:
+    rgba(
+      24,
+      24,
+      24,
+      0.86
+    );
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp,
+  .channel,
+  .channelIcon,
+  .channelArrow,
+  .channelProgress,
+  .mapButton {
+    transition: none;
+  }
+}

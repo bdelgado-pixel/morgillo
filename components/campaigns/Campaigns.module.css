@@ -1,0 +1,1403 @@
+.section {
+  --red:
+    var(--morgillo-red, #d71920);
+
+  --red-deep:
+    #b9151b;
+
+  --graphite:
+    #252525;
+
+  --steel-050:
+    #f7f7f6;
+
+  --steel-100:
+    #eef0ef;
+
+  --steel-150:
+    #e4e6e5;
+
+  --steel-200:
+    #d6d9d8;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding-block:
+    clamp(
+      68px,
+      7vw,
+      108px
+    );
+
+  background:
+    var(--steel-050);
+
+  color:
+    var(--foreground);
+
+  isolation: isolate;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background {
+  position: absolute;
+
+  z-index: -1;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.backgroundNumber {
+  position: absolute;
+
+  top: 50%;
+  right: -0.04em;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    rgba(
+      215,
+      25,
+      32,
+      0.026
+    );
+
+  font-size:
+    clamp(
+      20rem,
+      42vw,
+      46rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.7;
+
+  letter-spacing:
+    -0.14em;
+
+  user-select: none;
+}
+
+.backgroundLine {
+  position: absolute;
+
+  top: -20%;
+  left: 63%;
+
+  width: 1px;
+  height: 145%;
+
+  background:
+    rgba(
+      37,
+      37,
+      37,
+      0.045
+    );
+
+  transform:
+    rotate(18deg);
+}
+
+
+/* =========================================
+   SECTION TOP
+========================================= */
+
+.sectionTop {
+  display: flex;
+
+  min-height: 45px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 25px;
+
+  margin-bottom: 15px;
+}
+
+.sectionTop > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.sectionTop > div > span {
+  width: 5px;
+  height: 20px;
+
+  background:
+    var(--red);
+}
+
+.sectionTop strong,
+.sectionTop > span {
+  font-size: 0.4rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.12em;
+}
+
+.sectionTop strong {
+  color:
+    var(--graphite);
+}
+
+.sectionTop > span {
+  color: #8a8a8a;
+}
+
+
+/* =========================================
+   CAMPAIGN
+========================================= */
+
+.campaign {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.16fr)
+    minmax(
+      390px,
+      0.84fr
+    );
+
+  min-height:
+    clamp(
+      560px,
+      52vw,
+      680px
+    );
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(--steel-200);
+
+  background: #fff;
+
+  box-shadow:
+    0 24px 70px
+    rgba(
+      28,
+      28,
+      28,
+      0.07
+    );
+}
+
+
+/* =========================================
+   VISUAL
+========================================= */
+
+.visual {
+  position: relative;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  background:
+    var(--steel-150);
+
+  isolation: isolate;
+}
+
+.image {
+  z-index: 0;
+
+  object-fit: cover;
+
+  transition:
+    transform
+      750ms
+      cubic-bezier(
+        0.16,
+        1,
+        0.3,
+        1
+      );
+}
+
+.mobileImage {
+  display: none;
+}
+
+.imageShade {
+  position: absolute;
+
+  z-index: 1;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(
+        0,
+        0,
+        0,
+        0.03
+      )
+        15%,
+      rgba(
+        0,
+        0,
+        0,
+        0.09
+      )
+        55%,
+      rgba(
+        0,
+        0,
+        0,
+        0.62
+      )
+        100%
+    );
+}
+
+
+/* =========================================
+   RED GEOMETRY
+========================================= */
+
+.redGeometry {
+  position: absolute;
+
+  z-index: 3;
+
+  top: 0;
+  right: 0;
+
+  display: flex;
+
+  width:
+    clamp(
+      110px,
+      12vw,
+      180px
+    );
+
+  height:
+    clamp(
+      110px,
+      12vw,
+      180px
+    );
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    flex-end;
+
+  padding:
+    16px 18px;
+
+  background:
+    var(--red);
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.92
+    );
+
+  clip-path:
+    polygon(
+      42% 0,
+      100% 0,
+      100% 100%,
+      0 58%
+    );
+}
+
+.redGeometry span {
+  font-size:
+    clamp(
+      1.8rem,
+      3vw,
+      3.4rem
+    );
+
+  font-weight: 950;
+
+  line-height: 1;
+}
+
+
+/* =========================================
+   VISUAL INDEX
+========================================= */
+
+.visualIndex {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 18px;
+  left: 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  min-height: 38px;
+
+  padding-inline: 11px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.92
+    );
+
+  backdrop-filter:
+    blur(8px);
+}
+
+.visualIndex span,
+.visualIndex strong {
+  font-size: 0.38rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.1em;
+}
+
+.visualIndex span {
+  color:
+    var(--red);
+}
+
+.visualIndex strong {
+  color:
+    #252525;
+}
+
+.visualIndex i {
+  width: 1px;
+  height: 15px;
+
+  background: #ccc;
+}
+
+
+/* =========================================
+   VISUAL PLATE
+========================================= */
+
+.visualPlate {
+  position: absolute;
+
+  z-index: 4;
+
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+
+  display: flex;
+
+  min-height: 55px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  padding-inline: 14px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.92
+    );
+
+  backdrop-filter:
+    blur(10px);
+}
+
+.visualPlate > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.visualPlate > div > span {
+  width: 7px;
+  height: 7px;
+
+  background:
+    var(--red);
+
+  transform:
+    rotate(45deg);
+}
+
+.visualPlate strong {
+  color:
+    #252525;
+
+  font-size: 0.43rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.09em;
+}
+
+.visualPlate p {
+  margin: 0;
+
+  color: #6e6e6e;
+
+  font-size: 0.36rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================
+   TECHNICAL LINES
+========================================= */
+
+.technicalLines {
+  position: absolute;
+
+  z-index: 4;
+
+  left: 18px;
+  bottom: 94px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.technicalLines span {
+  display: block;
+
+  height: 2px;
+
+  background:
+    var(--red);
+}
+
+.technicalLines span:nth-child(1) {
+  width: 65px;
+}
+
+.technicalLines span:nth-child(2) {
+  width: 43px;
+
+  opacity: 0.7;
+}
+
+.technicalLines span:nth-child(3) {
+  width: 24px;
+
+  opacity: 0.45;
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content {
+  position: relative;
+
+  display: flex;
+
+  min-width: 0;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding:
+    clamp(
+      38px,
+      5vw,
+      72px
+    );
+
+  overflow: hidden;
+
+  background: #fff;
+}
+
+.content::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 7px;
+  height: 36%;
+
+  background:
+    var(--red);
+}
+
+
+/* =========================================
+   CODE
+========================================= */
+
+.contentCode {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 21px;
+}
+
+.contentCode span {
+  color:
+    var(--red);
+
+  font-size: 0.45rem;
+
+  font-weight: 950;
+}
+
+.contentCode i {
+  width: 38px;
+  height: 3px;
+
+  background:
+    var(--red);
+}
+
+.contentCode p {
+  margin: 0;
+
+  color:
+    var(--red);
+
+  font-size: 0.43rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.13em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.subtitle {
+  display: block;
+
+  width: fit-content;
+
+  margin-bottom: 14px;
+
+  padding:
+    7px 9px;
+
+  background:
+    var(--steel-100);
+
+  color:
+    var(--graphite);
+
+  font-size: 0.38rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.11em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.content h2 {
+  max-width: 620px;
+
+  margin: 0;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    clamp(
+      2.7rem,
+      4.4vw,
+      5rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.89;
+
+  letter-spacing:
+    -0.067em;
+
+  text-wrap: balance;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.description {
+  max-width: 580px;
+
+  margin:
+    23px 0 0;
+
+  color: #666;
+
+  font-size:
+    clamp(
+      0.76rem,
+      0.9vw,
+      0.88rem
+    );
+
+  line-height: 1.75;
+}
+
+
+/* =========================================
+   META
+========================================= */
+
+.meta {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  margin-top:
+    clamp(
+      27px,
+      3vw,
+      38px
+    );
+
+  border-top:
+    1px solid
+    var(--steel-200);
+
+  border-left:
+    1px solid
+    var(--steel-200);
+}
+
+.metaItem {
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+
+  min-height: 72px;
+
+  padding:
+    11px 12px;
+
+  border-right:
+    1px solid
+    var(--steel-200);
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+
+  background:
+    var(--steel-050);
+}
+
+.metaIcon {
+  display: flex;
+
+  width: 36px;
+  height: 36px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #fff;
+
+  color:
+    var(--red);
+}
+
+.metaItem small {
+  display: block;
+
+  color: #888;
+
+  font-size: 0.32rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+}
+
+.metaItem strong {
+  display: block;
+
+  margin-top: 4px;
+
+  overflow: hidden;
+
+  color:
+    var(--graphite);
+
+  font-size: 0.48rem;
+
+  font-weight: 950;
+
+  line-height: 1.35;
+
+  text-overflow:
+    ellipsis;
+}
+
+
+/* =========================================
+   ACTION AREA
+========================================= */
+
+.actionArea {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 25px;
+
+  margin-top:
+    clamp(
+      25px,
+      3vw,
+      35px
+    );
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.cta {
+  display: inline-flex;
+
+  min-height: 54px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 30px;
+
+  padding-inline:
+    18px;
+
+  background:
+    var(--red);
+
+  color: #fff;
+
+  font-size: 0.44rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background-color
+      180ms ease,
+    transform
+      180ms ease;
+}
+
+.cta svg {
+  transition:
+    transform
+      180ms ease;
+}
+
+.actionMark {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.actionMark > span {
+  width: 28px;
+  height: 2px;
+
+  background:
+    var(--red);
+}
+
+.actionMark small {
+  color: #888;
+
+  font-size: 0.33rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.1em;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .campaign:hover
+    .image {
+    transform:
+      scale(1.025);
+  }
+
+  .cta:hover {
+    background:
+      var(--red-deep);
+  }
+
+  .cta:hover svg {
+    transform:
+      translate(
+        2px,
+        -2px
+      );
+  }
+}
+
+
+/* =========================================
+   DIALOG
+========================================= */
+
+.dialog {
+  width: min(
+    calc(
+      100% - 32px
+    ),
+    1050px
+  );
+
+  max-width: none;
+
+  max-height:
+    calc(
+      100dvh - 32px
+    );
+
+  margin: auto;
+
+  padding: 0;
+
+  overflow: visible;
+
+  border: 0;
+
+  background:
+    transparent;
+
+  color: inherit;
+}
+
+.dialog::backdrop {
+  background:
+    rgba(
+      15,
+      15,
+      15,
+      0.72
+    );
+
+  backdrop-filter:
+    blur(8px);
+}
+
+.dialogShell {
+  position: relative;
+
+  max-height:
+    calc(
+      100dvh - 32px
+    );
+
+  overflow: auto;
+
+  box-shadow:
+    0 35px 100px
+    rgba(
+      0,
+      0,
+      0,
+      0.3
+    );
+}
+
+.close {
+  position: absolute;
+
+  z-index: 20;
+
+  top: 12px;
+  right: 12px;
+
+  display: flex;
+
+  width: 42px;
+  height: 42px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.25
+    );
+
+  background:
+    rgba(
+      20,
+      20,
+      20,
+      0.8
+    );
+
+  color: #fff;
+
+  backdrop-filter:
+    blur(8px);
+
+  transition:
+    background-color
+      180ms ease,
+    transform
+      180ms ease;
+}
+
+.close:hover {
+  background:
+    var(--red);
+
+  transform:
+    rotate(4deg);
+}
+
+
+/* =========================================
+   POPUP VERSION
+========================================= */
+
+.popupCampaign {
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(
+      350px,
+      0.9fr
+    );
+
+  min-height: 560px;
+
+  border: 0;
+}
+
+.popupCampaign .content {
+  padding:
+    clamp(
+      32px,
+      4vw,
+      55px
+    );
+}
+
+.popupCampaign
+  .content h2 {
+  font-size:
+    clamp(
+      2.3rem,
+      4vw,
+      4.3rem
+    );
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .campaign {
+    grid-template-columns:
+      1fr;
+
+    min-height: 0;
+  }
+
+  .visual {
+    min-height:
+      clamp(
+        360px,
+        65vw,
+        520px
+      );
+  }
+
+  .content {
+    padding:
+      clamp(
+        30px,
+        6vw,
+        55px
+      );
+  }
+
+  .popupCampaign {
+    grid-template-columns:
+      1fr;
+  }
+
+  .popupCampaign .visual {
+    min-height: 340px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 640px) {
+
+  .section {
+    padding-block:
+      51px 58px;
+  }
+
+  .sectionTop > span {
+    display: none;
+  }
+
+  .visual {
+    min-height: 340px;
+  }
+
+  .desktopImage {
+    display: none;
+  }
+
+  .mobileImage {
+    display: block;
+  }
+
+  .redGeometry {
+    width: 82px;
+    height: 82px;
+
+    padding:
+      10px 11px;
+  }
+
+  .visualIndex {
+    top: 11px;
+    left: 11px;
+  }
+
+  .visualPlate {
+    right: 11px;
+    bottom: 11px;
+    left: 11px;
+
+    min-height: 49px;
+
+    padding-inline:
+      11px;
+  }
+
+  .visualPlate p {
+    display: none;
+  }
+
+  .technicalLines {
+    left: 11px;
+    bottom: 76px;
+  }
+
+  .content {
+    padding:
+      27px 18px 25px;
+  }
+
+  .content h2 {
+    font-size:
+      clamp(
+        2.35rem,
+        11.8vw,
+        3.8rem
+      );
+  }
+
+  .description {
+    margin-top: 18px;
+
+    font-size: 0.76rem;
+  }
+
+  .meta {
+    grid-template-columns:
+      1fr;
+  }
+
+  .metaItem {
+    min-height: 65px;
+  }
+
+  .actionArea {
+    align-items:
+      stretch;
+
+    flex-direction:
+      column;
+  }
+
+  .cta {
+    width: 100%;
+  }
+
+  .actionMark {
+    display: none;
+  }
+
+  .dialog {
+    width:
+      calc(
+        100% - 18px
+      );
+
+    max-height:
+      calc(
+        100dvh - 18px
+      );
+  }
+
+  .dialogShell {
+    max-height:
+      calc(
+        100dvh - 18px
+      );
+  }
+
+  .popupCampaign .visual {
+    min-height: 270px;
+  }
+
+  .popupCampaign .content {
+    padding:
+      25px 17px;
+  }
+
+  .close {
+    top: 8px;
+    right: 8px;
+
+    width: 39px;
+    height: 39px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 360px) {
+
+  .visual {
+    min-height: 300px;
+  }
+
+  .visualIndex strong,
+  .contentCode span {
+    display: none;
+  }
+
+  .content h2 {
+    font-size: 2.25rem;
+  }
+}
+
+
+/* =========================================
+   DARK
+========================================= */
+
+:global(.dark) .section {
+  --graphite:
+    #f2f2f2;
+
+  --steel-050:
+    #151515;
+
+  --steel-100:
+    #1c1c1c;
+
+  --steel-150:
+    #242424;
+
+  --steel-200:
+    #353535;
+
+  background:
+    #121212;
+}
+
+:global(.dark)
+  .campaign,
+:global(.dark)
+  .content {
+  background:
+    #171717;
+}
+
+:global(.dark)
+  .subtitle,
+:global(.dark)
+  .metaItem {
+  background:
+    #1e1e1e;
+}
+
+:global(.dark)
+  .metaIcon {
+  background:
+    #262626;
+}
+
+:global(.dark)
+  .description {
+  color: #aaa;
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.cta:focus-visible,
+.close:focus-visible {
+  outline:
+    2px solid
+    var(--red);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .image,
+  .cta,
+  .cta svg,
+  .close {
+    transition: none;
+  }
+}

@@ -1,0 +1,1135 @@
+.footer {
+  --red:
+    var(--morgillo-red, #d71920);
+
+  --red-deep:
+    #b9151b;
+
+  --dark:
+    #151515;
+
+  --dark-2:
+    #101010;
+
+  --line:
+    rgba(255, 255, 255, 0.11);
+
+  --muted:
+    rgba(255, 255, 255, 0.52);
+
+  --agriculture:
+    #4f812d;
+
+  --construction:
+    #d99a16;
+
+  --implements:
+    #557a8d;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    var(--dark-2);
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   COMMERCIAL CLOSING
+========================================================= */
+
+.closing {
+  position: relative;
+
+  min-height:
+    clamp(
+      360px,
+      38vw,
+      500px
+    );
+
+  overflow: hidden;
+
+  background:
+    #191919;
+
+  border-top:
+    6px solid
+    var(--red);
+
+  isolation: isolate;
+}
+
+
+/* subtle light */
+
+.closing::before {
+  content: "";
+
+  position: absolute;
+
+  top: -60%;
+  right: -10%;
+
+  width: 60%;
+  height: 160%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.045),
+      transparent 68%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GRAPHIC
+========================================================= */
+
+.graphicWrap {
+  position: absolute;
+
+  z-index: 0;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.graphic {
+  position: absolute;
+
+  right: -5%;
+  bottom: -4%;
+
+  width: 78%;
+  height: auto;
+
+  opacity: 0.9;
+}
+
+.contour {
+  fill: none;
+
+  stroke:
+    rgba(255, 255, 255, 0.13);
+
+  stroke-width: 1.2;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+.contourSoft {
+  fill: none;
+
+  stroke:
+    rgba(255, 255, 255, 0.07);
+
+  stroke-width: 1;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+.route {
+  fill: none;
+
+  stroke:
+    var(--red);
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+
+  stroke-dasharray:
+    4 8;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+.routePoint {
+  fill:
+    rgba(255, 255, 255, 0.7);
+
+  transform-origin:
+    center;
+}
+
+.routeEnd {
+  fill:
+    var(--red);
+
+  transform-origin:
+    center;
+}
+
+.measure {
+  fill: none;
+
+  stroke:
+    rgba(255, 255, 255, 0.15);
+
+  stroke-width: 1;
+
+  vector-effect:
+    non-scaling-stroke;
+}
+
+
+/* =========================================================
+   CLOSING GRID
+========================================================= */
+
+.closingGrid {
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  min-height:
+    clamp(
+      360px,
+      38vw,
+      500px
+    );
+
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(300px, 0.75fr);
+
+  align-items: center;
+
+  gap:
+    clamp(
+      40px,
+      8vw,
+      120px
+    );
+
+  padding-block:
+    clamp(
+      55px,
+      7vw,
+      90px
+    );
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.eyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.eyebrow > span {
+  width: 45px;
+  height: 3px;
+
+  background:
+    var(--red);
+
+  transform-origin: left;
+}
+
+.eyebrow p {
+  margin: 0;
+
+  color:
+    rgba(255,255,255,.58);
+
+  font-size: 0.4rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.14em;
+
+  text-transform:
+    uppercase;
+}
+
+.closingCopy h2 {
+  max-width: 800px;
+
+  margin:
+    20px 0 0;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      2.9rem,
+      5vw,
+      5.3rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.9;
+
+  letter-spacing:
+    -0.065em;
+
+  text-wrap: balance;
+}
+
+.closingCopy h2 span {
+  color:
+    rgba(255,255,255,.4);
+}
+
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.closingAction {
+  max-width: 390px;
+
+  justify-self: end;
+}
+
+.closingAction > p {
+  margin: 0;
+
+  color:
+    rgba(255,255,255,.62);
+
+  font-size: 0.75rem;
+
+  line-height: 1.75;
+}
+
+.primary {
+  display: flex;
+
+  min-height: 56px;
+
+  align-items: center;
+
+  gap: 13px;
+
+  width: fit-content;
+
+  margin-top: 25px;
+
+  padding-inline: 17px;
+
+  background:
+    var(--red);
+
+  color: #fff;
+
+  font-size: 0.4rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.085em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.primary svg:last-child {
+  margin-left: 7px;
+
+  transition:
+    transform 180ms ease;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main {
+  background:
+    var(--dark-2);
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.mainGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, 1.45fr)
+    repeat(
+      3,
+      minmax(130px, 0.55fr)
+    );
+
+  gap:
+    clamp(
+      30px,
+      5vw,
+      70px
+    );
+
+  padding-block:
+    clamp(
+      48px,
+      5vw,
+      70px
+    );
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+
+/* =========================================================
+   IDENTITY
+========================================================= */
+
+.identity {
+  max-width: 370px;
+}
+
+.logo {
+  display: block;
+
+  width:
+    min(
+      100%,
+      290px
+    );
+}
+
+.logoImage {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  object-position:
+    left center;
+}
+
+.identity > p {
+  max-width: 335px;
+
+  margin:
+    21px 0 0;
+
+  color:
+    var(--muted);
+
+  font-size: 0.68rem;
+
+  line-height: 1.72;
+}
+
+
+/* =========================================================
+   SECTOR LINE
+========================================================= */
+
+.sectorLine {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap:
+    7px 14px;
+
+  margin-top: 24px;
+}
+
+.sectorLine > span {
+  --sector:
+    var(--red);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color:
+    rgba(255,255,255,.46);
+
+  font-size: 0.31rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.07em;
+
+  text-transform:
+    uppercase;
+}
+
+.sectorLine i {
+  width: 4px;
+  height: 14px;
+
+  background:
+    var(--sector);
+}
+
+.agriculture {
+  --sector:
+    var(--agriculture)
+    !important;
+}
+
+.construction {
+  --sector:
+    var(--construction)
+    !important;
+}
+
+.implements {
+  --sector:
+    var(--implements)
+    !important;
+}
+
+
+/* =========================================================
+   COLUMNS
+========================================================= */
+
+.column,
+.contact {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items:
+    flex-start;
+
+  gap: 11px;
+}
+
+.columnTitle {
+  margin-bottom: 8px;
+
+  color:
+    rgba(255,255,255,.3);
+
+  font-size: 0.31rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.13em;
+
+  text-transform:
+    uppercase;
+}
+
+.column a {
+  position: relative;
+
+  color:
+    rgba(255,255,255,.66);
+
+  font-size: 0.66rem;
+
+  font-weight: 700;
+
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact > a,
+.location {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  color:
+    rgba(255,255,255,.67);
+}
+
+.contact svg {
+  flex: 0 0 auto;
+
+  margin-top: 2px;
+
+  color:
+    var(--red);
+}
+
+.contact small,
+.contact strong {
+  display: block;
+}
+
+.contact small {
+  color:
+    rgba(255,255,255,.3);
+
+  font-size: 0.29rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.09em;
+
+  text-transform:
+    uppercase;
+}
+
+.contact strong {
+  margin-top: 4px;
+
+  font-size: 0.6rem;
+
+  font-weight: 750;
+
+  line-height: 1.5;
+}
+
+.whatsappText {
+  display: flex !important;
+
+  align-items: center !important;
+
+  gap: 7px !important;
+
+  margin-top: 8px;
+
+  color:
+    rgba(255,255,255,.86)
+    !important;
+
+  font-size: 0.39rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.meta {
+  display: flex;
+
+  min-height: 64px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 30px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+}
+
+
+/* brands */
+
+.brands {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      13px,
+      2vw,
+      25px
+    );
+}
+
+.metaTitle {
+  color:
+    rgba(255,255,255,.25);
+
+  font-size: 0.29rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.11em;
+
+  text-transform:
+    uppercase;
+}
+
+.brands > span:not(.metaTitle) {
+  --brand:
+    var(--red);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color:
+    rgba(255,255,255,.58);
+
+  font-size: 0.33rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.08em;
+}
+
+.brands i {
+  width: 4px;
+  height: 14px;
+
+  background:
+    var(--brand);
+}
+
+.kubota {
+  --brand:
+    #f36f21
+    !important;
+}
+
+.kobelco {
+  --brand:
+    #00a6c7
+    !important;
+}
+
+.bull {
+  --brand:
+    #f0b400
+    !important;
+}
+
+
+/* social */
+
+.social {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: flex-end;
+
+  gap: 16px;
+}
+
+.social a {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color:
+    rgba(255,255,255,.4);
+
+  font-size: 0.31rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.07em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color 180ms ease;
+}
+
+.social a svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.bottom {
+  display: flex;
+
+  min-height: 72px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 25px;
+}
+
+.bottom > div {
+  display: flex;
+
+  gap: 20px;
+
+  color:
+    rgba(255,255,255,.29);
+
+  font-size: 0.3rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.07em;
+
+  text-transform:
+    uppercase;
+}
+
+.backTop {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border: 0;
+
+  background:
+    transparent;
+
+  color:
+    rgba(255,255,255,.56);
+
+  font-size: 0.31rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.08em;
+
+  text-transform:
+    uppercase;
+
+  cursor: pointer;
+
+  transition:
+    color 180ms ease;
+}
+
+.backTop svg {
+  color:
+    var(--red);
+
+  transition:
+    transform 180ms ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .primary:hover {
+    background:
+      var(--red-deep);
+
+    transform:
+      translateY(-2px);
+  }
+
+  .primary:hover
+    svg:last-child {
+    transform:
+      translate(
+        2px,
+        -2px
+      );
+  }
+
+  .column a:hover {
+    color: #fff;
+
+    transform:
+      translateX(3px);
+  }
+
+  .social a:hover {
+    color: #fff;
+  }
+
+  .backTop:hover {
+    color: #fff;
+  }
+
+  .backTop:hover svg {
+    transform:
+      translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 960px) {
+
+  .graphic {
+    right: -30%;
+
+    width: 110%;
+
+    opacity: 0.62;
+  }
+
+  .closingGrid {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .closingAction {
+    max-width: 560px;
+
+    justify-self: start;
+  }
+
+  .mainGrid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .identity {
+    grid-column:
+      1 / -1;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+  .closing {
+    min-height: 0;
+  }
+
+  .closingGrid {
+    min-height: 0;
+
+    padding-block:
+      52px 58px;
+  }
+
+  .graphic {
+    right: -83%;
+    bottom: -5%;
+
+    width: 190%;
+
+    opacity: 0.46;
+  }
+
+  .closingCopy h2 {
+    max-width: 100%;
+
+    font-size:
+      clamp(
+        2.45rem,
+        11.8vw,
+        3.8rem
+      );
+  }
+
+  .closingAction > p {
+    max-width: 92%;
+
+    font-size: 0.72rem;
+  }
+
+  .primary {
+    width: 100%;
+
+    justify-content:
+      space-between;
+  }
+
+
+  /* Corporate footer */
+
+  .mainGrid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap:
+      34px 24px;
+
+    padding-block: 42px;
+  }
+
+  .identity {
+    grid-column:
+      1 / -1;
+
+    max-width: 100%;
+  }
+
+  .logo {
+    width: 245px;
+  }
+
+  .identity > p {
+    max-width: 420px;
+  }
+
+  .contact {
+    grid-column:
+      1 / -1;
+  }
+
+  .meta {
+    align-items:
+      flex-start;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    padding-block: 16px;
+  }
+
+  .social {
+    justify-content:
+      flex-start;
+  }
+
+  .bottom {
+    align-items:
+      flex-start;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+    padding-block: 18px;
+  }
+
+  .bottom > div {
+    flex-direction: column;
+
+    gap: 4px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 370px) {
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .identity,
+  .contact {
+    grid-column: auto;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  .sectorLine {
+    flex-direction: column;
+
+    align-items:
+      flex-start;
+  }
+
+  .brands {
+    gap:
+      10px 16px;
+  }
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.footer a:focus-visible,
+.footer button:focus-visible {
+  outline:
+    2px solid
+    var(--red);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .primary,
+  .primary svg,
+  .column a,
+  .social a,
+  .backTop,
+  .backTop svg {
+    transition: none;
+  }
+}
