@@ -1,0 +1,7 @@
+{% extends "admin/change_form.html" %}
+{% block content_subtitle %}{% endblock %}
+{% block form_top %}
+{% if cms_current %}<p class="mg-editor-intro">{{ cms_current.description }}. {% if add or has_change_permission %}Completa los datos y guarda tus cambios.{% else %}Consulta los datos de esta ficha.{% endif %}</p>{% endif %}
+{% if has_change_permission or add %}{% if opts.model_name == 'brand' or opts.model_name == 'category' %}<div class="mg-catalog-guide">{% include 'admin/morgillo/icon.html' with name='image' %}<div><strong>Cambiar imagen y publicación</strong><p>Elige otra «Imagen de biblioteca».{% if perms.content.add_mediaasset %} Usa el botón + para subir una imagen nueva.{% endif %} Desmarca «Publicada» para ocultar {% if opts.model_name == 'brand' %}la marca{% else %}la categoría{% endif %} y sus equipos en la web. Después pulsa «Guardar».</p></div></div>{% endif %}{% endif %}
+{% endblock %}
+{% block after_field_sets %}{{ block.super }}{% endblock %}

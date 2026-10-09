@@ -556,574 +556,105 @@ export default function Campaigns({
     );
 
 
-  const titleId =
-    `campaign-title-${placement}`;
-
-
-  /* =========================================================
-     CAMPAIGN CONTENT
-  ========================================================= */
+  const titleId = `campaign-title-${placement}`;
+  const descriptionId = `campaign-description-${placement}`;
 
   const content = (
     <motion.div
-      className={clsx(
-        styles.campaign,
-
-        placement ===
-          "popup" &&
-          styles.popupCampaign,
-      )}
-      initial={
-        reduceMotion
-          ? false
-          : {
-              opacity:
-                0,
-
-              y:
-                placement ===
-                "home"
-                  ? 30
-                  : 16,
-
-              scale:
-                placement ===
-                "popup"
-                  ? 0.985
-                  : 1,
-            }
-      }
-      whileInView={
-        placement ===
-          "home" &&
-        !reduceMotion
-          ? {
-              opacity:
-                1,
-
-              y:
-                0,
-            }
-          : undefined
-      }
-      animate={
-        placement ===
-          "popup" &&
-        !reduceMotion
-          ? {
-              opacity:
-                1,
-
-              y:
-                0,
-
-              scale:
-                1,
-            }
-          : undefined
-      }
-      viewport={{
-        once:
-          true,
-
-        amount:
-          0.2,
+      className={clsx(styles.campaign, placement === "popup" && styles.popupCampaign)}
+      initial={reduceMotion ? false : {
+        opacity: 0,
+        y: placement === "home" ? 24 : 12,
+        scale: placement === "popup" ? 0.985 : 1,
       }}
-      transition={{
-        duration:
-          0.65,
-
-        ease: [
-          0.16,
-          1,
-          0.3,
-          1,
-        ],
-      }}
+      whileInView={placement === "home" && !reduceMotion ? { opacity: 1, y: 0 } : undefined}
+      animate={placement === "popup" && !reduceMotion ? { opacity: 1, y: 0, scale: 1 } : undefined}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* =====================================================
-          VISUAL
-      ====================================================== */}
-
-      <div
-        className={
-          styles.visual
-        }
-      >
-        <Image
-          src={
-            campaign.desktopImage
-          }
-          alt={
-            campaign.title
-          }
-          fill
-          sizes={
-            placement ===
-            "popup"
-              ? "(max-width: 768px) 100vw, 48vw"
-              : "(max-width: 900px) 100vw, 54vw"
-          }
-          className={clsx(
-            styles.image,
-            styles.desktopImage,
-          )}
-        />
-
-
-        <Image
-          src={
-            campaign.mobileImage ||
-            campaign.desktopImage
-          }
-          alt={
-            campaign.title
-          }
-          fill
-          sizes="100vw"
-          className={clsx(
-            styles.image,
-            styles.mobileImage,
-          )}
-        />
-
-
-        <div
-          className={
-            styles.imageShade
-          }
-        />
-
-
-        {/* RED GEOMETRY */}
-
-        <div
-          className={
-            styles.redGeometry
-          }
-          aria-hidden="true"
-        >
-          <span>
-            M
-          </span>
+      <div className={styles.visual}>
+        <div className={styles.imageFrame}>
+          <picture>
+            <source media="(max-width: 640px)" srcSet={campaign.mobileImage || campaign.desktopImage} />
+            <Image
+              src={campaign.desktopImage}
+              alt={campaign.title}
+              fill
+              sizes="(max-width: 760px) 100vw, (max-width: 1200px) 48vw, 540px"
+              className={styles.image}
+            />
+          </picture>
         </div>
-
-
-        {/* CAMPAIGN INDEX */}
-
-        <div
-          className={
-            styles.visualIndex
-          }
-        >
-          <span>
-            MRG
-          </span>
-
-          <i />
-
-          <strong>
-            CAMPAÑA
-          </strong>
-        </div>
-
-
-        {/* BOTTOM PLATE */}
-
-        <div
-          className={
-            styles.visualPlate
-          }
-        >
-          <div>
-            <span />
-
-            <strong>
-              MORGILLO
-            </strong>
-          </div>
-
-
-          <p>
-            Campo · Obra ·
-            Operación
-          </p>
-        </div>
-
-
-        {/* TECHNICAL LINES */}
-
-        <div
-          className={
-            styles.technicalLines
-          }
-          aria-hidden="true"
-        >
-          <span />
-          <span />
-          <span />
+        <div className={styles.visualCaption} aria-hidden="true">
+          <span>MORGILLO</span><span>Maquinaria que mueve proyectos.</span>
         </div>
       </div>
 
+      <div className={styles.content}>
+        <p className={styles.eyebrow}><span />Campaña destacada</p>
+        {campaign.subtitle && <span className={styles.subtitle}>{campaign.subtitle}</span>}
+        <h2 id={titleId}>{campaign.title}</h2>
+        {campaign.description && <p id={descriptionId} className={styles.description}>{campaign.description}</p>}
 
-      {/* =====================================================
-          CONTENT
-      ====================================================== */}
-
-      <div
-        className={
-          styles.content
-        }
-      >
-        <div
-          className={
-            styles.contentCode
-          }
-        >
-          <span>
-            06
-          </span>
-
-          <i />
-
-          <p>
-            Campañas Morgillo
-          </p>
-        </div>
-
-
-        {campaign.subtitle && (
-          <span
-            className={
-              styles.subtitle
-            }
-          >
-            {
-              campaign.subtitle
-            }
-          </span>
-        )}
-
-
-        <h2
-          id={
-            titleId
-          }
-        >
-          {
-            campaign.title
-          }
-        </h2>
-
-
-        <p
-          className={
-            styles.description
-          }
-        >
-          {
-            campaign.description
-          }
-        </p>
-
-
-        {/* ===================================================
-            META
-        ==================================================== */}
-
-        <div
-          className={
-            styles.meta
-          }
-        >
-          {(
-            startDate ||
-            endDate
-          ) && (
-            <div
-              className={
-                styles.metaItem
-              }
-            >
-              <span
-                className={
-                  styles.metaIcon
-                }
-              >
-                <CalendarDays
-                  size={
-                    18
-                  }
-                  strokeWidth={
-                    1.7
-                  }
-                  aria-hidden="true"
-                />
-              </span>
-
-
+        <div className={styles.meta}>
+          {(startDate || endDate) && (
+            <div className={styles.metaItem}>
+              <span className={styles.metaIcon}><CalendarDays size={20} strokeWidth={1.8} aria-hidden="true" /></span>
               <div>
-                <small>
-                  Vigencia
-                </small>
-
-
+                <small>Vigencia de la campaña</small>
                 <strong>
-                  {
-                    startDate
-                  }
-
-
-                  {startDate &&
-                    endDate && (
-                      <>
-                        {" "}
-                        —{" "}
-                      </>
-                    )}
-
-
-                  {
-                    endDate
-                  }
+                  {startDate && <time dateTime={campaign.start}>{startDate}</time>}
+                  {startDate && endDate && <span className={styles.dateSeparator}> — </span>}
+                  {endDate && <time dateTime={campaign.end}>{endDate}</time>}
                 </strong>
               </div>
             </div>
           )}
-
-
           {campaign.place && (
-            <div
-              className={
-                styles.metaItem
-              }
-            >
-              <span
-                className={
-                  styles.metaIcon
-                }
-              >
-                <MapPin
-                  size={
-                    18
-                  }
-                  strokeWidth={
-                    1.7
-                  }
-                  aria-hidden="true"
-                />
-              </span>
-
-
-              <div>
-                <small>
-                  Lugar
-                </small>
-
-
-                <strong>
-                  {
-                    campaign.place
-                  }
-                </strong>
-              </div>
+            <div className={styles.metaItem}>
+              <span className={styles.metaIcon}><MapPin size={20} strokeWidth={1.8} aria-hidden="true" /></span>
+              <div><small>Encuéntranos en</small><strong>{campaign.place}</strong></div>
             </div>
           )}
         </div>
 
-
-        {/* ===================================================
-            ACTION
-        ==================================================== */}
-
-        <div
-          className={
-            styles.actionArea
-          }
-        >
-          <a
-            href={
-              campaign.href
-            }
-            onClick={
-              placement ===
-              "popup"
-                ? close
-                : undefined
-            }
-            className={
-              styles.cta
-            }
-          >
-            <span>
-              {
-                campaign.buttonText
-              }
-            </span>
-
-
-            <ArrowUpRight
-              size={
-                18
-              }
-              strokeWidth={
-                1.8
-              }
-              aria-hidden="true"
-            />
+        <div className={styles.actionArea}>
+          <a href={campaign.href} onClick={placement === "popup" ? close : undefined} className={styles.cta}>
+            <span>{campaign.buttonText || "Conocer más"}</span>
+            <ArrowUpRight size={21} strokeWidth={1.8} aria-hidden="true" />
           </a>
-
-
-          <div
-            className={
-              styles.actionMark
-            }
-            aria-hidden="true"
-          >
-            <span />
-
-            <small>
-              MRG / 06
-            </small>
-          </div>
         </div>
       </div>
     </motion.div>
   );
 
-
-  /* =========================================================
-     HOME
-  ========================================================= */
-
-  if (
-    placement ===
-    "home"
-  ) {
+  if (placement === "home") {
     return (
-      <section
-        className={
-          styles.section
-        }
-        aria-labelledby={
-          titleId
-        }
-      >
-        <div
-          className={
-            styles.background
-          }
-          aria-hidden="true"
-        >
-          <span
-            className={
-              styles.backgroundNumber
-            }
-          >
-            06
-          </span>
-
-
-          <span
-            className={
-              styles.backgroundLine
-            }
-          />
-        </div>
-
-
-        <div
-          className="morgillo-container"
-        >
-          <div
-            className={
-              styles.sectionTop
-            }
-          >
-            <div>
-              <span />
-
-              <strong>
-                CAMPAÑA ACTIVA
-              </strong>
-            </div>
-
-
-            <span>
-              MORGILLO /
-              ACTUALIDAD
-            </span>
-          </div>
-
-
+      <section className={styles.section} aria-labelledby={titleId}>
+        <div className="morgillo-container">
+          <div className={styles.sectionTop}><span>ACTUALIDAD MORGILLO</span><strong>Campañas y eventos</strong></div>
           {content}
         </div>
       </section>
     );
   }
 
-
-  /* =========================================================
-     POPUP
-  ========================================================= */
-
   return (
     <dialog
-      ref={
-        dialog
-      }
-      aria-labelledby={
-        titleId
-      }
-      className={
-        styles.dialog
-      }
-      onCancel={(
-        event,
-      ) => {
-        event.preventDefault();
-
-        close();
-      }}
-      onClick={(
-        event,
-      ) => {
-        if (
-          event.target ===
-          event.currentTarget
-        ) {
-          close();
-        }
-      }}
+      ref={dialog}
+      aria-labelledby={titleId}
+      aria-describedby={campaign.description ? descriptionId : undefined}
+      className={styles.dialog}
+      onCancel={event => { event.preventDefault(); close(); }}
+      onClick={event => { if (event.target === event.currentTarget) close(); }}
     >
-      <div
-        className={
-          styles.dialogShell
-        }
-      >
-        <button
-          autoFocus
-          type="button"
-          onClick={
-            close
-          }
-          className={
-            styles.close
-          }
-          aria-label="Cerrar campaña"
-        >
-          <X
-            size={
-              19
-            }
-            strokeWidth={
-              1.8
-            }
-            aria-hidden="true"
-          />
-        </button>
-
-
+      <div className={styles.dialogShell}>
+        <div className={styles.dialogHeader}>
+          <div><strong>MORGILLO<span>•</span></strong><span>Campañas y eventos</span></div>
+          <button autoFocus type="button" onClick={close} className={styles.close} aria-label="Cerrar campaña">
+            <X size={22} strokeWidth={1.8} aria-hidden="true" />
+          </button>
+        </div>
         {content}
       </div>
     </dialog>

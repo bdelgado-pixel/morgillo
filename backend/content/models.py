@@ -50,6 +50,7 @@ class Category(models.Model):
     subtitle=models.CharField('Subtítulo',max_length=120,blank=True)
     description=models.TextField('Descripción')
     image=image_fk(verbose_name='Imagen de biblioteca',related_name='categories')
+    published=models.BooleanField('Publicada',default=True,help_text='Al desmarcarla, se ocultan esta categoría y sus equipos en la web. Los equipos conservan su propio estado de publicación y vuelven a mostrarse al publicar la categoría.')
     position=models.PositiveIntegerField('Orden',default=0)
     class Meta: verbose_name='categoría'; ordering=['position']
     def __str__(self):return self.name

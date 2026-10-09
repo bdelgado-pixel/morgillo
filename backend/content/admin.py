@@ -1,5 +1,7 @@
 from django.contrib import admin, messages
 from django.db import transaction
+from django.db.models import Prefetch
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import format_html, format_html_join
 from django.utils.text import slugify
@@ -51,98 +53,21 @@ def image_preview(
         return "El archivo seleccionado no es una imagen."
 
     return format_html(
-        '<a href="{}" '
-        'target="_blank" '
-        'rel="noopener noreferrer" '
-        'style="display:inline-block;text-decoration:none">'
-        '<img '
-        'src="{}" '
-        'alt="{}" '
-        'style="'
-        'display:block;'
-        'width:{}px;'
-        'height:{}px;'
-        'object-fit:contain;'
-        'background:#f4f4f4;'
-        'border:1px solid #ddd;'
-        'border-radius:8px;'
-        'padding:6px'
-        '">'
-        "</a>",
-        media_url(asset),
-        media_url(asset),
-        asset.alt or asset.title,
-        width,
-        height,
+        '<a class="mg-image-preview" href="{}" target="_blank" rel="noopener noreferrer" '
+        'style="--preview-width:{}px;--preview-height:{}px">'
+        '<img src="{}" alt="{}" loading="lazy"></a>',
+        media_url(asset), width, height, media_url(asset), asset.alt or asset.title,
     )
 
 
-def status_badge(
-    label: str,
-    tone: str = "neutral",
-):
-    tones = {
-        "success": (
-            "#166534",
-            "#dcfce7",
-            "#86efac",
-        ),
-        "warning": (
-            "#92400e",
-            "#fef3c7",
-            "#fcd34d",
-        ),
-        "danger": (
-            "#991b1b",
-            "#fee2e2",
-            "#fca5a5",
-        ),
-        "info": (
-            "#075985",
-            "#e0f2fe",
-            "#7dd3fc",
-        ),
-        "neutral": (
-            "#374151",
-            "#f3f4f6",
-            "#d1d5db",
-        ),
-    }
+def status_badge(label: str, tone: str = "neutral"):
+    return format_html('<span class="mg-badge" data-tone="{}">{}</span>', tone, label)
 
-    color, background, border = tones.get(
-        tone,
-        tones["neutral"],
-    )
-
-    return format_html(
-        '<span style="'
-        "display:inline-flex;"
-        "align-items:center;"
-        "min-height:24px;"
-        "padding:3px 9px;"
-        "border-radius:999px;"
-        "font-size:11px;"
-        "font-weight:800;"
-        "line-height:1;"
-        "white-space:nowrap;"
-        "color:{};"
-        "background:{};"
-        "border:1px solid {}"
-        '">'
-        "{}"
-        "</span>",
-        color,
-        background,
-        border,
-        label,
-    )
 
 
 def frontend_url(path: str) -> str:
-    base = (
-        admin.site.site_url
-        or "http://localhost:3000"
-    ).rstrip("/")
+    site = SiteSettings.objects.only("url").first()
+    base = (site.url if site else admin.site.site_url or "http://localhost:3000").rstrip("/")
 
     return f"{base}{path}"
 
@@ -169,6 +94,7 @@ def frontend_link(
 
 
 @admin.action(
+    permissions=["change"],
     description="Publicar seleccionados"
 )
 def publish_selected(
@@ -188,6 +114,7 @@ def publish_selected(
 
 
 @admin.action(
+    permissions=["change"],
     description="Pasar seleccionados a borrador"
 )
 def unpublish_selected(
@@ -207,7 +134,8 @@ def unpublish_selected(
 
 
 @admin.action(
-    description="Activar marcas seleccionadas"
+    permissions=["change"],
+    description="Publicar marcas seleccionadas"
 )
 def activate_brands(
     modeladmin,
@@ -226,7 +154,8 @@ def activate_brands(
 
 
 @admin.action(
-    description="Desactivar marcas seleccionadas"
+    permissions=["change"],
+    description="Ocultar marcas seleccionadas"
 )
 def deactivate_brands(
     modeladmin,
@@ -251,6 +180,16 @@ def deactivate_brands(
 
 @admin.register(MediaAsset)
 class MediaAdmin(admin.ModelAdmin):
+    list_display_links = ("title",)
+    search_help_text = "Busca por título, descripción o nombre del archivo."
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related(
+            "brands", "categories", "product_images", "product_documents",
+            "campaign_desktop", "campaign_mobile", "articles", "events",
+            "site_logos", "site_heroes",
+        )
+
     list_display = (
         "thumbnail",
         "title",
@@ -558,12 +497,65 @@ class MediaAdmin(admin.ModelAdmin):
 # =========================================================
 
 
+class CatalogEditingMixin:
+    """Keep photo previews separate from unmistakable record editing links."""
+
+    list_display_links = ("catalog_name",)
+
+    def changelist_view(self, request, extra_context=None):
+        context = {**(extra_context or {}), "catalog_can_edit": self.has_change_permission(request)}
+        return super().changelist_view(request, extra_context=context)
+
+    @admin.display(description="Nombre y detalles", ordering="name")
+    def catalog_name(self, obj):
+        if isinstance(obj, Product):
+            details = " · ".join(filter(None, (
+                obj.model, obj.brand.name if obj.brand else "Sin marca", obj.category.name,
+            )))
+        elif isinstance(obj, Category):
+            details = obj.subtitle or obj.slug
+        else:
+            details = "Marca representada · " + obj.slug
+        return format_html(
+            '<span class="mg-record-name">{}</span><small class="mg-record-detail">{}</small>',
+            obj.name, details,
+        )
+
+    def get_list_display_links(self, request, list_display):
+        return ("name",) if request.GET.get("_popup") else ("catalog_name",)
+
+    def get_list_display(self, request):
+        columns = super().get_list_display(request)
+        if request.GET.get("_popup"):
+            return tuple("name" if column == "catalog_name" else column for column in columns)
+
+        @admin.display(description="Administrar")
+        def record_controls(obj):
+            can_edit = self.has_change_permission(request, obj)
+            label = "Editar" if can_edit else "Ver detalle"
+            url = reverse(
+                f"{self.admin_site.name}:{self.opts.app_label}_{self.opts.model_name}_change",
+                args=[obj.pk],
+            )
+            return format_html(
+                '<a class="mg-row-edit" href="{}" aria-label="{} {}">'
+                '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" '
+                'stroke="currentColor" stroke-width="1.7" stroke-linecap="round" '
+                'stroke-linejoin="round" aria-hidden="true">'
+                '<path d="m16 3 5 5-12 12-6 1 1-6zM14 5l5 5"/></svg>{}</a>',
+                url, label, obj.name, label,
+            )
+
+        return (record_controls, *columns)
+
+
 @admin.register(Brand)
-class BrandAdmin(admin.ModelAdmin):
+class BrandAdmin(CatalogEditingMixin, admin.ModelAdmin):
     list_display = (
         "image_thumb",
-        "name",
+        "catalog_name",
         "status",
+        "active",
         "primary",
         "position",
         "frontend",
@@ -581,6 +573,7 @@ class BrandAdmin(admin.ModelAdmin):
     )
 
     list_editable = (
+        "active",
         "primary",
         "position",
     )
@@ -722,11 +715,12 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(CatalogEditingMixin, admin.ModelAdmin):
     list_display = (
         "image_thumb",
-        "name",
-        "slug",
+        "catalog_name",
+        "status",
+        "published",
         "position",
         "frontend",
     )
@@ -738,8 +732,12 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
     list_editable = (
+        "published",
         "position",
     )
+
+    list_filter = ("published",)
+    actions = (publish_selected, unpublish_selected)
 
     ordering = (
         "position",
@@ -772,12 +770,17 @@ class CategoryAdmin(admin.ModelAdmin):
             "Opciones",
             {
                 "fields": (
+                    "published",
                     "position",
                     "frontend",
                 ),
             },
         ),
     )
+
+    @admin.display(description="Estado", ordering="published")
+    def status(self, obj):
+        return status_badge("Publicada" if obj.published else "Oculta", "success" if obj.published else "neutral")
 
     @admin.display(
         description="Imagen"
@@ -979,20 +982,44 @@ class DocumentInline(
 # =========================================================
 
 
+class ProductReviewFilter(admin.SimpleListFilter):
+    title = "Revisión de fichas"
+    parameter_name = "review"
+
+    def lookups(self, request, model_admin):
+        return (("photos", "Sin fotografías"), ("specs", "Sin especificaciones"), ("documents", "Sin ficha PDF"))
+
+    def queryset(self, request, queryset):
+        relation = {"photos": "gallery", "specs": "specifications", "documents": "documents"}.get(self.value())
+        return queryset.filter(**{f"{relation}__isnull": True}).distinct() if relation else queryset
+
+
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(CatalogEditingMixin, admin.ModelAdmin):
+    search_help_text = "Busca por nombre, modelo, marca o descripción del equipo."
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related("brand", "category").prefetch_related(
+            Prefetch("gallery", queryset=ProductImage.objects.select_related("asset")),
+            "specifications", "documents",
+        )
+
+    @admin.display(description="Equipo")
+    def thumbnail(self, obj):
+        photo = next(iter(obj.gallery.all()), None)
+        return image_preview(photo.asset, width=90, height=64) if photo else "Sin fotografía"
+
     list_display = (
+        "thumbnail",
+        "catalog_name",
         "status",
-        "name",
-        "model",
-        "brand",
-        "category",
+        "published",
         "featured",
-        "updated_at",
         "frontend",
     )
 
     list_filter = (
+        ProductReviewFilter,
         "published",
         "featured",
         "mock",
@@ -1014,6 +1041,7 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
     list_editable = (
+        "published",
         "featured",
     )
 
@@ -1120,6 +1148,10 @@ class ProductAdmin(admin.ModelAdmin):
         self,
         obj,
     ):
+        if obj.published and not obj.category.published:
+            return status_badge("Categoría oculta", "warning")
+        if obj.published and obj.brand and not obj.brand.active:
+            return status_badge("Marca oculta", "warning")
         if obj.published:
             return status_badge(
                 "Publicado",
@@ -1152,6 +1184,7 @@ class ProductAdmin(admin.ModelAdmin):
         )
 
     @admin.action(
+        permissions=["change"],
         description=(
             "Duplicar seleccionados "
             "como borrador"

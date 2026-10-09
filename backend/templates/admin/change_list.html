@@ -1,0 +1,16 @@
+{% extends "admin/change_list.html" %}
+{% load admin_list admin_urls %}
+{% block object-tools %}{{ block.super }}{% if not is_popup %}{% if opts.model_name == 'product' or opts.model_name == 'brand' or opts.model_name == 'category' %}<div class="mg-catalog-guide">{% include 'admin/morgillo/icon.html' with name='tool' %}<div>{% if catalog_can_edit %}<strong>Editar datos e imágenes</strong><p>Pulsa «Editar» o el nombre del registro. Para publicar u ocultar, cambia la casilla «Publicado / Publicada» y pulsa «Guardar» al final de la lista.{% if opts.model_name == 'category' %} Ocultar una categoría también oculta sus equipos en la web.{% endif %}</p>{% else %}<strong>Consulta del catálogo</strong><p>Pulsa «Ver detalle» para consultar una ficha. Tu cuenta tiene acceso de lectura en esta sección.</p>{% endif %}</div></div>{% endif %}{% endif %}{% endblock %}
+{% block content_title %}<div class="mg-list-heading"><div><p class="mg-eyebrow">{% if cms_current %}CONTENIDO / {{ cms_current.label|upper }}{% else %}ADMINISTRACIÓN{% endif %}</p><h1>{% if cms_current %}{{ cms_current.label }}{% else %}{{ cl.opts.verbose_name_plural|capfirst }}{% endif %}</h1><p>{{ cms_current.description|default:'Consulta y administra los registros de esta sección.' }}</p></div><span class="mg-list-count">{{ cl.result_count }} registro{{ cl.result_count|pluralize }}</span></div>{% endblock %}
+{% block search %}
+<div class="mg-list-toolbar">
+  {{ block.super }}
+  {% if cl.has_filters %}<button type="button" class="mg-button mg-filter-toggle" aria-expanded="true" aria-controls="changelist-filter" data-filter-active="{{ cl.has_active_filters|yesno:'true,false' }}">{% include 'admin/morgillo/icon.html' with name='settings' %}Filtros</button>{% endif %}
+  {% if not is_popup %}
+    {% if opts.model_name == 'mediaasset' %}<div class="mg-view-switch" role="group" aria-label="Vista de biblioteca"><button type="button" data-media-view="list" aria-pressed="true">Lista</button><button type="button" data-media-view="grid" aria-pressed="false">Cuadrícula</button></div>{% endif %}
+    {% if opts.model_name == 'product' or opts.model_name == 'brand' or opts.model_name == 'category' %}<div class="mg-view-switch mg-catalog-view-switch" role="group" aria-label="Vista del catálogo"><button type="button" data-catalog-view="list" aria-pressed="true">Lista</button><button type="button" data-catalog-view="cards" aria-pressed="false">Tarjetas</button></div>{% endif %}
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block result_list %}{{ block.super }}{% if not cl.result_count %}<div class="mg-empty">{% include 'admin/morgillo/icon.html' with name='search' %}<strong>{% if cl.query or cl.has_active_filters %}No encontramos registros con esos filtros.{% else %}Esta sección está lista para empezar.{% endif %}</strong><p>{% if cl.query or cl.has_active_filters %}Prueba otro término o revisa los filtros seleccionados.{% else %}Los registros que agregues aparecerán aquí.{% endif %}</p>{% if not is_popup %}{% if cl.query or cl.has_active_filters %}<a class="mg-button" href="{{ request.path }}">Limpiar búsqueda y filtros</a>{% elif has_add_permission %}<a class="mg-button mg-button-primary" href="{% url opts|admin_urlname:'add' %}">Crear primer registro</a>{% endif %}{% endif %}</div>{% endif %}{% endblock %}

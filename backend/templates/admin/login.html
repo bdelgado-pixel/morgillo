@@ -1,0 +1,5 @@
+{% extends "admin/login.html" %}
+{% block header %}{% endblock %}
+{% block content %}
+<div class="mg-login-layout"><section class="mg-login-story"><a class="mg-brand" href="{% url 'admin:index' %}"><span class="mg-brand-mark" aria-hidden="true">M<span>•</span></span><span><strong>MORGILLO</strong><small>Centro de contenido</small></span></a><div><p class="mg-eyebrow">RESPALDO EN CADA OPERACIÓN</p><h1>Tu trabajo<br>mueve <span>todo.</span></h1><p>Administra el catálogo, las imágenes y las publicaciones que conectan a Morgillo con sus clientes.</p><div class="mg-login-sectors"><span>Agricultura</span><span>Construcción</span><span>Implementos</span></div></div><small>MORGILLO / MAQUINARIA Y SOLUCIONES</small></section><section class="mg-login-form"><div class="mg-login-heading"><span class="mg-login-icon">{% include 'admin/morgillo/icon.html' with name='settings' %}</span><p class="mg-eyebrow">ACCESO AL PANEL</p><h2>Bienvenido de nuevo.</h2><p>Ingresa con tu cuenta para continuar.</p></div>{{ block.super }}<p class="mg-login-help">¿Necesitas acceso? Contacta al administrador del sitio.</p></section></div>
+{% endblock %}

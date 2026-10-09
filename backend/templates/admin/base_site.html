@@ -1,211 +1,43 @@
 {% extends "admin/base.html" %}
-{% load static %}
-
-{% block title %}
-  {% if subtitle %}
-    {{ subtitle }} |
-  {% endif %}
-  {{ title }} | Morgillo CMS
-{% endblock %}
-
-
-{% block extrastyle %}
-  {{ block.super }}
-
-  <link
-    rel="stylesheet"
-    href="{% static 'cms.css' %}"
-  >
-{% endblock %}
-
-
+{% load static i18n %}
+{% block extrahead %}{{ block.super }}<meta charset="utf-8">{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} · {% endif %}{{ title }} · Morgillo CMS{% endblock %}
+{% block responsive %}{{ block.super }}<link rel="stylesheet" href="{% static 'cms.css' %}?v=20261009-catalog2"><script src="{% static 'cms.js' %}?v=20261009-catalog2" defer></script>{% endblock %}
+{% block bodyclass %}mg-admin{% endblock %}
 {% block branding %}
-  <div class="morgillo-admin-brand">
-    <a
-      href="{% url 'admin:index' %}"
-      class="morgillo-admin-brand__link"
-      aria-label="Morgillo CMS, ir al panel principal"
-    >
-      <span
-        class="morgillo-admin-brand__mark"
-        aria-hidden="true"
-      >
-        M
-      </span>
-
-      <span class="morgillo-admin-brand__text">
-        <strong>
-          MORGILLO
-        </strong>
-
-        <small>
-          CMS
-        </small>
-      </span>
-    </a>
-  </div>
+<a class="mg-brand" href="{% url 'admin:index' %}" aria-label="Morgillo, ir al resumen"><span class="mg-brand-mark" aria-hidden="true">M<span>•</span></span><span><strong>MORGILLO</strong><small>Centro de contenido</small></span></a>
 {% endblock %}
-
-
-{% block nav-global %}
-  {% if user.is_authenticated %}
-    <nav
-      class="morgillo-admin-nav"
-      aria-label="Navegación del CMS"
-    >
-      <a
-        href="{% url 'admin:index' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          00
-        </span>
-
-        <span>
-          Panel
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_product_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          MQ
-        </span>
-
-        <span>
-          Maquinaria
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_mediaasset_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          MD
-        </span>
-
-        <span>
-          Multimedia
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_campaign_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          CM
-        </span>
-
-        <span>
-          Campañas
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_article_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          NV
-        </span>
-
-        <span>
-          Novedades
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_event_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          EV
-        </span>
-
-        <span>
-          Eventos
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_service_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          SV
-        </span>
-
-        <span>
-          Servicios
-        </span>
-      </a>
-
-
-      <a
-        href="{% url 'admin:content_sitesettings_changelist' %}"
-        class="morgillo-admin-nav__link"
-      >
-        <span
-          class="morgillo-admin-nav__code"
-          aria-hidden="true"
-        >
-          CF
-        </span>
-
-        <span>
-          Configuración
-        </span>
-      </a>
-
-
-      <a
-        href="{{ site_url|default:'http://localhost:3000' }}"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="morgillo-admin-nav__link morgillo-admin-nav__link--site"
-      >
-        <span>
-          Ver sitio
-        </span>
-
-        <span
-          class="morgillo-admin-nav__external"
-          aria-hidden="true"
-        >
-          ↗
-        </span>
-      </a>
-    </nav>
+{% block header %}
+<header id="header">
+  {% if has_permission %}<button type="button" class="mg-icon-button mg-menu-toggle" aria-label="Abrir navegación" aria-controls="mg-sidebar" aria-expanded="false">{% include 'admin/morgillo/icon.html' with name='menu' %}</button>{% endif %}
+  <div id="branding"><a class="mg-brand" href="{% url 'admin:index' %}"><span class="mg-brand-mark" aria-hidden="true">M<span>•</span></span><span><strong>MORGILLO</strong><small>Centro de contenido</small></span></a></div>
+  {% if has_permission %}
+  <div class="mg-header-location"><span>Administración</span><strong>{% if cms_current %}{{ cms_current.label }}{% else %}Resumen general{% endif %}</strong></div>
+  <button type="button" class="mg-command-open" aria-haspopup="dialog" aria-label="Buscar una sección">{% include 'admin/morgillo/icon.html' with name='search' %}<span>Buscar una sección</span><kbd>Ctrl K</kbd></button>
+  <div id="user-tools">
+    {% include 'admin/color_theme_toggle.html' %}
+    <details class="mg-account"><summary><span class="mg-avatar">{{ user.get_username|first|upper }}</span><span class="mg-account-name">{% firstof user.get_short_name user.get_username %}</span>{% include 'admin/morgillo/icon.html' with name='chevron' %}</summary><div class="mg-account-panel"><strong>Tu cuenta</strong>{% if user.has_usable_password %}<a href="{% url 'admin:password_change' %}">Cambiar contraseña</a>{% endif %}<form id="logout-form" method="post" action="{% url 'admin:logout' %}">{% csrf_token %}<button type="submit">Cerrar sesión</button></form></div></details>
+  </div>
   {% endif %}
+</header>
+{% endblock %}
+{% block nav-sidebar %}
+{% if has_permission %}
+<aside id="mg-sidebar" aria-label="Navegación del panel">
+  <button type="button" class="mg-icon-button mg-menu-close" aria-label="Cerrar navegación">{% include 'admin/morgillo/icon.html' with name='close' %}</button>
+  <a class="mg-brand" href="{% url 'admin:index' %}"><span class="mg-brand-mark" aria-hidden="true">M<span>•</span></span><span><strong>MORGILLO</strong><small>Centro de contenido</small></span></a>
+  <div class="mg-workspace"><span class="mg-workspace-dot"></span><div><strong>Sitio Morgillo</strong><small>Administración de contenido</small></div><span class="mg-workspace-tag">CMS</span></div>
+  <nav>
+    <a class="mg-nav-link{% if cms_is_home %} is-current{% endif %}" href="{% url 'admin:index' %}"{% if cms_is_home %} aria-current="page"{% endif %}>{% include 'admin/morgillo/icon.html' with name='grid' %}<span>Resumen general</span></a>
+    {% for group in cms_navigation %}<div class="mg-nav-group"><p>{{ group.label }}</p>{% for item in group.items %}<a class="mg-nav-link{% if item.current %} is-current{% endif %}" href="{{ item.url }}"{% if item.current %} aria-current="page"{% endif %}>{% include 'admin/morgillo/icon.html' with name=item.icon %}<span>{{ item.label }}</span></a>{% endfor %}</div>{% endfor %}
+  </nav>
+  <div class="mg-sidebar-bottom">{% if site_url %}<a class="mg-site-link" href="{{ site_url }}" target="_blank" rel="noopener">{% include 'admin/morgillo/icon.html' with name='external' %}Ver sitio web</a>{% endif %}<small>Maquinaria que mueve proyectos.</small></div>
+</aside>
+<button type="button" class="mg-menu-backdrop" aria-label="Cerrar navegación" hidden></button>
+{% endif %}
+{% endblock %}
+{% block extrabody %}{{ block.super }}
+{% if has_permission and not is_popup %}
+<dialog id="mg-command" aria-labelledby="mg-command-title"><div class="mg-command-head"><h2 id="mg-command-title">Ir a una sección</h2><button type="button" class="mg-icon-button" data-command-close aria-label="Cerrar búsqueda">{% include 'admin/morgillo/icon.html' with name='close' %}</button></div><label class="mg-command-search">{% include 'admin/morgillo/icon.html' with name='search' %}<input type="search" placeholder="Maquinaria, biblioteca, novedades…" aria-label="Buscar secciones" autocomplete="off"></label><div class="mg-command-results">{% for group in cms_navigation %}{% for item in group.items %}<a href="{{ item.url }}" data-search-label="{{ item.label|lower }} {{ item.description|lower }}">{% include 'admin/morgillo/icon.html' with name=item.icon %}<span>{{ item.label }}<small>{{ group.label }}</small></span>{% include 'admin/morgillo/icon.html' with name='arrow' %}</a>{% endfor %}{% endfor %}<p class="mg-command-empty" hidden>No encontramos esa sección.</p></div><p class="mg-command-hint">Tab para recorrer · Enter para abrir · Esc para cerrar</p></dialog>
+{% endif %}
 {% endblock %}

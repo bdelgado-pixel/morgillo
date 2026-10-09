@@ -1,0 +1,4 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block bodyclass %}{{ block.super }} app-index{% endblock %}
+{% block content %}<div id="content-main" class="mg-app-list">{% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}</div>{% endblock %}
