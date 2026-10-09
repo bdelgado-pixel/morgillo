@@ -6,15 +6,17 @@ import ServicesSection from "@/components/home/ServicesSection";
 import CompanySection from "@/components/home/CompanySection";
 import ContactSection from "@/components/home/ContactSection";
 import NewsSection from "@/components/home/NewsSection";
+
 import CampaignFeed from "@/components/campaigns/CampaignFeed";
 
 import {
-  getProducts,
+  getArticles,
   getBrands,
   getCampaigns,
-  getArticles,
   getContent,
+  getProducts,
 } from "@/lib/content";
+
 
 export const metadata = {
   alternates: {
@@ -22,86 +24,67 @@ export const metadata = {
   },
 };
 
+
 export default async function Home() {
   const [
     products,
     brands,
     campaigns,
     articles,
-    content,
-  ] = await Promise.all([
-    getProducts(),
-    getBrands(),
-    getCampaigns(),
-    getArticles(),
-    getContent(),
-  ]);
+  ] =
+    await Promise.all([
+      getProducts(),
+      getBrands(),
+      getCampaigns(),
+      getArticles(),
+    ]);
 
-  const primaryBrands = brands.filter(
-    (brand) => brand.primary !== false,
-  );
+
+  const content =
+    await getContent();
+
 
   return (
-    <div className="morgillo-home-page">
-      {/* =============================================
-          HERO
-      ============================================== */}
-
+    <main>
       <Hero />
 
-      {/* =============================================
-          01 — MAQUINARIA DESTACADA
-      ============================================== */}
-
-      <FeaturedMachinery products={products} />
-
-      {/* =============================================
-          02 — CATEGORÍAS
-      ============================================== */}
+      <FeaturedMachinery
+        products={
+          products
+        }
+      />
 
       <Categories />
 
-      {/* =============================================
-          03 — MARCAS
-      ============================================== */}
-
-      <BrandsSection brands={primaryBrands} />
-
-      {/* =============================================
-          04 — SERVICIOS
-      ============================================== */}
-
-      <ServicesSection />
-
-      {/* =============================================
-          05 — EMPRESA
-      ============================================== */}
+      <BrandsSection
+        brands={brands.filter(
+          (brand) =>
+            brand.primary !==
+            false,
+        )}
+      />
 
       <CompanySection />
 
-      {/* =============================================
-          CAMPAÑA ACTIVA
-      ============================================== */}
+      <ServicesSection />
 
-      <div className="morgillo-home-campaign">
-        <CampaignFeed
-          initial={campaigns}
-          serverNow={content.serverNow}
-          placement="home"
-        />
-      </div>
+      <CampaignFeed
+        initial={
+          campaigns
+        }
+        serverNow={
+          content.serverNow
+        }
+        placement="home"
+      />
 
-      {/* =============================================
-          06 — NOVEDADES
-      ============================================== */}
-
-      <NewsSection articles={articles} />
-
-      {/* =============================================
-          07 — CONTACTO
-      ============================================== */}
+      <NewsSection
+        articles={
+          articles
+        }
+      />
 
       <ContactSection />
-    </div>
+    </main>
   );
 }

@@ -1,14 +1,12 @@
 "use client";
 
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
 import {
   useEffect,
   useRef,
   useState,
 } from "react";
-
-import { usePathname } from "next/navigation";
 
 import {
   motion,
@@ -33,14 +31,28 @@ import {
 
 import styles from "./Campaigns.module.css";
 
+
 type Props = {
   campaigns: Campaign[];
-  placement: "home" | "popup";
+
+  serverNow: string;
+
+  placement:
+    | "home"
+    | "popup";
 };
 
-function formatDate(value: string) {
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(
+  value: string,
+) {
   const date =
     new Date(value);
+
 
   if (
     Number.isNaN(
@@ -50,20 +62,53 @@ function formatDate(value: string) {
     return null;
   }
 
+
   return new Intl.DateTimeFormat(
     "es-PE",
     {
       day: "2-digit",
       month: "short",
       year: "numeric",
+      timeZone:
+        "America/Lima",
     },
   )
     .format(date)
     .replace(".", "");
 }
 
+
+/* =========================================================
+   CAMPAIGN DAY KEY
+========================================================= */
+
+function campaignDayKey(
+  timestamp: number,
+) {
+  return new Intl.DateTimeFormat(
+    "en-CA",
+    {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      timeZone:
+        "America/Lima",
+    },
+  ).format(
+    new Date(
+      timestamp,
+    ),
+  );
+}
+
+
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 export default function Campaigns({
   campaigns,
+  serverNow,
   placement,
 }: Props) {
   const [
@@ -74,41 +119,106 @@ export default function Campaigns({
       null,
     );
 
+
   const dialog =
     useRef<HTMLDialogElement>(
       null,
     );
+
 
   const dismissed =
     useRef(
       new Set<string>(),
     );
 
+
   const presented =
     useRef(
       new Set<string>(),
     );
 
+
+  /*
+   * Diferencia entre el reloj del
+   * navegador y el reloj recibido
+   * desde Django.
+   */
+  const clockOffset =
+    useRef(0);
+
+
   const path =
     usePathname();
+
 
   const reduceMotion =
     useReducedMotion();
 
-  /* =========================================
+
+  /* =========================================================
      CAMPAIGN LOGIC
-  ========================================== */
+  ========================================================= */
 
   useEffect(() => {
-    if (!campaigns.length) {
+    /*
+     * Sincronizamos el reloj del
+     * cliente con serverNow.
+     *
+     * El tiempo seguirá avanzando
+     * normalmente porque después
+     * usamos Date.now() + offset.
+     */
+
+    const serverTimestamp =
+      Date.parse(
+        serverNow,
+      );
+
+
+    clockOffset.current =
+      Number.isNaN(
+        serverTimestamp,
+      )
+        ? 0
+        : serverTimestamp -
+          Date.now();
+
+
+    if (
+      !campaigns.length
+    ) {
       return;
     }
+
+
+    function currentTime() {
+      return (
+        Date.now() +
+        clockOffset.current
+      );
+    }
+
+
+    function currentDay() {
+      return campaignDayKey(
+        currentTime(),
+      );
+    }
+
 
     function seen(
       item: Campaign,
     ) {
       const key =
-        campaignKey(item);
+        campaignKey(
+          item,
+        );
+
+
+      /*
+       * Cerrado explícitamente
+       * durante esta visita.
+       */
 
       if (
         dismissed.current.has(
@@ -118,6 +228,16 @@ export default function Campaigns({
         return true;
       }
 
+
+      /*
+       * Si ya se está mostrando,
+       * no lo consideramos oculto.
+       *
+       * Esto evita que el almacenamiento
+       * de sesión lo haga desaparecer
+       * mientras el popup está abierto.
+       */
+
       if (
         presented.current.has(
           key,
@@ -125,6 +245,7 @@ export default function Campaigns({
       ) {
         return false;
       }
+
 
       try {
         if (
@@ -138,6 +259,7 @@ export default function Campaigns({
           );
         }
 
+
         if (
           item.frequency ===
           "day"
@@ -146,48 +268,69 @@ export default function Campaigns({
             localStorage.getItem(
               key,
             ) ===
-            new Date().toLocaleDateString(
-              "en-CA",
-            )
+            currentDay()
           );
         }
       } catch {
-        /* storage unavailable */
+        /*
+         * storage unavailable
+         */
       }
+
 
       return false;
     }
 
+
     function refresh() {
+      const now =
+        currentTime();
+
+
       const next =
         campaigns.find(
-          (item) =>
+          (
+            item,
+          ) =>
             isCampaignActive(
               item,
-              Date.now(),
+              now,
             ) &&
             item.placements.includes(
               placement,
             ) &&
-            (!item.paths.length ||
+            (
+              !item.paths.length ||
               item.paths.includes(
                 path,
-              )) &&
-            (placement ===
-              "home" ||
-              !seen(item)),
-        ) ?? null;
+              )
+            ) &&
+            (
+              placement ===
+                "home" ||
+              !seen(
+                item,
+              )
+            ),
+        ) ??
+        null;
+
 
       if (
         next &&
-        placement === "popup"
+        placement ===
+          "popup"
       ) {
         const key =
-          campaignKey(next);
+          campaignKey(
+            next,
+          );
+
 
         presented.current.add(
           key,
         );
+
 
         try {
           if (
@@ -200,24 +343,39 @@ export default function Campaigns({
             );
           }
 
+
           if (
             next.frequency ===
             "day"
           ) {
             localStorage.setItem(
               key,
-              new Date().toLocaleDateString(
-                "en-CA",
-              ),
+              currentDay(),
             );
           }
         } catch {
-          /* storage unavailable */
+          /*
+           * storage unavailable
+           */
         }
       }
 
-      setCampaign(next);
+
+      setCampaign(
+        next,
+      );
     }
+
+
+    /*
+     * Primer cálculo después
+     * del montaje.
+     *
+     * Se hace mediante callback
+     * para no ejecutar setState
+     * directamente en el cuerpo
+     * del effect.
+     */
 
     const first =
       window.setTimeout(
@@ -225,16 +383,25 @@ export default function Campaigns({
         0,
       );
 
+
+    /*
+     * Una campaña puede empezar
+     * o terminar mientras el usuario
+     * mantiene la página abierta.
+     */
+
     const timer =
       window.setInterval(
         refresh,
         1000,
       );
 
+
     return () => {
       window.clearTimeout(
         first,
       );
+
 
       window.clearInterval(
         timer,
@@ -244,27 +411,33 @@ export default function Campaigns({
     campaigns,
     placement,
     path,
+    serverNow,
   ]);
 
-  /* =========================================
+
+  /* =========================================================
      POPUP
-  ========================================== */
+  ========================================================= */
 
   useEffect(() => {
     if (
-      placement !== "popup" ||
+      placement !==
+        "popup" ||
       !campaign
     ) {
       return;
     }
 
+
     const element =
       dialog.current;
+
 
     const previous =
       document.activeElement as
         | HTMLElement
         | null;
+
 
     if (
       element &&
@@ -273,20 +446,27 @@ export default function Campaigns({
       element.showModal();
     }
 
+
     const overflow =
       document.body.style
         .overflow;
 
+
     document.body.style.overflow =
       "hidden";
 
+
     return () => {
-      if (element?.open) {
+      if (
+        element?.open
+      ) {
         element.close();
       }
 
+
       document.body.style.overflow =
         overflow;
+
 
       previous?.focus();
     };
@@ -295,16 +475,25 @@ export default function Campaigns({
     placement,
   ]);
 
+
+  /* =========================================================
+     CLOSE
+  ========================================================= */
+
   function close() {
-    if (campaign) {
+    if (
+      campaign
+    ) {
       const key =
         campaignKey(
           campaign,
         );
 
+
       dismissed.current.add(
         key,
       );
+
 
       try {
         if (
@@ -317,63 +506,86 @@ export default function Campaigns({
           );
         }
 
+
         if (
           campaign.frequency ===
           "day"
         ) {
           localStorage.setItem(
             key,
-            new Date().toLocaleDateString(
-              "en-CA",
+            campaignDayKey(
+              Date.now() +
+                clockOffset.current,
             ),
           );
         }
       } catch {
-        /* storage unavailable */
+        /*
+         * storage unavailable
+         */
       }
     }
 
-    setCampaign(null);
+
+    setCampaign(
+      null,
+    );
   }
 
-  if (!campaign) {
+
+  /* =========================================================
+     NO CAMPAIGN
+  ========================================================= */
+
+  if (
+    !campaign
+  ) {
     return null;
   }
+
 
   const startDate =
     formatDate(
       campaign.start,
     );
 
+
   const endDate =
     formatDate(
       campaign.end,
     );
 
+
   const titleId =
     `campaign-title-${placement}`;
 
-  /* =========================================
+
+  /* =========================================================
      CAMPAIGN CONTENT
-  ========================================== */
+  ========================================================= */
 
   const content = (
     <motion.div
       className={clsx(
         styles.campaign,
-        placement === "popup" &&
+
+        placement ===
+          "popup" &&
           styles.popupCampaign,
       )}
       initial={
         reduceMotion
           ? false
           : {
-              opacity: 0,
+              opacity:
+                0,
+
               y:
                 placement ===
                 "home"
                   ? 30
                   : 16,
+
               scale:
                 placement ===
                 "popup"
@@ -382,30 +594,45 @@ export default function Campaigns({
             }
       }
       whileInView={
-        placement === "home" &&
+        placement ===
+          "home" &&
         !reduceMotion
           ? {
-              opacity: 1,
-              y: 0,
+              opacity:
+                1,
+
+              y:
+                0,
             }
           : undefined
       }
       animate={
-        placement === "popup" &&
+        placement ===
+          "popup" &&
         !reduceMotion
           ? {
-              opacity: 1,
-              y: 0,
-              scale: 1,
+              opacity:
+                1,
+
+              y:
+                0,
+
+              scale:
+                1,
             }
           : undefined
       }
       viewport={{
-        once: true,
-        amount: 0.2,
+        once:
+          true,
+
+        amount:
+          0.2,
       }}
       transition={{
-        duration: 0.65,
+        duration:
+          0.65,
+
         ease: [
           0.16,
           1,
@@ -414,9 +641,9 @@ export default function Campaigns({
         ],
       }}
     >
-      {/* =====================================
+      {/* =====================================================
           VISUAL
-      ====================================== */}
+      ====================================================== */}
 
       <div
         className={
@@ -427,7 +654,9 @@ export default function Campaigns({
           src={
             campaign.desktopImage
           }
-          alt={campaign.title}
+          alt={
+            campaign.title
+          }
           fill
           sizes={
             placement ===
@@ -441,12 +670,15 @@ export default function Campaigns({
           )}
         />
 
+
         <Image
           src={
             campaign.mobileImage ||
             campaign.desktopImage
           }
-          alt={campaign.title}
+          alt={
+            campaign.title
+          }
           fill
           sizes="100vw"
           className={clsx(
@@ -455,13 +687,15 @@ export default function Campaigns({
           )}
         />
 
+
         <div
           className={
             styles.imageShade
           }
         />
 
-        {/* red geometry */}
+
+        {/* RED GEOMETRY */}
 
         <div
           className={
@@ -474,7 +708,8 @@ export default function Campaigns({
           </span>
         </div>
 
-        {/* campaign index */}
+
+        {/* CAMPAIGN INDEX */}
 
         <div
           className={
@@ -492,7 +727,8 @@ export default function Campaigns({
           </strong>
         </div>
 
-        {/* bottom plate */}
+
+        {/* BOTTOM PLATE */}
 
         <div
           className={
@@ -507,13 +743,15 @@ export default function Campaigns({
             </strong>
           </div>
 
+
           <p>
             Campo · Obra ·
             Operación
           </p>
         </div>
 
-        {/* technical lines */}
+
+        {/* TECHNICAL LINES */}
 
         <div
           className={
@@ -527,9 +765,10 @@ export default function Campaigns({
         </div>
       </div>
 
-      {/* =====================================
+
+      {/* =====================================================
           CONTENT
-      ====================================== */}
+      ====================================================== */}
 
       <div
         className={
@@ -552,6 +791,7 @@ export default function Campaigns({
           </p>
         </div>
 
+
         {campaign.subtitle && (
           <span
             className={
@@ -564,11 +804,17 @@ export default function Campaigns({
           </span>
         )}
 
-        <h2 id={titleId}>
+
+        <h2
+          id={
+            titleId
+          }
+        >
           {
             campaign.title
           }
         </h2>
+
 
         <p
           className={
@@ -580,17 +826,20 @@ export default function Campaigns({
           }
         </p>
 
-        {/* =================================
+
+        {/* ===================================================
             META
-        ================================== */}
+        ==================================================== */}
 
         <div
           className={
             styles.meta
           }
         >
-          {(startDate ||
-            endDate) && (
+          {(
+            startDate ||
+            endDate
+          ) && (
             <div
               className={
                 styles.metaItem
@@ -602,20 +851,28 @@ export default function Campaigns({
                 }
               >
                 <CalendarDays
-                  size={18}
+                  size={
+                    18
+                  }
                   strokeWidth={
                     1.7
                   }
+                  aria-hidden="true"
                 />
               </span>
+
 
               <div>
                 <small>
                   Vigencia
                 </small>
 
+
                 <strong>
-                  {startDate}
+                  {
+                    startDate
+                  }
+
 
                   {startDate &&
                     endDate && (
@@ -625,11 +882,15 @@ export default function Campaigns({
                       </>
                     )}
 
-                  {endDate}
+
+                  {
+                    endDate
+                  }
                 </strong>
               </div>
             </div>
           )}
+
 
           {campaign.place && (
             <div
@@ -643,17 +904,22 @@ export default function Campaigns({
                 }
               >
                 <MapPin
-                  size={18}
+                  size={
+                    18
+                  }
                   strokeWidth={
                     1.7
                   }
+                  aria-hidden="true"
                 />
               </span>
+
 
               <div>
                 <small>
                   Lugar
                 </small>
+
 
                 <strong>
                   {
@@ -665,9 +931,10 @@ export default function Campaigns({
           )}
         </div>
 
-        {/* =================================
+
+        {/* ===================================================
             ACTION
-        ================================== */}
+        ==================================================== */}
 
         <div
           className={
@@ -694,11 +961,18 @@ export default function Campaigns({
               }
             </span>
 
+
             <ArrowUpRight
-              size={18}
-              strokeWidth={1.8}
+              size={
+                18
+              }
+              strokeWidth={
+                1.8
+              }
+              aria-hidden="true"
             />
           </a>
+
 
           <div
             className={
@@ -717,12 +991,14 @@ export default function Campaigns({
     </motion.div>
   );
 
-  /* =========================================
+
+  /* =========================================================
      HOME
-  ========================================== */
+  ========================================================= */
 
   if (
-    placement === "home"
+    placement ===
+    "home"
   ) {
     return (
       <section
@@ -747,6 +1023,7 @@ export default function Campaigns({
             06
           </span>
 
+
           <span
             className={
               styles.backgroundLine
@@ -754,7 +1031,10 @@ export default function Campaigns({
           />
         </div>
 
-        <div className="morgillo-container">
+
+        <div
+          className="morgillo-container"
+        >
           <div
             className={
               styles.sectionTop
@@ -768,11 +1048,13 @@ export default function Campaigns({
               </strong>
             </div>
 
+
             <span>
               MORGILLO /
               ACTUALIDAD
             </span>
           </div>
+
 
           {content}
         </div>
@@ -780,25 +1062,32 @@ export default function Campaigns({
     );
   }
 
-  /* =========================================
+
+  /* =========================================================
      POPUP
-  ========================================== */
+  ========================================================= */
 
   return (
     <dialog
-      ref={dialog}
+      ref={
+        dialog
+      }
       aria-labelledby={
         titleId
       }
       className={
         styles.dialog
       }
-      onCancel={(event) => {
+      onCancel={(
+        event,
+      ) => {
         event.preventDefault();
 
         close();
       }}
-      onClick={(event) => {
+      onClick={(
+        event,
+      ) => {
         if (
           event.target ===
           event.currentTarget
@@ -815,17 +1104,25 @@ export default function Campaigns({
         <button
           autoFocus
           type="button"
-          onClick={close}
+          onClick={
+            close
+          }
           className={
             styles.close
           }
           aria-label="Cerrar campaña"
         >
           <X
-            size={19}
-            strokeWidth={1.8}
+            size={
+              19
+            }
+            strokeWidth={
+              1.8
+            }
+            aria-hidden="true"
           />
         </button>
+
 
         {content}
       </div>

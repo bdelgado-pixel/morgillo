@@ -1020,10 +1020,7 @@ export default function HeroScene(
       }
     >
       <Canvas
-        dpr={[
-          1,
-          1.25,
-        ]}
+  dpr={1}
 
         camera={{
           position: [
@@ -1039,15 +1036,14 @@ export default function HeroScene(
           far: 50,
         }}
 
-        gl={{
-          alpha: true,
-
-          antialias:
-            true,
-
-          powerPreference:
-            "high-performance",
-        }}
+       gl={{
+  alpha: true,
+  antialias: false,
+  powerPreference:
+    "default",
+  preserveDrawingBuffer:
+    false,
+}}
 
         performance={{
           min: 0.5,

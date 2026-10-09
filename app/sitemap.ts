@@ -1,35 +1,122 @@
-import type { MetadataRoute } from "next";
+import type {
+  MetadataRoute,
+} from "next";
+
 import {
-  getProducts,
-  getBrands,
   getArticles,
+  getBrands,
   getEvents,
-  getSite,
+  getProducts,
   getServices,
+  getSite,
 } from "@/lib/content";
-export const dynamic = "force-dynamic";
+
+
+export const dynamic =
+  "force-dynamic";
+
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const site = await getSite();
-  const services = await getServices();
-  const [products, brands, articles, events] = await Promise.all([
-    getProducts(),
-    getBrands(),
-    getArticles(),
-    getEvents(),
-  ]);
-  return [
-    "",
+  const [
+    site,
+    services,
+    products,
+    brands,
+    articles,
+    events,
+  ] =
+    await Promise.all([
+      getSite(),
+      getServices(),
+      getProducts(),
+      getBrands(),
+      getArticles(),
+      getEvents(),
+    ]);
+
+
+  const paths = [
+    "/",
+
     "/maquinaria",
+
     "/marcas",
+
     "/servicios",
+
     "/empresa",
+
     "/contacto",
+
     "/eventos",
+
     "/novedades",
-    ...services.map((s) => `/servicios/${s.slug}`),
-    ...brands.map((b) => `/marcas/${b.id}`),
-    ...products.filter((p) => !p.mock).map((p) => `/maquinaria/${p.slug}`),
-    ...articles.map((a) => `/novedades/${a.slug}`),
-    ...events.map((e) => `/eventos/${e.slug}`),
-  ].map((path) => ({ url: site.url + path }));
+
+
+    /* SERVICES */
+
+    ...services.map(
+      (service) =>
+        `/servicios/${service.slug}`,
+    ),
+
+
+    /* BRANDS */
+
+    ...brands.map(
+      (brand) =>
+        `/marcas/${brand.id}`,
+    ),
+
+
+    /* PRODUCTS */
+
+    ...products
+      .filter(
+        (product) =>
+          product.published &&
+          !product.mock,
+      )
+      .map(
+        (product) =>
+          `/maquinaria/${product.slug}`,
+      ),
+
+
+    /* NEWS */
+
+    ...articles
+      .filter(
+        (article) =>
+          article.published,
+      )
+      .map(
+        (article) =>
+          `/novedades/${article.slug}`,
+      ),
+
+
+    /* EVENTS */
+
+    ...events
+      .filter(
+        (event) =>
+          event.published,
+      )
+      .map(
+        (event) =>
+          `/eventos/${event.slug}`,
+      ),
+  ];
+
+
+  return paths.map(
+    (path) => ({
+      url:
+        new URL(
+          path,
+          site.url,
+        ).toString(),
+    }),
+  );
 }

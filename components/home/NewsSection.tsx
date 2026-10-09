@@ -1,38 +1,32 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
 import {
-  motion,
-  useReducedMotion,
-} from "motion/react";
-
-import {
-  ArrowRight,
   ArrowUpRight,
-  CalendarDays,
-  Newspaper,
 } from "lucide-react";
 
-import type { Article } from "@/types/content";
+import type {
+  Article,
+} from "@/types/content";
 
 import styles from "./NewsSection.module.css";
 
-type Props = {
-  articles: Article[];
-};
 
-function formatDate(value: string) {
-  const date = new Date(value);
+function formatDate(
+  value: string,
+) {
+  const date =
+    new Date(value);
+
 
   if (
     Number.isNaN(
       date.getTime(),
     )
   ) {
-    return "";
+    return "Actualidad";
   }
+
 
   return new Intl.DateTimeFormat(
     "es-PE",
@@ -41,490 +35,549 @@ function formatDate(value: string) {
       month: "short",
       year: "numeric",
     },
-  )
-    .format(date)
-    .replace(".", "");
+  ).format(date);
 }
 
-function ArticlePlaceholder() {
-  return (
-    <div
-      className={styles.placeholder}
-      aria-hidden="true"
-    >
-      <div className={styles.placeholderGrid} />
-
-      <Newspaper
-        size={38}
-        strokeWidth={1.15}
-      />
-
-      <strong>
-        MORGILLO
-      </strong>
-
-      <span>
-        ACTUALIDAD
-      </span>
-    </div>
-  );
-}
 
 export default function NewsSection({
   articles,
-}: Props) {
-  const reducedMotion =
-    useReducedMotion();
-
+}: {
+  articles: Article[];
+}) {
   const visible =
-    articles.slice(0, 3);
+    articles.slice(
+      0,
+      3,
+    );
+
 
   const featured =
     visible[0];
 
+
   const secondary =
-    visible.slice(1);
+    visible.slice(
+      1,
+      3,
+    );
+
 
   return (
     <section
-      className={styles.section}
+      className={
+        styles.section
+      }
       aria-labelledby="news-title"
     >
-      {/* =========================================
+      {/* =================================================
           BACKGROUND
-      ========================================== */}
+      ================================================== */}
 
       <div
-        className={styles.background}
+        className={
+          styles.background
+        }
         aria-hidden="true"
       >
-        <span>
-          07
-        </span>
-
-        <i />
+        <span />
+        <span />
       </div>
 
-      <div className="morgillo-container">
-        {/* =========================================
-            HEADER
-        ========================================== */}
 
-        <div className={styles.header}>
-          <div className={styles.heading}>
-            <div className={styles.eyebrow}>
-              <span>
+      <div className="morgillo-container">
+        {/* =================================================
+            HEADER
+        ================================================== */}
+
+        <div
+          className={
+            styles.header
+          }
+        >
+          <div
+            className={
+              styles.heading
+            }
+          >
+            <div
+              className={
+                styles.eyebrow
+              }
+            >
+              <span
+                className={
+                  styles.number
+                }
+              >
                 07
               </span>
 
-              <i />
+              <span
+                className={
+                  styles.eyebrowLine
+                }
+              />
 
               <p>
-                Actualidad
+                Novedades
               </p>
             </div>
 
-            <h2 id="news-title">
-              Lo que está pasando
+
+            <h2
+              id="news-title"
+            >
+              Actualidad que mantiene
               <span>
                 {" "}
-                en Morgillo.
+                tu operación informada.
               </span>
             </h2>
           </div>
 
-          <div className={styles.headerAside}>
+
+          <div
+            className={
+              styles.headerSide
+            }
+          >
             <p>
-              Noticias, novedades,
+              Noticias, lanzamientos,
               actividades y contenido
-              relacionado con nuestros
-              equipos y operaciones.
+              relacionado con
+              maquinaria y el trabajo
+              de Morgillo.
             </p>
+
 
             <Link
               href="/novedades"
-              className={styles.allNews}
+              className={
+                styles.allLink
+              }
             >
               Ver todas las novedades
 
-              <ArrowRight
-                size={17}
+              <ArrowUpRight
+                size={19}
                 strokeWidth={1.8}
               />
             </Link>
           </div>
         </div>
 
-        {/* =========================================
-            EMPTY
-        ========================================== */}
 
-        {!featured && (
-          <div className={styles.empty}>
-            <div>
-              <Newspaper
-                size={28}
-                strokeWidth={1.4}
-              />
-            </div>
+        {/* =================================================
+            CONTENT
+        ================================================== */}
 
-            <span>
-              Actualidad Morgillo
-            </span>
-
-            <h3>
-              Próximamente compartiremos
-              nuevas historias.
-            </h3>
-
-            <p>
-              Aquí encontrarás noticias,
-              actividades y novedades
-              relacionadas con nuestros
-              equipos.
-            </p>
-          </div>
-        )}
-
-        {/* =========================================
-            NEWS LAYOUT
-        ========================================== */}
-
-        {featured && (
-          <div className={styles.layout}>
-            {/* =====================================
+        {featured ? (
+          <div
+            className={
+              styles.layout
+            }
+          >
+            {/* =============================================
                 FEATURED
-            ====================================== */}
+            ============================================== */}
 
-            <motion.article
-              className={styles.featured}
-              initial={
-                reducedMotion
-                  ? false
-                  : {
-                      opacity: 0,
-                      y: 28,
-                    }
+            <Link
+              href={`/novedades/${featured.slug}`}
+              className={
+                styles.featured
               }
-              whileInView={
-                reducedMotion
-                  ? undefined
-                  : {
-                      opacity: 1,
-                      y: 0,
-                    }
-              }
-              viewport={{
-                once: true,
-                amount: 0.18,
-              }}
-              transition={{
-                duration: 0.65,
-                ease: [
-                  0.16,
-                  1,
-                  0.3,
-                  1,
-                ],
-              }}
             >
-              <Link
-                href={`/novedades/${featured.slug}`}
-                className={styles.featuredLink}
+              {/* =========================================
+                  MEDIA
+              ========================================== */}
+
+              <div
+                className={
+                  styles.featuredMedia
+                }
               >
-                {/* ===============================
-                    IMAGE
-                ================================ */}
-
-                <div className={styles.featuredMedia}>
-                  {featured.image ? (
-                    <Image
-                      src={featured.image}
-                      alt={featured.title}
-                      fill
-                      sizes="
-                        (max-width: 900px) 100vw,
-                        62vw
-                      "
-                      className={styles.image}
-                    />
-                  ) : (
-                    <ArticlePlaceholder />
-                  )}
-
-                  <div
-                    className={styles.mediaShade}
+                {featured.image ? (
+                  <Image
+                    src={
+                      featured.image
+                    }
+                    alt={
+                      featured.title
+                    }
+                    fill
+                    sizes="
+                      (max-width: 760px)
+                        100vw,
+                      (max-width: 1024px)
+                        100vw,
+                      65vw
+                    "
+                    className={
+                      styles.featuredImage
+                    }
                   />
-
-                  <span className={styles.featuredIndex}>
-                    01
-                  </span>
-
-                  <span className={styles.featuredTag}>
-                    Historia destacada
-                  </span>
-
+                ) : (
                   <div
-                    className={styles.redGeometry}
+                    className={
+                      styles.featuredFallback
+                    }
                     aria-hidden="true"
                   >
                     <span>
-                      M
+                      N
                     </span>
                   </div>
-                </div>
+                )}
 
-                {/* ===============================
-                    FEATURED COPY
-                ================================ */}
 
-                <div className={styles.featuredContent}>
-                  <div className={styles.meta}>
-                    <span>
-                      <CalendarDays
-                        size={15}
-                        strokeWidth={1.7}
-                      />
+                <div
+                  className={
+                    styles.featuredShade
+                  }
+                  aria-hidden="true"
+                />
 
-                      {formatDate(
-                        featured.publishedAt,
-                      )}
-                    </span>
+                <div
+                  className={
+                    styles.mediaGrid
+                  }
+                  aria-hidden="true"
+                />
 
-                    <span>
-                      MRG / NEWS
-                    </span>
+
+                <div
+                  className={
+                    styles.mediaTop
+                  }
+                >
+                  <div>
+                    <span />
+
+                    <strong>
+                      Destacado
+                    </strong>
                   </div>
 
-                  <h3>
-                    {featured.title}
-                  </h3>
 
-                  <p>
-                    {featured.excerpt}
-                  </p>
-
-                  <div className={styles.read}>
-                    <span>
-                      Leer noticia
-                    </span>
-
-                    <span className={styles.readIcon}>
-                      <ArrowUpRight
-                        size={18}
-                        strokeWidth={1.8}
-                      />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </motion.article>
-
-            {/* =====================================
-                SECONDARY
-            ====================================== */}
-
-            <div className={styles.secondary}>
-              <div className={styles.secondaryHeader}>
-                <div>
-                  <span />
-
-                  <strong>
-                    MÁS ACTUALIDAD
-                  </strong>
+                  <span>
+                    {formatDate(
+                      featured.publishedAt,
+                    )}
+                  </span>
                 </div>
 
-                <small>
-                  02 — 03
-                </small>
+
+                <div
+                  className={
+                    styles.mediaIndex
+                  }
+                  aria-hidden="true"
+                >
+                  01
+                </div>
               </div>
 
-              {secondary.map(
-                (article, index) => (
-                  <motion.article
-                    key={article.slug}
-                    className={styles.secondaryArticle}
-                    initial={
-                      reducedMotion
-                        ? false
-                        : {
-                            opacity: 0,
-                            x: 24,
-                          }
+
+              {/* =========================================
+                  FEATURED BODY
+              ========================================== */}
+
+              <div
+                className={
+                  styles.featuredBody
+                }
+              >
+                <div
+                  className={
+                    styles.articleMeta
+                  }
+                >
+                  <span>
+                    Actualidad Morgillo
+                  </span>
+
+                  <i />
+                </div>
+
+
+                <h3>
+                  {
+                    featured.title
+                  }
+                </h3>
+
+
+                <p>
+                  {
+                    featured.excerpt
+                  }
+                </p>
+
+
+                <div
+                  className={
+                    styles.featuredAction
+                  }
+                >
+                  <span>
+                    Leer novedad
+                  </span>
+
+                  <i />
+
+                  <span
+                    className={
+                      styles.actionArrow
                     }
-                    whileInView={
-                      reducedMotion
-                        ? undefined
-                        : {
-                            opacity: 1,
-                            x: 0,
-                          }
-                    }
-                    viewport={{
-                      once: true,
-                      amount: 0.2,
-                    }}
-                    transition={{
-                      duration: 0.52,
-                      delay:
-                        index *
-                        0.08,
-                      ease: [
-                        0.16,
-                        1,
-                        0.3,
-                        1,
-                      ],
-                    }}
                   >
+                    <ArrowUpRight
+                      size={20}
+                      strokeWidth={1.8}
+                    />
+                  </span>
+                </div>
+              </div>
+
+
+              <div
+                className={
+                  styles.featuredAccent
+                }
+                aria-hidden="true"
+              />
+            </Link>
+
+
+            {/* =============================================
+                SECONDARY
+            ============================================== */}
+
+            {secondary.length >
+              0 && (
+              <div
+                className={
+                  styles.secondary
+                }
+              >
+                {secondary.map(
+                  (
+                    article,
+                    index,
+                  ) => (
                     <Link
+                      key={
+                        article.slug
+                      }
                       href={`/novedades/${article.slug}`}
-                      className={styles.secondaryLink}
+                      className={
+                        styles.card
+                      }
                     >
-                      <div className={styles.secondaryMedia}>
-                        {article.image ? (
-                          <Image
-                            src={article.image}
-                            alt={article.title}
-                            fill
-                            sizes="
-                              (max-width: 640px) 38vw,
-                              260px
-                            "
-                            className={styles.image}
-                          />
-                        ) : (
-                          <ArticlePlaceholder />
-                        )}
+                      <div
+                        className={
+                          styles.cardBackground
+                        }
+                        aria-hidden="true"
+                      />
+
+
+                      <div
+                        className={
+                          styles.cardTop
+                        }
+                      >
+                        <div>
+                          <span>
+                            {String(
+                              index + 2,
+                            ).padStart(
+                              2,
+                              "0",
+                            )}
+                          </span>
+
+                          <i />
+                        </div>
+
 
                         <span>
-                          {String(
-                            index + 2,
-                          ).padStart(
-                            2,
-                            "0",
+                          {formatDate(
+                            article.publishedAt,
                           )}
                         </span>
                       </div>
 
-                      <div className={styles.secondaryCopy}>
-                        <div className={styles.secondaryMeta}>
-                          <CalendarDays
-                            size={13}
-                            strokeWidth={1.7}
-                          />
 
-                          <span>
-                            {formatDate(
-                              article.publishedAt,
-                            )}
-                          </span>
+                      {article.image && (
+                        <div
+                          className={
+                            styles.cardMedia
+                          }
+                        >
+                          <Image
+                            src={
+                              article.image
+                            }
+                            alt={
+                              article.title
+                            }
+                            fill
+                            sizes="
+                              (max-width: 760px)
+                                100vw,
+                              (max-width: 1024px)
+                                50vw,
+                              35vw
+                            "
+                            className={
+                              styles.cardImage
+                            }
+                          />
                         </div>
+                      )}
+
+
+                      <div
+                        className={
+                          styles.cardBody
+                        }
+                      >
+                        <span
+                          className={
+                            styles.cardLabel
+                          }
+                        >
+                          Novedades
+                        </span>
+
 
                         <h3>
-                          {article.title}
+                          {
+                            article.title
+                          }
                         </h3>
 
+
                         <p>
-                          {article.excerpt}
+                          {
+                            article.excerpt
+                          }
                         </p>
+                      </div>
 
-                        <div className={styles.secondaryAction}>
-                          <span>
-                            Leer más
-                          </span>
 
+                      <div
+                        className={
+                          styles.cardFooter
+                        }
+                      >
+                        <span>
+                          Leer artículo
+                        </span>
+
+                        <span>
                           <ArrowUpRight
-                            size={16}
+                            size={18}
                             strokeWidth={1.8}
                           />
-                        </div>
+                        </span>
                       </div>
+
+
+                      <div
+                        className={
+                          styles.cardLine
+                        }
+                        aria-hidden="true"
+                      />
                     </Link>
-                  </motion.article>
-                ),
-              )}
-
-              {/* =================================
-                  FILL IF ONLY ONE ARTICLE
-              ================================== */}
-
-              {secondary.length === 0 && (
-                <div className={styles.waiting}>
-                  <span>
-                    02
-                  </span>
-
-                  <div>
-                    <strong>
-                      Más historias próximamente
-                    </strong>
-
-                    <p>
-                      Seguiremos compartiendo
-                      novedades desde Morgillo.
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* =================================
-                  LINK
-              ================================== */}
-
-              <Link
-                href="/novedades"
-                className={styles.secondaryFooter}
-              >
-                <div>
-                  <span />
-
-                  <strong>
-                    MORGILLO
-                  </strong>
-                </div>
-
-                <span>
-                  Explorar actualidad
-                </span>
-
-                <ArrowRight
-                  size={17}
-                  strokeWidth={1.8}
-                />
-              </Link>
-            </div>
+                  ),
+                )}
+              </div>
+            )}
           </div>
-        )}
+        ) : (
+          /* =================================================
+              EMPTY STATE
+          ================================================== */
 
-        {/* =========================================
-            BOTTOM RAIL
-        ========================================== */}
+          <div
+            className={
+              styles.empty
+            }
+          >
+            <div
+              className={
+                styles.emptyMark
+              }
+              aria-hidden="true"
+            >
+              <span>
+                N
+              </span>
+            </div>
 
-        {featured && (
-          <div className={styles.bottom}>
-            <div>
-              <span />
 
-              <strong>
-                ACTUALIDAD MORGILLO
-              </strong>
+            <div
+              className={
+                styles.emptyContent
+              }
+            >
+              <span>
+                Actualidad Morgillo
+              </span>
+
+              <h3>
+                Próximamente nuevas
+                publicaciones.
+              </h3>
 
               <p>
-                Equipos · Operaciones · Actividades
+                Aquí compartiremos
+                noticias, actividades
+                y novedades
+                relacionadas con
+                nuestros equipos y
+                servicios.
               </p>
             </div>
-
-            <Link href="/novedades">
-              Todas las noticias
-
-              <ArrowUpRight
-                size={16}
-                strokeWidth={1.8}
-              />
-            </Link>
           </div>
         )}
+
+
+        {/* =================================================
+            BOTTOM
+        ================================================== */}
+
+        <div
+          className={
+            styles.bottom
+          }
+        >
+          <div>
+            <span />
+
+            <p>
+              Noticias · equipos ·
+              eventos · actividades
+            </p>
+          </div>
+
+
+          <Link
+            href="/novedades"
+            className={
+              styles.bottomLink
+            }
+          >
+            Explorar novedades
+
+            <ArrowUpRight
+              size={18}
+              strokeWidth={1.8}
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );

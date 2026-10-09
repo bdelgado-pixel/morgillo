@@ -1,51 +1,72 @@
 .section {
   --red:
-    var(--morgillo-red, #d71920);
+    var(
+      --mg-red,
+      #d71920
+    );
 
   --red-deep:
-    #b9151b;
+    var(
+      --mg-red-deep,
+      #b9151b
+    );
 
   --graphite:
-    #252525;
+    var(
+      --mg-graphite,
+      #252525
+    );
 
   --steel-050:
-    #f7f7f6;
+    var(
+      --mg-steel-050,
+      #f7f7f6
+    );
 
   --steel-100:
-    #eef0ef;
+    var(
+      --mg-steel-100,
+      #f0f1f1
+    );
 
   --steel-150:
-    #e4e6e5;
+    var(
+      --mg-steel-150,
+      #e7e9e9
+    );
 
   --steel-200:
-    #d6d9d8;
+    var(
+      --mg-steel-200,
+      #dadcdd
+    );
 
   position: relative;
 
-  overflow: hidden;
+  width: 100%;
 
   padding-block:
-    clamp(70px, 7vw, 110px);
-
-  background:
-    linear-gradient(
-      180deg,
-      #fff 0%,
-      #fff 64%,
-      var(--steel-050) 64%,
-      var(--steel-050) 100%
+    clamp(
+      76px,
+      8vw,
+      118px
     );
 
+  overflow: hidden;
+
+  background:
+    var(--steel-050);
+
   color:
-    var(--foreground);
+    var(--graphite);
 
   isolation: isolate;
 }
 
 
-/* =========================================
+/* =========================================================
    BACKGROUND
-========================================= */
+========================================================= */
 
 .background {
   position: absolute;
@@ -59,112 +80,176 @@
   pointer-events: none;
 }
 
-.background span {
+
+.background::before {
+  content: "";
+
   position: absolute;
 
-  top: 44%;
-  right: -0.05em;
+  inset: 0;
 
-  transform:
-    translateY(-50%);
+  opacity: 0.035;
 
-  color:
-    rgba(
-      215,
-      25,
-      32,
-      0.025
+  background-image:
+    linear-gradient(
+      #252525 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      #252525 1px,
+      transparent 1px
     );
 
-  font-size:
-    clamp(
-      20rem,
-      42vw,
-      46rem
+  background-size:
+    68px 68px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      transparent,
+      #000 35%,
+      transparent
     );
-
-  font-weight: 950;
-
-  line-height: 0.7;
-
-  letter-spacing:
-    -0.14em;
-
-  user-select: none;
 }
 
-.background i {
+
+.background > span:first-child {
   position: absolute;
 
-  top: -20%;
-  left: 64%;
+  top: -320px;
+  right: -260px;
+
+  width: 720px;
+  height: 720px;
+
+  border:
+    1px solid
+    rgba(
+      37,
+      37,
+      37,
+      0.05
+    );
+
+  border-radius: 50%;
+}
+
+
+.background > span:last-child {
+  position: absolute;
+
+  top: 0;
+  left: 9%;
 
   width: 1px;
-  height: 145%;
+  height: 100%;
 
   background:
     rgba(
       37,
       37,
       37,
-      0.045
+      0.035
     );
-
-  transform:
-    rotate(18deg);
 }
 
 
-/* =========================================
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
+
+.header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(
+      0,
+      1.45fr
+    )
+    minmax(
+      280px,
+      0.55fr
+    );
+
+  align-items: end;
+
+  gap:
+    clamp(
+      40px,
+      7vw,
+      110px
+    );
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
 
 .eyebrow {
   display: flex;
 
   align-items: center;
 
-  gap: 10px;
+  gap: 12px;
 
-  margin-bottom: 17px;
+  margin-bottom: 18px;
 }
 
-.eyebrow span {
+
+.number {
   color:
     var(--red);
 
-  font-size: 0.5rem;
+  font-size:
+    0.78rem;
 
   font-weight: 950;
+
+  letter-spacing:
+    0.07em;
 }
 
-.eyebrow i {
-  width: 38px;
+
+.eyebrowLine {
+  width: 42px;
   height: 3px;
 
   background:
     var(--red);
 }
 
+
 .eyebrow p {
   margin: 0;
 
   color:
-    var(--red);
+    #565b5d;
 
-  font-size: 0.48rem;
+  font-size:
+    clamp(
+      0.78rem,
+      0.82vw,
+      0.86rem
+    );
 
-  font-weight: 950;
+  font-weight: 900;
 
   letter-spacing:
-    0.14em;
+    0.07em;
 
   text-transform:
     uppercase;
 }
 
-.title {
-  max-width: 850px;
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.heading h2 {
+  max-width: 900px;
 
   margin: 0;
 
@@ -173,265 +258,14 @@
 
   font-size:
     clamp(
-      2.8rem,
+      2.75rem,
       5vw,
-      5.45rem
+      5.6rem
     );
 
   font-weight: 950;
 
-  line-height: 0.89;
-
-  letter-spacing:
-    -0.067em;
-
-  text-wrap: balance;
-}
-
-.title span {
-  color:
-    var(--red);
-}
-
-
-/* =========================================
-   INTRO
-========================================= */
-
-.intro {
-  display: grid;
-
-  max-width: 360px;
-
-  grid-template-columns:
-    auto minmax(0, 1fr);
-
-  align-items: start;
-
-  gap: 12px;
-
-  justify-self: end;
-
-  padding-top: 16px;
-
-  border-top:
-    1px solid
-    var(--steel-200);
-}
-
-.intro svg {
-  color:
-    var(--red);
-}
-
-.intro p {
-  margin: 0;
-
-  color: #666;
-
-  font-size: 0.73rem;
-
-  line-height: 1.7;
-}
-
-
-/* =========================================
-   MAIN
-========================================= */
-
-.layout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(360px, 0.8fr)
-    minmax(0, 1.2fr);
-
-  gap:
-    clamp(14px, 2vw, 24px);
-
-  margin-top:
-    clamp(40px, 5vw, 62px);
-}
-
-
-/* =========================================
-   COMMERCIAL
-========================================= */
-
-.commercial {
-  position: relative;
-
-  min-height: 525px;
-
-  overflow: hidden;
-
-  background:
-    var(--red);
-
-  color: #fff;
-
-  isolation: isolate;
-}
-
-.commercial::before {
-  content: "";
-
-  position: absolute;
-
-  right: -160px;
-  bottom: -190px;
-
-  width: 430px;
-  height: 430px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.13
-    );
-
-  border-radius: 50%;
-}
-
-.commercial::after {
-  content: "";
-
-  position: absolute;
-
-  right: -65px;
-  bottom: -90px;
-
-  width: 240px;
-  height: 240px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.13
-    );
-
-  border-radius: 50%;
-}
-
-.commercialTop {
-  position: relative;
-
-  z-index: 3;
-
-  display: grid;
-
-  min-height: 57px;
-
-  grid-template-columns:
-    auto 1fr auto;
-
-  align-items: center;
-
-  gap: 9px;
-
-  padding-inline: 17px;
-
-  border-bottom:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.18
-    );
-}
-
-.commercialTop > span {
-  width: 7px;
-  height: 7px;
-
-  background: #fff;
-
-  transform:
-    rotate(45deg);
-}
-
-.commercialTop strong,
-.commercialTop small {
-  font-size: 0.38rem;
-
-  font-weight: 950;
-
-  letter-spacing:
-    0.11em;
-}
-
-.commercialTop small {
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.58
-    );
-}
-
-.commercialBody {
-  position: relative;
-
-  z-index: 3;
-
-  display: flex;
-
-  min-height:
-    calc(
-      525px - 57px
-    );
-
-  flex-direction: column;
-
-  padding:
-    clamp(
-      28px,
-      4vw,
-      50px
-    );
-}
-
-.miniLabel {
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.65
-    );
-
-  font-size: 0.38rem;
-
-  font-weight: 950;
-
-  letter-spacing:
-    0.13em;
-}
-
-.commercialBody h3 {
-  max-width: 570px;
-
-  margin:
-    18px 0 0;
-
-  font-size:
-    clamp(
-      2.35rem,
-      4vw,
-      4.4rem
-    );
-
-  font-weight: 950;
-
-  line-height: 0.9;
+  line-height: 0.92;
 
   letter-spacing:
     -0.06em;
@@ -439,518 +273,192 @@
   text-wrap: balance;
 }
 
-.commercialBody > p {
-  max-width: 530px;
 
-  margin:
-    22px 0 0;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      0.78
-    );
-
-  font-size: 0.76rem;
-
-  line-height: 1.7;
-}
-
-
-/* =========================================
-   WHATSAPP
-========================================= */
-
-.whatsapp {
-  display: grid;
-
-  grid-template-columns:
-    auto minmax(0, 1fr)
-    auto;
-
-  align-items: center;
-
-  gap: 13px;
-
-  margin-top: 30px;
-
-  padding: 13px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.3
-    );
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.1
-    );
-
-  color: #fff;
-
-  backdrop-filter:
-    blur(8px);
-
-  transition:
-    180ms ease;
-}
-
-.whatsappIcon {
-  display: flex;
-
-  width: 46px;
-  height: 46px;
-
-  align-items: center;
-
-  justify-content: center;
-
-  background: #fff;
-
+.heading h2 span {
   color:
     var(--red);
 }
 
-.whatsapp small,
-.whatsapp strong {
-  display: block;
+
+/* =========================================================
+   HEADER SIDE
+========================================================= */
+
+.headerSide {
+  max-width: 400px;
+
+  justify-self: end;
 }
 
-.whatsapp small {
+
+.headerSide > p {
+  margin: 0;
+
   color:
-    rgba(
-      255,
-      255,
-      255,
-      0.6
+    #5d6264;
+
+  font-size:
+    clamp(
+      0.98rem,
+      1.05vw,
+      1.08rem
     );
 
-  font-size: 0.32rem;
-
-  font-weight: 900;
-
-  letter-spacing:
-    0.1em;
-}
-
-.whatsapp strong {
-  margin-top: 4px;
-
-  font-size: 0.55rem;
-
-  font-weight: 950;
-
-  letter-spacing:
-    0.035em;
-
-  text-transform:
-    uppercase;
+  line-height: 1.68;
 }
 
 
-/* =========================================
-   COMMERCIAL CODE
-========================================= */
+/* =========================================================
+   HOURS
+========================================================= */
 
-.commercialCode {
+.hours {
   display: flex;
 
   align-items: center;
 
   gap: 12px;
 
-  margin-top: auto;
-
-  padding-top: 28px;
+  margin-top: 24px;
 }
 
-.commercialCode > span {
-  display: flex;
 
-  width: 48px;
-  height: 48px;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      0.32
-    );
-
-  font-size: 1.35rem;
-
-  font-weight: 950;
-}
-
-.commercialCode small,
-.commercialCode strong {
-  display: block;
-
-  font-weight: 950;
-}
-
-.commercialCode small {
-  font-size: 0.31rem;
-
-  letter-spacing:
-    0.13em;
-
-  opacity: 0.65;
-}
-
-.commercialCode strong {
-  margin-top: 4px;
-
-  font-size: 0.4rem;
-
-  letter-spacing:
-    0.08em;
-}
-
-.commercialNumber {
-  position: absolute;
-
-  z-index: 1;
-
-  right: -0.05em;
-  bottom: -0.11em;
+.hours > svg {
+  flex: 0 0 auto;
 
   color:
-    rgba(
-      255,
-      255,
-      255,
-      0.055
-    );
-
-  font-size:
-    clamp(
-      12rem,
-      22vw,
-      22rem
-    );
-
-  font-weight: 950;
-
-  line-height: 0.7;
-
-  letter-spacing:
-    -0.1em;
-}
-
-
-/* =========================================
-   CHANNELS
-========================================= */
-
-.channels {
-  min-width: 0;
-
-  border-top:
-    1px solid
-    var(--steel-200);
-
-  border-left:
-    1px solid
-    var(--steel-200);
-}
-
-.channelsHeader {
-  display: flex;
-
-  min-height: 58px;
-
-  align-items: center;
-
-  justify-content:
-    space-between;
-
-  gap: 20px;
-
-  padding-inline: 16px;
-
-  border-right:
-    1px solid
-    var(--steel-200);
-
-  border-bottom:
-    1px solid
-    var(--steel-200);
-
-  background:
-    var(--graphite);
-
-  color: #fff;
-}
-
-.channelsHeader > div {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-}
-
-.channelsHeader div > span {
-  width: 5px;
-  height: 19px;
-
-  background:
     var(--red);
 }
 
-.channelsHeader strong,
-.channelsHeader small {
-  font-size: 0.36rem;
 
-  font-weight: 950;
+.hours > div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.hours span {
+  color:
+    #74797b;
+
+  font-size:
+    0.74rem;
+
+  font-weight: 850;
 
   letter-spacing:
-    0.1em;
+    0.05em;
+
+  text-transform:
+    uppercase;
 }
 
-.channelsHeader small {
-  opacity: 0.48;
+
+.hours strong {
+  color:
+    var(--graphite);
+
+  font-size:
+    0.92rem;
+
+  font-weight: 850;
+
+  line-height: 1.4;
 }
 
 
-/* =========================================
-   CHANNEL
-========================================= */
+/* =========================================================
+   GRID
+========================================================= */
 
-.channel {
-  position: relative;
-
+.grid {
   display: grid;
 
-  min-height: 155px;
-
   grid-template-columns:
-    auto auto minmax(0, 1fr)
-    auto;
-
-  align-items: center;
-
-  gap:
-    clamp(
-      12px,
-      2vw,
-      22px
+    minmax(
+      0,
+      1.05fr
+    )
+    minmax(
+      390px,
+      0.95fr
     );
+
+  margin-top:
+    clamp(
+      42px,
+      5vw,
+      68px
+    );
+
+  border:
+    1px solid
+    #d1d4d5;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+  position: relative;
+
+  display: flex;
+
+  min-width: 0;
+
+  min-height:
+    clamp(
+      560px,
+      49vw,
+      690px
+    );
+
+  flex-direction: column;
 
   overflow: hidden;
 
   padding:
     clamp(
-      18px,
-      2.2vw,
-      27px
+      27px,
+      4vw,
+      52px
     );
-
-  border-right:
-    1px solid
-    var(--steel-200);
-
-  border-bottom:
-    1px solid
-    var(--steel-200);
-
-  background: #fff;
-
-  color: inherit;
-
-  transition:
-    background-color
-      180ms ease;
-}
-
-.channelNumber {
-  align-self:
-    flex-start;
-
-  color:
-    var(--red);
-
-  font-size: 0.37rem;
-
-  font-weight: 950;
-}
-
-.channelIcon {
-  display: flex;
-
-  width: 54px;
-  height: 54px;
-
-  align-items: center;
-
-  justify-content: center;
-
-  border:
-    1px solid
-    var(--steel-200);
 
   background:
-    var(--steel-050);
+    #171818;
 
   color:
-    var(--red);
+    #ffffff;
 
-  transition:
-    180ms ease;
+  isolation: isolate;
 }
 
-.channelCopy {
-  min-width: 0;
-}
 
-.channelCopy small,
-.channelCopy strong,
-.channelCopy > span {
-  display: block;
-}
+/* =========================================================
+   CTA GRID
+========================================================= */
 
-.channelCopy small {
-  color: #8c8c8c;
-
-  font-size: 0.31rem;
-
-  font-weight: 900;
-
-  letter-spacing:
-    0.11em;
-}
-
-.channelCopy strong {
-  margin-top: 5px;
-
-  color:
-    var(--graphite);
-
-  font-size:
-    clamp(
-      1.15rem,
-      1.8vw,
-      1.55rem
-    );
-
-  font-weight: 950;
-
-  letter-spacing:
-    -0.035em;
-}
-
-.channelCopy > span {
-  margin-top: 5px;
-
-  color: #707070;
-
-  font-size: 0.72rem;
-
-  font-weight: 750;
-}
-
-.channelArrow {
-  color:
-    var(--red);
-
-  transition:
-    transform
-      180ms ease;
-}
-
-.channelProgress {
+.ctaGrid {
   position: absolute;
 
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  height: 4px;
-
-  background:
-    var(--red);
-
-  transform:
-    scaleX(0.08);
-
-  transform-origin: left;
-
-  transition:
-    transform 240ms ease;
-}
-
-
-/* =========================================
-   LOCATION
-========================================= */
-
-.location {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.25fr)
-    minmax(320px, 0.75fr);
-
-  margin-top:
-    clamp(
-      20px,
-      3vw,
-      34px
-    );
-
-  border:
-    1px solid
-    var(--steel-200);
-
-  background:
-    var(--steel-050);
-}
-
-.mapStage {
-  position: relative;
-
-  min-height: 365px;
-
-  overflow: hidden;
-
-  border-right:
-    1px solid
-    var(--steel-200);
-
-  background:
-    var(--steel-100);
-}
-
-.mapStage::before {
-  content: "";
-
-  position: absolute;
+  z-index: -3;
 
   inset: 0;
+
+  opacity: 0.075;
 
   background-image:
     linear-gradient(
       rgba(
-        37,
-        37,
-        37,
-        0.035
+        255,
+        255,
+        255,
+        0.2
       )
         1px,
       transparent 1px
@@ -958,31 +466,85 @@
     linear-gradient(
       90deg,
       rgba(
-        37,
-        37,
-        37,
-        0.035
+        255,
+        255,
+        255,
+        0.2
       )
         1px,
       transparent 1px
     );
 
   background-size:
-    32px 32px;
+    62px 62px;
+
+  mask-image:
+    linear-gradient(
+      180deg,
+      #000,
+      transparent 85%
+    );
 }
 
-.mapTop {
+
+/* =========================================================
+   CTA CIRCLE
+========================================================= */
+
+.ctaCircle {
   position: absolute;
 
-  z-index: 4;
+  z-index: -2;
 
-  top: 0;
-  right: 0;
-  left: 0;
+  right: -230px;
+  bottom: -270px;
+
+  width: 650px;
+  height: 650px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.07
+    );
+
+  border-radius: 50%;
+}
+
+
+.ctaCircle::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 95px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.045
+    );
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   CTA TOP
+========================================================= */
+
+.ctaTop {
+  position: relative;
+
+  z-index: 2;
 
   display: flex;
-
-  min-height: 50px;
 
   align-items: center;
 
@@ -990,137 +552,89 @@
     space-between;
 
   gap: 20px;
-
-  padding-inline: 14px;
-
-  border-bottom:
-    1px solid
-    var(--steel-200);
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      0.8
-    );
-
-  backdrop-filter:
-    blur(8px);
 }
 
-.mapTop > div {
+
+.ctaTop > div {
   display: flex;
 
   align-items: center;
 
-  gap: 8px;
-}
-
-.mapTop svg {
-  color:
-    var(--red);
-}
-
-.mapTop strong,
-.mapTop > span {
-  font-size: 0.34rem;
-
-  font-weight: 950;
-
-  letter-spacing:
-    0.1em;
-}
-
-.mapTop > span {
-  color: #8a8a8a;
+  gap: 9px;
 }
 
 
-/* =========================================
-   MAP SVG
-========================================= */
+.ctaTop > div > span {
+  width: 8px;
+  height: 8px;
 
-.map {
-  position: absolute;
+  border-radius: 50%;
 
-  inset:
-    44px 2% 0;
-
-  width: 96%;
-  height:
-    calc(
-      100% - 44px
-    );
-}
-
-.routeSoft,
-.routeMain {
-  fill: none;
-
-  stroke-linecap: round;
-
-  vector-effect:
-    non-scaling-stroke;
-}
-
-.routeSoft {
-  stroke:
-    var(--graphite);
-
-  stroke-width: 1.2;
-
-  opacity: 0.13;
-}
-
-.routeMain {
-  stroke:
+  background:
     var(--red);
 
-  stroke-width: 2.2;
-}
-
-.routePoint {
-  fill:
-    var(--graphite);
-
-  opacity: 0.45;
-}
-
-.destinationOuter {
-  fill:
+  box-shadow:
+    0 0 0
+    5px
     rgba(
       215,
       25,
       32,
-      0.08
+      0.16
+    );
+}
+
+
+.ctaTop strong,
+.ctaTop > span {
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
     );
 
-  stroke:
-    var(--red);
+  font-size:
+    0.74rem;
 
-  stroke-width: 1;
+  font-weight: 900;
 
-  transform-origin:
-    center;
+  letter-spacing:
+    0.055em;
+
+  text-transform:
+    uppercase;
 }
 
-.destination {
-  fill:
-    var(--red);
 
-  transform-origin:
-    center;
+/* =========================================================
+   CTA CONTENT
+========================================================= */
+
+.ctaContent {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 690px;
+
+  margin-block: auto;
+
+  padding-block:
+    clamp(
+      65px,
+      9vw,
+      125px
+    );
 }
 
-.mapPin {
-  position: absolute;
 
-  z-index: 5;
+/* =========================================================
+   WHATSAPP ICON
+========================================================= */
 
-  left: 61%;
-  top: 57%;
-
+.whatsappIcon {
   display: flex;
 
   width: 58px;
@@ -1130,252 +644,141 @@
 
   justify-content: center;
 
+  margin-bottom: 26px;
+
   border:
-    5px solid
-    var(--steel-100);
-
-  border-radius: 50%;
-
-  background:
-    var(--red);
-
-  color: #fff;
-
-  box-shadow:
-    0 12px 35px
+    1px solid
     rgba(
-      215,
-      25,
-      32,
-      0.24
+      255,
+      255,
+      255,
+      0.18
     );
 
-  transform:
-    translate(
-      -50%,
-      -50%
-    );
-}
-
-.mapPin span {
-  display: none;
-}
-
-
-/* =========================================
-   LOCATION INFO
-========================================= */
-
-.locationInfo {
-  display: flex;
-
-  min-width: 0;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  padding:
-    clamp(
-      28px,
-      4vw,
-      48px
-    );
-}
-
-.locationLabel {
   color:
     var(--red);
-
-  font-size: 0.38rem;
-
-  font-weight: 950;
-
-  letter-spacing:
-    0.13em;
 }
 
-.locationInfo h3 {
-  margin:
-    13px 0 0;
+
+/* =========================================================
+   CTA COPY
+========================================================= */
+
+.ctaContent > p {
+  max-width: 500px;
+
+  margin: 0 0 15px;
 
   color:
-    var(--graphite);
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
 
   font-size:
     clamp(
-      1.8rem,
-      3vw,
-      3rem
+      0.96rem,
+      1vw,
+      1.05rem
+    );
+
+  line-height: 1.62;
+}
+
+
+.ctaContent h3 {
+  max-width: 720px;
+
+  margin: 0;
+
+  color:
+    #ffffff;
+
+  font-size:
+    clamp(
+      2.65rem,
+      4.5vw,
+      5.1rem
     );
 
   font-weight: 950;
 
-  line-height: 0.96;
+  line-height: 0.91;
 
   letter-spacing:
-    -0.05em;
+    -0.065em;
+
+  text-wrap: balance;
 }
 
-.hours {
-  display: grid;
 
-  grid-template-columns:
-    auto minmax(0, 1fr);
-
-  align-items: center;
-
-  gap: 11px;
-
-  margin-top: 26px;
-
-  padding-top: 18px;
-
-  border-top:
-    1px solid
-    var(--steel-200);
-}
-
-.hours svg {
+.ctaContent h3 span {
   color:
     var(--red);
 }
 
-.hours small,
-.hours strong {
-  display: block;
-}
 
-.hours small {
-  color: #888;
+/* =========================================================
+   WHATSAPP BUTTON
+========================================================= */
 
-  font-size: 0.33rem;
+.whatsapp {
+  display: inline-flex;
 
-  font-weight: 900;
-
-  letter-spacing:
-    0.08em;
-
-  text-transform:
-    uppercase;
-}
-
-.hours strong {
-  margin-top: 4px;
-
-  color:
-    var(--graphite);
-
-  font-size: 0.52rem;
-
-  font-weight: 950;
-}
-
-.mapButton {
-  display: flex;
-
-  min-height: 50px;
+  min-height: 60px;
 
   align-items: center;
 
   justify-content:
     space-between;
 
-  gap: 12px;
+  gap: 30px;
 
-  margin-top: 25px;
+  margin-top: 32px;
 
-  padding-inline: 14px;
+  padding-left: 20px;
 
   background:
-    var(--graphite);
+    var(--red);
 
-  color: #fff;
+  color:
+    #ffffff;
 
-  font-size: 0.4rem;
+  font-size:
+    0.82rem;
 
-  font-weight: 950;
+  font-weight: 900;
 
   letter-spacing:
-    0.09em;
+    0.045em;
+
+  text-decoration: none;
 
   text-transform:
     uppercase;
 
   transition:
     background-color
-      180ms ease;
-}
-
-.mapButton svg:first-child {
-  color:
-    var(--red);
+      220ms ease,
+    transform
+      220ms ease;
 }
 
 
-/* =========================================
-   BOTTOM
-========================================= */
-
-.bottom {
+.whatsapp
+  > span:last-child {
   display: flex;
 
-  min-height: 58px;
+  width: 60px;
+  height: 60px;
+
+  flex: 0 0 auto;
 
   align-items: center;
 
-  justify-content:
-    space-between;
-
-  gap: 25px;
-
-  margin-top: 14px;
-
-  padding-inline: 16px;
-
-  background:
-    var(--graphite);
-
-  color: #fff;
-}
-
-.bottom > div {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-}
-
-.bottom > div > span {
-  width: 7px;
-  height: 7px;
-
-  background:
-    var(--red);
-
-  transform:
-    rotate(45deg);
-}
-
-.bottom strong,
-.bottom p,
-.bottom > a {
-  font-size: 0.38rem;
-
-  font-weight: 900;
-
-  letter-spacing:
-    0.08em;
-
-  text-transform:
-    uppercase;
-}
-
-.bottom p {
-  margin: 0;
-
-  padding-left: 9px;
+  justify-content: center;
 
   border-left:
     1px solid
@@ -1385,7 +788,36 @@
       255,
       0.2
     );
+}
 
+
+.whatsapp svg {
+  transition:
+    transform
+      220ms ease;
+}
+
+
+/* =========================================================
+   CTA BOTTOM
+========================================================= */
+
+.ctaBottom {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+}
+
+
+.ctaBottom span {
   color:
     rgba(
       255,
@@ -1393,328 +825,1230 @@
       255,
       0.55
     );
+
+  font-size:
+    0.74rem;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.05em;
+
+  text-transform:
+    uppercase;
 }
 
-.bottom > a {
+
+.ctaBottom i {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background:
+    var(--red);
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.details {
+  min-width: 0;
+
+  background:
+    #ffffff;
+}
+
+
+/* =========================================================
+   DETAIL
+========================================================= */
+
+.detail {
+  display: grid;
+
+  grid-template-columns:
+    54px
+    minmax(
+      0,
+      1fr
+    )
+    46px;
+
+  min-height: 126px;
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding:
+    22px
+    clamp(
+      20px,
+      3vw,
+      36px
+    );
+
+  border-bottom:
+    1px solid
+    #dce0e1;
+
+  color:
+    var(--graphite);
+
+  text-decoration: none;
+
+  transition:
+    background-color
+      220ms ease,
+    color
+      220ms ease;
+}
+
+
+/* =========================================================
+   DETAIL ICON
+========================================================= */
+
+.detailIcon,
+.locationIcon {
+  display: flex;
+
+  width: 52px;
+  height: 52px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    #d3d6d7;
+
+  color:
+    var(--red);
+
+  transition:
+    background-color
+      220ms ease,
+    border-color
+      220ms ease,
+    color
+      220ms ease;
+}
+
+
+/* =========================================================
+   DETAIL CONTENT
+========================================================= */
+
+.detailContent {
+  min-width: 0;
+}
+
+
+.detailContent > span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    #717678;
+
+  font-size:
+    0.74rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.055em;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    color
+      220ms ease;
+}
+
+
+.detailContent strong {
+  display: block;
+
+  overflow-wrap: anywhere;
+
+  color: inherit;
+
+  font-size:
+    clamp(
+      1rem,
+      1.25vw,
+      1.15rem
+    );
+
+  font-weight: 900;
+
+  line-height: 1.35;
+}
+
+
+.detailContent p {
+  margin:
+    6px 0 0;
+
+  color:
+    #666b6d;
+
+  font-size:
+    0.88rem;
+
+  line-height: 1.45;
+
+  transition:
+    color
+      220ms ease;
+}
+
+
+/* =========================================================
+   DETAIL ARROW
+========================================================= */
+
+.detailArrow {
+  display: flex;
+
+  width: 44px;
+  height: 44px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    #d1d5d6;
+
+  color:
+    var(--graphite);
+
+  transition:
+    background-color
+      220ms ease,
+    border-color
+      220ms ease,
+    color
+      220ms ease,
+    transform
+      220ms ease;
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.location {
+  padding:
+    clamp(
+      26px,
+      3vw,
+      38px
+    );
+}
+
+
+.locationTop {
+  display: grid;
+
+  grid-template-columns:
+    54px
+    minmax(
+      0,
+      1fr
+    );
+
+  align-items: start;
+
+  gap: 20px;
+}
+
+
+.locationTop
+  > div:last-child
+  > span {
+  display: block;
+
+  margin:
+    5px 0 7px;
+
+  color:
+    #717678;
+
+  font-size:
+    0.74rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.055em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.locationTop strong {
+  display: block;
+
+  max-width: 450px;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    clamp(
+      0.98rem,
+      1.15vw,
+      1.1rem
+    );
+
+  font-weight: 850;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   LOCATION META
+========================================================= */
+
+.locationMeta {
   display: flex;
 
   align-items: center;
 
-  gap: 10px;
+  gap: 9px;
+
+  margin:
+    21px 0 0
+    74px;
+
+  color:
+    #686d6f;
 }
 
-.bottom > a svg {
+
+.locationMeta svg {
+  flex: 0 0 auto;
+
   color:
     var(--red);
 }
 
 
-/* =========================================
-   HOVER
-========================================= */
+.locationMeta p {
+  margin: 0;
 
-@media (hover: hover) and (pointer: fine) {
+  font-size:
+    0.86rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MAP LINK
+========================================================= */
+
+.mapLink {
+  display: flex;
+
+  min-height: 55px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  margin:
+    22px 0 0
+    74px;
+
+  padding-inline: 17px;
+
+  border:
+    1px solid
+    #cfd3d4;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    0.78rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.04em;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+
+  transition:
+    background-color
+      220ms ease,
+    border-color
+      220ms ease,
+    color
+      220ms ease;
+}
+
+
+.mapLink svg {
+  color:
+    var(--red);
+
+  transition:
+    transform
+      220ms ease;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.bottom {
+  display: flex;
+
+  min-height: 80px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 30px;
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+}
+
+
+.bottom > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+}
+
+
+.bottom > div > span {
+  width: 31px;
+  height: 3px;
+
+  background:
+    var(--red);
+}
+
+
+.bottom p {
+  margin: 0;
+
+  color:
+    #626769;
+
+  font-size:
+    0.78rem;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.04em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   CONTACT LINK
+========================================================= */
+
+.contactLink {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    0.82rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.04em;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+.contactLink svg {
+  color:
+    var(--red);
+
+  transition:
+    transform
+      200ms ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+
   .whatsapp:hover {
     background:
-      rgba(
-        255,
-        255,
-        255,
-        0.18
-      );
+      var(--red-deep);
 
     transform:
       translateY(-2px);
   }
 
-  .channel:hover {
-    background:
-      var(--steel-050);
+
+  .whatsapp:hover svg {
+    transform:
+      translate(
+        3px,
+        -3px
+      );
   }
 
-  .channel:hover
-    .channelIcon {
+
+  .detail:hover {
+    background:
+      #1a1b1b;
+
+    color:
+      #ffffff;
+  }
+
+
+  .detail:hover
+    .detailContent > span,
+  .detail:hover
+    .detailContent p {
+    color:
+      rgba(
+        255,
+        255,
+        255,
+        0.65
+      );
+  }
+
+
+  .detail:hover
+    .detailIcon {
     border-color:
       var(--red);
 
     background:
       var(--red);
 
-    color: #fff;
+    color:
+      #ffffff;
   }
 
-  .channel:hover
-    .channelArrow {
+
+  .detail:hover
+    .detailArrow {
+    border-color:
+      rgba(
+        255,
+        255,
+        255,
+        0.25
+      );
+
+    color:
+      #ffffff;
+
     transform:
       translate(
-        2px,
-        -2px
+        3px,
+        -3px
       );
   }
 
-  .channel:hover
-    .channelProgress {
-    transform:
-      scaleX(1);
-  }
 
-  .mapButton:hover {
+  .mapLink:hover {
+    border-color:
+      #1b1c1c;
+
     background:
-      var(--red);
+      #1b1c1c;
+
+    color:
+      #ffffff;
   }
 
-  .mapButton:hover
-    svg:first-child {
-    color: #fff;
+
+  .mapLink:hover svg {
+    transform:
+      translate(
+        3px,
+        -3px
+      );
+  }
+
+
+  .contactLink:hover svg {
+    transform:
+      translate(
+        3px,
+        -3px
+      );
   }
 }
 
 
-/* =========================================
+/* =========================================================
    TABLET
-========================================= */
+========================================================= */
 
-@media (max-width: 900px) {
-  .intro {
-    max-width: 620px;
+@media (
+  max-width: 1024px
+) {
+
+  .section {
+    padding-block:
+      72px 84px;
+  }
+
+
+  .header {
+    grid-template-columns:
+      1fr;
+
+    gap: 27px;
+  }
+
+
+  .headerSide {
+    max-width: 650px;
 
     justify-self: start;
   }
 
-  .layout {
-    grid-template-columns: 1fr;
+
+  .grid {
+    grid-template-columns:
+      1fr;
   }
 
-  .commercial {
-    min-height: 470px;
+
+  .cta {
+    min-height: 540px;
   }
 
-  .commercialBody {
-    min-height:
-      calc(
-        470px - 57px
+
+  .details {
+    display: grid;
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
       );
   }
 
-  .location {
-    grid-template-columns: 1fr;
+
+  .detail {
+    border-right:
+      1px solid
+      #dce0e1;
   }
 
-  .mapStage {
-    min-height: 390px;
 
-    border-right: 0;
-
-    border-bottom:
-      1px solid
-      var(--steel-200);
+  .location {
+    grid-column:
+      1 / -1;
   }
 }
 
 
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
-@media (max-width: 640px) {
+@media (
+  max-width: 640px
+) {
+
   .section {
     padding-block:
-      52px 58px;
+      60px 70px;
   }
 
-  .title {
+
+  /* HEADER */
+
+  .eyebrow {
+    gap: 9px;
+
+    margin-bottom: 15px;
+  }
+
+
+  .number {
+    font-size:
+      0.72rem;
+  }
+
+
+  .eyebrowLine {
+    width: 31px;
+  }
+
+
+  .eyebrow p {
+    font-size:
+      0.72rem;
+
+    letter-spacing:
+      0.055em;
+  }
+
+
+  .heading h2 {
     font-size:
       clamp(
-        2.4rem,
+        2.5rem,
+        12vw,
+        4rem
+      );
+
+    line-height: 0.94;
+  }
+
+
+  .headerSide > p {
+    max-width: 96%;
+
+    font-size:
+      0.98rem;
+  }
+
+
+  .hours span {
+    font-size:
+      0.7rem;
+  }
+
+
+  .hours strong {
+    font-size:
+      0.86rem;
+  }
+
+
+  /* GRID */
+
+  .grid {
+    margin-top: 35px;
+  }
+
+
+  /* CTA */
+
+  .cta {
+    min-height: 500px;
+
+    padding:
+      23px 19px;
+  }
+
+
+  .ctaTop strong,
+  .ctaTop > span {
+    font-size:
+      0.7rem;
+  }
+
+
+  .ctaTop > span {
+    display: none;
+  }
+
+
+  .ctaContent {
+    padding-block:
+      62px;
+  }
+
+
+  .whatsappIcon {
+    width: 52px;
+    height: 52px;
+
+    margin-bottom: 22px;
+  }
+
+
+  .ctaContent > p {
+    font-size:
+      0.95rem;
+  }
+
+
+  .ctaContent h3 {
+    font-size:
+      clamp(
+        2.45rem,
         12vw,
         3.8rem
       );
+
+    line-height: 0.92;
   }
 
-  .layout {
-    margin-top: 33px;
-  }
-
-  .commercial {
-    min-height: 450px;
-  }
-
-  .commercialBody {
-    min-height:
-      calc(
-        450px - 57px
-      );
-
-    padding:
-      25px 18px;
-  }
-
-  .commercialBody h3 {
-    font-size:
-      clamp(
-        2.15rem,
-        10vw,
-        3.2rem
-      );
-  }
 
   .whatsapp {
-    margin-top: 24px;
+    width: 100%;
+
+    min-height: 58px;
+
+    padding-left: 17px;
+
+    font-size:
+      0.78rem;
   }
 
-  .channel {
-    min-height: 130px;
 
+  .whatsapp
+    > span:last-child {
+    width: 58px;
+    height: 58px;
+  }
+
+
+  .ctaBottom span {
+    font-size:
+      0.7rem;
+  }
+
+
+  /* DETAILS */
+
+  .details {
+    display: block;
+  }
+
+
+  .detail {
     grid-template-columns:
-      auto
-      minmax(0, 1fr)
-      auto;
+      48px
+      minmax(
+        0,
+        1fr
+      )
+      40px;
 
-    gap: 12px;
+    min-height: 116px;
+
+    gap: 14px;
 
     padding:
-      17px 15px;
+      19px 16px;
+
+    border-right: 0;
   }
 
-  .channelNumber {
-    display: none;
+
+  .detailIcon {
+    width: 47px;
+    height: 47px;
   }
 
-  .channelIcon {
-    width: 46px;
-    height: 46px;
+
+  .detailContent > span {
+    font-size:
+      0.7rem;
   }
 
-  .mapStage {
-    min-height: 320px;
+
+  .detailContent strong {
+    font-size:
+      0.96rem;
   }
 
-  .mapTop > span {
-    display: none;
+
+  .detailContent p {
+    font-size:
+      0.82rem;
   }
 
-  .mapPin {
-    width: 50px;
-    height: 50px;
+
+  .detailArrow {
+    width: 39px;
+    height: 39px;
   }
 
-  .locationInfo {
+
+  /* LOCATION */
+
+  .location {
     padding:
-      25px 18px;
+      24px 16px;
   }
+
+
+  .locationTop {
+    grid-template-columns:
+      48px
+      minmax(
+        0,
+        1fr
+      );
+
+    gap: 14px;
+  }
+
+
+  .locationIcon {
+    width: 47px;
+    height: 47px;
+  }
+
+
+  .locationTop
+    > div:last-child
+    > span {
+    font-size:
+      0.7rem;
+  }
+
+
+  .locationTop strong {
+    font-size:
+      0.95rem;
+  }
+
+
+  .locationMeta,
+  .mapLink {
+    margin-left: 0;
+  }
+
+
+  .locationMeta {
+    margin-top: 22px;
+  }
+
+
+  .locationMeta p {
+    font-size:
+      0.83rem;
+  }
+
+
+  .mapLink {
+    min-height: 56px;
+
+    font-size:
+      0.76rem;
+  }
+
+
+  /* BOTTOM */
 
   .bottom {
-    padding:
-      12px 14px;
+    min-height: auto;
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap: 16px;
+
+    padding-block: 24px;
   }
+
 
   .bottom p {
-    display: none;
+    font-size:
+      0.72rem;
+
+    line-height: 1.5;
+  }
+
+
+  .contactLink {
+    font-size:
+      0.78rem;
   }
 }
 
 
-/* =========================================
-   SMALL
-========================================= */
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
-@media (max-width: 390px) {
-  .eyebrow > span {
-    display: none;
+@media (
+  max-width: 370px
+) {
+
+  .section {
+    padding-block:
+      52px 62px;
   }
 
-  .commercialTop small,
-  .channelsHeader small {
-    display: none;
+
+  .heading h2 {
+    font-size:
+      2.45rem;
   }
+
+
+  .cta {
+    min-height: 470px;
+
+    padding:
+      21px 16px;
+  }
+
+
+  .ctaContent h3 {
+    font-size:
+      2.3rem;
+  }
+
+
+  .ctaContent > p {
+    font-size:
+      0.92rem;
+  }
+
 
   .whatsapp {
+    font-size:
+      0.74rem;
+  }
+
+
+  .detail {
     grid-template-columns:
-      auto minmax(0, 1fr);
+      44px
+      minmax(
+        0,
+        1fr
+      )
+      36px;
+
+    gap: 11px;
+
+    padding-inline: 13px;
   }
 
-  .whatsapp > svg {
-    display: none;
+
+  .detailIcon,
+  .locationIcon {
+    width: 43px;
+    height: 43px;
   }
 
-  .channelArrow {
-    display: none;
+
+  .detailContent strong {
+    font-size:
+      0.9rem;
   }
 
-  .channel {
-    grid-template-columns:
-      auto minmax(0, 1fr);
+
+  .detailContent p {
+    font-size:
+      0.8rem;
   }
 
-  .mapStage {
-    min-height: 285px;
+
+  .detailArrow {
+    width: 35px;
+    height: 35px;
   }
 }
 
 
-/* =========================================
-   DARK
-========================================= */
+/* =========================================================
+   DARK MODE
+========================================================= */
 
-:global(.dark) .section {
+:global(.dark)
+  .section {
   --graphite:
-    #f2f2f2;
+    #f3f3f3;
 
   --steel-050:
-    #151515;
-
-  --steel-100:
-    #1c1c1c;
-
-  --steel-150:
-    #242424;
+    #151616;
 
   --steel-200:
-    #353535;
+    #373939;
 
   background:
-    linear-gradient(
-      180deg,
-      #111 0%,
-      #111 64%,
-      #151515 64%,
-      #151515 100%
-    );
+    #151616;
+
+  color:
+    #f3f3f3;
 }
 
-:global(.dark) .channel {
-  background:
-    #171717;
-}
 
-:global(.dark) .intro p,
 :global(.dark)
-  .channelCopy > span {
-  color: #aaa;
+  .heading h2,
+:global(.dark)
+  .hours strong,
+:global(.dark)
+  .locationTop strong,
+:global(.dark)
+  .contactLink {
+  color:
+    #f3f3f3;
 }
 
-:global(.dark) .mapTop {
+
+:global(.dark)
+  .eyebrow p,
+:global(.dark)
+  .headerSide > p,
+:global(.dark)
+  .hours span,
+:global(.dark)
+  .locationMeta,
+:global(.dark)
+  .bottom p {
+  color:
+    #b7bbbc;
+}
+
+
+:global(.dark)
+  .grid {
+  border-color:
+    #373939;
+}
+
+
+:global(.dark)
+  .details {
   background:
-    rgba(
-      24,
-      24,
-      24,
-      0.86
-    );
+    #181919;
 }
 
 
-/* =========================================
-   REDUCED MOTION
-========================================= */
+:global(.dark)
+  .detail {
+  border-color:
+    #373939;
 
-@media (prefers-reduced-motion: reduce) {
+  color:
+    #f3f3f3;
+}
+
+
+:global(.dark)
+  .detailContent > span,
+:global(.dark)
+  .detailContent p,
+:global(.dark)
+  .locationTop
+  > div:last-child
+  > span {
+  color:
+    #adb1b2;
+}
+
+
+:global(.dark)
+  .detailIcon,
+:global(.dark)
+  .locationIcon,
+:global(.dark)
+  .detailArrow,
+:global(.dark)
+  .mapLink {
+  border-color:
+    #414445;
+}
+
+
+:global(.dark)
+  .detailArrow,
+:global(.dark)
+  .mapLink {
+  color:
+    #f3f3f3;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.whatsapp:focus-visible,
+.detail:focus-visible,
+.mapLink:focus-visible,
+.contactLink:focus-visible {
+  outline:
+    3px solid
+    var(--red);
+
+  outline-offset: 5px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
   .whatsapp,
-  .channel,
-  .channelIcon,
-  .channelArrow,
-  .channelProgress,
-  .mapButton {
+  .whatsapp svg,
+  .detail,
+  .detailIcon,
+  .detailContent > span,
+  .detailContent p,
+  .detailArrow,
+  .mapLink,
+  .mapLink svg,
+  .contactLink svg {
     transition: none;
   }
 }

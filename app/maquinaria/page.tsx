@@ -1,144 +1,293 @@
-import { Suspense } from "react";
+import type {
+  Metadata,
+} from "next";
 
-import Catalog from "@/components/catalog/Catalog";
+import {
+  Suspense,
+} from "react";
+
 import {
   getBrands,
   getCategories,
   getProducts,
 } from "@/lib/content";
 
-export const metadata = {
-  title: "Maquinaria",
+import Catalog from "@/components/catalog/Catalog";
+
+import styles from "./page.module.css";
+
+
+export const metadata: Metadata = {
+  title: "Maquinaria | Morgillo",
+
   description:
-    "Explora maquinaria agrícola, construcción e implementos.",
+    "Explora maquinaria agrícola, de construcción e implementos disponibles en Morgillo.",
+
   alternates: {
-    canonical: "/maquinaria",
+    canonical:
+      "/maquinaria",
   },
 };
 
-export default async function Page() {
-  const [products, brands, categories] =
+
+export default async function MachineryPage() {
+  const [
+    products,
+    brands,
+    categories,
+  ] =
     await Promise.all([
       getProducts(),
       getBrands(),
       getCategories(),
     ]);
 
-  return (
-    <>
-      {/* =============================================
-          HERO CATÁLOGO
-      ============================================== */}
 
-      <section className="morgillo-catalog-hero">
+  return (
+    <main
+      className={
+        styles.page
+      }
+    >
+      {/* =================================================
+          PAGE INTRO
+      ================================================== */}
+
+      <section
+        className={
+          styles.hero
+        }
+        aria-labelledby="catalog-title"
+      >
         <div
-          className="morgillo-catalog-hero__background"
+          className={
+            styles.heroGrid
+          }
           aria-hidden="true"
-        >
-          <span>M</span>
-          <i />
-        </div>
+        />
 
         <div className="morgillo-container">
-          <div className="morgillo-catalog-hero__eyebrow">
-            <span>Catálogo</span>
+          {/* =============================================
+              TOP
+          ============================================== */}
 
-            <i aria-hidden="true" />
+          <div
+            className={
+              styles.heroTop
+            }
+          >
+            <div
+              className={
+                styles.eyebrow
+              }
+            >
+              <span>
+                01
+              </span>
 
-            <p>Maquinaria y equipos</p>
+              <i />
+
+              <p>
+                Catálogo Morgillo
+              </p>
+            </div>
+
+
+            <div
+              className={
+                styles.heroCode
+              }
+              aria-hidden="true"
+            >
+              MRG / MACHINERY
+            </div>
           </div>
 
-          <div className="morgillo-catalog-hero__grid">
-            <div className="morgillo-catalog-hero__content">
-              <h1>
-                Equipos para
-                <span> producir, construir y avanzar.</span>
+
+          {/* =============================================
+              CONTENT
+          ============================================== */}
+
+          <div
+            className={
+              styles.heroContent
+            }
+          >
+            <div
+              className={
+                styles.heroHeading
+              }
+            >
+              <h1
+                id="catalog-title"
+              >
+                Maquinaria para
+                <span>
+                  {" "}
+                  hacer avanzar
+                </span>
+                {" "}
+                cada operación.
               </h1>
-
-              <p>
-                Encuentra maquinaria para agricultura,
-                construcción, movimiento de tierra e
-                implementos según las necesidades de tu
-                operación.
-              </p>
             </div>
 
-            <div className="morgillo-catalog-hero__stats">
-              <div>
-                <strong>{products.length}</strong>
 
-                <span>
-                  Equipos en catálogo
-                </span>
-              </div>
+            <div
+              className={
+                styles.heroSide
+              }
+            >
+              <p>
+                Explora equipos para
+                agricultura,
+                construcción e
+                implementos. Filtra por
+                categoría, marca o busca
+                directamente por nombre
+                y modelo.
+              </p>
 
-              <div>
-                <strong>{categories.length}</strong>
 
-                <span>
-                  Categorías
-                </span>
-              </div>
+              <div
+                className={
+                  styles.heroLine
+                }
+              >
+                <span />
 
-              <div>
-                <strong>{brands.length}</strong>
-
-                <span>
-                  Marcas
-                </span>
+                <strong>
+                  Catálogo conectado al
+                  CMS
+                </strong>
               </div>
             </div>
           </div>
 
-          {/* =========================================
-              CATEGORY RAIL
-          ========================================== */}
 
-          <div className="morgillo-catalog-hero__rail">
-            <div>
-              <span aria-hidden="true" />
+          {/* =============================================
+              DYNAMIC DATA
+          ============================================== */}
 
-              <strong>MORGILLO</strong>
+          <div
+            className={
+              styles.stats
+            }
+          >
+            <div
+              className={
+                styles.stat
+              }
+            >
+              <span>
+                Equipos
+              </span>
 
-              <p>
-                Soluciones para tu operación
-              </p>
+              <strong>
+                {
+                  products.length
+                }
+              </strong>
             </div>
 
-            <div className="morgillo-catalog-hero__categories">
-              {categories.map((category) => (
-                <span key={category.id}>
-                  {category.name}
-                </span>
-              ))}
+
+            <div
+              className={
+                styles.stat
+              }
+            >
+              <span>
+                Categorías
+              </span>
+
+              <strong>
+                {
+                  categories.length
+                }
+              </strong>
+            </div>
+
+
+            <div
+              className={
+                styles.stat
+              }
+            >
+              <span>
+                Marcas
+              </span>
+
+              <strong>
+                {
+                  brands.length
+                }
+              </strong>
+            </div>
+
+
+            <div
+              className={
+                styles.statText
+              }
+            >
+              <span />
+
+              <p>
+                Agricultura ·
+                Construcción ·
+                Implementos
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =============================================
-          CATÁLOGO
-      ============================================== */}
+
+      {/* =================================================
+          CATALOG
+      ================================================== */}
 
       <Suspense
         fallback={
-          <div className="morgillo-catalog-loading">
-            <div className="morgillo-container">
-              <span />
-
-              <p>
-                Cargando catálogo…
-              </p>
-            </div>
-          </div>
+          <CatalogLoading />
         }
       >
         <Catalog
-          products={products}
-          brands={brands}
-          categories={categories}
+          products={
+            products
+          }
+          brands={
+            brands
+          }
+          categories={
+            categories
+          }
         />
       </Suspense>
-    </>
+    </main>
+  );
+}
+
+
+function CatalogLoading() {
+  return (
+    <section
+      className={
+        styles.loading
+      }
+    >
+      <div className="morgillo-container">
+        <div
+          className={
+            styles.loadingBar
+          }
+        >
+          <span />
+
+          <p>
+            Preparando catálogo…
+          </p>
+        </div>
+      </div>
+    </section>
   );
 }

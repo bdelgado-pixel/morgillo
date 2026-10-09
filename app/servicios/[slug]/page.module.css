@@ -1,0 +1,1165 @@
+.page {
+  --red:
+    var(--mg-red, #d71920);
+
+  --graphite:
+    var(--mg-graphite, #252525);
+
+  --steel-050:
+    var(--mg-steel-050, #f7f7f6);
+
+  --steel-200:
+    var(--mg-steel-200, #dadcdd);
+
+  overflow: hidden;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--graphite);
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.top {
+  border-bottom:
+    1px solid
+    var(--steel-200);
+}
+
+
+.topInner {
+  display: flex;
+
+  min-height: 65px;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 25px;
+}
+
+
+.breadcrumb {
+  display: flex;
+
+  min-width: 0;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color:
+    #777c7e;
+
+  font-size:
+    0.76rem;
+
+  font-weight: 750;
+}
+
+
+.breadcrumb a {
+  color:
+    #606567;
+
+  text-decoration: none;
+}
+
+
+.breadcrumb
+  span:last-child {
+  overflow: hidden;
+
+  color:
+    var(--graphite);
+
+  font-weight: 850;
+
+  text-overflow:
+    ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.back {
+  display: flex;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    0.74rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+.back svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+
+  padding-block:
+    clamp(
+      80px,
+      9vw,
+      135px
+    );
+
+  overflow: hidden;
+
+  background:
+    #ffffff;
+
+  isolation: isolate;
+}
+
+
+.grid {
+  position: absolute;
+
+  z-index: -2;
+
+  inset: 0;
+
+  opacity: 0.035;
+
+  background-image:
+    linear-gradient(
+      #252525 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      #252525 1px,
+      transparent 1px
+    );
+
+  background-size:
+    70px 70px;
+}
+
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  z-index: -1;
+
+  right: -250px;
+  bottom: -410px;
+
+  width: 700px;
+  height: 700px;
+
+  border:
+    1px solid
+    rgba(
+      37,
+      37,
+      37,
+      0.055
+    );
+
+  border-radius: 50%;
+}
+
+
+.heroLayout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(300px, 0.6fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      50px,
+      9vw,
+      135px
+    );
+}
+
+
+.eyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+
+.eyebrow span {
+  color:
+    var(--red);
+
+  font-size:
+    0.74rem;
+
+  font-weight: 950;
+}
+
+
+.eyebrow i {
+  width: 38px;
+  height: 3px;
+
+  background:
+    var(--red);
+}
+
+
+.eyebrow p {
+  margin: 0;
+
+  color:
+    #666b6d;
+
+  font-size:
+    0.76rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.055em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.hero h1 {
+  max-width: 920px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      3.1rem,
+      6vw,
+      6.6rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.88;
+
+  letter-spacing:
+    -0.07em;
+
+  text-wrap: balance;
+}
+
+
+.heroSide > p {
+  margin: 0;
+
+  color:
+    #5f6466;
+
+  font-size:
+    clamp(
+      1rem,
+      1.08vw,
+      1.1rem
+    );
+
+  line-height: 1.7;
+}
+
+
+.heroSide > a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 27px;
+
+  padding-bottom: 8px;
+
+  border-bottom:
+    2px solid
+    var(--graphite);
+
+  color:
+    var(--graphite);
+
+  font-size:
+    0.8rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroSide > a svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   REQUIREMENTS
+========================================================= */
+
+.requirements {
+  padding-block:
+    clamp(
+      70px,
+      8vw,
+      115px
+    );
+
+  background:
+    var(--steel-050);
+}
+
+
+.requirementsGrid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.85fr)
+    minmax(400px, 1.15fr);
+
+  gap:
+    clamp(
+      55px,
+      10vw,
+      145px
+    );
+}
+
+
+.requirementsHeading h2 {
+  max-width: 650px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      2.5rem,
+      4.5vw,
+      4.8rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.92;
+
+  letter-spacing:
+    -0.06em;
+
+  text-wrap: balance;
+}
+
+
+.requirementsHeading
+  h2 span {
+  color:
+    var(--red);
+}
+
+
+.requirementsHeading
+  > p {
+  max-width: 520px;
+
+  margin:
+    22px 0 0;
+
+  color:
+    #626769;
+
+  font-size:
+    0.98rem;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   REQUIREMENT LIST
+========================================================= */
+
+.requirementList {
+  margin: 0;
+
+  padding: 0;
+
+  border-top:
+    1px solid
+    #cfd3d4;
+
+  list-style: none;
+}
+
+
+.requirementList li {
+  display: grid;
+
+  grid-template-columns:
+    55px
+    minmax(0, 1fr);
+
+  min-height: 92px;
+
+  align-items: center;
+
+  gap: 20px;
+
+  border-bottom:
+    1px solid
+    #cfd3d4;
+}
+
+
+.requirementList
+  > li > span {
+  color:
+    var(--red);
+
+  font-size:
+    0.72rem;
+
+  font-weight: 950;
+}
+
+
+.requirementList li div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.requirementList svg {
+  flex: 0 0 auto;
+
+  color:
+    var(--red);
+}
+
+
+.requirementList p {
+  margin: 0;
+
+  color:
+    var(--graphite);
+
+  font-size:
+    clamp(
+      0.96rem,
+      1.1vw,
+      1.08rem
+    );
+
+  font-weight: 750;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   NO REQUIREMENTS
+========================================================= */
+
+.noRequirements {
+  display: grid;
+
+  grid-template-columns:
+    6px
+    minmax(0, 1fr);
+
+  gap: 18px;
+
+  align-self: start;
+
+  padding: 25px;
+
+  border:
+    1px solid
+    #d4d8d9;
+
+  background:
+    #ffffff;
+}
+
+
+.noRequirements > span {
+  background:
+    var(--red);
+}
+
+
+.noRequirements strong {
+  font-size:
+    1.05rem;
+
+  font-weight: 900;
+}
+
+
+.noRequirements p {
+  margin:
+    8px 0 0;
+
+  color:
+    #626769;
+
+  font-size:
+    0.94rem;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact {
+  background:
+    var(--red);
+
+  color:
+    #ffffff;
+}
+
+
+.contactInner {
+  display: flex;
+
+  min-height:
+    clamp(
+      210px,
+      20vw,
+      270px
+    );
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 55px;
+}
+
+
+.contactInner
+  > div > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  font-size:
+    0.76rem;
+
+  font-weight: 900;
+
+  text-transform:
+    uppercase;
+}
+
+
+.contact h2 {
+  max-width: 720px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      2rem,
+      3.6vw,
+      4rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.94;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.contact a {
+  display: flex;
+
+  min-height: 58px;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+
+  gap: 17px;
+
+  padding-inline: 20px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.55
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    0.8rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   RELATED
+========================================================= */
+
+.related {
+  padding-block:
+    clamp(
+      70px,
+      8vw,
+      110px
+    );
+
+  background:
+    #ffffff;
+}
+
+
+.relatedHeader {
+  display: flex;
+
+  align-items: end;
+
+  justify-content:
+    space-between;
+
+  gap: 30px;
+}
+
+
+.relatedHeader
+  > div > span {
+  color:
+    var(--red);
+
+  font-size:
+    0.74rem;
+
+  font-weight: 950;
+}
+
+
+.relatedHeader h2 {
+  margin:
+    8px 0 0;
+
+  font-size:
+    clamp(
+      2.5rem,
+      4vw,
+      4.5rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.92;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+.relatedHeader > a {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding-bottom: 7px;
+
+  border-bottom:
+    2px solid
+    var(--graphite);
+
+  color:
+    var(--graphite);
+
+  font-size:
+    0.78rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+.relatedHeader > a svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   RELATED LIST
+========================================================= */
+
+.relatedList {
+  margin-top:
+    clamp(
+      35px,
+      5vw,
+      58px
+    );
+
+  border-top:
+    1px solid
+    var(--steel-200);
+}
+
+
+.relatedList > a {
+  display: grid;
+
+  grid-template-columns:
+    65px
+    minmax(0, 1fr)
+    50px;
+
+  min-height: 155px;
+
+  align-items: center;
+
+  gap: 30px;
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+
+  color:
+    var(--graphite);
+
+  text-decoration: none;
+
+  transition:
+    background-color
+      200ms ease;
+}
+
+
+.relatedList
+  > a > span {
+  color:
+    var(--red);
+
+  font-size:
+    0.72rem;
+
+  font-weight: 950;
+}
+
+
+.relatedList small {
+  color:
+    #74797b;
+
+  font-size:
+    0.7rem;
+
+  font-weight: 850;
+
+  text-transform:
+    uppercase;
+}
+
+
+.relatedList h3 {
+  margin:
+    7px 0 0;
+
+  font-size:
+    clamp(
+      1.4rem,
+      2vw,
+      2.1rem
+    );
+
+  font-weight: 950;
+
+  letter-spacing:
+    -0.04em;
+}
+
+
+.relatedList p {
+  max-width: 720px;
+
+  margin:
+    9px 0 0;
+
+  color:
+    #626769;
+
+  font-size:
+    0.92rem;
+
+  line-height: 1.55;
+}
+
+
+.relatedList
+  > a > svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+
+  .relatedList > a:hover {
+    background:
+      var(--steel-050);
+  }
+
+
+  .contact a:hover {
+    background:
+      #ffffff;
+
+    color:
+      var(--red);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 1024px
+) {
+
+  .heroLayout,
+  .requirementsGrid {
+    grid-template-columns:
+      1fr;
+
+    gap: 35px;
+  }
+
+
+  .heroSide {
+    max-width: 650px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 640px
+) {
+
+  .topInner {
+    min-height: 58px;
+  }
+
+
+  .breadcrumb {
+    font-size:
+      0.69rem;
+  }
+
+
+  .breadcrumb
+    span:last-child {
+    display: none;
+  }
+
+
+  .back {
+    font-size:
+      0.68rem;
+  }
+
+
+  .hero {
+    padding-block:
+      60px 70px;
+  }
+
+
+  .hero h1 {
+    font-size:
+      clamp(
+        2.8rem,
+        14vw,
+        4.3rem
+      );
+  }
+
+
+  .heroSide > p {
+    font-size:
+      0.97rem;
+  }
+
+
+  .requirements,
+  .related {
+    padding-block:
+      60px;
+  }
+
+
+  .requirementsHeading h2,
+  .relatedHeader h2 {
+    font-size:
+      clamp(
+        2.35rem,
+        11vw,
+        3.6rem
+      );
+  }
+
+
+  .requirementList li {
+    grid-template-columns:
+      34px
+      minmax(0, 1fr);
+
+    gap: 12px;
+
+    min-height: 82px;
+  }
+
+
+  .requirementList p {
+    font-size:
+      0.94rem;
+  }
+
+
+  .contactInner {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    justify-content: center;
+
+    gap: 26px;
+
+    min-height: 0;
+
+    padding-block: 45px;
+  }
+
+
+  .contact h2 {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+
+
+  .contact a {
+    width: 100%;
+
+    justify-content:
+      space-between;
+
+    font-size:
+      0.76rem;
+  }
+
+
+  .relatedHeader {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap: 22px;
+  }
+
+
+  .relatedList > a {
+    grid-template-columns:
+      38px
+      minmax(0, 1fr)
+      35px;
+
+    gap: 12px;
+
+    min-height: 145px;
+
+    padding-block: 20px;
+  }
+
+
+  .relatedList p {
+    font-size:
+      0.9rem;
+  }
+}
+
+
+/* =========================================================
+   DARK
+========================================================= */
+
+:global(.dark)
+  .page,
+:global(.dark)
+  .hero,
+:global(.dark)
+  .related {
+  --graphite:
+    #f3f3f3;
+
+  background:
+    #151616;
+
+  color:
+    #f3f3f3;
+}
+
+
+:global(.dark)
+  .requirements {
+  background:
+    #191a1a;
+}
+
+
+:global(.dark)
+  .hero h1,
+:global(.dark)
+  .requirementsHeading h2,
+:global(.dark)
+  .relatedHeader h2,
+:global(.dark)
+  .requirementList p,
+:global(.dark)
+  .relatedList > a {
+  color:
+    #f3f3f3;
+}
+
+
+:global(.dark)
+  .heroSide > p,
+:global(.dark)
+  .requirementsHeading > p,
+:global(.dark)
+  .relatedList p {
+  color:
+    #b7bbbc;
+}
+
+
+:global(.dark)
+  .requirementList,
+:global(.dark)
+  .requirementList li,
+:global(.dark)
+  .relatedList,
+:global(.dark)
+  .relatedList > a {
+  border-color:
+    #393b3c;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.page a:focus-visible {
+  outline:
+    3px solid
+    var(--red);
+
+  outline-offset: 5px;
+}

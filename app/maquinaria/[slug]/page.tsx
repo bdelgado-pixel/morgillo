@@ -1,6 +1,21 @@
-import { notFound, redirect } from "next/navigation";
+import type {
+  Metadata,
+} from "next";
+
 import Link from "next/link";
-import type { Category } from "@/types/content";
+
+import {
+  notFound,
+  redirect,
+} from "next/navigation";
+
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Download,
+  FileText,
+  MessageCircle,
+} from "lucide-react";
 
 import {
   getBrands,
@@ -10,10 +25,15 @@ import {
   getSite,
 } from "@/lib/content";
 
-import { whatsapp } from "@/data/site";
+import {
+  whatsapp,
+} from "@/data/site";
 
 import Gallery from "@/components/catalog/Gallery";
 import ProductCard from "@/components/catalog/ProductCard";
+
+import styles from "./page.module.css";
+
 
 type Props = {
   params: Promise<{
@@ -21,71 +41,104 @@ type Props = {
   }>;
 };
 
-const sectorContent = {
-  agricola: {
-    label: "Agricultura",
-    eyebrow: "Trabajo en campo",
-    description:
-      "Maquinaria orientada a producción, preparación de terreno y operaciones agrícolas.",
-  },
 
-  construccion: {
-    label: "Construcción",
-    eyebrow: "Obra y movimiento de tierra",
-    description:
-      "Equipos preparados para excavación, carga, movimiento de tierra y trabajo exigente.",
-  },
-
-  implementos: {
-    label: "Implementos",
-    eyebrow: "Más capacidad para tu equipo",
-    description:
-      "Soluciones para ampliar las posibilidades de trabajo de tu maquinaria.",
-  },
-};
+/* =========================================================
+   METADATA
+========================================================= */
 
 export async function generateMetadata({
   params,
-}: Props) {
-  const { slug } = await params;
+}: Props): Promise<Metadata> {
+  const {
+    slug,
+  } =
+    await params;
+
 
   const product =
-    await getProduct(slug);
+    await getProduct(
+      slug,
+    );
+
+
+  if (!product) {
+    return {
+      title:
+        "Maquinaria | Morgillo",
+    };
+  }
+
 
   return {
-    title:
-      product?.name ??
-      "Maquinaria",
+    title: `${product.name} | Morgillo`,
 
     description:
-      product?.description,
+      product.description,
 
-    robots: product?.mock
-      ? {
-          index: false,
-          follow: true,
-        }
-      : undefined,
+    robots:
+      product.mock
+        ? {
+            index: false,
+            follow: true,
+          }
+        : undefined,
 
     alternates: {
       canonical:
-        `/maquinaria/${slug}`,
+        `/maquinaria/${product.slug}`,
     },
   };
 }
 
-export default async function Page({
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+export default async function ProductPage({
   params,
 }: Props) {
-  const { slug } = await params;
+  const {
+    slug,
+  } =
+    await params;
 
-  const categories =
-    await getCategories();
+
+  const [
+    product,
+    products,
+    categories,
+    brands,
+    site,
+  ] =
+    await Promise.all([
+      getProduct(
+        slug,
+      ),
+
+      getProducts(),
+
+      getCategories(),
+
+      getBrands(),
+
+      getSite(),
+    ]);
+
+
+  /* =======================================================
+     LEGACY CATEGORY URL
+
+     /maquinaria/agricola
+     ↓
+     /maquinaria?categoria=agricola
+  ======================================================= */
 
   if (
     categories.some(
       (category) =>
-        category.id === slug,
+        category.id ===
+        slug,
     )
   ) {
     redirect(
@@ -93,21 +146,15 @@ export default async function Page({
     );
   }
 
-  const [
-    product,
-    site,
-    brands,
-    products,
-  ] = await Promise.all([
-    getProduct(slug),
-    getSite(),
-    getBrands(),
-    getProducts(),
-  ]);
 
   if (!product) {
     notFound();
   }
+
+
+  /* =======================================================
+     CONTENT
+  ======================================================= */
 
   const category =
     categories.find(
@@ -116,25 +163,24 @@ export default async function Page({
         product.category,
     );
 
+
   const brand =
     brands.find(
       (item) =>
-        item.id ===
-        product.brandId,
+        item.id
+          .toLowerCase() ===
+        product.brandId
+          .toLowerCase(),
     );
 
-  const sector =
-    sectorContent[
-      product.category
-    ];
 
-  const brandClass =
-    product.brandId
-      ?.toLowerCase()
-      .replace(
-        /[^a-z0-9-_]/g,
-        "-",
-      ) || "generic";
+  const documents =
+    product.documents.filter(
+      (document) =>
+        document.kind ===
+        "pdf",
+    );
+
 
   const related =
     products
@@ -145,346 +191,464 @@ export default async function Page({
           item.category ===
             product.category,
       )
-      .slice(0, 3);
+      .slice(
+        0,
+        3,
+      );
+
+
+  const brandLabel =
+    brand?.name ||
+    product.brandId ||
+    "Morgillo";
+
+
+  const categoryLabel =
+    category?.name ||
+    product.category;
+
+
+  const whatsappHref =
+    whatsapp(
+      `Hola, quisiera información sobre ${product.name}${
+        product.model
+          ? ` ${product.model}`
+          : ""
+      }.`,
+      site.whatsapp,
+    );
+
 
   return (
     <main
-      className={`
-        morgillo-product-page
-        is-${product.category}
-        brand-${brandClass}
-      `}
+      className={
+        styles.page
+      }
     >
-      {/* =========================================
-          SECTOR HERO
-      ========================================== */}
+      {/* =================================================
+          TOP / BREADCRUMB
+      ================================================== */}
 
-      <section className="morgillo-product-sector">
-        <div
-          className="morgillo-product-sector__background"
-          aria-hidden="true"
-        >
-          <span>
-            M
-          </span>
-
-          <i />
-        </div>
-
+      <section
+        className={
+          styles.top
+        }
+      >
         <div className="morgillo-container">
-          {/* BREADCRUMB */}
-
-          <nav
-            aria-label="Migas de pan"
-            className="morgillo-product-breadcrumb"
+          <div
+            className={
+              styles.topInner
+            }
           >
-            <Link href="/">
-              Inicio
-            </Link>
+            <nav
+              aria-label="Migas de pan"
+              className={
+                styles.breadcrumb
+              }
+            >
+              <Link
+                href="/"
+              >
+                Inicio
+              </Link>
 
-            <span>
-              /
-            </span>
+              <span>
+                /
+              </span>
 
-            <Link href="/maquinaria">
-              Maquinaria
-            </Link>
+              <Link
+                href="/maquinaria"
+              >
+                Maquinaria
+              </Link>
 
-            <span>
-              /
-            </span>
+              <span>
+                /
+              </span>
 
-            <Link href={`/maquinaria?categoria=${product.category}`}>
-              {category?.name ?? sector.label}
-            </Link>
-            <span aria-hidden="true">/</span>
-            <strong aria-current="page">{product.name}</strong>
-          </nav>
-
-          {/* SECTOR */}
-
-          <div className="morgillo-product-sector__grid">
-            <div className="morgillo-product-sector__copy">
-              <div className="morgillo-product-sector__eyebrow">
-                <span>
-                  {category?.name ??
-                    sector.label}
-                </span>
-
-                <i />
-
-                <p>
-                  {sector.eyebrow}
-                </p>
-              </div>
-
-              <p className="morgillo-product-sector__title">
-                {category?.name ?? sector.label}
-              </p>
-
-              <p>
+              <span
+                aria-current="page"
+              >
                 {
-                  category?.description || sector.description
+                  product.name
                 }
-              </p>
-            </div>
+              </span>
+            </nav>
 
-            <div className="morgillo-product-sector__art">
-              <CategoryVector
-                category={
-                  product.category
-                }
+
+            <Link
+              href="/maquinaria"
+              className={
+                styles.back
+              }
+            >
+              <ArrowLeft
+                size={17}
+                strokeWidth={1.8}
               />
-            </div>
-          </div>
 
-          {/* RAIL */}
-
-          <div className="morgillo-product-sector__rail">
-            <div>
-              <span />
-
-              <strong>
-                MORGILLO
-              </strong>
-
-              <p>
-                Maquinaria y soluciones
-              </p>
-            </div>
-
-            <div>
-              <span>
-                {brand?.name ??
-                  product.brandId.toUpperCase()}
-              </span>
-
-              <i />
-
-              <span>
-                {category?.name}
-              </span>
-            </div>
+              Volver al catálogo
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* =========================================
-          PRODUCT
-      ========================================== */}
 
-      <section className="morgillo-product-detail">
-        <div className="morgillo-container">
-          {product.mock && (
-            <div className="morgillo-product-demo">
-              <span>
-                Información
-              </span>
+      {/* =================================================
+          MOCK NOTICE
+      ================================================== */}
+
+      {product.mock && (
+        <section
+          className={
+            styles.demoSection
+          }
+        >
+          <div className="morgillo-container">
+            <div
+              className={
+                styles.demo
+              }
+            >
+              <span />
 
               <p>
-                Ficha de demostración.
-                Imagen de referencia;
-                modelo y
-                especificaciones
-                pendientes de
-                confirmar.
+                Esta ficha utiliza
+                información de
+                demostración. Los datos
+                definitivos pueden ser
+                actualizados desde el
+                CMS.
               </p>
             </div>
-          )}
+          </div>
+        </section>
+      )}
 
-          <div className="morgillo-product-detail__grid">
-            {/* GALLERY */}
 
-            <Gallery
-              key={product.id}
-              images={product.images}
-              name={product.name}
-            />
+      {/* =================================================
+          PRODUCT HERO
+      ================================================== */}
 
-            {/* INFORMATION */}
+      <section
+        className={
+          styles.product
+        }
+      >
+        <div className="morgillo-container">
+          <div
+            className={
+              styles.productGrid
+            }
+          >
+            {/* =============================================
+                GALLERY
+            ============================================== */}
 
-            <div className="morgillo-product-info">
-              <div className="morgillo-product-info__top">
-                <div className="morgillo-product-brand">
+            <div
+              className={
+                styles.galleryColumn
+              }
+            >
+              <Gallery
+                images={
+                  product.images
+                }
+              />
+            </div>
+
+
+            {/* =============================================
+                INFORMATION
+            ============================================== */}
+
+            <div
+              className={
+                styles.info
+              }
+              data-brand={
+                product.brandId.toLowerCase()
+              }
+            >
+              <div
+                className={
+                  styles.infoTop
+                }
+              >
+                <div
+                  className={
+                    styles.brand
+                  }
+                >
                   <span />
 
-                  <div>
-                    <small>
-                      Marca
-                    </small>
-
-                    <strong>
-                      {brand?.name ??
-                        (product.brandId.toUpperCase() || "Morgillo")}
-                    </strong>
-                  </div>
+                  <strong>
+                    {
+                      brandLabel
+                    }
+                  </strong>
                 </div>
 
-                <span className="morgillo-product-info__category">
-                  {category?.name}
+
+                <span
+                  className={
+                    styles.code
+                  }
+                >
+                  MRG / EQUIPMENT
                 </span>
               </div>
 
-              <div className="morgillo-product-info__title">
-                <span>
-                  Equipo / Modelo
-                </span>
+
+              <div
+                className={
+                  styles.heading
+                }
+              >
+                <p>
+                  {
+                    categoryLabel
+                  }
+                </p>
+
 
                 <h1>
-                  {product.name}
+                  {
+                    product.name
+                  }
                 </h1>
 
+
                 {product.model && (
-                  <p>
-                    {product.model}
-                  </p>
+                  <div
+                    className={
+                      styles.model
+                    }
+                  >
+                    <span>
+                      Modelo
+                    </span>
+
+                    <strong>
+                      {
+                        product.model
+                      }
+                    </strong>
+                  </div>
                 )}
               </div>
 
-              <p className="morgillo-product-info__description">
+
+              <p
+                className={
+                  styles.description
+                }
+              >
                 {
                   product.description
                 }
               </p>
 
-              {/* QUICK SPECS */}
 
-              {product.specifications
-                .length > 0 && (
-                <div className="morgillo-product-info__quick-specs">
-                  {product.specifications
-                    .slice(0, 3)
-                    .map((spec, index) => (
-                      <div
-                        key={`${spec.label}-${index}`}
-                      >
-                        <span>
-                          {
-                            spec.label
-                          }
-                        </span>
+              {/* =========================================
+                  QUICK DATA
+              ========================================== */}
 
-                        <strong>
-                          {
-                            spec.value
-                          }{" "}
-                          {
-                            spec.unit ??
-                            ""
-                          }
-                        </strong>
-                      </div>
-                    ))}
+              <dl
+                className={
+                  styles.quickData
+                }
+              >
+                <div>
+                  <dt>
+                    Marca
+                  </dt>
+
+                  <dd>
+                    {
+                      brandLabel
+                    }
+                  </dd>
                 </div>
-              )}
 
-              {/* CTA */}
 
-              <div className="morgillo-product-info__actions">
+                <div>
+                  <dt>
+                    Categoría
+                  </dt>
+
+                  <dd>
+                    {
+                      categoryLabel
+                    }
+                  </dd>
+                </div>
+
+
+                <div>
+                  <dt>
+                    Especificaciones
+                  </dt>
+
+                  <dd>
+                    {
+                      product
+                        .specifications
+                        .length
+                    }
+                  </dd>
+                </div>
+              </dl>
+
+
+              {/* =========================================
+                  CTA
+              ========================================== */}
+
+              <div
+                className={
+                  styles.actions
+                }
+              >
                 <a
-                  className="morgillo-product-info__primary"
-                  href={whatsapp(
-                    `Hola, quisiera información sobre ${product.name}${
-                      product.mock
-                        ? " (imagen de referencia del sitio)"
-                        : ` ${product.model}`
-                    }.`,
-                    site.whatsapp,
-                  )}
+                  href={
+                    whatsappHref
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
+                  className={
+                    styles.primaryAction
+                  }
                 >
-                  <span>
-                    Consultar por WhatsApp
-                  </span>
+                  <div>
+                    <MessageCircle
+                      size={20}
+                      strokeWidth={1.8}
+                    />
+
+                    <span>
+                      Consultar este
+                      equipo
+                    </span>
+                  </div>
+
 
                   <span
-                    aria-hidden="true"
+                    className={
+                      styles.primaryArrow
+                    }
                   >
-                    ↗
+                    <ArrowUpRight
+                      size={20}
+                      strokeWidth={1.8}
+                    />
                   </span>
                 </a>
 
+
                 <Link
                   href="/contacto"
-                  className="morgillo-product-info__secondary"
+                  className={
+                    styles.secondaryAction
+                  }
                 >
-                  <span>
-                    Contactar con ventas
-                  </span>
+                  Otros canales de
+                  contacto
 
-                  <span
-                    aria-hidden="true"
-                  >
-                    →
-                  </span>
+                  <ArrowUpRight
+                    size={18}
+                    strokeWidth={1.8}
+                  />
                 </Link>
               </div>
 
-              {/* TRUST */}
 
-              <div className="morgillo-product-info__trust">
-                <div>
-                  <span />
+              {/* =========================================
+                  SUPPORT
+              ========================================== */}
 
-                  <p>
-                    Asesoría comercial
-                  </p>
-                </div>
+              <div
+                className={
+                  styles.support
+                }
+              >
+                <span />
 
-                <div>
-                  <span />
-
-                  <p>
-                    Servicio técnico
-                  </p>
-                </div>
-
-                <div>
-                  <span />
-
-                  <p>
-                    Respaldo Morgillo
-                  </p>
-                </div>
+                <p>
+                  Asesoría · repuestos ·
+                  servicio técnico
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =========================================
+
+      {/* =================================================
           SPECIFICATIONS
-      ========================================== */}
+      ================================================== */}
 
-      <section className="morgillo-product-specs">
+      <section
+        className={
+          styles.specifications
+        }
+        aria-labelledby="specifications-title"
+      >
         <div className="morgillo-container">
-          <div className="morgillo-product-section-heading">
+          <div
+            className={
+              styles.sectionHeader
+            }
+          >
             <div>
-              <span>
-                01
-              </span>
+              <div
+                className={
+                  styles.sectionEyebrow
+                }
+              >
+                <span>
+                  01
+                </span>
 
-              <i />
+                <i />
 
-              <p>
-                Datos técnicos
-              </p>
+                <p>
+                  Datos técnicos
+                </p>
+              </div>
+
+
+              <h2
+                id="specifications-title"
+              >
+                Especificaciones
+                <span>
+                  {" "}
+                  técnicas.
+                </span>
+              </h2>
             </div>
 
-            <h2>
-              Especificaciones
-              <span>
-                {" "}
-                para conocer el
-                equipo.
-              </span>
-            </h2>
+
+            <p>
+              Consulta las
+              características
+              disponibles para este
+              equipo.
+            </p>
           </div>
 
-          {product.specifications
-            .length ? (
-            <dl className="morgillo-product-spec-list">
+
+          {product
+            .specifications
+            .length >
+          0 ? (
+            <dl
+              className={
+                styles.specList
+              }
+            >
               {product.specifications.map(
                 (
                   specification,
@@ -493,14 +657,19 @@ export default async function Page({
                   <div
                     key={`${specification.label}-${index}`}
                   >
-                    <dt className="morgillo-product-spec-number" aria-hidden="true">
+                    <span
+                      className={
+                        styles.specNumber
+                      }
+                    >
                       {String(
                         index + 1,
                       ).padStart(
                         2,
                         "0",
                       )}
-                    </dt>
+                    </span>
+
 
                     <dt>
                       {
@@ -508,137 +677,42 @@ export default async function Page({
                       }
                     </dt>
 
+
                     <dd>
                       {
                         specification.value
-                      }{" "}
-                      {
-                        specification.unit ??
-                        ""
                       }
+
+                      {specification.unit
+                        ? ` ${specification.unit}`
+                        : ""}
                     </dd>
                   </div>
                 ),
               )}
             </dl>
           ) : (
-            <div className="morgillo-product-spec-empty">
-              <span>
-                Información técnica
-              </span>
-
-              <p>
-                Consulta las
-                características del
-                modelo disponible
-                con nuestro equipo
-                comercial.
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* =========================================
-          DOCUMENTS
-      ========================================== */}
-
-      <section className="morgillo-product-documents">
-        <div className="morgillo-container">
-          <div className="morgillo-product-documents__heading">
-            <div>
-              <span>
-                02
-              </span>
-
-              <i />
-
-              <p>
-                Documentación
-              </p>
-            </div>
-
-            <h2>
-              Información para
-              <span>
-                {" "}
-                tomar una mejor
-                decisión.
-              </span>
-            </h2>
-          </div>
-
-          {product.documents
-            .length ? (
-            <div className="morgillo-product-documents__grid">
-              {product.documents.map(
-                (
-                  document,
-                  index,
-                ) => (
-                  <a
-                    key={
-                      document.id
-                    }
-                    href={
-                      document.url
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="morgillo-product-document"
-                  >
-                    <div>
-                      <span>
-                        PDF
-                      </span>
-
-                      <small>
-                        Documento{" "}
-                        {String(
-                          index + 1,
-                        ).padStart(
-                          2,
-                          "0",
-                        )}
-                      </small>
-                    </div>
-
-                    <h3>
-                      {
-                        document.alt || `Documento ${index + 1}`
-                      }
-                    </h3>
-
-                    <div className="morgillo-product-document__bottom">
-                      <span>
-                        Ver documento
-                      </span>
-
-                      <span>
-                        ↗
-                      </span>
-                    </div>
-                  </a>
-                ),
-              )}
-            </div>
-          ) : (
-            <div className="morgillo-product-document-empty">
-              <span>
-                PDF
-              </span>
+            <div
+              className={
+                styles.emptySpecs
+              }
+            >
+              <span />
 
               <div>
                 <strong>
-                  Ficha técnica
-                  próximamente
+                  Información técnica
+                  disponible bajo
+                  consulta.
                 </strong>
 
                 <p>
-                  La documentación
-                  estará disponible
-                  cuando se confirme
-                  el modelo.
+                  Nuestro equipo puede
+                  brindarte las
+                  características del
+                  modelo y ayudarte a
+                  validar si se adapta a
+                  tu operación.
                 </p>
               </div>
             </div>
@@ -646,36 +720,295 @@ export default async function Page({
         </div>
       </section>
 
-      {/* =========================================
-          RELATED
-      ========================================== */}
 
-      {related.length > 0 && (
-        <section className="morgillo-product-related">
-          <div className="morgillo-container">
-            <div className="morgillo-product-related__heading">
-              <div>
+      {/* =================================================
+          DOCUMENTS
+      ================================================== */}
+
+      <section
+        className={
+          styles.documents
+        }
+        aria-labelledby="documents-title"
+      >
+        <div className="morgillo-container">
+          <div
+            className={
+              styles.documentsGrid
+            }
+          >
+            <div
+              className={
+                styles.documentsIntro
+              }
+            >
+              <div
+                className={
+                  styles.sectionEyebrow
+                }
+              >
                 <span>
-                  Más maquinaria
+                  02
                 </span>
 
-                <h2>
-                  También puedes
-                  explorar.
+                <i />
+
+                <p>
+                  Documentación
+                </p>
+              </div>
+
+
+              <h2
+                id="documents-title"
+              >
+                Información para
+                <span>
+                  {" "}
+                  revisar con detalle.
+                </span>
+              </h2>
+
+
+              <p>
+                Descarga la
+                documentación técnica
+                que haya sido publicada
+                para este equipo.
+              </p>
+            </div>
+
+
+            <div
+              className={
+                styles.documentList
+              }
+            >
+              {documents.length >
+              0 ? (
+                documents.map(
+                  (
+                    document,
+                    index,
+                  ) => (
+                    <a
+                      key={
+                        document.id
+                      }
+                      href={
+                        document.url
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={
+                        styles.document
+                      }
+                    >
+                      <span
+                        className={
+                          styles.documentNumber
+                        }
+                      >
+                        {String(
+                          index + 1,
+                        ).padStart(
+                          2,
+                          "0",
+                        )}
+                      </span>
+
+
+                      <div
+                        className={
+                          styles.documentIcon
+                        }
+                      >
+                        <FileText
+                          size={22}
+                          strokeWidth={1.7}
+                        />
+                      </div>
+
+
+                      <div
+                        className={
+                          styles.documentInfo
+                        }
+                      >
+                        <span>
+                          Documento PDF
+                        </span>
+
+                        <strong>
+                          {
+                            document.alt ||
+                            "Ficha técnica"
+                          }
+                        </strong>
+                      </div>
+
+
+                      <div
+                        className={
+                          styles.download
+                        }
+                      >
+                        <Download
+                          size={19}
+                          strokeWidth={1.8}
+                        />
+                      </div>
+                    </a>
+                  ),
+                )
+              ) : (
+                <div
+                  className={
+                    styles.noDocuments
+                  }
+                >
+                  <FileText
+                    size={27}
+                    strokeWidth={1.6}
+                  />
+
+                  <div>
+                    <strong>
+                      Documentación
+                      pendiente.
+                    </strong>
+
+                    <p>
+                      Consulta la ficha
+                      técnica con un
+                      asesor Morgillo.
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* =================================================
+          COMMERCIAL CTA
+      ================================================== */}
+
+      <section
+        className={
+          styles.commercial
+        }
+      >
+        <div className="morgillo-container">
+          <div
+            className={
+              styles.commercialInner
+            }
+          >
+            <div>
+              <span>
+                ¿Este equipo puede
+                funcionar para tu
+                operación?
+              </span>
+
+              <h2>
+                Conversemos sobre lo
+                que necesitas hacer.
+              </h2>
+            </div>
+
+
+            <a
+              href={
+                whatsappHref
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar disponibilidad
+
+              <ArrowUpRight
+                size={20}
+                strokeWidth={1.8}
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+      {/* =================================================
+          RELATED
+      ================================================== */}
+
+      {related.length >
+        0 && (
+        <section
+          className={
+            styles.related
+          }
+          aria-labelledby="related-title"
+        >
+          <div className="morgillo-container">
+            <div
+              className={
+                styles.relatedHeader
+              }
+            >
+              <div>
+                <div
+                  className={
+                    styles.sectionEyebrow
+                  }
+                >
+                  <span>
+                    03
+                  </span>
+
+                  <i />
+
+                  <p>
+                    También puedes
+                    explorar
+                  </p>
+                </div>
+
+
+                <h2
+                  id="related-title"
+                >
+                  Más equipos de
+                  <span>
+                    {" "}
+                    {
+                      categoryLabel
+                    }.
+                  </span>
                 </h2>
               </div>
+
 
               <Link
                 href={`/maquinaria?categoria=${product.category}`}
               >
                 Ver categoría
-                <span>
-                  →
-                </span>
+
+                <ArrowUpRight
+                  size={18}
+                  strokeWidth={1.8}
+                />
               </Link>
             </div>
 
-            <div className="product-grid morgillo-product-related__grid">
+
+            <div
+              className={
+                styles.relatedGrid
+              }
+            >
               {related.map(
                 (item) => (
                   <ProductCard
@@ -693,189 +1026,5 @@ export default async function Page({
         </section>
       )}
     </main>
-  );
-}
-
-/* =========================================
-   CONTEXT VECTOR
-========================================= */
-
-function CategoryVector({
-  category,
-}: {
-  category: Category;
-}) {
-  if (
-    category === "agricola"
-  ) {
-    return (
-      <svg
-        viewBox="0 0 520 240"
-        fill="none"
-        aria-hidden="true"
-        className="morgillo-sector-vector"
-      >
-        <path
-          d="M0 194C108 132 220 132 332 194C397 229 457 228 520 194"
-          className="vector-line vector-line--soft"
-        />
-
-        <path
-          d="M0 213C111 154 220 154 332 213"
-          className="vector-line vector-line--soft"
-        />
-
-        <path
-          d="M260 188V89"
-          className="vector-line"
-        />
-
-        <path
-          d="M260 124C224 118 204 96 199 68C232 69 254 89 260 124Z"
-          className="vector-fill"
-        />
-
-        <path
-          d="M260 149C292 140 312 118 318 90C286 92 266 113 260 149Z"
-          className="vector-fill"
-        />
-
-        <circle
-          cx="260"
-          cy="188"
-          r="7"
-          className="vector-dot"
-        />
-      </svg>
-    );
-  }
-
-  if (
-    category ===
-    "construccion"
-  ) {
-    return (
-      <svg
-        viewBox="0 0 520 240"
-        fill="none"
-        aria-hidden="true"
-        className="morgillo-sector-vector"
-      >
-        <path
-          d="M88 185H432"
-          className="vector-line vector-line--soft"
-        />
-
-        <path
-          d="M176 177L212 116L306 79L358 95"
-          className="vector-line"
-        />
-
-        <path
-          d="M306 79L341 42"
-          className="vector-line"
-        />
-
-        <path
-          d="M341 42L402 88"
-          className="vector-line"
-        />
-
-        <path
-          d="M402 88L379 107"
-          className="vector-line"
-        />
-
-        <rect
-          x="156"
-          y="154"
-          width="121"
-          height="31"
-          rx="5"
-          className="vector-fill"
-        />
-
-        <circle
-          cx="185"
-          cy="190"
-          r="16"
-          className="vector-line"
-        />
-
-        <circle
-          cx="249"
-          cy="190"
-          r="16"
-          className="vector-line"
-        />
-
-        <path
-          d="M365 112L422 139L408 161L351 133Z"
-          className="vector-fill"
-        />
-      </svg>
-    );
-  }
-
-  return (
-    <svg
-      viewBox="0 0 520 240"
-      fill="none"
-      aria-hidden="true"
-      className="morgillo-sector-vector"
-    >
-      <circle
-        cx="260"
-        cy="120"
-        r="65"
-        className="vector-line"
-      />
-
-      <circle
-        cx="260"
-        cy="120"
-        r="25"
-        className="vector-line"
-      />
-
-      {Array.from({
-        length: 8,
-      }).map((_, index) => {
-        const angle =
-          (index * 45 *
-            Math.PI) /
-          180;
-
-        const x =
-          260 +
-          Math.cos(angle) *
-            91;
-
-        const y =
-          120 +
-          Math.sin(angle) *
-            91;
-
-        return (
-          <rect
-            key={index}
-            x={x - 10}
-            y={y - 19}
-            width="20"
-            height="38"
-            rx="3"
-            transform={`rotate(${
-              index * 45
-            } ${x} ${y})`}
-            className="vector-fill"
-          />
-        );
-      })}
-
-      <path
-        d="M70 120H147M373 120H450"
-        className="vector-line vector-line--soft"
-      />
-    </svg>
   );
 }

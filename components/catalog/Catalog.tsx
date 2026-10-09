@@ -1,661 +1,1378 @@
 "use client";
 
 import {
+
   FormEvent,
-  useEffect,
+  useMemo,
+
   useState,
+
 } from "react";
 
 import {
+
   usePathname,
+
   useRouter,
+
   useSearchParams,
+
 } from "next/navigation";
 
+import {
+
+  Search,
+
+  SlidersHorizontal,
+
+  X,
+
+} from "lucide-react";
+
 import type {
+
   Brand,
+
   CategoryItem,
+
   Product,
+
 } from "@/types/content";
 
 import ProductCard from "./ProductCard";
 
-/* =============================================
-   ICONS
-============================================= */
+import styles from "./Catalog.module.css";
 
-function SearchIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      aria-hidden="true"
-    >
-      <circle
-        cx="11"
-        cy="11"
-        r="7"
-      />
+function normalize(
 
-      <path d="m20 20-4-4" />
-    </svg>
-  );
+  value: string,
+
+) {
+
+  return value
+
+    .normalize("NFD")
+
+    .replace(
+
+      /[\u0300-\u036f]/g,
+
+      "",
+
+    )
+
+    .toLowerCase()
+
+    .trim();
+
 }
-
-function FilterIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      aria-hidden="true"
-    >
-      <path d="M4 6h16M7 12h10M10 18h4" />
-    </svg>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      aria-hidden="true"
-    >
-      <path d="m7 7 10 10M17 7 7 17" />
-    </svg>
-  );
-}
-
-/* =============================================
-   COMPONENT
-============================================= */
 
 export default function Catalog({
+
   products,
+
   brands,
+
   categories,
+
 }: {
+
   products: Product[];
+
   brands: Brand[];
+
   categories: CategoryItem[];
+
 }) {
-  const params = useSearchParams();
-  const router = useRouter();
-  const path = usePathname();
+
+  const router =
+
+    useRouter();
+
+  const pathname =
+
+    usePathname();
+
+  const searchParams =
+
+    useSearchParams();
 
   const category =
-    params.get("categoria") ?? "";
+
+    searchParams.get(
+
+      "categoria",
+
+    ) ?? "";
 
   const brand =
-    params.get("marca") ?? "";
 
-  const q =
-    params.get("q") ?? "";
+    searchParams.get(
 
-  const [search, setSearch] =
-    useState(q);
+      "marca",
 
-  useEffect(() => {
-    setSearch(q);
-  }, [q]);
+    ) ?? "";
 
-  function normalize(value: string) {
-    return value
-      .normalize("NFD")
-      .replace(
-        /[\u0300-\u036f]/g,
-        "",
-      )
-      .toLowerCase();
-  }
+  const query =
 
-  const normalizedQuery =
-    normalize(q.trim());
+    searchParams.get(
 
-  const results =
-    products.filter((product) => {
-      const matchesCategory =
-        !category ||
-        product.category ===
-          category;
+      "q",
 
-      const matchesBrand =
-        !brand ||
-        product.brandId === brand;
+    ) ?? "";
 
-      const searchable =
-        normalize(
-          `${product.name} ${product.model} ${product.brandId}`,
-        );
+  const [
 
-      const matchesSearch =
-        !normalizedQuery ||
-        searchable.includes(
-          normalizedQuery,
-        );
+    searchDraft,
 
-      return (
-        matchesCategory &&
-        matchesBrand &&
-        matchesSearch
-      );
+    setSearchDraft,
+
+  ] = useState(() => ({
+
+    source: query,
+
+    value: query,
+
+  }));
+
+  const search =
+
+    searchDraft.source === query
+
+      ? searchDraft.value
+
+      : query;
+
+  function setSearch(
+
+    value: string,
+
+  ) {
+
+    setSearchDraft({
+
+      source: query,
+
+      value,
+
     });
 
-  const selectedCategory =
-    categories.find(
-      (item) =>
-        item.id === category,
-    );
-
-  const selectedBrand =
-    brands.find(
-      (item) =>
-        item.id === brand,
-    );
-
-  const hasFilters =
-    Boolean(
-      category ||
-        brand ||
-        q,
-    );
-
-  /* =============================================
-     URL FILTERS
-  ============================================== */
-
-  function update(
-    key: string,
-    value: string,
-  ) {
-    const next =
-      new URLSearchParams(
-        params.toString(),
-      );
-
-    if (value) {
-      next.set(
-        key,
-        value,
-      );
-    } else {
-      next.delete(key);
-    }
-
-    router.replace(
-      `${path}${
-        next.size
-          ? `?${next.toString()}`
-          : ""
-      }`,
-      {
-        scroll: false,
-      },
-    );
   }
 
-  function handleSearch(
-    event: FormEvent<HTMLFormElement>,
+  /* =========================================================
+
+     HELPERS
+
+  ========================================================= */
+
+  function replaceParams(
+
+    changes: Record<
+
+      string,
+
+      string
+
+    >,
+
   ) {
+
+    const next =
+
+      new URLSearchParams(
+
+        searchParams.toString(),
+
+      );
+
+    Object.entries(
+
+      changes,
+
+    ).forEach(
+
+      ([
+
+        key,
+
+        value,
+
+      ]) => {
+
+        const clean =
+
+          value.trim();
+
+        if (clean) {
+
+          next.set(
+
+            key,
+
+            clean,
+
+          );
+
+        } else {
+
+          next.delete(
+
+            key,
+
+          );
+
+        }
+
+      },
+
+    );
+
+    const value =
+
+      next.toString();
+
+    router.replace(
+
+      value
+
+        ? `${pathname}?${value}`
+
+        : pathname,
+
+      {
+
+        scroll: false,
+
+      },
+
+    );
+
+  }
+
+  function submitSearch(
+
+    event: FormEvent<HTMLFormElement>,
+
+  ) {
+
     event.preventDefault();
 
-    update(
-      "q",
-      search.trim(),
-    );
+    replaceParams({
+
+      q: search,
+
+    });
+
   }
 
   function clearFilters() {
+
     setSearch("");
 
     router.replace(
-      path,
+
+      pathname,
+
       {
+
         scroll: false,
+
       },
+
     );
+
   }
 
-  /* =============================================
-     UI
-  ============================================== */
+  /* =========================================================
+
+     FILTER
+
+  ========================================================= */
+
+  const results =
+
+    useMemo(() => {
+
+      const normalizedQuery =
+
+        normalize(query);
+
+      return products.filter(
+
+        (product) => {
+
+          const matchesCategory =
+
+            !category ||
+
+            product.category ===
+
+              category;
+
+          const matchesBrand =
+
+            !brand ||
+
+            normalize(
+
+              product.brandId,
+
+            ) ===
+
+              normalize(
+
+                brand,
+
+              );
+
+          const brandName =
+
+            brands.find(
+
+              (item) =>
+
+                normalize(
+
+                  item.id,
+
+                ) ===
+
+                normalize(
+
+                  product.brandId,
+
+                ),
+
+            )?.name ?? "";
+
+          const haystack =
+
+            normalize(
+
+              [
+
+                product.name,
+
+                product.model,
+
+                product.brandId,
+
+                brandName,
+
+                product.description,
+
+              ].join(" "),
+
+            );
+
+          const matchesQuery =
+
+            !normalizedQuery ||
+
+            haystack.includes(
+
+              normalizedQuery,
+
+            );
+
+          return (
+
+            matchesCategory &&
+
+            matchesBrand &&
+
+            matchesQuery
+
+          );
+
+        },
+
+      );
+
+    }, [
+
+      products,
+
+      brands,
+
+      category,
+
+      brand,
+
+      query,
+
+    ]);
+
+  const hasFilters =
+
+    Boolean(
+
+      category ||
+
+        brand ||
+
+        query,
+
+    );
+
+  const activeCategory =
+
+    categories.find(
+
+      (item) =>
+
+        item.id ===
+
+        category,
+
+    );
+
+  const activeBrand =
+
+    brands.find(
+
+      (item) =>
+
+        normalize(
+
+          item.id,
+
+        ) ===
+
+        normalize(
+
+          brand,
+
+        ),
+
+    );
 
   return (
+
     <section
-      className="morgillo-catalog"
-      aria-labelledby="catalog-results-title"
+
+      className={
+
+        styles.section
+
+      }
+
+      aria-label="Catálogo de maquinaria"
+
     >
+
       <div className="morgillo-container">
-        {/* =========================================
-            FILTER HEADER
-        ========================================== */}
 
-        <div className="morgillo-catalog__heading">
-          <div>
-            <div className="morgillo-catalog__heading-label">
-              <FilterIcon />
+        {/* =================================================
 
-              <span>
-                Encuentra tu equipo
-              </span>
-            </div>
+            SEARCH
 
-            <h2>
-              Filtra la maquinaria
-              <span> según tu trabajo.</span>
-            </h2>
-          </div>
+        ================================================== */}
 
-          <p>
-            Busca por nombre o modelo y combina
-            categoría y marca para encontrar
-            rápidamente el equipo que necesitas.
-          </p>
-        </div>
+        <form
 
-        {/* =========================================
-            FILTER PANEL
-        ========================================== */}
+          className={
 
-        <div className="morgillo-catalog-filter">
-          {/* CATEGORY */}
+            styles.searchBar
 
-          <div className="morgillo-catalog-filter__categories">
-            <div className="morgillo-catalog-filter__label">
-              <span>
-                01
-              </span>
+          }
 
-              <p>
-                Categoría
-              </p>
-            </div>
+          onSubmit={
 
-            <div className="morgillo-catalog-filter__category-list">
-              <button
-                type="button"
-                className={
-                  !category
-                    ? "is-active"
-                    : ""
-                }
-                onClick={() =>
-                  update(
-                    "categoria",
-                    "",
-                  )
-                }
-              >
-                Todos
-              </button>
+            submitSearch
 
-              {categories.map(
-                (item) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className={
-                      category ===
-                      item.id
-                        ? "is-active"
-                        : ""
-                    }
-                    onClick={() =>
-                      update(
-                        "categoria",
-                        item.id,
-                      )
-                    }
-                  >
-                    {item.name}
-                  </button>
-                ),
-              )}
-            </div>
-          </div>
+          }
 
-          {/* SEARCH / BRAND */}
+        >
 
-          <form
-            className="morgillo-catalog-filter__form"
-            onSubmit={
-              handleSearch
+          <label
+
+            htmlFor="catalog-search"
+
+            className={
+
+              styles.searchLabel
+
             }
+
           >
-            <div className="morgillo-catalog-search">
-              <label htmlFor="catalog-search">
-                Buscar equipo
-              </label>
 
-              <div className="morgillo-catalog-search__control">
-                <SearchIcon />
+            Buscar equipo
 
-                <input
-                  id="catalog-search"
-                  type="search"
-                  name="q"
-                  placeholder="Ej. tractor, excavadora, modelo..."
-                  value={search}
-                  onChange={(
-                    event,
-                  ) =>
-                    setSearch(
-                      event.target
-                        .value,
-                    )
-                  }
-                />
+          </label>
 
-                {search && (
-                  <button
-                    type="button"
-                    aria-label="Limpiar búsqueda"
-                    onClick={() => {
-                      setSearch("");
+          <div
 
-                      if (q) {
-                        update(
-                          "q",
-                          "",
-                        );
-                      }
-                    }}
-                    className="morgillo-catalog-search__clear"
-                  >
-                    <CloseIcon />
-                  </button>
-                )}
-              </div>
-            </div>
+            className={
 
-            <div className="morgillo-catalog-brand">
-              <label htmlFor="catalog-brand">
-                Marca
-              </label>
+              styles.searchField
 
-              <div className="morgillo-catalog-brand__control">
-                <select
-                  id="catalog-brand"
-                  name="marca"
-                  value={brand}
-                  onChange={(
-                    event,
-                  ) =>
-                    update(
-                      "marca",
-                      event.target
-                        .value,
-                    )
-                  }
-                >
-                  <option value="">
-                    Todas las marcas
-                  </option>
+            }
 
-                  {brands.map(
-                    (item) => (
-                      <option
-                        key={
-                          item.id
-                        }
-                        value={
-                          item.id
-                        }
-                      >
-                        {
-                          item.name
-                        }
-                      </option>
-                    ),
-                  )}
-                </select>
+          >
 
-                <span
-                  aria-hidden="true"
-                >
-                  ↓
-                </span>
-              </div>
-            </div>
+            <Search
 
-            <button
-              type="submit"
-              className="morgillo-catalog-filter__submit"
-            >
-              <span>
-                Buscar
-              </span>
+              size={21}
 
-              <span aria-hidden="true">
-                →
-              </span>
-            </button>
-          </form>
-        </div>
+              strokeWidth={1.8}
 
-        {/* =========================================
-            ACTIVE FILTERS / COUNT
-        ========================================== */}
-
-        <div className="morgillo-catalog-results">
-          <div>
-            <span
-              className="morgillo-catalog-results__marker"
               aria-hidden="true"
+
             />
 
-            <p
-              id="catalog-results-title"
-              role="status"
-              aria-live="polite"
-            >
-              <strong>
-                {results.length}
-              </strong>{" "}
-              {results.length === 1
-                ? "equipo encontrado"
-                : "equipos encontrados"}
-            </p>
-          </div>
+            <input
 
-          <div className="morgillo-catalog-results__actions">
-            {selectedCategory && (
+              id="catalog-search"
+
+              name="q"
+
+              type="search"
+
+              value={
+
+                search
+
+              }
+
+              onChange={(
+
+                event,
+
+              ) =>
+
+                setSearch(
+
+                  event.target
+
+                    .value,
+
+                )
+
+              }
+
+              placeholder="Ej. tractor, excavadora, M108S…"
+
+              autoComplete="off"
+
+            />
+
+            {search && (
+
               <button
+
                 type="button"
-                onClick={() =>
-                  update(
-                    "categoria",
-                    "",
-                  )
+
+                className={
+
+                  styles.clearSearch
+
                 }
-                className="morgillo-catalog-results__chip"
-              >
-                <span>
-                  {
-                    selectedCategory.name
-                  }
-                </span>
 
-                <CloseIcon />
-              </button>
-            )}
+                aria-label="Limpiar búsqueda"
 
-            {selectedBrand && (
-              <button
-                type="button"
-                onClick={() =>
-                  update(
-                    "marca",
-                    "",
-                  )
-                }
-                className="morgillo-catalog-results__chip"
-              >
-                <span>
-                  {
-                    selectedBrand.name
-                  }
-                </span>
-
-                <CloseIcon />
-              </button>
-            )}
-
-            {q && (
-              <button
-                type="button"
                 onClick={() => {
+
                   setSearch("");
 
-                  update(
-                    "q",
-                    "",
-                  );
+                  if (query) {
+
+                    replaceParams({
+
+                      q: "",
+
+                    });
+
+                  }
+
                 }}
-                className="morgillo-catalog-results__chip"
-              >
-                <span>
-                  “{q}”
-                </span>
 
-                <CloseIcon />
+              >
+
+                <X
+
+                  size={18}
+
+                  strokeWidth={1.8}
+
+                />
+
               </button>
+
             )}
 
-            {hasFilters && (
-              <button
-                type="button"
-                onClick={
-                  clearFilters
-                }
-                className="morgillo-catalog-results__clear"
-              >
-                Limpiar filtros
-              </button>
-            )}
           </div>
-        </div>
 
-        {/* =========================================
-            DEMO NOTICE
-        ========================================== */}
+          <button
 
-        {products.some(
-          (product) =>
-            product.mock,
-        ) && (
-          <div className="morgillo-catalog-notice">
+            type="submit"
+
+            className={
+
+              styles.searchButton
+
+            }
+
+          >
+
+            Buscar
+
+          </button>
+
+        </form>
+
+        {/* =================================================
+
+            FILTER HEADER
+
+        ================================================== */}
+
+        <div
+
+          className={
+
+            styles.filterHeader
+
+          }
+
+        >
+
+          <div>
+
+            <SlidersHorizontal
+
+              size={18}
+
+              strokeWidth={1.8}
+
+            />
+
             <span>
-              Información
+
+              Filtrar catálogo
+
             </span>
 
-            <p>
-              Algunos equipos forman parte del
-              catálogo de demostración. Modelos,
-              especificaciones y disponibilidad
-              pueden estar pendientes de
-              confirmación.
-            </p>
           </div>
-        )}
 
-        {/* =========================================
-            PRODUCT GRID
-        ========================================== */}
+          {hasFilters && (
 
-        {results.length > 0 && (
-          <div className="morgillo-catalog__grid product-grid">
-            {results.map(
-              (product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                />
-              ),
+            <button
+
+              type="button"
+
+              className={
+
+                styles.clearAll
+
+              }
+
+              onClick={
+
+                clearFilters
+
+              }
+
+            >
+
+              <X
+
+                size={16}
+
+                strokeWidth={1.8}
+
+              />
+
+              Limpiar filtros
+
+            </button>
+
+          )}
+
+        </div>
+
+        {/* =================================================
+
+            CATEGORY FILTER
+
+        ================================================== */}
+
+        <div
+
+          className={
+
+            styles.filterGroup
+
+          }
+
+        >
+
+          <div
+
+            className={
+
+              styles.filterTitle
+
+            }
+
+          >
+
+            <span>
+
+              01
+
+            </span>
+
+            <strong>
+
+              Categoría
+
+            </strong>
+
+          </div>
+
+          <div
+
+            className={
+
+              styles.options
+
+            }
+
+          >
+
+            <button
+
+              type="button"
+
+              aria-pressed={
+
+                !category
+
+              }
+
+              className={
+
+                !category
+
+                  ? styles.activeOption
+
+                  : styles.option
+
+              }
+
+              onClick={() =>
+
+                replaceParams({
+
+                  categoria:
+
+                    "",
+
+                })
+
+              }
+
+            >
+
+              Todas
+
+            </button>
+
+            {categories.map(
+
+              (item) => {
+
+                const active =
+
+                  category ===
+
+                  item.id;
+
+                return (
+
+                  <button
+
+                    key={
+
+                      item.id
+
+                    }
+
+                    type="button"
+
+                    aria-pressed={
+
+                      active
+
+                    }
+
+                    className={
+
+                      active
+
+                        ? styles.activeOption
+
+                        : styles.option
+
+                    }
+
+                    onClick={() =>
+
+                      replaceParams({
+
+                        categoria:
+
+                          item.id,
+
+                      })
+
+                    }
+
+                  >
+
+                    {
+
+                      item.name
+
+                    }
+
+                  </button>
+
+                );
+
+              },
+
             )}
+
           </div>
-        )}
 
-        {/* =========================================
-            EMPTY
-        ========================================== */}
+        </div>
 
-        {!results.length && (
-          <div className="morgillo-catalog-empty">
-            <div className="morgillo-catalog-empty__graphic">
+        {/* =================================================
+
+            BRAND FILTER
+
+        ================================================== */}
+
+        {brands.length >
+
+          0 && (
+
+          <div
+
+            className={
+
+              styles.filterGroup
+
+            }
+
+          >
+
+            <div
+
+              className={
+
+                styles.filterTitle
+
+              }
+
+            >
+
               <span>
-                00
+
+                02
+
               </span>
 
-              <i
-                aria-hidden="true"
-              />
+              <strong>
+
+                Marca
+
+              </strong>
+
             </div>
 
-            <div className="morgillo-catalog-empty__content">
+            <div
+
+              className={
+
+                styles.options
+
+              }
+
+            >
+
+              <button
+
+                type="button"
+
+                aria-pressed={
+
+                  !brand
+
+                }
+
+                className={
+
+                  !brand
+
+                    ? styles.activeOption
+
+                    : styles.option
+
+                }
+
+                onClick={() =>
+
+                  replaceParams({
+
+                    marca: "",
+
+                  })
+
+                }
+
+              >
+
+                Todas
+
+              </button>
+
+              {brands.map(
+
+                (item) => {
+
+                  const active =
+
+                    normalize(
+
+                      brand,
+
+                    ) ===
+
+                    normalize(
+
+                      item.id,
+
+                    );
+
+                  return (
+
+                    <button
+
+                      key={
+
+                        item.id
+
+                      }
+
+                      type="button"
+
+                      aria-pressed={
+
+                        active
+
+                      }
+
+                      className={
+
+                        active
+
+                          ? styles.activeOption
+
+                          : styles.option
+
+                      }
+
+                      onClick={() =>
+
+                        replaceParams({
+
+                          marca:
+
+                            item.id,
+
+                        })
+
+                      }
+
+                    >
+
+                      {
+
+                        item.name
+
+                      }
+
+                    </button>
+
+                  );
+
+                },
+
+              )}
+
+            </div>
+
+          </div>
+
+        )}
+
+        {/* =================================================
+
+            RESULTS BAR
+
+        ================================================== */}
+
+        <div
+
+          className={
+
+            styles.resultsBar
+
+          }
+
+        >
+
+          <div
+
+            className={
+
+              styles.resultCount
+
+            }
+
+          >
+
+            <strong
+
+              role="status"
+
+              aria-live="polite"
+
+            >
+
+              {
+
+                results.length
+
+              }
+
+            </strong>
+
+            <span>
+
+              {results.length ===
+
+              1
+
+                ? "equipo encontrado"
+
+                : "equipos encontrados"}
+
+            </span>
+
+          </div>
+
+          <div
+
+            className={
+
+              styles.activeFilters
+
+            }
+
+          >
+
+            {activeCategory && (
+
+              <button
+
+                type="button"
+
+                onClick={() =>
+
+                  replaceParams({
+
+                    categoria:
+
+                      "",
+
+                  })
+
+                }
+
+              >
+
+                {
+
+                  activeCategory.name
+
+                }
+
+                <X
+
+                  size={14}
+
+                />
+
+              </button>
+
+            )}
+
+            {activeBrand && (
+
+              <button
+
+                type="button"
+
+                onClick={() =>
+
+                  replaceParams({
+
+                    marca: "",
+
+                  })
+
+                }
+
+              >
+
+                {
+
+                  activeBrand.name
+
+                }
+
+                <X
+
+                  size={14}
+
+                />
+
+              </button>
+
+            )}
+
+            {query && (
+
+              <button
+
+                type="button"
+
+                onClick={() => {
+
+                  setSearch("");
+
+                  replaceParams({
+
+                    q: "",
+
+                  });
+
+                }}
+
+              >
+
+                “{query}”
+
+                <X
+
+                  size={14}
+
+                />
+
+              </button>
+
+            )}
+
+          </div>
+
+        </div>
+
+        {/* =================================================
+
+            MOCK NOTICE
+
+        ================================================== */}
+
+        {products.some(
+
+          (product) =>
+
+            product.mock,
+
+        ) && (
+
+          <div
+
+            className={
+
+              styles.notice
+
+            }
+
+          >
+
+            <span />
+
+            <p>
+
+              Algunos equipos utilizan
+
+              información de
+
+              demostración. La
+
+              disponibilidad y ficha
+
+              final pueden actualizarse
+
+              desde el CMS.
+
+            </p>
+
+          </div>
+
+        )}
+
+        {/* =================================================
+
+            GRID
+
+        ================================================== */}
+
+        {results.length >
+
+        0 ? (
+
+          <div
+
+            className={
+
+              styles.grid
+
+            }
+
+          >
+
+            {results.map(
+
+              (product) => (
+
+                <ProductCard
+
+                  key={
+
+                    product.id
+
+                  }
+
+                  product={
+
+                    product
+
+                  }
+
+                />
+
+              ),
+
+            )}
+
+          </div>
+
+        ) : (
+
+          <div
+
+            className={
+
+              styles.empty
+
+            }
+
+          >
+
+            <div
+
+              aria-hidden="true"
+
+              className={
+
+                styles.emptyNumber
+
+              }
+
+            >
+
+              00
+
+            </div>
+
+            <div
+
+              className={
+
+                styles.emptyContent
+
+              }
+
+            >
+
               <span>
+
                 Sin resultados
+
               </span>
 
               <h2>
-                No encontramos equipos con esos
-                filtros.
+
+                No encontramos equipos
+
+                con esos filtros.
+
               </h2>
 
               <p>
-                Prueba con otra categoría, otra
-                marca o elimina la búsqueda para
-                volver a ver todo el catálogo.
+
+                Prueba con otra
+
+                categoría, otra marca o
+
+                elimina la búsqueda
+
+                actual.
+
               </p>
 
               <button
-                type="button"
-                onClick={
-                  clearFilters
-                }
-              >
-                <span>
-                  Ver todos los equipos
-                </span>
 
-                <span aria-hidden="true">
-                  →
-                </span>
+                type="button"
+
+                onClick={
+
+                  clearFilters
+
+                }
+
+              >
+
+                Ver todos los equipos
+
               </button>
+
             </div>
+
           </div>
+
         )}
 
-        {/* =========================================
-            BOTTOM
-        ========================================== */}
-
-        <div className="morgillo-catalog__bottom">
-          <div>
-            <span
-              aria-hidden="true"
-            />
-
-            <strong>
-              MORGILLO
-            </strong>
-
-            <p>
-              Maquinaria para operaciones reales
-            </p>
-          </div>
-
-          <span>
-            Agricultura · Construcción · Trabajo pesado
-          </span>
-        </div>
       </div>
+
     </section>
+
   );
+
 }

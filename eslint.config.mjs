@@ -1,18 +1,52 @@
-import { defineConfig, globalIgnores } from "eslint/config";
+import {
+  defineConfig,
+  globalIgnores,
+} from "eslint/config";
+
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  ...nextTs,
-  // Override default ignores of eslint-config-next.
+
+export default defineConfig([
   globalIgnores([
-    // Default ignores of eslint-config-next:
+    /*
+     * Next.js
+     */
     ".next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
-  ]),
-]);
 
-export default eslintConfig;
+    /*
+     * Dependencies
+     */
+    "node_modules/**",
+
+    /*
+     * Django / Python
+     */
+    "backend/.venv/**",
+    "backend/venv/**",
+    "backend/env/**",
+
+    /*
+     * Python generated files
+     */
+    "backend/**/__pycache__/**",
+    "backend/**/*.pyc",
+
+    /*
+     * Django generated/static/media
+     */
+    "backend/staticfiles/**",
+    "backend/media/**",
+
+    /*
+     * Reports
+     */
+    "coverage/**",
+  ]),
+
+  ...nextVitals,
+  ...nextTs,
+]);

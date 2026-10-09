@@ -1,429 +1,385 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-
-import clsx from "clsx";
-
-import {
-  motion,
-  useReducedMotion,
-} from "motion/react";
 
 import {
   ArrowUpRight,
 } from "lucide-react";
 
-import type { Brand } from "@/types/content";
+import type {
+  Brand,
+} from "@/types/content";
 
 import styles from "./BrandsSection.module.css";
 
-type Props = {
-  brands: Brand[];
-};
 
-const brandMeta: Record<
-  string,
-  {
-    label: string;
-    code: string;
+function getBrandClass(
+  id: string,
+) {
+  const value =
+    id.toLowerCase();
+
+  if (
+    value.includes("kubota")
+  ) {
+    return styles.kubota;
   }
-> = {
-  kubota: {
-    label: "Agricultura",
-    code: "KBT",
-  },
 
-  kobelco: {
-    label: "Construcción",
-    code: "KBL",
-  },
+  if (
+    value.includes("kobelco")
+  ) {
+    return styles.kobelco;
+  }
 
-  bull: {
-    label: "Trabajo pesado",
-    code: "BLL",
-  },
-};
+  if (
+    value.includes("bull")
+  ) {
+    return styles.bull;
+  }
+
+  return styles.defaultBrand;
+}
+
 
 export default function BrandsSection({
   brands,
-}: Props) {
-  const reduceMotion =
-    useReducedMotion();
+}: {
+  brands: Brand[];
+}) {
+  if (
+    brands.length === 0
+  ) {
+    return null;
+  }
+
 
   return (
     <section
-      className={styles.section}
+      className={
+        styles.section
+      }
       aria-labelledby="brands-title"
     >
-      {/* =========================================
-          BACKGROUND
-      ========================================== */}
+      {/* ================================================
+          DECORATION
+      ================================================= */}
 
       <div
-        className={styles.background}
+        className={
+          styles.background
+        }
         aria-hidden="true"
       >
-        <span className={styles.number}>
-          03
-        </span>
-
-        <span className={styles.lineOne} />
-        <span className={styles.lineTwo} />
-
-        <div className={styles.cross}>
-          <span />
-          <span />
-        </div>
+        <span />
+        <span />
+        <span />
       </div>
 
+
       <div className="morgillo-container">
-        {/* =========================================
+        {/* ================================================
             HEADER
-        ========================================== */}
+        ================================================= */}
 
-        <div className={styles.header}>
-          <div className={styles.heading}>
-            <div className={styles.eyebrow}>
-              <span>03</span>
+        <div
+          className={
+            styles.header
+          }
+        >
+          <div>
+            <div
+              className={
+                styles.eyebrow
+              }
+            >
+              <span
+                className={
+                  styles.number
+                }
+              >
+                03
+              </span>
 
-              <i />
+              <span
+                className={
+                  styles.eyebrowLine
+                }
+              />
 
               <p>
-                Marcas
+                Marcas representadas
               </p>
             </div>
 
-            <h2 id="brands-title">
-              Marcas que acompañan
+
+            <h2
+              id="brands-title"
+            >
+              Marcas que respaldan
               <span>
                 {" "}
-                cada tipo de operación.
+                cada operación.
               </span>
             </h2>
           </div>
 
-          <div className={styles.intro}>
-            <span>
-              MORGILLO / PORTAFOLIO
-            </span>
 
+          <div
+            className={
+              styles.headerSide
+            }
+          >
             <p>
-              Maquinaria y soluciones para
-              agricultura, construcción y
-              trabajo pesado, integradas dentro
-              del respaldo Morgillo.
+              Trabajamos con marcas
+              especializadas en
+              maquinaria para ofrecer
+              soluciones orientadas al
+              trabajo en campo y obra.
             </p>
+
+
+            <Link
+              href="/marcas"
+              className={
+                styles.allBrands
+              }
+            >
+              Ver todas las marcas
+
+              <ArrowUpRight
+                size={19}
+                strokeWidth={1.8}
+              />
+            </Link>
           </div>
         </div>
 
-        {/* =========================================
-            BRAND INDEX
-        ========================================== */}
 
-        <div className={styles.brandIndex}>
-          <div>
-            <span className={styles.indexMark} />
+        {/* ================================================
+            BRAND GRID
+        ================================================= */}
 
-            <strong>
-              MORGILLO
-            </strong>
-
-            <p>
-              Marcas del portafolio
-            </p>
-          </div>
-
-          <div className={styles.indexBrands}>
-            {brands.map((brand) => {
-              const id =
-                brand.id
-                  .toLowerCase()
-                  .trim();
-
-              return (
-                <span
-                  key={brand.id}
-                  className={clsx(
-                    styles.indexBrand,
-                    styles[
-                      `index-${id}`
-                    ],
-                  )}
-                >
-                  <i />
-
-                  {brand.name}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* =========================================
-            CARDS
-        ========================================== */}
-
-        <div className={styles.grid}>
+        <div
+          className={
+            styles.grid
+          }
+        >
           {brands.map(
-            (brand, index) => {
-              const id =
-                brand.id
-                  .toLowerCase()
-                  .trim();
+            (
+              brand,
+              index,
+            ) => (
+              <Link
+                key={
+                  brand.id
+                }
+                href={`/marcas/${brand.id}`}
+                className={`${styles.brand} ${getBrandClass(
+                  brand.id,
+                )}`}
+              >
+                {/* ========================================
+                    IMAGE
+                ========================================= */}
 
-              const meta =
-                brandMeta[id];
+                <Image
+                  src={
+                    brand.image
+                  }
+                  alt={
+                    brand.name
+                  }
+                  fill
+                  sizes="
+                    (max-width: 720px)
+                      100vw,
+                    (max-width: 1050px)
+                      50vw,
+                    33vw
+                  "
+                  className={
+                    styles.image
+                  }
+                />
 
-              return (
-                <motion.article
-                  key={brand.id}
-                  className={clsx(
-                    styles.card,
-                    styles[
-                      `brand-${id}`
-                    ],
-                  )}
-                  initial={
-                    reduceMotion
-                      ? false
-                      : {
-                          opacity: 0,
-                          y: 36,
-                        }
+
+                <div
+                  className={
+                    styles.imageShade
                   }
-                  whileInView={
-                    reduceMotion
-                      ? undefined
-                      : {
-                          opacity: 1,
-                          y: 0,
-                        }
+                  aria-hidden="true"
+                />
+
+                <div
+                  className={
+                    styles.technicalGrid
                   }
-                  viewport={{
-                    once: true,
-                    amount: 0.15,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    delay:
-                      index * 0.09,
-                    ease: [
-                      0.16,
-                      1,
-                      0.3,
-                      1,
-                    ],
-                  }}
+                  aria-hidden="true"
+                />
+
+
+                {/* ========================================
+                    TOP
+                ========================================= */}
+
+                <div
+                  className={
+                    styles.top
+                  }
                 >
-                  <Link
-                    href={`/marcas/${brand.id}`}
-                    className={styles.link}
+                  <div
+                    className={
+                      styles.topLabel
+                    }
                   >
-                    {/* ==========================
-                        IMAGE STAGE
-                    =========================== */}
+                    <span />
 
-                    <div
-                      className={
-                        styles.stage
-                      }
-                    >
-                      <Image
-                        src={brand.image}
-                        alt={brand.name}
-                        fill
-                        sizes="
-                          (max-width: 640px) 100vw,
-                          (max-width: 960px) 50vw,
-                          33vw
-                        "
-                        className={
-                          styles.image
-                        }
-                      />
+                    <strong>
+                      Marca representada
+                    </strong>
+                  </div>
 
-                      <div
-                        className={
-                          styles.imageOverlay
-                        }
-                      />
 
-                      {/* technical rings */}
+                  <span
+                    className={
+                      styles.index
+                    }
+                  >
+                    {String(
+                      index + 1,
+                    ).padStart(
+                      2,
+                      "0",
+                    )}
+                  </span>
+                </div>
 
-                      <div
-                        className={
-                          styles.rings
-                        }
-                        aria-hidden="true"
-                      >
-                        <span />
-                        <span />
-                        <span />
-                      </div>
 
-                      {/* index */}
+                {/* ========================================
+                    BIG WATERMARK
+                ========================================= */}
 
-                      <span
-                        className={
-                          styles.cardIndex
-                        }
-                      >
-                        {String(
-                          index + 1,
-                        ).padStart(
-                          2,
-                          "0",
-                        )}
-                      </span>
+                <div
+                  className={
+                    styles.watermark
+                  }
+                  aria-hidden="true"
+                >
+                  {
+                    brand.name
+                  }
+                </div>
 
-                      {/* code */}
 
-                      <span
-                        className={
-                          styles.code
-                        }
-                      >
-                        {meta?.code ??
-                          "MRG"}
-                      </span>
+                {/* ========================================
+                    CONTENT
+                ========================================= */}
 
-                      {/* moving accent */}
+                <div
+                  className={
+                    styles.content
+                  }
+                >
+                  <div
+                    className={
+                      styles.brandIdentity
+                    }
+                  >
+                    <span />
 
-                      <motion.span
-                        className={
-                          styles.scanLine
-                        }
-                        aria-hidden="true"
-                        initial={
-                          reduceMotion
-                            ? false
-                            : {
-                                scaleX:
-                                  0.12,
-                              }
-                        }
-                        whileInView={
-                          reduceMotion
-                            ? undefined
-                            : {
-                                scaleX: 1,
-                              }
-                        }
-                        viewport={{
-                          once: true,
-                        }}
-                        transition={{
-                          duration: 1,
-                          delay:
-                            0.3 +
-                            index *
-                              0.1,
-                          ease: [
-                            0.16,
-                            1,
-                            0.3,
-                            1,
-                          ],
-                        }}
-                      />
-                    </div>
+                    <p>
+                      Equipos y soluciones
+                    </p>
+                  </div>
 
-                    {/* ==========================
-                        INFO
-                    =========================== */}
 
-                    <div
-                      className={
-                        styles.content
-                      }
-                    >
-                      <div
-                        className={
-                          styles.contentTop
-                        }
-                      >
-                        <span>
-                          {meta?.label ??
-                            "Maquinaria"}
-                        </span>
+                  <h3>
+                    {
+                      brand.name
+                    }
+                  </h3>
 
-                        <span
-                          className={
-                            styles.arrow
-                          }
-                        >
-                          <ArrowUpRight
-                            size={18}
-                            strokeWidth={
-                              1.7
-                            }
-                          />
-                        </span>
-                      </div>
 
-                      <div
-                        className={
-                          styles.brandName
-                        }
-                      >
-                        <span />
+                  <p
+                    className={
+                      styles.description
+                    }
+                  >
+                    {
+                      brand.description
+                    }
+                  </p>
 
-                        <h3>
-                          {brand.name}
-                        </h3>
-                      </div>
 
-                      <p
-                        className={
-                          styles.description
-                        }
-                      >
-                        {
-                          brand.description
-                        }
-                      </p>
+                  <div
+                    className={
+                      styles.action
+                    }
+                  >
+                    <span>
+                      Conocer marca
+                    </span>
 
-                      <div
-                        className={
-                          styles.footer
-                        }
-                      >
-                        <span>
-                          Explorar marca
-                        </span>
+                    <i />
 
-                        <i
-                          aria-hidden="true"
-                        />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.article>
-              );
-            },
+                    <ArrowUpRight
+                      size={20}
+                      strokeWidth={1.8}
+                    />
+                  </div>
+                </div>
+
+
+                {/* ========================================
+                    BRAND ACCENT
+                ========================================= */}
+
+                <div
+                  className={
+                    styles.accent
+                  }
+                  aria-hidden="true"
+                />
+              </Link>
+            ),
           )}
         </div>
 
-        {/* =========================================
-            CLOSING
-        ========================================== */}
 
-        <div className={styles.closing}>
-          <div>
+        {/* ================================================
+            FOOTER
+        ================================================= */}
+
+        <div
+          className={
+            styles.footer
+          }
+        >
+          <div
+            className={
+              styles.footerCopy
+            }
+          >
             <span />
 
             <p>
-              Maquinaria, soporte y soluciones
-              para distintas operaciones.
+              Maquinaria para
+              agricultura,
+              construcción y trabajo
+              especializado.
             </p>
           </div>
 
-          <Link href="/maquinaria">
+
+          <Link
+            href="/maquinaria"
+            className={
+              styles.catalogLink
+            }
+          >
             Explorar maquinaria
 
             <ArrowUpRight
-              size={16}
+              size={18}
               strokeWidth={1.8}
             />
           </Link>

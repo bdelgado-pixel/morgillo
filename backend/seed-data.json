@@ -1,0 +1,163 @@
+{
+  "products": [
+    {
+      "id": "demo-agricola",
+      "slug": "demo-tractor",
+      "name": "Tractor agrícola",
+      "model": "Modelo por confirmar",
+      "brandId": "kubota",
+      "category": "agricola",
+      "description": "Ficha de demostración. El modelo, las características y la disponibilidad deberán confirmarse antes de su publicación comercial.",
+      "images": [
+        {
+          "id": "agricola",
+          "url": "/images/machinery/maquinaria-agricola.webp",
+          "alt": "Imagen de referencia de maquinaria agrícola",
+          "kind": "image"
+        }
+      ],
+      "documents": [],
+      "specifications": [],
+      "featured": true,
+      "published": true,
+      "mock": true
+    },
+    {
+      "id": "demo-kobelco",
+      "slug": "demo-excavadora",
+      "name": "Excavadora",
+      "model": "Modelo por confirmar",
+      "brandId": "kobelco",
+      "category": "construccion",
+      "description": "Ficha de demostración para un equipo de construcción. Las especificaciones técnicas se incorporarán desde la documentación oficial del modelo.",
+      "images": [
+        {
+          "id": "kobelco",
+          "url": "/images/machinery/KOBELCO.webp",
+          "alt": "Imagen de referencia de maquinaria Kobelco",
+          "kind": "image"
+        }
+      ],
+      "documents": [],
+      "specifications": [],
+      "featured": true,
+      "published": true,
+      "mock": true
+    },
+    {
+      "id": "demo-bull",
+      "slug": "demo-bull",
+      "name": "Equipo de construcción",
+      "model": "Modelo por confirmar",
+      "brandId": "bull",
+      "category": "construccion",
+      "description": "Ficha de demostración de la línea BULL. Consulta al equipo comercial por los modelos disponibles.",
+      "images": [
+        {
+          "id": "bull",
+          "url": "/images/machinery/BULL.webp",
+          "alt": "Imagen de referencia de maquinaria BULL",
+          "kind": "image"
+        }
+      ],
+      "documents": [],
+      "specifications": [],
+      "featured": true,
+      "published": true,
+      "mock": true
+    },
+    {
+      "id": "demo-implemento",
+      "slug": "demo-implemento",
+      "name": "Implemento agrícola",
+      "model": "Modelo por confirmar",
+      "brandId": "",
+      "category": "implementos",
+      "description": "Ficha de demostración. La marca, compatibilidad y características deben verificarse antes de publicar este equipo.",
+      "images": [
+        {
+          "id": "implemento",
+          "url": "/images/machinery/IMPLEMENTOS.webp",
+          "alt": "Imagen de referencia de implemento agrícola",
+          "kind": "image"
+        }
+      ],
+      "documents": [],
+      "specifications": [],
+      "featured": false,
+      "published": true,
+      "mock": true
+    }
+  ],
+  "brands": [
+    {
+      "id": "kubota",
+      "name": "KUBOTA",
+      "description": "Soluciones para el trabajo agrícola.",
+      "image": "/images/brands/kubota.webp"
+    },
+    {
+      "id": "kobelco",
+      "name": "KOBELCO",
+      "description": "Maquinaria para tus proyectos de construcción.",
+      "image": "/images/brands/kobelco.webp"
+    },
+    {
+      "id": "bull",
+      "name": "BULL",
+      "description": "Equipos para construcción y movimiento de tierra.",
+      "image": "/images/brands/bull.webp"
+    }
+  ],
+  "categories": [
+    {
+      "id": "agricola",
+      "name": "Agrícola",
+      "brand": "Kubota",
+      "image": "/images/machinery/maquinaria-agricola.webp",
+      "description": "Equipos para acompañar cada etapa del trabajo en el campo."
+    },
+    {
+      "id": "construccion",
+      "name": "Construcción",
+      "brand": "Kobelco · BULL",
+      "image": "/images/machinery/KOBELCO.webp",
+      "description": "Maquinaria para excavación y movimiento de tierra."
+    },
+    {
+      "id": "implementos",
+      "name": "Implementos",
+      "brand": "Complementa tu equipo",
+      "image": "/images/machinery/IMPLEMENTOS.webp",
+      "description": "Encuentra el complemento adecuado para tu operación."
+    }
+  ],
+  "site": {
+    "name": "Morgillo",
+    "url": "https://morgillo.pe",
+    "phone": "994 974 243",
+    "whatsapp": "51994974243",
+    "office": "976 080 995",
+    "service": "942 420 214",
+    "address": "Vía de Evitamiento Cdra. 28, Tarapoto",
+    "hours": "Lunes a sábado · 8:00 – 19:00",
+    "social": [
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/maquinariapesadaconstruccionyagricultura"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/morgillomaquinaria/"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/company/morgillo-selva-sac/"
+      },
+      {
+        "label": "YouTube",
+        "href": "https://www.youtube.com/channel/UC5hn7bljPrZB2HIeuwAIzRw/videos"
+      }
+    ]
+  }
+}

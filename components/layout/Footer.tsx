@@ -1,626 +1,637 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 
 import {
-  motion,
-  useReducedMotion,
-} from "motion/react";
-
-import {
+  ArrowUp,
   ArrowUpRight,
-  ChevronUp,
-  MapPin,
-  MessageCircle,
-  Phone,
 } from "lucide-react";
 
 import {
-  site,
+  navigation,
+  site as siteConfig,
   whatsapp,
 } from "@/data/site";
+
+import {
+  getSite,
+} from "@/lib/content";
 
 import styles from "./Footer.module.css";
 
 
-function phoneHref(value: string) {
-  return `tel:${value.replace(
-    /[^\d+]/g,
-    "",
-  )}`;
+/* =========================================================
+   PHONE
+========================================================= */
+
+function phoneHref(
+  value: string,
+) {
+  const digits =
+    value.replace(
+      /\D/g,
+      "",
+    );
+
+
+  const normalized =
+    digits.startsWith(
+      "51",
+    )
+      ? digits
+      : `51${digits}`;
+
+
+  return `tel:+${normalized}`;
 }
 
 
-function FooterGraphic({
-  reducedMotion,
-}: {
-  reducedMotion: boolean | null;
-}) {
-  const draw = {
-    initial: reducedMotion
-      ? false
-      : {
-          pathLength: 0,
-          opacity: 0,
-        },
+/* =========================================================
+   FOOTER
+========================================================= */
 
-    whileInView: reducedMotion
-      ? undefined
-      : {
-          pathLength: 1,
-          opacity: 1,
-        },
+export default async function Footer() {
+  const site =
+    await getSite();
 
-    viewport: {
-      once: true,
-      amount: 0.2,
-    },
-  };
-
-  return (
-    <svg
-      viewBox="0 0 1100 360"
-      fill="none"
-      className={styles.graphic}
-      aria-hidden="true"
-    >
-      {/* topographic contours */}
-
-      <motion.path
-        d="
-          M-50 275
-          C100 203 210 225 334 275
-          C460 326 548 311 660 241
-          C784 164 920 183 1155 282
-        "
-        className={styles.contour}
-        {...draw}
-        transition={{
-          duration: 1.6,
-          ease: "easeOut",
-        }}
-      />
-
-      <motion.path
-        d="
-          M-50 309
-          C110 244 221 258 345 304
-          C475 352 566 337 678 276
-          C805 205 934 218 1155 310
-        "
-        className={styles.contourSoft}
-        {...draw}
-        transition={{
-          duration: 1.8,
-          delay: 0.08,
-          ease: "easeOut",
-        }}
-      />
-
-      <motion.path
-        d="
-          M-50 235
-          C91 158 205 180 325 230
-          C448 281 532 267 648 190
-          C767 111 917 135 1155 239
-        "
-        className={styles.contourSoft}
-        {...draw}
-        transition={{
-          duration: 1.9,
-          delay: 0.16,
-          ease: "easeOut",
-        }}
-      />
-
-      {/* operational route */}
-
-      <motion.path
-        d="
-          M72 125
-          H310
-          C370 125 394 168 452 168
-          H690
-          C745 168 764 119 826 119
-          H1038
-        "
-        className={styles.route}
-        {...draw}
-        transition={{
-          duration: 1.45,
-          delay: 0.32,
-          ease: "easeOut",
-        }}
-      />
-
-      {[72, 452, 826, 1038].map(
-        (cx, index) => (
-          <motion.circle
-            key={cx}
-            cx={cx}
-            cy={
-              index === 0
-                ? 125
-                : index === 1
-                  ? 168
-                  : 119
-            }
-            r="5"
-            className={
-              index === 3
-                ? styles.routeEnd
-                : styles.routePoint
-            }
-            initial={
-              reducedMotion
-                ? false
-                : {
-                    scale: 0,
-                    opacity: 0,
-                  }
-            }
-            whileInView={
-              reducedMotion
-                ? undefined
-                : {
-                    scale: 1,
-                    opacity: 1,
-                  }
-            }
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 0.35,
-              delay:
-                0.72 +
-                index * 0.1,
-            }}
-          />
-        ),
-      )}
-
-      {/* technical references */}
-
-      <path
-        d="
-          M72 91H130
-          M72 101H111
-
-          M930 84H1027
-          M970 94H1027
-        "
-        className={styles.measure}
-      />
-    </svg>
-  );
-}
-
-
-export default function Footer() {
-  const reducedMotion =
-    useReducedMotion();
 
   const year =
     new Date().getFullYear();
 
-  function backToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: reducedMotion
-        ? "auto"
-        : "smooth",
-    });
-  }
 
   return (
-    <footer className={styles.footer}>
+    <footer
+      className={
+        styles.footer
+      }
+    >
       {/* =====================================================
-          COMMERCIAL CLOSING
+          RED LINE
       ====================================================== */}
 
-      <section className={styles.closing}>
+      <div
+        className={
+          styles.topLine
+        }
+        aria-hidden="true"
+      >
+        <span />
+      </div>
+
+
+      {/* =====================================================
+          MAIN
+      ====================================================== */}
+
+      <div
+        className="morgillo-container"
+      >
         <div
-          className={styles.graphicWrap}
-          aria-hidden="true"
+          className={
+            styles.main
+          }
         >
-          <FooterGraphic
-            reducedMotion={
-              reducedMotion
+          {/* =================================================
+              BRAND
+          ================================================== */}
+
+          <div
+            className={
+              styles.brandColumn
             }
-          />
-        </div>
-
-        <div className="morgillo-container">
-          <div className={styles.closingGrid}>
-            <motion.div
-              className={styles.closingCopy}
-              initial={
-                reducedMotion
-                  ? false
-                  : {
-                      opacity: 0,
-                      y: 24,
-                    }
+          >
+            <Link
+              href="/"
+              className={
+                styles.brand
               }
-              whileInView={
-                reducedMotion
-                  ? undefined
-                  : {
-                      opacity: 1,
-                      y: 0,
-                    }
-              }
-              viewport={{
-                once: true,
-                amount: 0.3,
-              }}
-              transition={{
-                duration: 0.65,
-                ease: [
-                  0.16,
-                  1,
-                  0.3,
-                  1,
-                ],
-              }}
+              aria-label="Morgillo, inicio"
             >
-              <div className={styles.eyebrow}>
-                <motion.span
-                  initial={
-                    reducedMotion
-                      ? false
-                      : {
-                          scaleX: 0,
-                        }
-                  }
-                  whileInView={
-                    reducedMotion
-                      ? undefined
-                      : {
-                          scaleX: 1,
-                        }
-                  }
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    duration: 0.7,
-                  }}
-                />
+              <Image
+                src={
+                  site.logo ||
+                  "/images/logo-morgillo.webp"
+                }
+                alt="Morgillo"
+                width={190}
+                height={70}
+                className={
+                  styles.logo
+                }
+              />
+            </Link>
 
-                <p>
-                  Maquinaria · Servicio · Respaldo
-                </p>
-              </div>
 
-              <h2>
-                Equipos para trabajar.
-                <span>
-                  {" "}
-                  Respaldo para continuar.
-                </span>
-              </h2>
-            </motion.div>
-
-            <motion.div
-              className={styles.closingAction}
-              initial={
-                reducedMotion
-                  ? false
-                  : {
-                      opacity: 0,
-                      x: 20,
-                    }
+            <p
+              className={
+                styles.description
               }
-              whileInView={
-                reducedMotion
-                  ? undefined
-                  : {
-                      opacity: 1,
-                      x: 0,
-                    }
-              }
-              viewport={{
-                once: true,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: 0.12,
-              }}
             >
-              <p>
-                Cuéntanos qué trabajo necesitas
-                realizar y nuestro equipo te
-                ayudará a encontrar una solución.
-              </p>
+              {
+                site.companyDescription
+              }
+            </p>
 
-              <a
-                href={whatsapp()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.primary}
+
+            <Link
+              href="/maquinaria"
+              className={
+                styles.primaryCta
+              }
+            >
+              <span>
+                Ver maquinaria
+              </span>
+
+              <span
+                aria-hidden="true"
               >
-                <MessageCircle
-                  size={19}
-                  strokeWidth={1.8}
-                />
-
-                <span>
-                  Hablar con un asesor
-                </span>
-
                 <ArrowUpRight
                   size={18}
                   strokeWidth={1.8}
                 />
-              </a>
-            </motion.div>
+              </span>
+            </Link>
+
+
+            <div
+              className={
+                styles.areas
+              }
+            >
+              <span>
+                Agricultura
+              </span>
+
+              <i />
+
+              <span>
+                Construcción
+              </span>
+
+              <i />
+
+              <span>
+                Implementos
+              </span>
+            </div>
           </div>
-        </div>
-      </section>
 
 
-      {/* =====================================================
-          CORPORATE FOOTER
-      ====================================================== */}
+          {/* =================================================
+              COLUMNS
+          ================================================== */}
 
-      <section className={styles.main}>
-        <div className="morgillo-container">
-          <div className={styles.mainGrid}>
-            {/* =============================================
-                CORPORATE IDENTITY
-            ============================================== */}
+          <div
+            className={
+              styles.links
+            }
+          >
+            {/* ===============================================
+                NAVIGATION
+            ================================================ */}
 
-            <div className={styles.identity}>
-              <Link
-                href="/"
-                className={styles.logo}
-                aria-label="Morgillo - Inicio"
+            <div
+              className={
+                styles.column
+              }
+            >
+              <div
+                className={
+                  styles.columnTitle
+                }
               >
-                <Image
-                  src="/images/logo-morgillo.webp"
-                  alt="Morgillo"
-                  width={360}
-                  height={118}
-                  className={styles.logoImage}
-                />
-              </Link>
-
-              <p>
-                Maquinaria agrícola y de
-                construcción, implementos,
-                repuestos y servicio para
-                acompañar cada operación.
-              </p>
-
-              <div className={styles.sectorLine}>
-                <span className={styles.agriculture}>
-                  <i />
-                  Agricultura
+                <span>
+                  01
                 </span>
 
-                <span className={styles.construction}>
-                  <i />
-                  Construcción
-                </span>
-
-                <span className={styles.implements}>
-                  <i />
-                  Implementos
-                </span>
+                <h2>
+                  Navegación
+                </h2>
               </div>
+
+
+              <nav
+                aria-label="Navegación del pie de página"
+                className={
+                  styles.nav
+                }
+              >
+                <FooterLink
+                  href="/maquinaria"
+                  label="Maquinaria"
+                />
+
+                <FooterLink
+                  href="/marcas"
+                  label="Marcas"
+                />
+
+
+                {navigation.map(
+                  (
+                    item,
+                  ) => (
+                    <FooterLink
+                      key={
+                        item.href
+                      }
+                      href={
+                        item.href
+                      }
+                      label={
+                        item.label
+                      }
+                    />
+                  ),
+                )}
+
+
+                {/* ===========================================
+                    WEBMAIL
+                    Igual que cualquier otro enlace.
+                ============================================ */}
+
+                <a
+                  href={
+                    siteConfig.webmail
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={
+                    styles.navLink
+                  }
+                >
+                  <span>
+                    Webmail
+                  </span>
+
+                  <ArrowUpRight
+                    size={15}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
+                </a>
+              </nav>
             </div>
 
 
-            {/* =============================================
-                MACHINERY
-            ============================================== */}
-
-            <nav
-              className={styles.column}
-              aria-label="Maquinaria"
-            >
-              <span className={styles.columnTitle}>
-                Maquinaria
-              </span>
-
-              <Link href="/maquinaria">
-                Catálogo
-              </Link>
-
-              <Link href="/maquinaria?categoria=agricola">
-                Agrícola
-              </Link>
-
-              <Link href="/maquinaria?categoria=construccion">
-                Construcción
-              </Link>
-
-              <Link href="/maquinaria?categoria=implementos">
-                Implementos
-              </Link>
-            </nav>
-
-
-            {/* =============================================
-                COMPANY
-            ============================================== */}
-
-            <nav
-              className={styles.column}
-              aria-label="Empresa"
-            >
-              <span className={styles.columnTitle}>
-                Morgillo
-              </span>
-
-              <Link href="/empresa">
-                Empresa
-              </Link>
-
-              <Link href="/marcas">
-                Marcas
-              </Link>
-
-              <Link href="/servicios">
-                Servicios
-              </Link>
-
-              <Link href="/novedades">
-                Novedades
-              </Link>
-
-              <Link href="/contacto">
-                Contacto
-              </Link>
-            </nav>
-
-
-            {/* =============================================
+            {/* ===============================================
                 CONTACT
-            ============================================== */}
+            ================================================ */}
 
-            <div className={styles.contact}>
-              <span className={styles.columnTitle}>
-                Atención
-              </span>
-
-              <a
-                href={phoneHref(
-                  site.phone,
-                )}
+            <div
+              className={
+                styles.column
+              }
+            >
+              <div
+                className={
+                  styles.columnTitle
+                }
               >
-                <Phone
-                  size={16}
-                  strokeWidth={1.7}
-                />
+                <span>
+                  02
+                </span>
 
+                <h2>
+                  Contacto
+                </h2>
+              </div>
+
+
+              <div
+                className={
+                  styles.contact
+                }
+              >
                 <div>
-                  <small>
-                    Ventas
-                  </small>
+                  <span>
+                    Dirección
+                  </span>
 
-                  <strong>
-                    {site.phone}
-                  </strong>
+                  <p>
+                    {
+                      site.address
+                    }
+                  </p>
                 </div>
-              </a>
 
-              <div className={styles.location}>
-                <MapPin
-                  size={16}
-                  strokeWidth={1.7}
-                />
 
                 <div>
-                  <small>
-                    Ubicación
-                  </small>
+                  <span>
+                    Ventas
+                  </span>
 
-                  <strong>
-                    {site.address}
-                  </strong>
+                  <a
+                    href={phoneHref(
+                      site.phone,
+                    )}
+                  >
+                    {
+                      site.phone
+                    }
+                  </a>
+                </div>
+
+
+                <div>
+                  <span>
+                    Oficina
+                  </span>
+
+                  <a
+                    href={phoneHref(
+                      site.office,
+                    )}
+                  >
+                    {
+                      site.office
+                    }
+                  </a>
+                </div>
+
+
+                <div>
+                  <span>
+                    Servicio
+                  </span>
+
+                  <a
+                    href={phoneHref(
+                      site.service,
+                    )}
+                  >
+                    {
+                      site.service
+                    }
+                  </a>
+                </div>
+
+
+                {site.email && (
+                  <div>
+                    <span>
+                      Correo
+                    </span>
+
+                    <a
+                      href={`mailto:${site.email}`}
+                    >
+                      {
+                        site.email
+                      }
+                    </a>
+                  </div>
+                )}
+
+
+                <div>
+                  <span>
+                    Horario
+                  </span>
+
+                  <p>
+                    {
+                      site.hours
+                    }
+                  </p>
                 </div>
               </div>
 
+
               <a
-                href={whatsapp()}
+                href={whatsapp(
+                  undefined,
+                  site.whatsapp,
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.whatsappText}
+                className={
+                  styles.whatsapp
+                }
               >
-                WhatsApp
+                <span
+                  className={
+                    styles.status
+                  }
+                  aria-hidden="true"
+                />
+
+                <span>
+                  Hablar por WhatsApp
+                </span>
 
                 <ArrowUpRight
-                  size={14}
+                  size={16}
                   strokeWidth={1.8}
+                  aria-hidden="true"
                 />
               </a>
             </div>
-          </div>
 
 
-          {/* =================================================
-              MANUFACTURERS + SOCIAL
-          ================================================== */}
+            {/* ===============================================
+                SOCIAL
+            ================================================ */}
 
-          <div className={styles.meta}>
-            <div className={styles.brands}>
-              <span className={styles.metaTitle}>
-                Marcas
-              </span>
-
-              <span className={styles.kubota}>
-                <i />
-                KUBOTA
-              </span>
-
-              <span className={styles.kobelco}>
-                <i />
-                KOBELCO
-              </span>
-
-              <span className={styles.bull}>
-                <i />
-                BULL
-              </span>
-            </div>
-
-            <div className={styles.social}>
-              {site.social.map(
-                (item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.label}
-
-                    <ArrowUpRight
-                      size={13}
-                      strokeWidth={1.7}
-                    />
-                  </a>
-                ),
-              )}
-            </div>
-          </div>
-
-
-          {/* =================================================
-              BOTTOM
-          ================================================== */}
-
-          <div className={styles.bottom}>
-            <div>
-              <span>
-                © {year} Morgillo
-              </span>
-
-              <span>
-                Tarapoto · San Martín · Perú
-              </span>
-            </div>
-
-            <button
-              type="button"
-              onClick={backToTop}
-              className={styles.backTop}
-              aria-label="Volver al inicio de la página"
+            <div
+              className={
+                styles.column
+              }
             >
-              Volver arriba
+              <div
+                className={
+                  styles.columnTitle
+                }
+              >
+                <span>
+                  03
+                </span>
 
-              <ChevronUp
-                size={16}
-                strokeWidth={1.8}
-              />
-            </button>
+                <h2>
+                  Síguenos
+                </h2>
+              </div>
+
+
+              <div
+                className={
+                  styles.social
+                }
+              >
+                {site.social.map(
+                  (
+                    social,
+                  ) => (
+                    <a
+                      key={
+                        social.label
+                      }
+                      href={
+                        social.href
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>
+                        {
+                          social.label
+                        }
+                      </span>
+
+                      <span>
+                        <ArrowUpRight
+                          size={15}
+                          strokeWidth={1.8}
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </a>
+                  ),
+                )}
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+
+
+        {/* =====================================================
+            GIANT BRAND
+        ====================================================== */}
+
+        <div
+          className={
+            styles.giant
+          }
+          aria-hidden="true"
+        >
+          <span>
+            MORGILLO
+          </span>
+        </div>
+
+
+        {/* =====================================================
+            BOTTOM
+        ====================================================== */}
+
+        <div
+          className={
+            styles.bottom
+          }
+        >
+          <div
+            className={
+              styles.copyright
+            }
+          >
+            <span>
+              © {year} Morgillo
+            </span>
+
+            <span>
+              Todos los derechos
+              reservados
+            </span>
+          </div>
+
+
+          <div
+            className={
+              styles.bottomCenter
+            }
+          >
+            <span />
+
+            <p>
+              Maquinaria · Servicio · Respaldo
+            </p>
+          </div>
+
+
+          <div
+            className={
+              styles.bottomActions
+            }
+          >
+            {/* WEBMAIL TAMBIÉN QUEDA VISIBLE ABAJO
+                COMO ACCESO UTILITARIO */}
+
+            <a
+              href={
+                siteConfig.webmail
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className={
+                styles.webmail
+              }
+            >
+              Webmail
+
+              <ArrowUpRight
+                size={15}
+                strokeWidth={1.8}
+                aria-hidden="true"
+              />
+            </a>
+
+
+            <a
+              href="#contenido"
+              className={
+                styles.backTop
+              }
+            >
+              <span>
+                Volver arriba
+              </span>
+
+              <span>
+                <ArrowUp
+                  size={15}
+                  strokeWidth={1.8}
+                  aria-hidden="true"
+                />
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
+  );
+}
+
+
+/* =========================================================
+   FOOTER LINK
+========================================================= */
+
+function FooterLink({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
+  return (
+    <Link
+      href={
+        href
+      }
+      className={
+        styles.navLink
+      }
+    >
+      <span>
+        {label}
+      </span>
+
+      <ArrowUpRight
+        size={15}
+        strokeWidth={1.8}
+        aria-hidden="true"
+      />
+    </Link>
   );
 }

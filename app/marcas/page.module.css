@@ -1,0 +1,1669 @@
+.page {
+  --red:
+    var(--mg-red, #d71920);
+
+  --graphite:
+    var(--mg-graphite, #252525);
+
+  --steel-050:
+    var(--mg-steel-050, #f7f7f6);
+
+  --steel-100:
+    var(--mg-steel-100, #f0f1f1);
+
+  --steel-200:
+    var(--mg-steel-200, #dadcdd);
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--graphite);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+  position: relative;
+
+  overflow: hidden;
+
+  padding-top:
+    clamp(
+      75px,
+      8vw,
+      125px
+    );
+
+  background:
+    #ffffff;
+
+  isolation: isolate;
+}
+
+
+.heroGrid {
+  position: absolute;
+
+  z-index: -2;
+
+  inset: 0;
+
+  opacity: 0.035;
+
+  background-image:
+    linear-gradient(
+      #252525 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      #252525 1px,
+      transparent 1px
+    );
+
+  background-size:
+    72px 72px;
+}
+
+
+.heroCircle {
+  position: absolute;
+
+  z-index: -1;
+
+  top: -350px;
+  right: -260px;
+
+  width: 780px;
+  height: 780px;
+
+  border:
+    1px solid
+    rgba(
+      37,
+      37,
+      37,
+      0.055
+    );
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   EYEBROWS
+========================================================= */
+
+.heroTop {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 25px;
+}
+
+
+.eyebrow,
+.sectionEyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+}
+
+
+.eyebrow span,
+.sectionEyebrow span {
+  color:
+    var(--red);
+
+  font-size:
+    0.76rem;
+
+  font-weight: 950;
+
+  letter-spacing:
+    0.07em;
+}
+
+
+.eyebrow i,
+.sectionEyebrow i {
+  width: 40px;
+  height: 3px;
+
+  background:
+    var(--red);
+}
+
+
+.eyebrow p,
+.sectionEyebrow p {
+  margin: 0;
+
+  color:
+    #63686a;
+
+  font-size:
+    0.78rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.06em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroCode {
+  color:
+    #818688;
+
+  font-size:
+    0.72rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.heroContent {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.4fr)
+    minmax(290px, 0.6fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      45px,
+      8vw,
+      125px
+    );
+
+  margin-top:
+    clamp(
+      40px,
+      5vw,
+      72px
+    );
+}
+
+
+.heroContent h1 {
+  max-width: 1000px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      3.1rem,
+      6vw,
+      6.8rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.88;
+
+  letter-spacing:
+    -0.07em;
+
+  text-wrap: balance;
+}
+
+
+.heroContent h1 span {
+  color:
+    var(--red);
+}
+
+
+.heroSide {
+  max-width: 420px;
+
+  justify-self: end;
+}
+
+
+.heroSide > p {
+  margin: 0;
+
+  color:
+    #5d6264;
+
+  font-size:
+    clamp(
+      1rem,
+      1.08vw,
+      1.1rem
+    );
+
+  line-height: 1.7;
+}
+
+
+.heroSide > a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 25px;
+
+  padding-bottom: 8px;
+
+  border-bottom:
+    2px solid
+    var(--graphite);
+
+  color:
+    var(--graphite);
+
+  font-size:
+    0.8rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroSide > a svg {
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   HERO RAIL
+========================================================= */
+
+.heroRail {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        125px,
+        0.2fr
+      )
+    )
+    minmax(
+      260px,
+      1fr
+    );
+
+  margin-top:
+    clamp(
+      50px,
+      6vw,
+      82px
+    );
+
+  border-top:
+    1px solid
+    var(--steel-200);
+
+  border-left:
+    1px solid
+    var(--steel-200);
+}
+
+
+.heroRail > div {
+  min-height: 108px;
+
+  border-right:
+    1px solid
+    var(--steel-200);
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+}
+
+
+.heroRail
+  > div:not(
+    .heroRailText
+  ) {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  padding-inline: 21px;
+}
+
+
+.heroRail span {
+  color:
+    #727779;
+
+  font-size:
+    0.7rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.05em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.heroRail strong {
+  color:
+    var(--red);
+
+  font-size:
+    clamp(
+      1.9rem,
+      2.5vw,
+      2.8rem
+    );
+
+  font-weight: 950;
+}
+
+
+.heroRailText {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    flex-end;
+
+  gap: 11px;
+
+  padding-inline: 24px;
+}
+
+
+.heroRailText > span {
+  width: 38px;
+  height: 3px;
+
+  background:
+    var(--red);
+}
+
+
+.heroRailText p {
+  margin: 0;
+
+  color:
+    #64696b;
+
+  font-size:
+    0.74rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.045em;
+
+  text-align: right;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   PRIMARY
+========================================================= */
+
+.primary {
+  padding-block:
+    clamp(
+      72px,
+      8vw,
+      120px
+    );
+
+  background:
+    var(--steel-050);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.sectionHeader {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(260px, 0.7fr);
+
+  align-items: end;
+
+  gap:
+    clamp(
+      40px,
+      8vw,
+      110px
+    );
+}
+
+
+.sectionEyebrow {
+  margin-bottom: 17px;
+}
+
+
+.sectionHeader h2,
+.secondaryHeader h2 {
+  max-width: 850px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      2.6rem,
+      4.8vw,
+      5.25rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.91;
+
+  letter-spacing:
+    -0.06em;
+
+  text-wrap: balance;
+}
+
+
+.sectionHeader h2 span,
+.secondaryHeader h2 span {
+  color:
+    var(--red);
+}
+
+
+.sectionHeader > p {
+  max-width: 410px;
+
+  justify-self: end;
+
+  margin: 0;
+
+  color:
+    #626769;
+
+  font-size:
+    1rem;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   PRIMARY BRAND GRID
+========================================================= */
+
+.brandGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:
+    clamp(
+      16px,
+      2vw,
+      28px
+    );
+
+  margin-top:
+    clamp(
+      42px,
+      5vw,
+      65px
+    );
+}
+
+
+.brand {
+  --brand-accent:
+    var(--red);
+
+  position: relative;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    #d2d5d6;
+
+  background:
+    #ffffff;
+
+  color:
+    var(--graphite);
+
+  text-decoration: none;
+
+  transition:
+    transform
+      250ms ease,
+    border-color
+      250ms ease;
+}
+
+
+.brand[data-brand="kubota"] {
+  --brand-accent:
+    var(
+      --mg-kubota,
+      #f36f21
+    );
+}
+
+
+.brand[data-brand="kobelco"] {
+  --brand-accent:
+    var(
+      --mg-kobelco,
+      #00a6c7
+    );
+}
+
+
+.brand[data-brand="bull"] {
+  --brand-accent:
+    var(
+      --mg-bull,
+      #f0b400
+    );
+}
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+.brandMedia {
+  position: relative;
+
+  aspect-ratio:
+    4 / 3;
+
+  overflow: hidden;
+
+  background:
+    #eceeed;
+
+  isolation: isolate;
+}
+
+
+.brandMediaGrid {
+  position: absolute;
+
+  z-index: -1;
+
+  inset: 0;
+
+  opacity: 0.05;
+
+  background-image:
+    linear-gradient(
+      #252525 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      #252525 1px,
+      transparent 1px
+    );
+
+  background-size:
+    42px 42px;
+}
+
+
+.brandImage {
+  object-fit: cover;
+
+  transition:
+    transform
+      500ms ease;
+}
+
+
+.imageFallback {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 30px;
+
+  color:
+    rgba(
+      37,
+      37,
+      37,
+      0.12
+    );
+
+  font-size:
+    clamp(
+      2.5rem,
+      5vw,
+      5rem
+    );
+
+  font-weight: 950;
+
+  text-align: center;
+}
+
+
+.brandIndex {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 18px;
+  left: 18px;
+
+  display: flex;
+
+  min-width: 37px;
+  height: 31px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.9
+    );
+
+  color:
+    var(--brand-accent);
+
+  font-size:
+    0.7rem;
+
+  font-weight: 950;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+.brandBody {
+  padding:
+    clamp(
+      22px,
+      2.7vw,
+      32px
+    );
+}
+
+
+.brandMeta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 15px;
+}
+
+
+.brandMeta span,
+.brandMeta strong {
+  font-size:
+    0.7rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.045em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.brandMeta span {
+  color:
+    #74797b;
+}
+
+
+.brandMeta strong {
+  color:
+    var(--brand-accent);
+}
+
+
+.brandBody h3 {
+  margin:
+    18px 0 0;
+
+  font-size:
+    clamp(
+      2.2rem,
+      3.5vw,
+      4rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.9;
+
+  letter-spacing:
+    -0.06em;
+}
+
+
+.brandBody p {
+  display: -webkit-box;
+
+  min-height: 4.7em;
+
+  margin:
+    17px 0 0;
+
+  overflow: hidden;
+
+  color:
+    #626769;
+
+  font-size:
+    0.94rem;
+
+  line-height: 1.58;
+
+  -webkit-box-orient:
+    vertical;
+
+  -webkit-line-clamp: 3;
+}
+
+
+.brandAction {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  margin-top: 26px;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid
+    var(--steel-200);
+}
+
+
+.brandAction span {
+  font-size:
+    0.76rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.04em;
+
+  text-transform:
+    uppercase;
+}
+
+
+.brandAction svg {
+  color:
+    var(--brand-accent);
+
+  transition:
+    transform
+      220ms ease;
+}
+
+
+.brandAccent {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 5px;
+
+  background:
+    var(--brand-accent);
+
+  transform:
+    scaleX(0.16);
+
+  transform-origin:
+    left center;
+
+  transition:
+    transform
+      300ms ease;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+  display: grid;
+
+  grid-template-columns:
+    130px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 35px;
+
+  min-height: 250px;
+
+  margin-top: 45px;
+
+  padding: 35px;
+
+  border:
+    1px solid
+    var(--steel-200);
+
+  background:
+    #ffffff;
+}
+
+
+.empty > span {
+  color:
+    rgba(
+      37,
+      37,
+      37,
+      0.07
+    );
+
+  font-size: 7rem;
+
+  font-weight: 950;
+}
+
+
+.empty strong {
+  display: block;
+
+  font-size:
+    1.1rem;
+
+  font-weight: 900;
+}
+
+
+.empty p {
+  margin:
+    8px 0 0;
+
+  color:
+    #626769;
+
+  font-size:
+    0.94rem;
+}
+
+
+/* =========================================================
+   SECONDARY
+========================================================= */
+
+.secondary {
+  padding-block:
+    clamp(
+      70px,
+      8vw,
+      110px
+    );
+
+  background:
+    #ffffff;
+}
+
+
+.secondaryList {
+  margin-top:
+    clamp(
+      35px,
+      5vw,
+      55px
+    );
+
+  border-top:
+    1px solid
+    var(--steel-200);
+}
+
+
+.secondaryList > a {
+  display: grid;
+
+  grid-template-columns:
+    55px
+    minmax(
+      180px,
+      0.75fr
+    )
+    minmax(
+      160px,
+      1fr
+    )
+    40px;
+
+  min-height: 100px;
+
+  align-items: center;
+
+  gap: 22px;
+
+  border-bottom:
+    1px solid
+    var(--steel-200);
+
+  color:
+    var(--graphite);
+
+  text-decoration: none;
+}
+
+
+.secondaryList
+  > a > span {
+  color:
+    var(--red);
+
+  font-size:
+    0.72rem;
+
+  font-weight: 950;
+}
+
+
+.secondaryList small {
+  display: block;
+
+  color:
+    #757a7c;
+
+  font-size:
+    0.68rem;
+
+  font-weight: 850;
+
+  text-transform:
+    uppercase;
+}
+
+
+.secondaryList strong {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size:
+    1.25rem;
+
+  font-weight: 900;
+}
+
+
+.secondaryList p {
+  margin: 0;
+
+  color:
+    #626769;
+
+  font-size:
+    0.88rem;
+
+  text-align: right;
+}
+
+
+.secondaryList svg {
+  justify-self: end;
+
+  color:
+    var(--red);
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+  background:
+    var(--red);
+
+  color:
+    #ffffff;
+}
+
+
+.ctaInner {
+  display: flex;
+
+  min-height:
+    clamp(
+      215px,
+      20vw,
+      275px
+    );
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 55px;
+}
+
+
+.ctaInner
+  > div > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  font-size:
+    0.76rem;
+
+  font-weight: 900;
+
+  text-transform:
+    uppercase;
+}
+
+
+.ctaInner h2 {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size:
+    clamp(
+      2rem,
+      3.6vw,
+      4rem
+    );
+
+  font-weight: 950;
+
+  line-height: 0.94;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.ctaInner > a {
+  display: flex;
+
+  min-height: 58px;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+
+  gap: 18px;
+
+  padding-inline: 20px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.55
+    );
+
+  color:
+    #ffffff;
+
+  font-size:
+    0.8rem;
+
+  font-weight: 900;
+
+  text-decoration: none;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+
+  .brand:hover {
+    border-color:
+      #aeb3b5;
+
+    transform:
+      translateY(-4px);
+  }
+
+
+  .brand:hover
+    .brandImage {
+    transform:
+      scale(1.035);
+  }
+
+
+  .brand:hover
+    .brandAccent {
+    transform:
+      scaleX(1);
+  }
+
+
+  .brand:hover
+    .brandAction svg {
+    transform:
+      translate(
+        3px,
+        -3px
+      );
+  }
+
+
+  .secondaryList
+    > a:hover strong {
+    color:
+      var(--red);
+  }
+
+
+  .ctaInner > a:hover {
+    background:
+      #ffffff;
+
+    color:
+      var(--red);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 1024px
+) {
+
+  .heroContent,
+  .sectionHeader {
+    grid-template-columns:
+      1fr;
+
+    gap: 28px;
+  }
+
+
+  .heroSide,
+  .sectionHeader > p {
+    max-width: 650px;
+
+    justify-self: start;
+  }
+
+
+  .heroRail {
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+  }
+
+
+  .heroRailText {
+    grid-column:
+      1 / -1;
+
+    min-height: 68px;
+
+    justify-content:
+      flex-start;
+  }
+
+
+  .heroRailText p {
+    text-align: left;
+  }
+
+
+  .brandGrid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 700px
+) {
+
+  .hero {
+    padding-top: 55px;
+  }
+
+
+  .heroCode {
+    display: none;
+  }
+
+
+  .eyebrow span,
+  .eyebrow p,
+  .sectionEyebrow span,
+  .sectionEyebrow p {
+    font-size:
+      0.72rem;
+  }
+
+
+  .eyebrow i,
+  .sectionEyebrow i {
+    width: 31px;
+  }
+
+
+  .heroContent {
+    margin-top: 34px;
+  }
+
+
+  .heroContent h1 {
+    font-size:
+      clamp(
+        2.8rem,
+        14vw,
+        4.4rem
+      );
+
+    line-height: 0.9;
+  }
+
+
+  .heroSide > p {
+    font-size:
+      0.97rem;
+  }
+
+
+  .heroSide > a {
+    font-size:
+      0.76rem;
+  }
+
+
+  .heroRail {
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+
+    margin-top: 42px;
+  }
+
+
+  .heroRail
+    > div:not(
+      .heroRailText
+    ) {
+    min-height: 86px;
+
+    padding-inline: 10px;
+  }
+
+
+  .heroRail span {
+    font-size:
+      0.64rem;
+  }
+
+
+  .heroRail strong {
+    font-size:
+      1.65rem;
+  }
+
+
+  .heroRailText {
+    padding-inline: 14px;
+  }
+
+
+  .heroRailText p {
+    font-size:
+      0.68rem;
+  }
+
+
+  .primary,
+  .secondary {
+    padding-block: 60px;
+  }
+
+
+  .sectionHeader h2,
+  .secondaryHeader h2 {
+    font-size:
+      clamp(
+        2.4rem,
+        11vw,
+        3.7rem
+      );
+  }
+
+
+  .sectionHeader > p {
+    font-size:
+      0.96rem;
+  }
+
+
+  .brandGrid {
+    grid-template-columns:
+      1fr;
+
+    gap: 25px;
+  }
+
+
+  .brandBody h3 {
+    font-size:
+      clamp(
+        2.5rem,
+        12vw,
+        3.7rem
+      );
+  }
+
+
+  .brandBody p {
+    font-size:
+      0.92rem;
+  }
+
+
+  .secondaryList > a {
+    grid-template-columns:
+      35px
+      minmax(
+        0,
+        1fr
+      )
+      30px;
+
+    gap: 12px;
+
+    min-height: 86px;
+  }
+
+
+  .secondaryList p {
+    display: none;
+  }
+
+
+  .secondaryList strong {
+    font-size:
+      1.05rem;
+  }
+
+
+  .ctaInner {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    justify-content: center;
+
+    gap: 27px;
+
+    min-height: 0;
+
+    padding-block: 45px;
+  }
+
+
+  .ctaInner h2 {
+    font-size:
+      clamp(
+        2rem,
+        9vw,
+        3rem
+      );
+  }
+
+
+  .ctaInner > a {
+    width: 100%;
+
+    justify-content:
+      space-between;
+
+    font-size:
+      0.76rem;
+  }
+}
+
+
+/* =========================================================
+   DARK
+========================================================= */
+
+:global(.dark)
+  .page,
+:global(.dark)
+  .hero,
+:global(.dark)
+  .secondary {
+  --graphite:
+    #f3f3f3;
+
+  background:
+    #151616;
+
+  color:
+    #f3f3f3;
+}
+
+
+:global(.dark)
+  .primary {
+  --graphite:
+    #f3f3f3;
+
+  background:
+    #191a1a;
+}
+
+
+:global(.dark)
+  .heroContent h1,
+:global(.dark)
+  .sectionHeader h2,
+:global(.dark)
+  .secondaryHeader h2,
+:global(.dark)
+  .brand,
+:global(.dark)
+  .secondaryList > a {
+  color:
+    #f3f3f3;
+}
+
+
+:global(.dark)
+  .brand {
+  border-color:
+    #393b3c;
+
+  background:
+    #1d1f1f;
+}
+
+
+:global(.dark)
+  .heroSide > p,
+:global(.dark)
+  .sectionHeader > p,
+:global(.dark)
+  .brandBody p,
+:global(.dark)
+  .secondaryList p {
+  color:
+    #b7bbbc;
+}
+
+
+:global(.dark)
+  .heroRail,
+:global(.dark)
+  .heroRail > div,
+:global(.dark)
+  .secondaryList,
+:global(.dark)
+  .secondaryList > a {
+  border-color:
+    #393b3c;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.page a:focus-visible {
+  outline:
+    3px solid
+    var(--red);
+
+  outline-offset: 5px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .page *,
+  .page *::before,
+  .page *::after {
+    transition: none !important;
+  }
+}

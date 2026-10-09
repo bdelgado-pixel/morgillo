@@ -1,0 +1,749 @@
+.gallery {
+  --red:
+    var(
+      --mg-red,
+      #d71920
+    );
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   STAGE
+========================================================= */
+
+.stage {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio:
+    1.12 / 1;
+
+  min-height: 480px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(
+      --mg-steel-200,
+      #dadcdd
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      #f0f1f1,
+      #fafafa 70%,
+      #ffffff
+    );
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid {
+  position: absolute;
+
+  z-index: -3;
+
+  inset: 0;
+
+  opacity: 0.045;
+
+  background-image:
+    linear-gradient(
+      #252525 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      #252525 1px,
+      transparent 1px
+    );
+
+  background-size:
+    54px 54px;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CIRCLE
+========================================================= */
+
+.circle {
+  position: absolute;
+
+  z-index: -2;
+
+  top: 50%;
+  left: 50%;
+
+  width: 75%;
+
+  aspect-ratio: 1;
+
+  border:
+    1px solid
+    rgba(
+      37,
+      37,
+      37,
+      0.085
+    );
+
+  border-radius: 50%;
+
+  transform:
+    translate(
+      -50%,
+      -47%
+    );
+}
+
+
+.circle::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 13%;
+
+  border:
+    1px solid
+    rgba(
+      37,
+      37,
+      37,
+      0.045
+    );
+
+  border-radius: 50%;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.image {
+  z-index: 1;
+
+  object-fit: contain;
+
+  padding:
+    clamp(
+      45px,
+      6vw,
+      90px
+    );
+
+  filter:
+    drop-shadow(
+      0 25px 22px
+      rgba(
+        0,
+        0,
+        0,
+        0.14
+      )
+    );
+
+  animation:
+    imageIn
+    420ms
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
+}
+
+
+@keyframes imageIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.97)
+      translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+  }
+}
+
+
+/* =========================================================
+   TOP
+========================================================= */
+
+.top {
+  position: absolute;
+
+  z-index: 4;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  padding:
+    clamp(
+      18px,
+      2vw,
+      27px
+    );
+}
+
+
+.top > div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.top
+  > div
+  > span {
+  width: 7px;
+  height: 20px;
+
+  background:
+    var(--red);
+}
+
+
+.top strong,
+.top > span {
+  color:
+    #626769;
+
+  font-size:
+    0.72rem;
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.055em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.bottom {
+  position: absolute;
+
+  z-index: 4;
+
+  right:
+    clamp(
+      18px,
+      2vw,
+      27px
+    );
+
+  bottom:
+    clamp(
+      17px,
+      2vw,
+      25px
+    );
+
+  left:
+    clamp(
+      18px,
+      2vw,
+      27px
+    );
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  gap: 20px;
+
+  padding-top: 14px;
+
+  border-top:
+    1px solid
+    rgba(
+      37,
+      37,
+      37,
+      0.13
+    );
+}
+
+
+.bottom span {
+  color:
+    #727779;
+
+  font-size:
+    0.7rem;
+
+  font-weight: 850;
+
+  letter-spacing:
+    0.045em;
+
+  text-transform:
+    uppercase;
+}
+
+
+/* =========================================================
+   THUMBNAILS
+========================================================= */
+
+.thumbnails {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      5,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 8px;
+
+  margin-top: 10px;
+}
+
+
+.thumbnail,
+.activeThumbnail {
+  position: relative;
+
+  aspect-ratio:
+    1.25 / 1;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    var(
+      --mg-steel-200,
+      #dadcdd
+    );
+
+  background:
+    #f5f6f5;
+
+  cursor: pointer;
+
+  transition:
+    border-color
+      180ms ease,
+    transform
+      180ms ease;
+}
+
+
+.activeThumbnail {
+  border-color:
+    var(--red);
+}
+
+
+.thumbnailImage {
+  object-fit: contain;
+
+  padding: 8px;
+}
+
+
+.thumbnail span,
+.activeThumbnail span {
+  position: absolute;
+
+  z-index: 3;
+
+  right: 5px;
+  bottom: 5px;
+
+  display: flex;
+
+  min-width: 24px;
+  height: 21px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.88
+    );
+
+  color:
+    #555a5c;
+
+  font-size:
+    0.62rem;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+  display: flex;
+
+  min-height: 520px;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 35px;
+
+  border:
+    1px solid
+    var(
+      --mg-steel-200,
+      #dadcdd
+    );
+
+  background:
+    #f5f6f5;
+
+  text-align: center;
+}
+
+
+.empty > div {
+  color:
+    rgba(
+      37,
+      37,
+      37,
+      0.08
+    );
+
+  font-size:
+    clamp(
+      5rem,
+      11vw,
+      9rem
+    );
+
+  font-weight: 950;
+
+  letter-spacing:
+    -0.08em;
+}
+
+
+.empty > span {
+  margin-top: 20px;
+
+  color:
+    var(
+      --mg-graphite,
+      #252525
+    );
+
+  font-size:
+    1rem;
+
+  font-weight: 900;
+
+  text-transform:
+    uppercase;
+}
+
+
+.empty p {
+  max-width: 370px;
+
+  margin:
+    8px 0 0;
+
+  color:
+    #666b6d;
+
+  font-size:
+    0.92rem;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+@media (
+  hover: hover
+) and (
+  pointer: fine
+) {
+
+  .thumbnail:hover {
+    border-color:
+      #9ba0a2;
+
+    transform:
+      translateY(-2px);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (
+  max-width: 1024px
+) {
+
+  .stage {
+    aspect-ratio:
+      16 / 11;
+
+    min-height: 520px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (
+  max-width: 640px
+) {
+
+  .stage {
+    aspect-ratio:
+      1 / 1;
+
+    min-height:
+      clamp(
+        330px,
+        95vw,
+        440px
+      );
+  }
+
+
+  .image {
+    padding:
+      45px 28px;
+  }
+
+
+  .top {
+    padding: 15px;
+  }
+
+
+  .top strong,
+  .top > span {
+    font-size:
+      0.68rem;
+  }
+
+
+  .bottom {
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+  }
+
+
+  .bottom span {
+    font-size:
+      0.66rem;
+  }
+
+
+  .thumbnails {
+    grid-template-columns:
+      repeat(
+        4,
+        minmax(
+          0,
+          1fr
+        )
+      );
+  }
+
+
+  .empty {
+    min-height: 360px;
+  }
+}
+
+
+/* =========================================================
+   DARK
+========================================================= */
+
+:global(.dark)
+  .stage,
+:global(.dark)
+  .empty {
+  border-color:
+    #3a3c3d;
+
+  background:
+    linear-gradient(
+      145deg,
+      #202222,
+      #171818
+    );
+}
+
+
+:global(.dark)
+  .grid {
+  background-image:
+    linear-gradient(
+      #ffffff 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      #ffffff 1px,
+      transparent 1px
+    );
+
+  opacity: 0.05;
+}
+
+
+:global(.dark)
+  .circle {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+
+:global(.dark)
+  .top strong,
+:global(.dark)
+  .top > span,
+:global(.dark)
+  .bottom span {
+  color:
+    #b3b7b8;
+}
+
+
+:global(.dark)
+  .bottom {
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+}
+
+
+:global(.dark)
+  .thumbnail,
+:global(.dark)
+  .activeThumbnail {
+  background:
+    #202222;
+
+  border-color:
+    #3a3c3d;
+}
+
+
+:global(.dark)
+  .activeThumbnail {
+  border-color:
+    var(--red);
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.thumbnail:focus-visible,
+.activeThumbnail:focus-visible {
+  outline:
+    3px solid
+    var(--red);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .image {
+    animation: none;
+  }
+
+
+  .thumbnail,
+  .activeThumbnail {
+    transition: none;
+  }
+}

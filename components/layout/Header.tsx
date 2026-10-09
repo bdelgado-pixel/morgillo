@@ -1,1170 +1,1727 @@
 "use client";
 
 import Image from "next/image";
+
 import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
 import {
+
   useEffect,
+
   useRef,
+
   useState,
+
 } from "react";
 
 import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "motion/react";
 
-import {
-  ArrowRight,
-  ChevronDown,
-  Menu,
-  MessageCircle,
-  Phone,
-  X,
-} from "lucide-react";
-
-import clsx from "clsx";
-
-import {
-  categories,
   navigation,
-  site,
+
+  site as siteConfig,
+
   whatsapp,
+
 } from "@/data/site";
 
 import ThemeToggle from "@/components/theme/ThemeToggle";
 
+import type {
+
+  Brand,
+
+  CategoryItem,
+
+  SiteSettings,
+
+} from "@/types/content";
+
 import styles from "./Header.module.css";
 
-
 type MegaMenu =
+
   | "maquinaria"
+
   | "marcas"
+
   | null;
 
+export default function Header({
 
-const brands = [
-  {
-    id: "kubota",
-    name: "Kubota",
-    area: "Agricultura",
-  },
-  {
-    id: "kobelco",
-    name: "Kobelco",
-    area: "Construcción",
-  },
-  {
-    id: "bull",
-    name: "BULL",
-    area: "Trabajo pesado",
-  },
-];
+  site,
 
+  categories,
 
-function phoneHref(
-  value: string,
-) {
-  return `tel:${value.replace(
-    /[^\d+]/g,
-    "",
-  )}`;
-}
+  brands,
 
+}: {
 
-export default function Header() {
-  const [mobileOpen, setMobileOpen] =
-    useState(false);
+  site: SiteSettings;
 
-  const [megaMenu, setMegaMenu] =
-    useState<MegaMenu>(null);
+  categories: CategoryItem[];
 
-  const [mobileGroup, setMobileGroup] =
-    useState<MegaMenu>(null);
+  brands: Brand[];
 
-  const [scrolled, setScrolled] =
-    useState(false);
-
-  const root =
-    useRef<HTMLElement>(null);
-
-  const mobileButton =
-    useRef<HTMLButtonElement>(null);
+}) {
 
   const pathname =
+
     usePathname();
 
-  const reducedMotion =
-    useReducedMotion();
+  const [
 
+    mobileOpen,
 
-  function closeMenus() {
+    setMobileOpen,
+
+  ] = useState(false);
+
+  const [
+
+    megaMenu,
+
+    setMegaMenu,
+
+  ] = useState<MegaMenu>(
+
+    null,
+
+  );
+
+  const headerRef =
+
+    useRef<HTMLElement>(
+
+      null,
+
+    );
+
+  const mobileButtonRef =
+
+    useRef<HTMLButtonElement>(
+
+      null,
+
+    );
+
+  /* =========================================================
+
+     CLOSE MENUS
+
+  ========================================================= */
+
+  const closeMenus = () => {
+
     setMobileOpen(false);
+
     setMegaMenu(null);
-    setMobileGroup(null);
-  }
 
+  };
 
-  function toggleMega(
-    menu: Exclude<
-      MegaMenu,
-      null
-    >,
+  /* =========================================================
+
+     CLICK OUTSIDE + ESC
+
+  ========================================================= */
+
+  useEffect(() => {
+
+    const handlePointerDown = (
+
+      event: PointerEvent,
+
+    ) => {
+
+      if (
+
+        headerRef.current &&
+
+        !headerRef.current.contains(
+
+          event.target as Node,
+
+        )
+
+      ) {
+
+        closeMenus();
+
+      }
+
+    };
+
+    const handleKeyDown = (
+
+      event: KeyboardEvent,
+
+    ) => {
+
+      if (
+
+        event.key ===
+
+        "Escape"
+
+      ) {
+
+        closeMenus();
+
+        mobileButtonRef.current?.focus();
+
+      }
+
+    };
+
+    document.addEventListener(
+
+      "pointerdown",
+
+      handlePointerDown,
+
+    );
+
+    document.addEventListener(
+
+      "keydown",
+
+      handleKeyDown,
+
+    );
+
+    return () => {
+
+      document.removeEventListener(
+
+        "pointerdown",
+
+        handlePointerDown,
+
+      );
+
+      document.removeEventListener(
+
+        "keydown",
+
+        handleKeyDown,
+
+      );
+
+    };
+
+  }, []);
+
+  /* =========================================================
+
+     MOBILE SCROLL LOCK
+
+  ========================================================= */
+
+  useEffect(() => {
+
+    document.body.style.overflow =
+
+      mobileOpen
+
+        ? "hidden"
+
+        : "";
+
+    return () => {
+
+      document.body.style.overflow =
+
+        "";
+
+    };
+
+  }, [mobileOpen]);
+
+  /* =========================================================
+
+     MEGA MENU
+
+  ========================================================= */
+
+  function toggleMegaMenu(
+
+    menu:
+
+      | "maquinaria"
+
+      | "marcas",
+
   ) {
+
     setMegaMenu(
+
       (current) =>
+
         current === menu
+
           ? null
+
           : menu,
+
     );
 
     setMobileOpen(false);
+
   }
 
+  /* =========================================================
 
-  function active(
+     ACTIVE
+
+  ========================================================= */
+
+  function isActive(
+
     href: string,
+
   ) {
-    if (href === "/") {
+
+    if (
+
+      href === "/"
+
+    ) {
+
       return pathname === "/";
+
     }
 
     return pathname.startsWith(
+
       href,
+
     );
+
   }
 
-
-  /* =====================================================
-     CLOSE / ESCAPE
-  ====================================================== */
-
-  useEffect(() => {
-    function pointer(
-      event: PointerEvent,
-    ) {
-      if (
-        root.current &&
-        !root.current.contains(
-          event.target as Node,
-        )
-      ) {
-        setMegaMenu(null);
-      }
-    }
-
-    function keyboard(
-      event: KeyboardEvent,
-    ) {
-      if (
-        event.key === "Escape"
-      ) {
-        closeMenus();
-
-        mobileButton.current?.focus();
-      }
-    }
-
-    document.addEventListener(
-      "pointerdown",
-      pointer,
-    );
-
-    document.addEventListener(
-      "keydown",
-      keyboard,
-    );
-
-    return () => {
-      document.removeEventListener(
-        "pointerdown",
-        pointer,
-      );
-
-      document.removeEventListener(
-        "keydown",
-        keyboard,
-      );
-    };
-  }, []);
-
-
-  /* =====================================================
-     ROUTE CHANGE
-  ====================================================== */
-
-  useEffect(() => {
-    closeMenus();
-  }, [pathname]);
-
-
-  /* =====================================================
-     MOBILE SCROLL LOCK
-  ====================================================== */
-
-  useEffect(() => {
-    if (!mobileOpen) {
-      return;
-    }
-
-    const oldOverflow =
-      document.body.style
-        .overflow;
-
-    document.body.style.overflow =
-      "hidden";
-
-    return () => {
-      document.body.style.overflow =
-        oldOverflow;
-    };
-  }, [mobileOpen]);
-
-
-  /* =====================================================
-     HEADER SCROLL STATE
-  ====================================================== */
-
-  useEffect(() => {
-    function update() {
-      setScrolled(
-        window.scrollY > 20,
-      );
-    }
-
-    update();
-
-    window.addEventListener(
-      "scroll",
-      update,
-      {
-        passive: true,
-      },
-    );
-
-    return () => {
-      window.removeEventListener(
-        "scroll",
-        update,
-      );
-    };
-  }, []);
-
-
   return (
-    <header
-      ref={root}
-      className={clsx(
-        styles.header,
-        scrolled &&
-          styles.scrolled,
-      )}
-    >
-      {/* =================================================
-          TOP BAR
-      ================================================== */}
 
-      <div
-        className={
-          styles.topbar
-        }
-      >
-        <div
-          className={clsx(
-            "morgillo-container",
-            styles.topbarInner,
-          )}
-        >
-          <div
-            className={
-              styles.topbarLabel
-            }
-          >
+    <header
+
+      ref={headerRef}
+
+      className={`${styles.root} morgillo-header`}
+
+    >
+
+      {/* =====================================================
+
+          TOP BAR
+
+      ====================================================== */}
+
+      <div className="morgillo-header__topbar">
+
+        <div className="morgillo-container morgillo-header__topbar-inner">
+
+          <div className="morgillo-header__topbar-label">
+
             <span />
 
             <p>
-              Maquinaria para campo,
-              obra y operación
+
+              Maquinaria agrícola y de construcción
+
             </p>
+
           </div>
 
-          <div
-            className={
-              styles.topbarRight
-            }
-          >
+          <div className="morgillo-header__topbar-contact">
+
             <span>
-              Tarapoto · San Martín
+
+              Ventas
+
             </span>
 
-            <i />
-
             <a
-              href={phoneHref(
-                site.phone,
-              )}
-            >
-              <Phone
-                size={12}
-                strokeWidth={1.7}
-              />
 
-              Ventas {site.phone}
+              href={`tel:+51${site.phone.replaceAll(
+
+                " ",
+
+                "",
+
+              )}`}
+
+            >
+
+              {site.phone}
+
             </a>
+
           </div>
+
         </div>
+
       </div>
 
+      {/* =====================================================
 
-      {/* =================================================
-          MAIN
-      ================================================== */}
+          MAIN HEADER
 
-      <div
-        className={
-          styles.main
-        }
-      >
-        <div
-          className={clsx(
-            "morgillo-container",
-            styles.row,
-          )}
-        >
-          {/* LOGO */}
+      ====================================================== */}
+
+      <div className="morgillo-header__main">
+
+        <div className="morgillo-container morgillo-header__row">
+
+          {/* =================================================
+
+              LOGO
+
+          ================================================== */}
 
           <Link
+
             href="/"
-            aria-label="Morgillo, inicio"
+
             onClick={closeMenus}
-            className={
-              styles.logo
-            }
+
+            aria-label="Morgillo, inicio"
+
+            className="morgillo-header__logo"
+
           >
+
             <Image
-              src="/images/logo-morgillo.webp"
-              alt="Morgillo"
-              width={220}
-              height={82}
-              priority
-              className={
-                styles.logoImage
+
+              src={
+
+                site.logo ||
+
+                "/images/logo-morgillo.webp"
+
               }
+
+              alt="Morgillo"
+
+              width={180}
+
+              height={67}
+
+              priority
+
+              className="morgillo-header__logo-image"
+
             />
+
           </Link>
 
+          {/* =================================================
 
-          {/* =============================================
-              DESKTOP NAV
-          ============================================== */}
+              DESKTOP NAVIGATION
+
+          ================================================== */}
 
           <nav
-            className={
-              styles.desktopNav
-            }
-            aria-label="Navegación principal"
-          >
-            <Link
-              href="/"
-              onClick={closeMenus}
-              className={clsx(
-                styles.navLink,
-                active("/") &&
-                  styles.active,
-              )}
-              aria-current={
-                active("/")
-                  ? "page"
-                  : undefined
-              }
-            >
-              Inicio
-            </Link>
 
+            aria-label="Navegación principal"
+
+            className="morgillo-header__desktop-nav"
+
+          >
+
+            {/* INICIO */}
+
+            <Link
+
+              href="/"
+
+              onClick={closeMenus}
+
+              className={
+
+                pathname === "/"
+
+                  ? "morgillo-header__nav-link is-active"
+
+                  : "morgillo-header__nav-link"
+
+              }
+
+              aria-current={
+
+                pathname === "/"
+
+                  ? "page"
+
+                  : undefined
+
+              }
+
+            >
+
+              Inicio
+
+            </Link>
 
             {/* MAQUINARIA */}
 
             <button
+
               type="button"
-              className={clsx(
-                styles.navLink,
-                styles.navButton,
-                active(
-                  "/maquinaria",
-                ) &&
-                  styles.active,
-              )}
-              aria-expanded={
+
+              className={
+
                 megaMenu ===
+
                 "maquinaria"
+
+                  ? "morgillo-header__nav-link morgillo-header__nav-button is-open"
+
+                  : "morgillo-header__nav-link morgillo-header__nav-button"
+
               }
+
+              aria-expanded={
+
+                megaMenu ===
+
+                "maquinaria"
+
+              }
+
               aria-controls="morgillo-mega-menu"
+
               onClick={() =>
-                toggleMega(
+
+                toggleMegaMenu(
+
                   "maquinaria",
+
                 )
+
               }
+
             >
-              Maquinaria
 
-              <ChevronDown
-                size={14}
-                strokeWidth={1.8}
-                className={clsx(
-                  styles.chevron,
+              <span>
+
+                Maquinaria
+
+              </span>
+
+              <ChevronIcon
+
+                open={
+
                   megaMenu ===
-                    "maquinaria" &&
-                    styles.chevronOpen,
-                )}
-              />
-            </button>
 
+                  "maquinaria"
+
+                }
+
+              />
+
+            </button>
 
             {/* MARCAS */}
 
             <button
+
               type="button"
-              className={clsx(
-                styles.navLink,
-                styles.navButton,
-                active("/marcas") &&
-                  styles.active,
-              )}
-              aria-expanded={
+
+              className={
+
                 megaMenu ===
+
                 "marcas"
+
+                  ? "morgillo-header__nav-link morgillo-header__nav-button is-open"
+
+                  : "morgillo-header__nav-link morgillo-header__nav-button"
+
               }
+
+              aria-expanded={
+
+                megaMenu ===
+
+                "marcas"
+
+              }
+
               aria-controls="morgillo-mega-menu"
+
               onClick={() =>
-                toggleMega(
+
+                toggleMegaMenu(
+
                   "marcas",
+
                 )
+
               }
+
             >
-              Marcas
-
-              <ChevronDown
-                size={14}
-                strokeWidth={1.8}
-                className={clsx(
-                  styles.chevron,
-                  megaMenu ===
-                    "marcas" &&
-                    styles.chevronOpen,
-                )}
-              />
-            </button>
-
-
-            {/* NORMAL NAV */}
-
-            {navigation.map(
-              (item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMenus}
-                  className={clsx(
-                    styles.navLink,
-                    active(
-                      item.href,
-                    ) &&
-                      styles.active,
-                  )}
-                  aria-current={
-                    active(
-                      item.href,
-                    )
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </nav>
-
-
-          {/* =============================================
-              ACTIONS
-          ============================================== */}
-
-          <div
-            className={
-              styles.actions
-            }
-          >
-            <div
-              className={
-                styles.theme
-              }
-            >
-              <ThemeToggle />
-            </div>
-
-            <a
-              href={whatsapp()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={
-                styles.whatsapp
-              }
-            >
-              <MessageCircle
-                size={17}
-                strokeWidth={1.8}
-              />
 
               <span>
-                WhatsApp
+
+                Marcas
+
               </span>
 
-              <ArrowRight
-                size={15}
-                strokeWidth={1.8}
+              <ChevronIcon
+
+                open={
+
+                  megaMenu ===
+
+                  "marcas"
+
+                }
+
               />
+
+            </button>
+
+            {/* RESTO DE NAVEGACIÓN */}
+
+            {navigation.map(
+
+              (item) => {
+
+                const active =
+
+                  isActive(
+
+                    item.href,
+
+                  );
+
+                return (
+
+                  <Link
+
+                    key={
+
+                      item.href
+
+                    }
+
+                    href={
+
+                      item.href
+
+                    }
+
+                    onClick={
+
+                      closeMenus
+
+                    }
+
+                    className={
+
+                      active
+
+                        ? "morgillo-header__nav-link is-active"
+
+                        : "morgillo-header__nav-link"
+
+                    }
+
+                    aria-current={
+
+                      active
+
+                        ? "page"
+
+                        : undefined
+
+                    }
+
+                  >
+
+                    {item.label}
+
+                  </Link>
+
+                );
+
+              },
+
+            )}
+
+            {/* =================================================
+
+                WEBMAIL
+
+                Es una opción más del menú principal.
+
+            ================================================== */}
+
+            <a
+
+              href={
+
+                siteConfig.webmail
+
+              }
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+              className="morgillo-header__nav-link morgillo-header__webmail"
+
+            >
+
+              <span>
+
+                Webmail
+
+              </span>
+
+              <span
+
+                className="morgillo-header__webmail-arrow"
+
+                aria-hidden="true"
+
+              >
+
+                ↗
+
+              </span>
+
             </a>
 
+          </nav>
+
+          {/* =================================================
+
+              ACTIONS
+
+          ================================================== */}
+
+          <div className="morgillo-header__actions">
+
+            <div className="morgillo-header__theme">
+
+              <ThemeToggle />
+
+            </div>
+
+            {/* WHATSAPP */}
+
+            <a
+
+              className="morgillo-header__whatsapp"
+
+              href={whatsapp(
+
+                undefined,
+
+                site.whatsapp,
+
+              )}
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+            >
+
+              <WhatsAppIcon />
+
+              <span>
+
+                WhatsApp
+
+              </span>
+
+              <span
+
+                className="morgillo-header__whatsapp-arrow"
+
+                aria-hidden="true"
+
+              >
+
+                ↗
+
+              </span>
+
+            </a>
 
             {/* MOBILE TRIGGER */}
 
             <button
-              ref={mobileButton}
+
+              ref={
+
+                mobileButtonRef
+
+              }
+
               type="button"
+
               className={
-                styles.mobileTrigger
-              }
-              aria-expanded={
+
                 mobileOpen
+
+                  ? "morgillo-header__mobile-trigger is-open"
+
+                  : "morgillo-header__mobile-trigger"
+
               }
-              aria-controls="morgillo-mobile-navigation"
+
               aria-label={
+
                 mobileOpen
+
                   ? "Cerrar menú"
+
                   : "Abrir menú"
+
               }
+
+              aria-expanded={
+
+                mobileOpen
+
+              }
+
+              aria-controls="morgillo-mobile-navigation"
+
               onClick={() => {
+
                 setMobileOpen(
+
                   (current) =>
+
                     !current,
+
                 );
 
-                setMegaMenu(null);
+                setMegaMenu(
+
+                  null,
+
+                );
+
               }}
+
             >
-              {mobileOpen ? (
-                <X
-                  size={21}
-                  strokeWidth={1.8}
-                />
-              ) : (
-                <Menu
-                  size={22}
-                  strokeWidth={1.8}
-                />
-              )}
+
+              <span />
+
+              <span />
+
+              <span />
+
             </button>
+
           </div>
+
         </div>
+
       </div>
 
+      {/* =====================================================
 
-      {/* =================================================
-          MEGA MENU
-      ================================================== */}
+          MEGA MENU DESKTOP
 
-      <AnimatePresence>
-        {megaMenu && (
-          <motion.div
-            id="morgillo-mega-menu"
-            className={
-              styles.mega
-            }
-            initial={
-              reducedMotion
-                ? false
-                : {
-                    opacity: 0,
-                    y: -8,
-                  }
-            }
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            exit={{
-              opacity: 0,
-              y: -6,
-            }}
-            transition={{
-              duration: 0.22,
-              ease: [
-                0.16,
-                1,
-                0.3,
-                1,
-              ],
-            }}
-          >
-            <div className="morgillo-container">
-              <div
-                className={
-                  styles.megaGrid
-                }
-              >
-                {/* INTRO */}
+      ====================================================== */}
 
-                <div
-                  className={
-                    styles.megaIntro
-                  }
-                >
-                  <span>
-                    {megaMenu ===
-                    "maquinaria"
-                      ? "CATÁLOGO"
-                      : "MARCAS"}
-                  </span>
+      {megaMenu && (
 
-                  <h2>
-                    {megaMenu ===
-                    "maquinaria"
-                      ? "Encuentra el equipo para tu trabajo."
-                      : "Marcas para cada tipo de operación."}
-                  </h2>
+        <div
 
-                  <Link
-                    href={
-                      megaMenu ===
-                      "maquinaria"
-                        ? "/maquinaria"
-                        : "/marcas"
-                    }
-                    onClick={
-                      closeMenus
-                    }
-                  >
-                    {megaMenu ===
-                    "maquinaria"
-                      ? "Ver catálogo completo"
-                      : "Ver todas las marcas"}
+          id="morgillo-mega-menu"
 
-                    <ArrowRight
-                      size={16}
-                      strokeWidth={
-                        1.8
-                      }
-                    />
-                  </Link>
-                </div>
+          className="morgillo-header__mega"
 
+        >
 
-                {/* ITEMS */}
+          <div className="morgillo-container">
 
-                <div
-                  className={
-                    styles.megaItems
-                  }
-                >
+            <div className="morgillo-header__mega-top">
+
+              <div>
+
+                <span className="morgillo-header__mega-eyebrow">
+
                   {megaMenu ===
+
                   "maquinaria"
-                    ? categories.map(
-                        (
-                          category,
-                          index,
-                        ) => (
-                          <Link
-                            key={
-                              category.id
-                            }
-                            href={`/maquinaria?categoria=${category.id}`}
-                            onClick={
-                              closeMenus
-                            }
-                            className={
-                              styles.megaItem
-                            }
-                          >
-                            <span
-                              className={
-                                styles.megaNumber
-                              }
-                            >
-                              {String(
-                                index +
-                                  1,
-                              ).padStart(
-                                2,
-                                "0",
-                              )}
-                            </span>
 
-                            <div>
-                              <small>
-                                {
-                                  category.brand
-                                }
-                              </small>
+                    ? "Catálogo Morgillo"
 
-                              <strong>
-                                {
-                                  category.name
-                                }
-                              </strong>
+                    : "Marcas"}
 
-                              <p>
-                                {
-                                  category.description
-                                }
-                              </p>
-                            </div>
-
-                            <ArrowRight
-                              size={18}
-                              strokeWidth={
-                                1.7
-                              }
-                            />
-                          </Link>
-                        ),
-                      )
-                    : brands.map(
-                        (
-                          brand,
-                          index,
-                        ) => (
-                          <Link
-                            key={
-                              brand.id
-                            }
-                            href={`/marcas/${brand.id}`}
-                            onClick={
-                              closeMenus
-                            }
-                            className={clsx(
-                              styles.megaItem,
-                              styles[
-                                `brand-${brand.id}`
-                              ],
-                            )}
-                          >
-                            <span
-                              className={
-                                styles.megaNumber
-                              }
-                            >
-                              {String(
-                                index +
-                                  1,
-                              ).padStart(
-                                2,
-                                "0",
-                              )}
-                            </span>
-
-                            <div>
-                              <small>
-                                {
-                                  brand.area
-                                }
-                              </small>
-
-                              <strong>
-                                {
-                                  brand.name
-                                }
-                              </strong>
-
-                              <p>
-                                Explorar equipos y
-                                soluciones de la
-                                marca.
-                              </p>
-                            </div>
-
-                            <ArrowRight
-                              size={18}
-                              strokeWidth={
-                                1.7
-                              }
-                            />
-                          </Link>
-                        ),
-                      )}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-
-      {/* =================================================
-          MOBILE NAV
-      ================================================== */}
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            id="morgillo-mobile-navigation"
-            className={
-              styles.mobilePanel
-            }
-            initial={
-              reducedMotion
-                ? false
-                : {
-                    opacity: 0,
-                    x: 25,
-                  }
-            }
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            exit={{
-              opacity: 0,
-              x: 20,
-            }}
-            transition={{
-              duration: 0.28,
-              ease: [
-                0.16,
-                1,
-                0.3,
-                1,
-              ],
-            }}
-          >
-            <div
-              className={clsx(
-                "morgillo-container",
-                styles.mobileInner,
-              )}
-            >
-              <div
-                className={
-                  styles.mobileTop
-                }
-              >
-                <span>
-                  Navegación
                 </span>
 
-                <small>
-                  MRG / MENU
-                </small>
+                <h2>
+
+                  {megaMenu ===
+
+                  "maquinaria"
+
+                    ? "Encuentra el equipo para tu trabajo."
+
+                    : "Explora nuestras marcas de maquinaria."}
+
+                </h2>
+
               </div>
 
+              <Link
 
-              <nav
-                className={
-                  styles.mobileNav
+                href={
+
+                  megaMenu ===
+
+                  "maquinaria"
+
+                    ? "/maquinaria"
+
+                    : "/marcas"
+
                 }
-                aria-label="Navegación móvil"
+
+                onClick={closeMenus}
+
+                className="morgillo-header__mega-all"
+
               >
-                <Link
-                  href="/"
-                  onClick={
-                    closeMenus
-                  }
-                >
-                  <span>
-                    01
-                  </span>
 
-                  Inicio
+                <span>
 
-                  <ArrowRight
-                    size={17}
-                  />
-                </Link>
+                  {megaMenu ===
 
+                  "maquinaria"
 
-                {/* MOBILE MACHINERY */}
+                    ? "Ver todo el catálogo"
 
-                <div
-                  className={
-                    styles.mobileGroup
-                  }
-                >
-                  <button
-                    type="button"
-                    aria-expanded={
-                      mobileGroup ===
-                      "maquinaria"
-                    }
-                    onClick={() =>
-                      setMobileGroup(
-                        (
-                          current,
-                        ) =>
-                          current ===
-                          "maquinaria"
-                            ? null
-                            : "maquinaria",
-                      )
-                    }
-                  >
-                    <span>
-                      02
-                    </span>
+                    : "Ver todas las marcas"}
 
-                    Maquinaria
+                </span>
 
-                    <ChevronDown
-                      size={17}
-                      className={clsx(
-                        mobileGroup ===
-                          "maquinaria" &&
-                          styles.mobileChevronOpen,
-                      )}
-                    />
-                  </button>
+                <span aria-hidden="true">
 
-                  <AnimatePresence
-                    initial={false}
-                  >
-                    {mobileGroup ===
-                      "maquinaria" && (
-                      <motion.div
-                        className={
-                          styles.mobileChildren
+                  ↗
+
+                </span>
+
+              </Link>
+
+            </div>
+
+            <div className="morgillo-header__mega-grid">
+
+              {megaMenu ===
+
+              "maquinaria"
+
+                ? categories.map(
+
+                    (
+
+                      category,
+
+                      index,
+
+                    ) => (
+
+                      <Link
+
+                        key={
+
+                          category.id
+
                         }
-                        initial={{
-                          height: 0,
-                          opacity: 0,
-                        }}
-                        animate={{
-                          height:
-                            "auto",
-                          opacity: 1,
-                        }}
-                        exit={{
-                          height: 0,
-                          opacity: 0,
-                        }}
+
+                        href={`/maquinaria?categoria=${category.id}`}
+
+                        onClick={
+
+                          closeMenus
+
+                        }
+
+                        className="morgillo-header__mega-card"
+
                       >
-                        <Link
-                          href="/maquinaria"
-                          onClick={
-                            closeMenus
-                          }
+
+                        <div className="morgillo-header__mega-card-number">
+
+                          {String(
+
+                            index + 1,
+
+                          ).padStart(
+
+                            2,
+
+                            "0",
+
+                          )}
+
+                        </div>
+
+                        <div className="morgillo-header__mega-card-content">
+
+                          <span>
+
+                            {
+
+                              category.brand
+
+                            }
+
+                          </span>
+
+                          <strong>
+
+                            {
+
+                              category.name
+
+                            }
+
+                          </strong>
+
+                          <p>
+
+                            {
+
+                              category.description
+
+                            }
+
+                          </p>
+
+                        </div>
+
+                        <span
+
+                          className="morgillo-header__mega-card-arrow"
+
+                          aria-hidden="true"
+
                         >
-                          Todo el catálogo
-                        </Link>
 
-                        {categories.map(
-                          (
-                            category,
-                          ) => (
-                            <Link
-                              key={
-                                category.id
-                              }
-                              href={`/maquinaria?categoria=${category.id}`}
-                              onClick={
-                                closeMenus
-                              }
-                            >
-                              {
-                                category.name
-                              }
+                          ↗
 
-                              <small>
-                                {
-                                  category.brand
-                                }
-                              </small>
-                            </Link>
-                          ),
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                        </span>
 
+                      </Link>
 
-                {/* MOBILE BRANDS */}
+                    ),
 
-                <div
-                  className={
-                    styles.mobileGroup
-                  }
-                >
-                  <button
-                    type="button"
-                    aria-expanded={
-                      mobileGroup ===
-                      "marcas"
-                    }
-                    onClick={() =>
-                      setMobileGroup(
-                        (
-                          current,
-                        ) =>
-                          current ===
-                          "marcas"
-                            ? null
-                            : "marcas",
-                      )
-                    }
-                  >
-                    <span>
-                      03
-                    </span>
+                  )
 
-                    Marcas
+                : brands.map(
 
-                    <ChevronDown
-                      size={17}
-                      className={clsx(
-                        mobileGroup ===
-                          "marcas" &&
-                          styles.mobileChevronOpen,
-                      )}
-                    />
-                  </button>
+                    (
 
-                  <AnimatePresence
-                    initial={false}
-                  >
-                    {mobileGroup ===
-                      "marcas" && (
-                      <motion.div
-                        className={
-                          styles.mobileChildren
+                      brand,
+
+                      index,
+
+                    ) => (
+
+                      <Link
+
+                        key={
+
+                          brand.id
+
                         }
-                        initial={{
-                          height: 0,
-                          opacity: 0,
-                        }}
-                        animate={{
-                          height:
-                            "auto",
-                          opacity: 1,
-                        }}
-                        exit={{
-                          height: 0,
-                          opacity: 0,
-                        }}
+
+                        href={`/marcas/${brand.id}`}
+
+                        onClick={
+
+                          closeMenus
+
+                        }
+
+                        className="morgillo-header__mega-card"
+
                       >
-                        {brands.map(
-                          (
-                            brand,
-                          ) => (
-                            <Link
-                              key={
-                                brand.id
-                              }
-                              href={`/marcas/${brand.id}`}
-                              onClick={
-                                closeMenus
-                              }
-                            >
+
+                        <div className="morgillo-header__mega-card-number">
+
+                          {String(
+
+                            index + 1,
+
+                          ).padStart(
+
+                            2,
+
+                            "0",
+
+                          )}
+
+                        </div>
+
+                        <div className="morgillo-header__mega-card-content">
+
+                          <span>
+
+                            Marca
+
+                          </span>
+
+                          <strong>
+
+                            {
+
+                              brand.name
+
+                            }
+
+                          </strong>
+
+                          {brand.description && (
+
+                            <p>
+
                               {
-                                brand.name
+
+                                brand.description
+
                               }
 
-                              <small>
-                                {
-                                  brand.area
-                                }
-                              </small>
-                            </Link>
-                          ),
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                            </p>
 
+                          )}
 
-                {navigation.map(
-                  (
-                    item,
-                    index,
-                  ) => (
-                    <Link
-                      key={
-                        item.href
-                      }
-                      href={
-                        item.href
-                      }
-                      onClick={
-                        closeMenus
-                      }
-                    >
-                      <span>
-                        {String(
-                          index +
-                            4,
-                        ).padStart(
-                          2,
-                          "0",
-                        )}
-                      </span>
+                        </div>
 
-                      {
-                        item.label
-                      }
+                        <span
 
-                      <ArrowRight
-                        size={17}
-                      />
-                    </Link>
-                  ),
-                )}
-              </nav>
+                          className="morgillo-header__mega-card-arrow"
 
+                          aria-hidden="true"
 
-              <div
-                className={
-                  styles.mobileFooter
-                }
-              >
-                <a
-                  href={whatsapp()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={
-                    styles.mobileWhatsapp
+                        >
+
+                          ↗
+
+                        </span>
+
+                      </Link>
+
+                    ),
+
+                  )}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
+      {/* =====================================================
+
+          MOBILE MENU
+
+      ====================================================== */}
+
+      <div
+
+        className={
+
+          mobileOpen
+
+            ? "morgillo-mobile-menu is-open"
+
+            : "morgillo-mobile-menu"
+
+        }
+
+        aria-hidden={
+
+          !mobileOpen
+
+        }
+
+      >
+
+        <div className="morgillo-mobile-menu__scroll">
+
+          <nav
+
+            id="morgillo-mobile-navigation"
+
+            aria-label="Navegación móvil"
+
+            className="morgillo-container morgillo-mobile-menu__nav"
+
+          >
+
+            <div className="morgillo-mobile-menu__top">
+
+              <span>
+
+                Menú
+
+              </span>
+
+              <span>
+
+                Morgillo
+
+              </span>
+
+            </div>
+
+            {/* INICIO */}
+
+            <Link
+
+              href="/"
+
+              onClick={closeMenus}
+
+              className="morgillo-mobile-menu__main-link"
+
+            >
+
+              <span>
+
+                Inicio
+
+              </span>
+
+              <span aria-hidden="true">
+
+                ↗
+
+              </span>
+
+            </Link>
+
+            {/* =================================================
+
+                MAQUINARIA
+
+            ================================================== */}
+
+            <details className="morgillo-mobile-menu__group">
+
+              <summary>
+
+                <span>
+
+                  Maquinaria
+
+                </span>
+
+                <span aria-hidden="true">
+
+                  +
+
+                </span>
+
+              </summary>
+
+              <div className="morgillo-mobile-menu__submenu">
+
+                <Link
+
+                  href="/maquinaria"
+
+                  onClick={
+
+                    closeMenus
+
                   }
+
                 >
-                  <MessageCircle
-                    size={18}
-                    strokeWidth={
-                      1.8
-                    }
-                  />
-
-                  Consultar por
-                  WhatsApp
-
-                  <ArrowRight
-                    size={17}
-                  />
-                </a>
-
-                <div>
-                  <span>
-                    Morgillo
-                  </span>
 
                   <small>
-                    Tarapoto · San
-                    Martín
+
+                    00
+
                   </small>
-                </div>
+
+                  <span>
+
+                    Todo el catálogo
+
+                  </span>
+
+                </Link>
+
+                {categories.map(
+
+                  (
+
+                    category,
+
+                    index,
+
+                  ) => (
+
+                    <Link
+
+                      key={
+
+                        category.id
+
+                      }
+
+                      href={`/maquinaria?categoria=${category.id}`}
+
+                      onClick={
+
+                        closeMenus
+
+                      }
+
+                    >
+
+                      <small>
+
+                        {String(
+
+                          index + 1,
+
+                        ).padStart(
+
+                          2,
+
+                          "0",
+
+                        )}
+
+                      </small>
+
+                      <span>
+
+                        {
+
+                          category.name
+
+                        }
+
+                      </span>
+
+                      <em>
+
+                        {
+
+                          category.brand
+
+                        }
+
+                      </em>
+
+                    </Link>
+
+                  ),
+
+                )}
+
               </div>
+
+            </details>
+
+            {/* =================================================
+
+                MARCAS
+
+            ================================================== */}
+
+            <details className="morgillo-mobile-menu__group">
+
+              <summary>
+
+                <span>
+
+                  Marcas
+
+                </span>
+
+                <span aria-hidden="true">
+
+                  +
+
+                </span>
+
+              </summary>
+
+              <div className="morgillo-mobile-menu__submenu">
+
+                <Link
+
+                  href="/marcas"
+
+                  onClick={
+
+                    closeMenus
+
+                  }
+
+                >
+
+                  <small>
+
+                    00
+
+                  </small>
+
+                  <span>
+
+                    Todas las marcas
+
+                  </span>
+
+                </Link>
+
+                {brands.map(
+
+                  (
+
+                    brand,
+
+                    index,
+
+                  ) => (
+
+                    <Link
+
+                      key={
+
+                        brand.id
+
+                      }
+
+                      href={`/marcas/${brand.id}`}
+
+                      onClick={
+
+                        closeMenus
+
+                      }
+
+                    >
+
+                      <small>
+
+                        {String(
+
+                          index + 1,
+
+                        ).padStart(
+
+                          2,
+
+                          "0",
+
+                        )}
+
+                      </small>
+
+                      <span>
+
+                        {
+
+                          brand.name
+
+                        }
+
+                      </span>
+
+                    </Link>
+
+                  ),
+
+                )}
+
+              </div>
+
+            </details>
+
+            {/* RESTO */}
+
+            {navigation.map(
+
+              (item) => (
+
+                <Link
+
+                  key={
+
+                    item.href
+
+                  }
+
+                  href={
+
+                    item.href
+
+                  }
+
+                  onClick={
+
+                    closeMenus
+
+                  }
+
+                  className="morgillo-mobile-menu__main-link"
+
+                >
+
+                  <span>
+
+                    {
+
+                      item.label
+
+                    }
+
+                  </span>
+
+                  <span aria-hidden="true">
+
+                    ↗
+
+                  </span>
+
+                </Link>
+
+              ),
+
+            )}
+
+            {/* =================================================
+
+                WEBMAIL
+
+                Misma jerarquía que las demás opciones.
+
+            ================================================== */}
+
+            <a
+
+              href={
+
+                siteConfig.webmail
+
+              }
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+              className="morgillo-mobile-menu__main-link morgillo-mobile-menu__webmail-link"
+
+            >
+
+              <span>
+
+                Webmail
+
+              </span>
+
+              <span aria-hidden="true">
+
+                ↗
+
+              </span>
+
+            </a>
+
+            {/* =================================================
+
+                WHATSAPP
+
+            ================================================== */}
+
+            <a
+
+              href={whatsapp(
+
+                undefined,
+
+                site.whatsapp,
+
+              )}
+
+              target="_blank"
+
+              rel="noopener noreferrer"
+
+              className="morgillo-mobile-menu__whatsapp"
+
+            >
+
+              <div>
+
+                <WhatsAppIcon />
+
+                <span>
+
+                  <small>
+
+                    ¿Necesitas asesoría?
+
+                  </small>
+
+                  <strong>
+
+                    Hablar por WhatsApp
+
+                  </strong>
+
+                </span>
+
+              </div>
+
+              <span aria-hidden="true">
+
+                ↗
+
+              </span>
+
+            </a>
+
+            {/* =================================================
+
+                PHONE
+
+            ================================================== */}
+
+            <div className="morgillo-mobile-menu__contact">
+
+              <span>
+
+                Ventas
+
+              </span>
+
+              <a
+
+                href={`tel:+51${site.phone.replaceAll(
+
+                  " ",
+
+                  "",
+
+                )}`}
+
+              >
+
+                {site.phone}
+
+              </a>
+
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+          </nav>
+
+        </div>
+
+      </div>
+
     </header>
+
   );
+
+}
+
+/* =========================================================
+
+   CHEVRON
+
+\========================================================= */
+
+function ChevronIcon({
+
+  open,
+
+}: {
+
+  open: boolean;
+
+}) {
+
+  return (
+
+    <svg
+
+      viewBox="0 0 20 20"
+
+      fill="none"
+
+      stroke="currentColor"
+
+      strokeWidth="1.7"
+
+      className={
+
+        open
+
+          ? "morgillo-chevron is-open"
+
+          : "morgillo-chevron"
+
+      }
+
+      aria-hidden="true"
+
+    >
+
+      <path
+
+        d="m6 8 4 4 4-4"
+
+        strokeLinecap="round"
+
+        strokeLinejoin="round"
+
+      />
+
+    </svg>
+
+  );
+
+}
+
+/* =========================================================
+
+   WHATSAPP ICON
+
+\========================================================= */
+
+function WhatsAppIcon() {
+
+  return (
+
+    <svg
+
+      viewBox="0 0 24 24"
+
+      fill="currentColor"
+
+      aria-hidden="true"
+
+    >
+
+      <path
+
+        d="M12.04 2a9.84 9.84 0 0 0-8.5 14.8L2 22l5.34-1.4A9.96 9.96 0 1 0 12.04 2Zm0 18.18a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.17.83.85-3.08-.2-.32a8.12 8.12 0 1 1 7 3.89Zm4.5-6.08c-.25-.12-1.46-.72-1.69-.8-.22-.09-.39-.13-.55.12-.17.25-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22a7.4 7.4 0 0 1-1.37-1.71c-.14-.25-.02-.38.1-.5.12-.12.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.55-1.34-.76-1.84-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.06 0 1.22.88 2.39 1 2.55.13.17 1.74 2.66 4.22 3.73.59.26 1.05.41 1.41.53.59.19 1.13.16 1.55.1.48-.07 1.46-.59 1.67-1.17.2-.58.2-1.07.14-1.17-.06-.1-.23-.16-.47-.28Z"
+
+      />
+
+    </svg>
+
+  );
+
 }

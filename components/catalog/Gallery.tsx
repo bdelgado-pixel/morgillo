@@ -1,80 +1,117 @@
 ﻿"use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useState } from "react";
+
 import type { MediaAsset } from "@/types/content";
 
-export default function Gallery({ images, name = "Equipo Morgillo" }: {
-  images: MediaAsset[];
-  name?: string;
-}) {
-  const [selected, setSelected] = useState(0);
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
-  const thumbs = useRef<(HTMLButtonElement | null)[]>([]);
-  const current = selected < images.length ? selected : 0;
-  const asset = images[current];
+import styles from "./Gallery.module.css";
 
-  function select(index: number, focus = false) {
-    if (!images.length) return;
-    const next = (index + images.length) % images.length;
-    setSelected(next);
-    if (focus) thumbs.current[next]?.focus({ preventScroll: true });
-    thumbs.current[next]?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "instant" });
-  }
+export default function Gallery({
+  images,
+}: {
+  images: MediaAsset[];
+}) {
+  const validImages = images.filter((image) => image.kind === "image");
+  const [selected, setSelected] = useState(0);
+
+  const safeSelected = validImages.length
+    ? Math.min(selected, validImages.length - 1)
+    : 0;
+
+  const asset = validImages[safeSelected];
+
+  /* =========================================================
+     EMPTY
+  ========================================================= */
 
   if (!asset) {
-    return <div className="morgillo-gallery morgillo-gallery--empty">
-      <span>Imagen pendiente</span><strong>MORGILLO</strong>
-      <p>{name}</p>
-    </div>;
+    return (
+      <div className={styles.empty}>
+        <div aria-hidden="true">IMG</div>
+
+        <span>Imagen pendiente</span>
+
+        <p>La imagen del equipo podrá actualizarse desde el CMS.</p>
+      </div>
+    );
   }
 
   return (
-    <section className="morgillo-gallery" aria-label={`Imágenes de ${name}`}>
-      <div className="morgillo-gallery__main"
-        onTouchStart={(event) => {
-          const touch = event.touches[0];
-          touchStart.current = { x: touch.clientX, y: touch.clientY };
-        }}
-        onTouchCancel={() => { touchStart.current = null; }}
-        onTouchEnd={(event) => {
-          const start = touchStart.current;
-          touchStart.current = null;
-          if (!start) return;
-          const touch = event.changedTouches[0];
-          const dx = touch.clientX - start.x;
-          const dy = touch.clientY - start.y;
-          if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) select(current + (dx < 0 ? 1 : -1));
-        }}>
-        <Image src={asset.url} alt={asset.alt || name} fill
-          sizes="(max-width: 900px) calc(100vw - 32px), (max-width: 1440px) 54vw, 760px"
-          className="morgillo-gallery__image" priority={current === 0} />
-        <span className="morgillo-gallery__brand-accent" aria-hidden="true" />
+    <div className={styles.gallery}>
+      {/* =================================================
+          MAIN IMAGE
+      ================================================== */}
+
+      <div className={styles.stage}>
+        <div className={styles.grid} aria-hidden="true" />
+        <div className={styles.circle} aria-hidden="true" />
+
+        <Image
+          key={asset.id}
+          src={asset.url}
+          alt={asset.alt}
+          fill
+          sizes="(max-width: 1024px) 100vw, 56vw"
+          className={styles.image}
+          preload={safeSelected === 0}
+        />
+
+        <div className={styles.top}>
+          <div>
+            <span />
+            <strong>Vista del equipo</strong>
+          </div>
+
+          <span>
+            {String(safeSelected + 1).padStart(2, "0")}
+            {" / "}
+            {String(validImages.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        <div className={styles.bottom}>
+          <span>Imagen de producto</span>
+          <span>Morgillo</span>
+        </div>
       </div>
-      <div className="morgillo-gallery__toolbar">
-        <p className="morgillo-gallery__counter" aria-live="polite" aria-atomic="true">
-          <strong>{String(current + 1).padStart(2, "0")}</strong>
-          <span>/ {String(images.length).padStart(2, "0")}</span>
-          <span>Galería del equipo</span>
-        </p>
-        {images.length > 1 && <div className="morgillo-gallery__arrows">
-          <button type="button" onClick={() => select(current - 1)} aria-label="Imagen anterior">←</button>
-          <button type="button" onClick={() => select(current + 1)} aria-label="Siguiente imagen">→</button>
-        </div>}
-      </div>
-      {images.length > 1 && <div className="morgillo-gallery__thumbs" aria-label="Seleccionar imagen">
-        {images.map((image, index) => (
-          <button key={`${image.id}-${index}`} ref={(element) => { thumbs.current[index] = element; }}
-            type="button" aria-label={`Ver imagen ${index + 1}: ${image.alt || name}`}
-            aria-pressed={current === index} onClick={() => select(index)}
-            onKeyDown={(event) => {
-              const target = event.key === "ArrowLeft" ? index - 1 : event.key === "ArrowRight" ? index + 1 : event.key === "Home" ? 0 : event.key === "End" ? images.length - 1 : null;
-              if (target !== null) { event.preventDefault(); select(target, true); }
-            }} className={current === index ? "is-active" : ""}>
-            <Image src={image.url} alt="" fill sizes="96px" className="morgillo-gallery__thumb-image" />
-          </button>
-        ))}
-      </div>}
-    </section>
+
+      {/* =================================================
+          THUMBNAILS
+      ================================================== */}
+
+      {validImages.length > 1 && (
+        <div
+          className={styles.thumbnails}
+          role="group"
+          aria-label="Imágenes del producto"
+        >
+          {validImages.map((image, index) => {
+            const active = index === safeSelected;
+
+            return (
+              <button
+                key={image.id}
+                type="button"
+                aria-label={`Ver imagen ${index + 1} de ${validImages.length}`}
+                aria-pressed={active}
+                className={active ? styles.activeThumbnail : styles.thumbnail}
+                onClick={() => setSelected(index)}
+              >
+                <Image
+                  src={image.url}
+                  alt=""
+                  fill
+                  sizes="110px"
+                  className={styles.thumbnailImage}
+                />
+
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 }

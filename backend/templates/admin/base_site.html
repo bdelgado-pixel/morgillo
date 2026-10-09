@@ -1,0 +1,211 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}
+  {% if subtitle %}
+    {{ subtitle }} |
+  {% endif %}
+  {{ title }} | Morgillo CMS
+{% endblock %}
+
+
+{% block extrastyle %}
+  {{ block.super }}
+
+  <link
+    rel="stylesheet"
+    href="{% static 'cms.css' %}"
+  >
+{% endblock %}
+
+
+{% block branding %}
+  <div class="morgillo-admin-brand">
+    <a
+      href="{% url 'admin:index' %}"
+      class="morgillo-admin-brand__link"
+      aria-label="Morgillo CMS, ir al panel principal"
+    >
+      <span
+        class="morgillo-admin-brand__mark"
+        aria-hidden="true"
+      >
+        M
+      </span>
+
+      <span class="morgillo-admin-brand__text">
+        <strong>
+          MORGILLO
+        </strong>
+
+        <small>
+          CMS
+        </small>
+      </span>
+    </a>
+  </div>
+{% endblock %}
+
+
+{% block nav-global %}
+  {% if user.is_authenticated %}
+    <nav
+      class="morgillo-admin-nav"
+      aria-label="Navegación del CMS"
+    >
+      <a
+        href="{% url 'admin:index' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          00
+        </span>
+
+        <span>
+          Panel
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_product_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          MQ
+        </span>
+
+        <span>
+          Maquinaria
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_mediaasset_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          MD
+        </span>
+
+        <span>
+          Multimedia
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_campaign_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          CM
+        </span>
+
+        <span>
+          Campañas
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_article_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          NV
+        </span>
+
+        <span>
+          Novedades
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_event_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          EV
+        </span>
+
+        <span>
+          Eventos
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_service_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          SV
+        </span>
+
+        <span>
+          Servicios
+        </span>
+      </a>
+
+
+      <a
+        href="{% url 'admin:content_sitesettings_changelist' %}"
+        class="morgillo-admin-nav__link"
+      >
+        <span
+          class="morgillo-admin-nav__code"
+          aria-hidden="true"
+        >
+          CF
+        </span>
+
+        <span>
+          Configuración
+        </span>
+      </a>
+
+
+      <a
+        href="{{ site_url|default:'http://localhost:3000' }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="morgillo-admin-nav__link morgillo-admin-nav__link--site"
+      >
+        <span>
+          Ver sitio
+        </span>
+
+        <span
+          class="morgillo-admin-nav__external"
+          aria-hidden="true"
+        >
+          ↗
+        </span>
+      </a>
+    </nav>
+  {% endif %}
+{% endblock %}
