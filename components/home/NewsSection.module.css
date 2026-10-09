@@ -410,7 +410,7 @@
 .featuredImage {
   z-index: -4;
 
-  object-fit: cover;
+  object-fit: contain;
 
   transition:
     transform
@@ -1082,7 +1082,7 @@
 
 
 .cardImage {
-  object-fit: cover;
+  object-fit: contain;
 
   transition:
     transform
@@ -2277,3 +2277,8 @@
     transition: none;
   }
 }
+/* Keep promotional artwork legible without cropping or a dark filter. */
+.featuredMedia { background: #f3f4f2; }
+.featuredImage { box-sizing: border-box; padding: 60px 16px 20px; }
+.featuredShade, .mediaGrid, .mediaIndex { display: none; }
+.mediaTop strong, .mediaTop > span { color: var(--graphite); }

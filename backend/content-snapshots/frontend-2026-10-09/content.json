@@ -1,0 +1,3586 @@
+[
+{
+  "model": "content.mediaasset",
+  "pk": "0233baa4-7930-4434-86d4-40ad14e02664",
+  "fields": {
+    "title": "Catálogo — M135X — imagen 2",
+    "alt": "Tractor Kubota M135X — vista 2",
+    "file": "library/d1269f9e0a5549c49c67b00c3b578eb1.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:00.153Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "0397c631-7919-4965-98b2-1ec4018a18ee",
+  "fields": {
+    "title": "Morgillo en AgriExpo Perú 2026 — banner de noticia",
+    "alt": "Morgillo presente en AgriExpo Perú, 22 al 24 de octubre de 2026, Arena 1, Lima",
+    "file": "library/7ed59e39a96a4bc29ac2b0191adfa39e.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:14:45.433Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "07aeb5c0-099c-4b63-a219-8a592bcbb97e",
+  "fields": {
+    "title": "Catálogo — SK260 — imagen 2",
+    "alt": "Excavadora Kobelco SK260 — vista 2",
+    "file": "library/3e3e88d4920d4566993f3c2fd5aeb009.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:03.501Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "084e1d3c-c4fc-4586-85ac-de64062337b7",
+  "fields": {
+    "title": "Ficha técnica — kubota MX5100D",
+    "alt": "Ficha técnica de Tractor Kubota MX5100D",
+    "file": "library/44d8cc85af5c4166ab0d5bfd0552e060.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:52.288Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "11f03bbb-5a06-57e0-a307-36da4e4cbf85",
+  "fields": {
+    "title": "Construcción",
+    "alt": "Construcción",
+    "file": "library/3bab2262d9024e7c842cc25e28cd1e9b.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T13:36:45.761Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "13f66d30-0466-439c-8f5c-4585a2dcfcbf",
+  "fields": {
+    "title": "Ficha técnica — kubota M135X",
+    "alt": "Ficha técnica de Tractor Kubota M135X",
+    "file": "library/573bf87865f34ef8a1bef212e77ab857.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:00.162Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "144e9303-c7bb-4f9a-a4a5-bc4b08f07468",
+  "fields": {
+    "title": "Catálogo — SK350LC — imagen 3",
+    "alt": "Excavadora Kobelco SK350LC — vista 3",
+    "file": "library/5ffc9b0e22a143448a54ebedc7ccb870.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:06.030Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "150f6119-dc9e-4d34-8406-a83c38653857",
+  "fields": {
+    "title": "Catálogo — M8540N Cabinado — imagen 2",
+    "alt": "Tractor Kubota M8540N cabinado — vista 2",
+    "file": "library/f4d390c585324099aba0fc90f0817f95.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:53.872Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "1a192abf-d3c8-4081-89b1-1a5070c40af6",
+  "fields": {
+    "title": "Ficha técnica — kubota M108S",
+    "alt": "Ficha técnica de Tractor Kubota M108S",
+    "file": "library/17b81392bd674b93840f320e52b9a96d.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:49.755Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "1b4b80de-1ef1-49c3-9d11-0e91ac78387e",
+  "fields": {
+    "title": "Catálogo — M8540N Power Crawler — imagen 1",
+    "alt": "Tractor Kubota M8540N Power Crawler — vista general",
+    "file": "library/4714664214b24e8fac7ab4e616dee4ef.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:54.570Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "1baa433e-4c09-4660-b910-73ffd523fc4c",
+  "fields": {
+    "title": "MTR — catálogo oficial 2025 (inglés)",
+    "alt": "Gama MTR — catálogo del fabricante, mayo de 2025",
+    "file": "library/5c11172f87a04a05886bb10f8be90a3d.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:14.806Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "1be1a7d0-ece5-4472-b0a3-e9922952e6f8",
+  "fields": {
+    "title": "Ficha técnica — kubota M8540N",
+    "alt": "Ficha técnica de Tractor Kubota M8540N",
+    "file": "library/8421dce007324176b825d749c6296009.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:52.959Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "1f22679a-0648-403b-96cf-b28e9ba9e615",
+  "fields": {
+    "title": "Ficha técnica — maschio-gaspardo C230",
+    "alt": "Ficha técnica de Rotavator Maschio C230",
+    "file": "library/6e355cc85bc6410ea9112ef0235e471b.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:13.166Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "1f270ef8-12b9-4883-b30a-4ebe979254a3",
+  "fields": {
+    "title": "Ficha técnica — kubota DC70G",
+    "alt": "Ficha técnica de Cosechadora Kubota DC70G",
+    "file": "library/42284562b95b478a80a938bda0255a28.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:00.483Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "2035dddf-f3ee-47fd-8233-7f6064ad04e3",
+  "fields": {
+    "title": "Catálogo — M9540D — imagen 2",
+    "alt": "Tractor Kubota M9540D — vista 2",
+    "file": "library/69876a45cf604130a0b3c2a3c4abc601.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:55.965Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "21f9ab37-a3dd-4e9f-8170-fd1115e350aa",
+  "fields": {
+    "title": "Catálogo — CDM856 — imagen 1",
+    "alt": "Cargador frontal Lonking CDM856 — vista general",
+    "file": "library/c4d9c6a3c6f849c4a8a3f88f410b05d6.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:11.340Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "2530db60-1236-4fa1-bc26-74a754b66cc3",
+  "fields": {
+    "title": "Catálogo — SK350LC — imagen 2",
+    "alt": "Excavadora Kobelco SK350LC — vista 2",
+    "file": "library/1e449fe6e819453fa229036455a6ec56.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:05.510Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "25fd5712-5353-4aad-8bbe-98807a11c95c",
+  "fields": {
+    "title": "Ficha técnica — kubota M7040D",
+    "alt": "Ficha técnica de Tractor Kubota M7040D",
+    "file": "library/e997819701de4f73bc92cff360b29098.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:52.502Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "27dc1113-cee8-46d3-8ae2-1944415197f3",
+  "fields": {
+    "title": "Ficha técnica — kobelco SK350LC",
+    "alt": "Ficha técnica de Excavadora Kobelco SK350LC",
+    "file": "library/4eeca5d13fbd4493a6a6d22c62a621a0.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:06.040Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "2cf059b9-3e09-4828-b7b0-d8301e508243",
+  "fields": {
+    "title": "Catálogo — M108S — imagen 1",
+    "alt": "Tractor Kubota M108S — vista general",
+    "file": "library/a5cedacaa3c441a5bb7892bbe9777a6b.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:48.527Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "344eda59-15c6-484d-a48b-398792efcbe4",
+  "fields": {
+    "title": "Catálogo — M8540N Cabinado — imagen 1",
+    "alt": "Tractor Kubota M8540N cabinado — vista general",
+    "file": "library/c4869ed3f4184a7c9379a45a7b376c06.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:53.090Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "3592b859-3a3c-564f-b9e4-02cbdabc1fb5",
+  "fields": {
+    "title": "Portada Morgillo",
+    "alt": "Portada Morgillo",
+    "file": "library/15f91944f3f64efbb1c54809d21c6478.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T13:36:45.768Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "3789af90-abf8-5469-a026-c45691136c1c",
+  "fields": {
+    "title": "Agrícola",
+    "alt": "Agrícola",
+    "file": "library/c891bcf2749f4d4e895a2570de3e3e99.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T13:36:45.761Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "382bf3d2-0787-406a-b281-010370e998a3",
+  "fields": {
+    "title": "Catálogo — M108SDC — imagen 3",
+    "alt": "Tractor Kubota M108S cabinado — vista 3",
+    "file": "library/c54b226f5a6849db914d9ab2e37040ed.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:59.112Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "399e26e1-b95b-4091-af10-a472ccd3b542",
+  "fields": {
+    "title": "Catálogo — imagen de marca LONKING",
+    "alt": "LONKING — equipos de maquinaria",
+    "file": "library/a8eca9f390bd4b32bf98bd381edf7f35.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:48.330Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "3f5d4717-b46f-4dc0-a769-a04fe9b7fe22",
+  "fields": {
+    "title": "Catálogo — M108SDC — imagen 1",
+    "alt": "Tractor Kubota M108S cabinado — vista general",
+    "file": "library/86fb5a84a8514b4f998d615083703eda.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:57.852Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "41c33517-5e36-46e9-ad95-d81556d7d889",
+  "fields": {
+    "title": "Ficha técnica — bull HD96",
+    "alt": "Ficha técnica de Retroexcavadora BULL HD96",
+    "file": "library/b1fc40db3f3e4b67a842f17009bd9ce1.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:08.328Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "41cc1288-7e76-4095-b228-b32e6270e766",
+  "fields": {
+    "title": "Catálogo — M9540D Cabinado — imagen 1",
+    "alt": "Tractor Kubota M9540D cabinado — vista general",
+    "file": "library/b5ee44a895744dba95a0aa0014cc0775.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:57.319Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "4681fa8b-3905-48f9-95fe-42b841bfabdf",
+  "fields": {
+    "title": "Catálogo — M9540D — imagen 3",
+    "alt": "Tractor Kubota M9540D — vista 3",
+    "file": "library/0e618a42528d4d5d8c40767beabd3c9d.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:56.890Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "49a5eca4-f688-41e1-96e4-0f80d5655109",
+  "fields": {
+    "title": "Ficha técnica — inroda Super Premium 270 — 18 × 26",
+    "alt": "Ficha técnica de Rastra Inroda Super Premium 270",
+    "file": "library/7f51eac664534ccf97e3b6373e77b205.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:14.780Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "4eb1f1a5-0f2b-4f70-88df-c7de691d556d",
+  "fields": {
+    "title": "Ficha técnica — kubota M9540D",
+    "alt": "Ficha técnica de Tractor Kubota M9540D",
+    "file": "library/40220a6099414855a599eee2664d1adb.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:56.902Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "4f22bf77-a299-4737-9f76-d73260100a16",
+  "fields": {
+    "title": "Catálogo — SK35SR — imagen 1",
+    "alt": "Miniexcavadora Kobelco SK35SR — vista general",
+    "file": "library/0aad55611aea4ca99e4ce16d769c7b65.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:02.098Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "51f77458-238d-48d6-9ab8-5f8555c60ff9",
+  "fields": {
+    "title": "Ficha técnica — kubota DC105X",
+    "alt": "Ficha técnica de Cosechadora Kubota DC105X",
+    "file": "library/bf5e531333ee40da80e180c3c73d627b.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:00.940Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "54362ce5-3828-4175-a78a-3e5ab97f1d3c",
+  "fields": {
+    "title": "Catálogo — B230 — imagen 1",
+    "alt": "Rotavator Maschio B230 — vista general",
+    "file": "library/e9b0f49b52cf44aabfd64c449b0f9491.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:12.252Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "5c82ad4b-1052-4b74-aae1-266ca8203265",
+  "fields": {
+    "title": "Ficha técnica — kubota M9540D Cabinado",
+    "alt": "Ficha técnica de Tractor Kubota M9540D cabinado",
+    "file": "library/ecef31f40ba7449f8225ef6efd8e7ab1.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:57.335Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "5cb9d0f4-7e6d-4af4-9f32-fb5c95ad1f39",
+  "fields": {
+    "title": "Catálogo — M9540D — imagen 1",
+    "alt": "Tractor Kubota M9540D — vista general",
+    "file": "library/25f1a1b864864d03b26500da777bacbf.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:55.120Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "629d89e3-22eb-4ffc-91c3-0f3d0dedd8a4",
+  "fields": {
+    "title": "Ficha técnica — maschio-gaspardo MTR 4",
+    "alt": "Ficha técnica de Sembradora abonadora Gaspardo MTR 4",
+    "file": "library/20e7fb919d3a48d3829a9d0dc03e843d.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:14.050Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "63b24024-40ce-4f6e-8e68-b06bf21360f5",
+  "fields": {
+    "title": "Catálogo — M8540N — imagen 1",
+    "alt": "Tractor Kubota M8540N — vista general",
+    "file": "library/13f4287aa9a44573a9fd8b1d53de92fb.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:52.943Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "65d6a230-e596-4c14-aa83-3756da1b7628",
+  "fields": {
+    "title": "Catálogo — HD96 — imagen 1",
+    "alt": "Retroexcavadora BULL HD96 — vista general",
+    "file": "library/93bbff8576fb41a1a97135ee0a600111.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:08.323Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "6d073c06-8bd8-475a-a96e-581b313885cb",
+  "fields": {
+    "title": "Catálogo — imagen de marca INRODA",
+    "alt": "INRODA — equipos de maquinaria",
+    "file": "library/4d9839f5b55448b984c89c076fd80c21.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:47.518Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "6e38a40f-2500-45ec-be1b-4d0748c5e685",
+  "fields": {
+    "title": "Fondo de marca Kobelco — octubre 2026",
+    "alt": "Kobelco — maquinaria y detalles de trabajo",
+    "file": "library/a042811b91dd4c15b73af095aa4ef894.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T15:42:18.516Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "730c3984-382f-41a5-9db9-b749b4d56179",
+  "fields": {
+    "title": "Ficha técnica — lonking CDM856",
+    "alt": "Ficha técnica de Cargador frontal Lonking CDM856",
+    "file": "library/284eb91cfdc946e1bfde3b29a55fbf2e.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:11.350Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "77a10300-1846-4990-b93b-0c1124b2e265",
+  "fields": {
+    "title": "Catálogo — HD100 — imagen 2",
+    "alt": "Retroexcavadora BULL HD100 — vista 2",
+    "file": "library/1559d1c90c0149b29141aa9227178a93.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:06.863Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "7c862565-c1eb-4337-9c6f-3a41bff99f0e",
+  "fields": {
+    "title": "Catálogo — SK260 — imagen 3",
+    "alt": "Excavadora Kobelco SK260 — vista 3",
+    "file": "library/8b1939fcb912485eb23265262ee3c002.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:04.380Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "7e533278-4e19-40d2-afc0-a65aa3eb6e2e",
+  "fields": {
+    "title": "Ficha técnica — kobelco SK35SR",
+    "alt": "Ficha técnica de Miniexcavadora Kobelco SK35SR",
+    "file": "library/e037a764b7d44e8182c46a28fb8e4004.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:02.109Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "7f7b9382-fc35-49a6-b65e-beeb152cdec7",
+  "fields": {
+    "title": "Ficha técnica — kobelco SK210",
+    "alt": "Ficha técnica de Excavadora Kobelco SK210",
+    "file": "library/db773362457e422596ed8ea6e1c7fb04.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:01.990Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "7ff4cbac-c7a6-4c16-b870-6ff374f84d4a",
+  "fields": {
+    "title": "Catálogo — M108SDC — imagen 2",
+    "alt": "Tractor Kubota M108S cabinado — vista 2",
+    "file": "library/2ab0386275fd458293c5052d762d6e4d.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:58.489Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "8c4120ec-08fc-5f2d-9f48-ff6cfde8db79",
+  "fields": {
+    "title": "Implementos",
+    "alt": "Implementos",
+    "file": "library/f4773842ea464d0da51c1fc5fdb8ec80.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T13:36:45.768Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "8e5ce3d2-df73-4216-a4fb-7e9ea0b494c3",
+  "fields": {
+    "title": "Catálogo — imagen de marca MASCHIO GASPARDO",
+    "alt": "MASCHIO GASPARDO — equipos de maquinaria",
+    "file": "library/e7c8ca894f2547eabce71a8068316081.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:47.458Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "90c89a9d-0bfb-4cf2-85be-316374c1baec",
+  "fields": {
+    "title": "Catálogo — AV490 — imagen 2",
+    "alt": "Minicargador BULL AV490 — vista 2",
+    "file": "library/46b0d04010c147ce9caf0e21ffe8e553.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:09.930Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "9245aa17-c8ce-4652-b04e-973819e7ea02",
+  "fields": {
+    "title": "Catálogo — SK210 — imagen 3",
+    "alt": "Excavadora Kobelco SK210 — vista 3",
+    "file": "library/e57f5ac78dd943a99fe16ba149e1cb87.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:01.980Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "9461434c-51c7-4412-bb1d-932bc007fde7",
+  "fields": {
+    "title": "AgriExpo Perú 2026 — banner de evento",
+    "alt": "AgriExpo Perú 2026, 15.ª feria, 22 al 24 de octubre, Arena 1, San Miguel, Lima",
+    "file": "library/ff251a9442554c6984e9cdeaf7d69250.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:14:45.770Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "94a51f2b-d8ce-4294-b701-cca46ead5cc9",
+  "fields": {
+    "title": "Ficha técnica — bull HD100",
+    "alt": "Ficha técnica de Retroexcavadora BULL HD100",
+    "file": "library/02675622ea834b049bc8b271ce86d8eb.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:07.603Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "94b8e38a-72e2-4f29-aacc-fd0856b22679",
+  "fields": {
+    "title": "Catálogo — AV490 — imagen 1",
+    "alt": "Minicargador BULL AV490 — vista general",
+    "file": "library/79814f279a9d4ee182c51d79af81a740.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:09.088Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "9e036838-235f-40d9-9d44-4d14a7afdf16",
+  "fields": {
+    "title": "Ficha técnica — kobelco SK260",
+    "alt": "Ficha técnica de Excavadora Kobelco SK260",
+    "file": "library/aa572b3be82c44568ecdea2d8d962bb3.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:04.388Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "a0231f94-cc45-4706-af10-3460b9527722",
+  "fields": {
+    "title": "Catálogo — SK350LC — imagen 1",
+    "alt": "Excavadora Kobelco SK350LC — vista general",
+    "file": "library/5fd7659ac4ef4e10994aa879602a2b6f.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:05.018Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "a7863152-35fa-4531-8390-74365ea58c9e",
+  "fields": {
+    "title": "Catálogo — SK210 — imagen 2",
+    "alt": "Excavadora Kobelco SK210 — vista 2",
+    "file": "library/53ebc36195114c9aa3051dc8c82d47ca.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:01.340Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "a99eddf3-82a8-498c-8d0e-96878fb788c3",
+  "fields": {
+    "title": "Catálogo — B2401D — imagen 1",
+    "alt": "Tractor compacto Kubota B2401D — vista general",
+    "file": "library/31c901e4d2004d9b9c2ecc0520d3ab38.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:50.897Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "aa420bc8-a479-4271-93e1-9123ccfdbbc0",
+  "fields": {
+    "title": "Catálogo — MTR 4 — imagen 1",
+    "alt": "Sembradora abonadora Gaspardo MTR 4 — vista general",
+    "file": "library/0941c858baa240e084f86c8d6472b9c5.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:14.043Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "ac8e6d59-b66b-453d-a120-3992aabdc20a",
+  "fields": {
+    "title": "Catálogo — SK260 — imagen 1",
+    "alt": "Excavadora Kobelco SK260 — vista general",
+    "file": "library/b51fc8ad8454456cb08feca6b7d66dba.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:03.010Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "b07d5c5d-dd3b-49f0-b439-3e6924cf98bf",
+  "fields": {
+    "title": "Rotavatores — catálogo oficial 2024 (inglés)",
+    "alt": "Gama de rotavatores — catálogo del fabricante, agosto de 2024",
+    "file": "library/a2ffc3b57a324448bcfeb46cb2146c8c.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:14.826Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "b0a393e7-4729-491a-b490-dcc758107d22",
+  "fields": {
+    "title": "Ficha técnica — kubota M108SDC",
+    "alt": "Ficha técnica de Tractor Kubota M108S cabinado",
+    "file": "library/cc7ee3c5a0574869992ee1d843409d4d.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:59.133Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "b3c923a3-811e-47ff-b0f2-01a75f33c993",
+  "fields": {
+    "title": "Catálogo — HD100 — imagen 3",
+    "alt": "Retroexcavadora BULL HD100 — vista 3",
+    "file": "library/3a6d39e2a46d4a5dbc62b083dba34f52.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:07.598Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "be10696f-b5d8-4284-bfb4-0df86435b4bd",
+  "fields": {
+    "title": "Fondo de marca Kubota — octubre 2026",
+    "alt": "Kubota — maquinaria y detalles de trabajo",
+    "file": "library/fa0ad4b3443745fd978ee1c7a366babf.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T15:42:17.618Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "bf4c4e67-4651-4a25-9049-6dadecf58cf1",
+  "fields": {
+    "title": "Catálogo — M108S — imagen 3",
+    "alt": "Tractor Kubota M108S — vista 3",
+    "file": "library/c1b6bbd6bbf040659d443a419d2fd6d2.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:49.739Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "c235b252-9e36-4083-92f2-ab9fbd0a473c",
+  "fields": {
+    "title": "Catálogo — Super Premium 270 — 18 × 26 — imagen 1",
+    "alt": "Rastra Inroda Super Premium 270 — vista general",
+    "file": "library/1e5a815198614ea29eea9c4751bfc462.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:14.773Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "c2f0f8f8-d0af-436f-8bce-a6dac75a2971",
+  "fields": {
+    "title": "Catálogo — MX5100D — imagen 1",
+    "alt": "Tractor Kubota MX5100D — vista general",
+    "file": "library/dfb1454c08ac4952be9e1788e7b93753.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:52.278Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "c4d69c04-0957-450e-ae77-e66ddb3aded2",
+  "fields": {
+    "title": "Catálogo — DC70G — imagen 1",
+    "alt": "Cosechadora Kubota DC70G — vista general",
+    "file": "library/c9b85aba3b334601996ff95f263b1e84.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:00.469Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "d0b672a3-7c94-56bd-ac21-dc69c87df483",
+  "fields": {
+    "title": "Logo Morgillo",
+    "alt": "Logo Morgillo",
+    "file": "library/73223e4738374451844cf5057cef0692.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T13:36:45.768Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "d7517d17-049d-4b0e-a33f-74bad6f16479",
+  "fields": {
+    "title": "Ficha técnica — kubota L4508",
+    "alt": "Ficha técnica de Tractor Kubota L4508",
+    "file": "library/d23e2641a3564a2f869119df9642447a.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:52.210Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "d9d9570b-cdf9-4421-84ae-8f7e71deb441",
+  "fields": {
+    "title": "Catálogo — M7040D — imagen 1",
+    "alt": "Tractor Kubota M7040D — vista general",
+    "file": "library/04c43d8c02ec47ee86ed9438e80f6592.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:52.492Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "e0be3235-2788-4096-a74e-533f112b6070",
+  "fields": {
+    "title": "Ficha técnica — bull AV490",
+    "alt": "Ficha técnica de Minicargador BULL AV490",
+    "file": "library/c79318b86256497898fc867d81542c34.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:10.674Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "e161da67-77a0-416d-931b-c49a76d69df0",
+  "fields": {
+    "title": "Catálogo — L4508 — imagen 1",
+    "alt": "Tractor Kubota L4508 — vista general",
+    "file": "library/dcbbb51c2d6e41d79638a37dad3e1aa8.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:52.198Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "e4357274-724f-4b4a-904c-0ad551bbf9de",
+  "fields": {
+    "title": "Ficha técnica — maschio-gaspardo B230",
+    "alt": "Ficha técnica de Rotavator Maschio B230",
+    "file": "library/5f317a6f3692466e9e756f32427dc394.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:54:12.261Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "ea151ff8-3323-47ca-9389-78ad1eebd813",
+  "fields": {
+    "title": "Catálogo — M108S — imagen 2",
+    "alt": "Tractor Kubota M108S — vista 2",
+    "file": "library/a20b4e4144424cb4b7852e1ffe386667.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:49.210Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "ee119214-f6cd-4417-8574-2f829539603c",
+  "fields": {
+    "title": "Catálogo — DC105X — imagen 1",
+    "alt": "Cosechadora Kubota DC105X — vista general",
+    "file": "library/e5c1ac90399c4eb7b7380fcdd4491bbe.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:00.935Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "ef4a03fc-0083-467a-98ba-cad43de997ed",
+  "fields": {
+    "title": "Ficha técnica — kubota M8540N Cabinado",
+    "alt": "Ficha técnica de Tractor Kubota M8540N cabinado",
+    "file": "library/c746099714564b67a9e4736e0d5100b5.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:53.880Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "f037d818-43e6-4343-86ad-c18cc4f32b91",
+  "fields": {
+    "title": "Catálogo — HD100 — imagen 1",
+    "alt": "Retroexcavadora BULL HD100 — vista general",
+    "file": "library/27a37f977af64a17881c5308f0e7c078.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:06.155Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "f13bce13-9c51-4657-9e07-ecf37b44fcee",
+  "fields": {
+    "title": "Catálogo — C230 — imagen 1",
+    "alt": "Rotavator Maschio C230 — vista general",
+    "file": "library/d8bfdac5294340e2876ad07ad9fa0b45.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:13.145Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "f6969843-8ba1-45aa-a3d5-cd8c40cb592c",
+  "fields": {
+    "title": "Catálogo — AV490 — imagen 3",
+    "alt": "Minicargador BULL AV490 — vista 3",
+    "file": "library/74b428f03fd64b63b5e93c0f2f6b004b.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:10.667Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "f80287bc-49f7-4b72-b8e9-8a12b606b9ee",
+  "fields": {
+    "title": "Ficha técnica — kubota B2401D",
+    "alt": "Ficha técnica de Tractor compacto Kubota B2401D",
+    "file": "library/68a45853780d425b9ca1daa6ac8ecc03.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:51.560Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "f82b64ac-51ce-4b58-8aab-253aa1bf1725",
+  "fields": {
+    "title": "Ficha técnica — kubota M8540N Power Crawler",
+    "alt": "Ficha técnica de Tractor Kubota M8540N Power Crawler",
+    "file": "library/66a500eaf25142e0bda3032213ab3ffe.pdf",
+    "kind": "pdf",
+    "created_at": "2026-10-09T14:53:54.580Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "fb5fc75f-f606-4844-a1a7-476829fc2cc8",
+  "fields": {
+    "title": "Catálogo — SK210 — imagen 1",
+    "alt": "Excavadora Kobelco SK210 — vista general",
+    "file": "library/be0e55259efd44e0a2808de1aebd1e79.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:54:01.170Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "fcebd786-33dc-4a9d-9748-1f9d784f898d",
+  "fields": {
+    "title": "Catálogo — M135X — imagen 1",
+    "alt": "Tractor Kubota M135X — vista general",
+    "file": "library/b535c2e3556e426b84fb4731cd4dc3d9.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:59.335Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "fd2b5d2a-89ef-4cdf-9d43-66fd1743ca00",
+  "fields": {
+    "title": "Catálogo — B2401D — imagen 2",
+    "alt": "Tractor compacto Kubota B2401D — vista 2",
+    "file": "library/db6c690b6b884d63aac4969406d87365.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T14:53:51.541Z"
+  }
+},
+{
+  "model": "content.mediaasset",
+  "pk": "fff4c832-4eaa-4d70-82a5-7d373c92c80d",
+  "fields": {
+    "title": "Fondo de marca BULL — octubre 2026",
+    "alt": "BULL — maquinaria y detalles de trabajo",
+    "file": "library/6fe84bf77fdb4398821eb7f52014d0da.webp",
+    "kind": "image",
+    "created_at": "2026-10-09T15:42:19.384Z"
+  }
+},
+{
+  "model": "content.brand",
+  "pk": 1,
+  "fields": {
+    "slug": "kubota",
+    "name": "KUBOTA",
+    "description": "Soluciones para el trabajo agrícola.",
+    "image": "be10696f-b5d8-4284-bfb4-0df86435b4bd",
+    "primary": true,
+    "active": true,
+    "position": 0
+  }
+},
+{
+  "model": "content.brand",
+  "pk": 2,
+  "fields": {
+    "slug": "kobelco",
+    "name": "KOBELCO",
+    "description": "Maquinaria para tus proyectos de construcción.",
+    "image": "6e38a40f-2500-45ec-be1b-4d0748c5e685",
+    "primary": true,
+    "active": true,
+    "position": 1
+  }
+},
+{
+  "model": "content.brand",
+  "pk": 3,
+  "fields": {
+    "slug": "bull",
+    "name": "BULL",
+    "description": "Equipos para construcción y movimiento de tierra.",
+    "image": "fff4c832-4eaa-4d70-82a5-7d373c92c80d",
+    "primary": true,
+    "active": true,
+    "position": 2
+  }
+},
+{
+  "model": "content.brand",
+  "pk": 4,
+  "fields": {
+    "slug": "maschio-gaspardo",
+    "name": "MASCHIO GASPARDO",
+    "description": "Rotavatores y sembradoras para preparación del suelo y siembra.",
+    "image": "8e5ce3d2-df73-4216-a4fb-7e9ea0b494c3",
+    "primary": false,
+    "active": true,
+    "position": 3
+  }
+},
+{
+  "model": "content.brand",
+  "pk": 5,
+  "fields": {
+    "slug": "inroda",
+    "name": "INRODA",
+    "description": "Rastras e implementos para preparación del suelo.",
+    "image": "6d073c06-8bd8-475a-a96e-581b313885cb",
+    "primary": false,
+    "active": true,
+    "position": 4
+  }
+},
+{
+  "model": "content.brand",
+  "pk": 6,
+  "fields": {
+    "slug": "lonking",
+    "name": "LONKING",
+    "description": "Cargadores frontales para construcción y movimiento de materiales.",
+    "image": "399e26e1-b95b-4091-af10-a472ccd3b542",
+    "primary": false,
+    "active": true,
+    "position": 5
+  }
+},
+{
+  "model": "content.category",
+  "pk": 1,
+  "fields": {
+    "slug": "agricola",
+    "name": "Agrícola",
+    "subtitle": "Kubota",
+    "description": "Equipos para acompañar cada etapa del trabajo en el campo.",
+    "image": "3789af90-abf8-5469-a026-c45691136c1c",
+    "position": 0
+  }
+},
+{
+  "model": "content.category",
+  "pk": 2,
+  "fields": {
+    "slug": "construccion",
+    "name": "Construcción",
+    "subtitle": "Kobelco · BULL",
+    "description": "Maquinaria para excavación y movimiento de tierra.",
+    "image": "11f03bbb-5a06-57e0-a307-36da4e4cbf85",
+    "position": 1
+  }
+},
+{
+  "model": "content.category",
+  "pk": 3,
+  "fields": {
+    "slug": "implementos",
+    "name": "Implementos",
+    "subtitle": "Complementa tu equipo",
+    "description": "Encuentra el complemento adecuado para tu operación.",
+    "image": "8c4120ec-08fc-5f2d-9f48-ff6cfde8db79",
+    "position": 2
+  }
+},
+{
+  "model": "content.product",
+  "pk": 1,
+  "fields": {
+    "name": "Tractor Kubota M108S",
+    "slug": "demo-tractor",
+    "model": "M108S",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M108S para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": true,
+    "published": true,
+    "mock": false,
+    "position": 0,
+    "updated_at": "2026-10-09T14:53:48.334Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 5,
+  "fields": {
+    "name": "Tractor compacto Kubota B2401D",
+    "slug": "kubota-b2401d",
+    "model": "B2401D",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor compacto Kubota B2401D para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 1,
+    "updated_at": "2026-10-09T14:53:49.757Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 6,
+  "fields": {
+    "name": "Tractor Kubota L4508",
+    "slug": "kubota-l4508",
+    "model": "L4508",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota L4508 para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 2,
+    "updated_at": "2026-10-09T14:53:51.560Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 7,
+  "fields": {
+    "name": "Tractor Kubota MX5100D",
+    "slug": "kubota-mx5100d",
+    "model": "MX5100D",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota MX5100D para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 3,
+    "updated_at": "2026-10-09T14:53:52.210Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 8,
+  "fields": {
+    "name": "Tractor Kubota M7040D",
+    "slug": "kubota-m7040d",
+    "model": "M7040D",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M7040D para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 4,
+    "updated_at": "2026-10-09T14:53:52.290Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 9,
+  "fields": {
+    "name": "Tractor Kubota M8540N",
+    "slug": "kubota-m8540n",
+    "model": "M8540N",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M8540N para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 5,
+    "updated_at": "2026-10-09T14:53:52.502Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 10,
+  "fields": {
+    "name": "Tractor Kubota M8540N cabinado",
+    "slug": "kubota-m8540n-cabinado",
+    "model": "M8540N Cabinado",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M8540N cabinado para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 6,
+    "updated_at": "2026-10-09T14:53:52.961Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 11,
+  "fields": {
+    "name": "Tractor Kubota M8540N Power Crawler",
+    "slug": "kubota-m8540n-power-crawler",
+    "model": "M8540N Power Crawler",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M8540N Power Crawler para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 7,
+    "updated_at": "2026-10-09T14:53:53.886Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 12,
+  "fields": {
+    "name": "Tractor Kubota M9540D",
+    "slug": "kubota-m9540d",
+    "model": "M9540D",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M9540D para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 8,
+    "updated_at": "2026-10-09T14:53:54.580Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 13,
+  "fields": {
+    "name": "Tractor Kubota M9540D cabinado",
+    "slug": "kubota-m9540d-cabinado",
+    "model": "M9540D Cabinado",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M9540D cabinado para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 9,
+    "updated_at": "2026-10-09T14:53:56.902Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 14,
+  "fields": {
+    "name": "Tractor Kubota M108S cabinado",
+    "slug": "kubota-m108s-cabinado",
+    "model": "M108SDC",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M108S cabinado para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 10,
+    "updated_at": "2026-10-09T14:53:57.340Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 15,
+  "fields": {
+    "name": "Tractor Kubota M135X",
+    "slug": "kubota-m135x",
+    "model": "M135X",
+    "brand": 1,
+    "category": 1,
+    "description": "Tractor Kubota M135X para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 11,
+    "updated_at": "2026-10-09T14:53:59.135Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 16,
+  "fields": {
+    "name": "Cosechadora Kubota DC70G",
+    "slug": "kubota-dc70",
+    "model": "DC70G",
+    "brand": 1,
+    "category": 1,
+    "description": "Cosechadora Kubota DC70G para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 12,
+    "updated_at": "2026-10-09T14:54:00.164Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 17,
+  "fields": {
+    "name": "Cosechadora Kubota DC105X",
+    "slug": "kubota-dc105",
+    "model": "DC105X",
+    "brand": 1,
+    "category": 1,
+    "description": "Cosechadora Kubota DC105X para el trabajo agrícola. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 13,
+    "updated_at": "2026-10-09T14:54:00.485Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 2,
+  "fields": {
+    "name": "Excavadora Kobelco SK210",
+    "slug": "demo-excavadora",
+    "model": "SK210",
+    "brand": 2,
+    "category": 2,
+    "description": "Excavadora Kobelco SK210 para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": true,
+    "published": true,
+    "mock": false,
+    "position": 14,
+    "updated_at": "2026-10-09T14:54:00.940Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 18,
+  "fields": {
+    "name": "Miniexcavadora Kobelco SK35SR",
+    "slug": "kobelco-sk35sr",
+    "model": "SK35SR",
+    "brand": 2,
+    "category": 2,
+    "description": "Miniexcavadora Kobelco SK35SR para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 15,
+    "updated_at": "2026-10-09T14:54:01.992Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 19,
+  "fields": {
+    "name": "Excavadora Kobelco SK260",
+    "slug": "kobelco-sk260",
+    "model": "SK260",
+    "brand": 2,
+    "category": 2,
+    "description": "Excavadora Kobelco SK260 para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 16,
+    "updated_at": "2026-10-09T14:54:02.109Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 20,
+  "fields": {
+    "name": "Excavadora Kobelco SK350LC",
+    "slug": "kobelco-sk350",
+    "model": "SK350LC",
+    "brand": 2,
+    "category": 2,
+    "description": "Excavadora Kobelco SK350LC para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 17,
+    "updated_at": "2026-10-09T14:54:04.391Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 3,
+  "fields": {
+    "name": "Retroexcavadora BULL HD100",
+    "slug": "demo-bull",
+    "model": "HD100",
+    "brand": 3,
+    "category": 2,
+    "description": "Retroexcavadora BULL HD100 para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": true,
+    "published": true,
+    "mock": false,
+    "position": 18,
+    "updated_at": "2026-10-09T14:54:06.040Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 21,
+  "fields": {
+    "name": "Retroexcavadora BULL HD96",
+    "slug": "bull-hd96",
+    "model": "HD96",
+    "brand": 3,
+    "category": 2,
+    "description": "Retroexcavadora BULL HD96 para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 19,
+    "updated_at": "2026-10-09T14:54:07.603Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 22,
+  "fields": {
+    "name": "Minicargador BULL AV490",
+    "slug": "bull-av490",
+    "model": "AV490",
+    "brand": 3,
+    "category": 2,
+    "description": "Minicargador BULL AV490 para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 20,
+    "updated_at": "2026-10-09T14:54:08.330Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 23,
+  "fields": {
+    "name": "Cargador frontal Lonking CDM856",
+    "slug": "lonking-cdm856",
+    "model": "CDM856",
+    "brand": 6,
+    "category": 2,
+    "description": "Cargador frontal Lonking CDM856 para construcción y movimiento de materiales. Consulta las características del equipo y la documentación técnica. Nuestro equipo te orientará sobre la configuración, compatibilidad y disponibilidad.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 21,
+    "updated_at": "2026-10-09T14:54:10.674Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 4,
+  "fields": {
+    "name": "Rotavator Maschio B230",
+    "slug": "demo-implemento",
+    "model": "B230",
+    "brand": 4,
+    "category": 3,
+    "description": "Rotavator de la serie B para la preparación del suelo. La tabla corresponde a la serie B del catálogo técnico adjunto; la variante B SUPER tiene especificaciones distintas. Consulta la configuración y compatibilidad para tu tractor.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 22,
+    "updated_at": "2026-10-09T14:54:11.351Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 24,
+  "fields": {
+    "name": "Rotavator Maschio C230",
+    "slug": "maschio-c230",
+    "model": "C230",
+    "brand": 4,
+    "category": 3,
+    "description": "Rotavator Maschio de la serie C para preparación del suelo. Los datos publicados corresponden al C230 del catálogo oficial de rotavatores de agosto de 2024. Consulta la configuración y compatibilidad con tu tractor.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 23,
+    "updated_at": "2026-10-09T15:01:08.795Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 25,
+  "fields": {
+    "name": "Sembradora abonadora Gaspardo MTR 4",
+    "slug": "gaspardo-mtr4",
+    "model": "MTR 4",
+    "brand": 4,
+    "category": 3,
+    "description": "Sembradora de precisión Gaspardo MTR de cuatro cuerpos. La gama MTR permite distintas configuraciones de siembra y fertilización. Consulta al equipo comercial la separación entre líneas y el equipamiento de la unidad que necesitas.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 24,
+    "updated_at": "2026-10-09T14:54:13.168Z"
+  }
+},
+{
+  "model": "content.product",
+  "pk": 26,
+  "fields": {
+    "name": "Rastra Inroda Super Premium 270",
+    "slug": "inroda-super-premium-270",
+    "model": "Super Premium 270 — 18 × 26",
+    "brand": 5,
+    "category": 3,
+    "description": "Rastra aradora Inroda Super Premium 270 en configuración de 18 discos de 26 pulgadas. Implemento para preparación del suelo y manejo de áreas de siembra. Verifica con nuestro equipo la compatibilidad con tu tractor.",
+    "featured": false,
+    "published": true,
+    "mock": false,
+    "position": 25,
+    "updated_at": "2026-10-09T14:54:14.053Z"
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 11,
+  "fields": {
+    "product": 1,
+    "asset": "2cf059b9-3e09-4828-b7b0-d8301e508243",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 14,
+  "fields": {
+    "product": 5,
+    "asset": "a99eddf3-82a8-498c-8d0e-96878fb788c3",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 16,
+  "fields": {
+    "product": 6,
+    "asset": "e161da67-77a0-416d-931b-c49a76d69df0",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 17,
+  "fields": {
+    "product": 7,
+    "asset": "c2f0f8f8-d0af-436f-8bce-a6dac75a2971",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 18,
+  "fields": {
+    "product": 8,
+    "asset": "d9d9570b-cdf9-4421-84ae-8f7e71deb441",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 19,
+  "fields": {
+    "product": 9,
+    "asset": "63b24024-40ce-4f6e-8e68-b06bf21360f5",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 20,
+  "fields": {
+    "product": 10,
+    "asset": "344eda59-15c6-484d-a48b-398792efcbe4",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 22,
+  "fields": {
+    "product": 11,
+    "asset": "1b4b80de-1ef1-49c3-9d11-0e91ac78387e",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 23,
+  "fields": {
+    "product": 12,
+    "asset": "5cb9d0f4-7e6d-4af4-9f32-fb5c95ad1f39",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 26,
+  "fields": {
+    "product": 13,
+    "asset": "41cc1288-7e76-4095-b228-b32e6270e766",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 27,
+  "fields": {
+    "product": 14,
+    "asset": "3f5d4717-b46f-4dc0-a769-a04fe9b7fe22",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 30,
+  "fields": {
+    "product": 15,
+    "asset": "fcebd786-33dc-4a9d-9748-1f9d784f898d",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 32,
+  "fields": {
+    "product": 16,
+    "asset": "c4d69c04-0957-450e-ae77-e66ddb3aded2",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 33,
+  "fields": {
+    "product": 17,
+    "asset": "ee119214-f6cd-4417-8574-2f829539603c",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 34,
+  "fields": {
+    "product": 2,
+    "asset": "fb5fc75f-f606-4844-a1a7-476829fc2cc8",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 37,
+  "fields": {
+    "product": 18,
+    "asset": "4f22bf77-a299-4737-9f76-d73260100a16",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 38,
+  "fields": {
+    "product": 19,
+    "asset": "ac8e6d59-b66b-453d-a120-3992aabdc20a",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 41,
+  "fields": {
+    "product": 20,
+    "asset": "a0231f94-cc45-4706-af10-3460b9527722",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 44,
+  "fields": {
+    "product": 3,
+    "asset": "f037d818-43e6-4343-86ad-c18cc4f32b91",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 47,
+  "fields": {
+    "product": 21,
+    "asset": "65d6a230-e596-4c14-aa83-3756da1b7628",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 48,
+  "fields": {
+    "product": 22,
+    "asset": "94b8e38a-72e2-4f29-aacc-fd0856b22679",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 51,
+  "fields": {
+    "product": 23,
+    "asset": "21f9ab37-a3dd-4e9f-8170-fd1115e350aa",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 52,
+  "fields": {
+    "product": 4,
+    "asset": "54362ce5-3828-4175-a78a-3e5ab97f1d3c",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 53,
+  "fields": {
+    "product": 24,
+    "asset": "f13bce13-9c51-4657-9e07-ecf37b44fcee",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 54,
+  "fields": {
+    "product": 25,
+    "asset": "aa420bc8-a479-4271-93e1-9123ccfdbbc0",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 55,
+  "fields": {
+    "product": 26,
+    "asset": "c235b252-9e36-4083-92f2-ab9fbd0a473c",
+    "position": 0
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 12,
+  "fields": {
+    "product": 1,
+    "asset": "ea151ff8-3323-47ca-9389-78ad1eebd813",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 15,
+  "fields": {
+    "product": 5,
+    "asset": "fd2b5d2a-89ef-4cdf-9d43-66fd1743ca00",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 21,
+  "fields": {
+    "product": 10,
+    "asset": "150f6119-dc9e-4d34-8406-a83c38653857",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 24,
+  "fields": {
+    "product": 12,
+    "asset": "2035dddf-f3ee-47fd-8233-7f6064ad04e3",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 28,
+  "fields": {
+    "product": 14,
+    "asset": "7ff4cbac-c7a6-4c16-b870-6ff374f84d4a",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 31,
+  "fields": {
+    "product": 15,
+    "asset": "0233baa4-7930-4434-86d4-40ad14e02664",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 35,
+  "fields": {
+    "product": 2,
+    "asset": "a7863152-35fa-4531-8390-74365ea58c9e",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 39,
+  "fields": {
+    "product": 19,
+    "asset": "07aeb5c0-099c-4b63-a219-8a592bcbb97e",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 42,
+  "fields": {
+    "product": 20,
+    "asset": "2530db60-1236-4fa1-bc26-74a754b66cc3",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 45,
+  "fields": {
+    "product": 3,
+    "asset": "77a10300-1846-4990-b93b-0c1124b2e265",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 49,
+  "fields": {
+    "product": 22,
+    "asset": "90c89a9d-0bfb-4cf2-85be-316374c1baec",
+    "position": 1
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 13,
+  "fields": {
+    "product": 1,
+    "asset": "bf4c4e67-4651-4a25-9049-6dadecf58cf1",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 25,
+  "fields": {
+    "product": 12,
+    "asset": "4681fa8b-3905-48f9-95fe-42b841bfabdf",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 29,
+  "fields": {
+    "product": 14,
+    "asset": "382bf3d2-0787-406a-b281-010370e998a3",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 36,
+  "fields": {
+    "product": 2,
+    "asset": "9245aa17-c8ce-4652-b04e-973819e7ea02",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 40,
+  "fields": {
+    "product": 19,
+    "asset": "7c862565-c1eb-4337-9c6f-3a41bff99f0e",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 43,
+  "fields": {
+    "product": 20,
+    "asset": "144e9303-c7bb-4f9a-a4a5-bc4b08f07468",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 46,
+  "fields": {
+    "product": 3,
+    "asset": "b3c923a3-811e-47ff-b0f2-01a75f33c993",
+    "position": 2
+  }
+},
+{
+  "model": "content.productimage",
+  "pk": 50,
+  "fields": {
+    "product": 22,
+    "asset": "f6969843-8ba1-45aa-a3d5-cd8c40cb592c",
+    "position": 2
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "asset": "1a192abf-d3c8-4081-89b1-1a5070c40af6"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 15,
+  "fields": {
+    "product": 2,
+    "asset": "7f7b9382-fc35-49a6-b65e-beeb152cdec7"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 19,
+  "fields": {
+    "product": 3,
+    "asset": "94a51f2b-d8ce-4294-b701-cca46ead5cc9"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 29,
+  "fields": {
+    "product": 4,
+    "asset": "b07d5c5d-dd3b-49f0-b439-3e6924cf98bf"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 23,
+  "fields": {
+    "product": 4,
+    "asset": "e4357274-724f-4b4a-904c-0ad551bbf9de"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 2,
+  "fields": {
+    "product": 5,
+    "asset": "f80287bc-49f7-4b72-b8e9-8a12b606b9ee"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 3,
+  "fields": {
+    "product": 6,
+    "asset": "d7517d17-049d-4b0e-a33f-74bad6f16479"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 4,
+  "fields": {
+    "product": 7,
+    "asset": "084e1d3c-c4fc-4586-85ac-de64062337b7"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 5,
+  "fields": {
+    "product": 8,
+    "asset": "25fd5712-5353-4aad-8bbe-98807a11c95c"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 6,
+  "fields": {
+    "product": 9,
+    "asset": "1be1a7d0-ece5-4472-b0a3-e9922952e6f8"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 7,
+  "fields": {
+    "product": 10,
+    "asset": "ef4a03fc-0083-467a-98ba-cad43de997ed"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 8,
+  "fields": {
+    "product": 11,
+    "asset": "f82b64ac-51ce-4b58-8aab-253aa1bf1725"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 9,
+  "fields": {
+    "product": 12,
+    "asset": "4eb1f1a5-0f2b-4f70-88df-c7de691d556d"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 10,
+  "fields": {
+    "product": 13,
+    "asset": "5c82ad4b-1052-4b74-aae1-266ca8203265"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 11,
+  "fields": {
+    "product": 14,
+    "asset": "b0a393e7-4729-491a-b490-dcc758107d22"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 12,
+  "fields": {
+    "product": 15,
+    "asset": "13f66d30-0466-439c-8f5c-4585a2dcfcbf"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 13,
+  "fields": {
+    "product": 16,
+    "asset": "1f270ef8-12b9-4883-b30a-4ebe979254a3"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 14,
+  "fields": {
+    "product": 17,
+    "asset": "51f77458-238d-48d6-9ab8-5f8555c60ff9"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 16,
+  "fields": {
+    "product": 18,
+    "asset": "7e533278-4e19-40d2-afc0-a65aa3eb6e2e"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 17,
+  "fields": {
+    "product": 19,
+    "asset": "9e036838-235f-40d9-9d44-4d14a7afdf16"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 18,
+  "fields": {
+    "product": 20,
+    "asset": "27dc1113-cee8-46d3-8ae2-1944415197f3"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 20,
+  "fields": {
+    "product": 21,
+    "asset": "41c33517-5e36-46e9-ad95-d81556d7d889"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 21,
+  "fields": {
+    "product": 22,
+    "asset": "e0be3235-2788-4096-a74e-533f112b6070"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 22,
+  "fields": {
+    "product": 23,
+    "asset": "730c3984-382f-41a5-9db9-b749b4d56179"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 24,
+  "fields": {
+    "product": 24,
+    "asset": "1f22679a-0648-403b-96cf-b28e9ba9e615"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 28,
+  "fields": {
+    "product": 24,
+    "asset": "b07d5c5d-dd3b-49f0-b439-3e6924cf98bf"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 27,
+  "fields": {
+    "product": 25,
+    "asset": "1baa433e-4c09-4660-b910-73ffd523fc4c"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 25,
+  "fields": {
+    "product": 25,
+    "asset": "629d89e3-22eb-4ffc-91c3-0f3d0dedd8a4"
+  }
+},
+{
+  "model": "content.productdocument",
+  "pk": 26,
+  "fields": {
+    "product": 26,
+    "asset": "49a5eca4-f688-41e1-96e4-0f80d5655109"
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "label": "Potencia neta del motor",
+    "value": "108",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 6,
+  "fields": {
+    "product": 5,
+    "label": "Potencia bruta del motor",
+    "value": "24",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 11,
+  "fields": {
+    "product": 6,
+    "label": "Potencia bruta del motor",
+    "value": "45,3",
+    "unit": "CV",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 16,
+  "fields": {
+    "product": 7,
+    "label": "Potencia neta del motor",
+    "value": "50",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 21,
+  "fields": {
+    "product": 8,
+    "label": "Potencia neta del motor",
+    "value": "71",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 26,
+  "fields": {
+    "product": 9,
+    "label": "Potencia neta del motor",
+    "value": "84,6",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 31,
+  "fields": {
+    "product": 10,
+    "label": "Potencia del motor",
+    "value": "86,7",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 35,
+  "fields": {
+    "product": 11,
+    "label": "Potencia neta del motor",
+    "value": "84,6",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 38,
+  "fields": {
+    "product": 12,
+    "label": "Potencia neta del motor",
+    "value": "95",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 43,
+  "fields": {
+    "product": 13,
+    "label": "Potencia neta del motor",
+    "value": "95",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 48,
+  "fields": {
+    "product": 14,
+    "label": "Modelo según ficha",
+    "value": "M108SDC",
+    "unit": "",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 53,
+  "fields": {
+    "product": 15,
+    "label": "Potencia del motor",
+    "value": "135",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 57,
+  "fields": {
+    "product": 16,
+    "label": "Tanque de grano",
+    "value": "1000",
+    "unit": "kg",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 63,
+  "fields": {
+    "product": 2,
+    "label": "Tipo",
+    "value": "Excavadora hidráulica sobre orugas",
+    "unit": "",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 67,
+  "fields": {
+    "product": 18,
+    "label": "Peso operativo",
+    "value": "3770",
+    "unit": "kg",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 71,
+  "fields": {
+    "product": 19,
+    "label": "Peso operativo (zapatas 600 mm)",
+    "value": "25700",
+    "unit": "kg",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 77,
+  "fields": {
+    "product": 3,
+    "label": "Potencia de referencia",
+    "value": "100",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 84,
+  "fields": {
+    "product": 22,
+    "label": "Potencia del motor",
+    "value": "49,5",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 89,
+  "fields": {
+    "product": 23,
+    "label": "Carga nominal",
+    "value": "5000",
+    "unit": "kg",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 94,
+  "fields": {
+    "product": 4,
+    "label": "Ancho de trabajo (serie B)",
+    "value": "230",
+    "unit": "cm",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 104,
+  "fields": {
+    "product": 25,
+    "label": "Sistema de siembra",
+    "value": "Neumático de precisión",
+    "unit": "",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 107,
+  "fields": {
+    "product": 26,
+    "label": "Número de discos",
+    "value": "18",
+    "unit": "",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 112,
+  "fields": {
+    "product": 24,
+    "label": "Ancho de trabajo",
+    "value": "230",
+    "unit": "cm",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 118,
+  "fields": {
+    "product": 17,
+    "label": "Potencia del motor",
+    "value": "105",
+    "unit": "HP",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 125,
+  "fields": {
+    "product": 20,
+    "label": "Capacidad de cucharón de referencia",
+    "value": "2,20",
+    "unit": "m³",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 131,
+  "fields": {
+    "product": 21,
+    "label": "Cucharón delantero estándar",
+    "value": "1,0",
+    "unit": "m³",
+    "position": 0
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "label": "Motor",
+    "value": "V3800-DI-TIE2",
+    "unit": "",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 7,
+  "fields": {
+    "product": 5,
+    "label": "Potencia a la TDF",
+    "value": "19,2",
+    "unit": "HP",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 12,
+  "fields": {
+    "product": 6,
+    "label": "Potencia neta del motor",
+    "value": "43",
+    "unit": "CV",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 17,
+  "fields": {
+    "product": 7,
+    "label": "Potencia a la TDF",
+    "value": "43",
+    "unit": "HP",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 22,
+  "fields": {
+    "product": 8,
+    "label": "Potencia a la TDF",
+    "value": "66,6",
+    "unit": "HP",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 27,
+  "fields": {
+    "product": 9,
+    "label": "Potencia a la TDF",
+    "value": "79,5",
+    "unit": "HP",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 32,
+  "fields": {
+    "product": 10,
+    "label": "Cilindrada",
+    "value": "3769",
+    "unit": "cm³",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 36,
+  "fields": {
+    "product": 11,
+    "label": "Cilindrada",
+    "value": "3769",
+    "unit": "cm³",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 39,
+  "fields": {
+    "product": 12,
+    "label": "Potencia a la TDF",
+    "value": "81,9",
+    "unit": "HP",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 44,
+  "fields": {
+    "product": 13,
+    "label": "Potencia a la TDF",
+    "value": "84",
+    "unit": "HP",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 49,
+  "fields": {
+    "product": 14,
+    "label": "Cilindrada",
+    "value": "3769",
+    "unit": "cm³",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 54,
+  "fields": {
+    "product": 15,
+    "label": "Motor",
+    "value": "Kubota V6108",
+    "unit": "",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 58,
+  "fields": {
+    "product": 16,
+    "label": "Ancho de corte",
+    "value": "2075",
+    "unit": "mm",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 64,
+  "fields": {
+    "product": 2,
+    "label": "Pluma estándar",
+    "value": "5,65",
+    "unit": "m",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 68,
+  "fields": {
+    "product": 18,
+    "label": "Capacidad del cucharón",
+    "value": "0,11",
+    "unit": "m³",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 72,
+  "fields": {
+    "product": 19,
+    "label": "Tanque de combustible",
+    "value": "403",
+    "unit": "L",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 78,
+  "fields": {
+    "product": 3,
+    "label": "Cucharón delantero estándar",
+    "value": "1,1",
+    "unit": "m³",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 85,
+  "fields": {
+    "product": 22,
+    "label": "Capacidad operativa nominal",
+    "value": "655",
+    "unit": "kg",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 90,
+  "fields": {
+    "product": 23,
+    "label": "Capacidad del cucharón",
+    "value": "3,0",
+    "unit": "m³",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 95,
+  "fields": {
+    "product": 4,
+    "label": "Peso (serie B)",
+    "value": "735",
+    "unit": "kg",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 105,
+  "fields": {
+    "product": 25,
+    "label": "Número de cuerpos",
+    "value": "4",
+    "unit": "",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 108,
+  "fields": {
+    "product": 26,
+    "label": "Diámetro de discos",
+    "value": "26",
+    "unit": "pulgadas",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 113,
+  "fields": {
+    "product": 24,
+    "label": "Peso de referencia",
+    "value": "778",
+    "unit": "kg",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 119,
+  "fields": {
+    "product": 17,
+    "label": "Capacidad de grano",
+    "value": "1400",
+    "unit": "kg",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 126,
+  "fields": {
+    "product": 20,
+    "label": "Profundidad de excavación (brazo estándar)",
+    "value": "7,56",
+    "unit": "m",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 132,
+  "fields": {
+    "product": 21,
+    "label": "Altura de descarga del cargador",
+    "value": "2,96",
+    "unit": "m",
+    "position": 1
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "label": "Cilindrada",
+    "value": "3769",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 8,
+  "fields": {
+    "product": 5,
+    "label": "Cilindrada",
+    "value": "1123",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 13,
+  "fields": {
+    "product": 6,
+    "label": "Cilindrada",
+    "value": "2197",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 18,
+  "fields": {
+    "product": 7,
+    "label": "Cilindrada",
+    "value": "2434",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 23,
+  "fields": {
+    "product": 8,
+    "label": "Cilindrada",
+    "value": "3331",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 28,
+  "fields": {
+    "product": 9,
+    "label": "Cilindrada",
+    "value": "3769",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 33,
+  "fields": {
+    "product": 10,
+    "label": "Tanque de combustible",
+    "value": "76",
+    "unit": "L",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 37,
+  "fields": {
+    "product": 11,
+    "label": "Sistema trasero",
+    "value": "Power Crawler",
+    "unit": "",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 40,
+  "fields": {
+    "product": 12,
+    "label": "Cilindrada",
+    "value": "3769",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 45,
+  "fields": {
+    "product": 13,
+    "label": "Tanque de combustible",
+    "value": "110",
+    "unit": "L",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 50,
+  "fields": {
+    "product": 14,
+    "label": "Tanque de combustible",
+    "value": "175",
+    "unit": "L",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 55,
+  "fields": {
+    "product": 15,
+    "label": "Cilindrada",
+    "value": "6124",
+    "unit": "cm³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 59,
+  "fields": {
+    "product": 16,
+    "label": "Motor",
+    "value": "Kubota V2403",
+    "unit": "",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 65,
+  "fields": {
+    "product": 2,
+    "label": "Brazo estándar",
+    "value": "2,94",
+    "unit": "m",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 69,
+  "fields": {
+    "product": 18,
+    "label": "Profundidad máxima de excavación",
+    "value": "3050",
+    "unit": "mm",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 73,
+  "fields": {
+    "product": 19,
+    "label": "Brazo estándar",
+    "value": "2,98",
+    "unit": "m",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 79,
+  "fields": {
+    "product": 3,
+    "label": "Cucharón de excavación estándar",
+    "value": "0,22",
+    "unit": "m³",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 86,
+  "fields": {
+    "product": 22,
+    "label": "Peso operativo",
+    "value": "2610",
+    "unit": "kg",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 91,
+  "fields": {
+    "product": 23,
+    "label": "Peso operativo",
+    "value": "17300 ± 300",
+    "unit": "kg",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 96,
+  "fields": {
+    "product": 4,
+    "label": "Enganche",
+    "value": "Categoría II",
+    "unit": "",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 106,
+  "fields": {
+    "product": 25,
+    "label": "Bastidor",
+    "value": "Fijo",
+    "unit": "",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 109,
+  "fields": {
+    "product": 26,
+    "label": "Ancho de corte",
+    "value": "2300",
+    "unit": "mm",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 114,
+  "fields": {
+    "product": 24,
+    "label": "Profundidad máxima",
+    "value": "25",
+    "unit": "cm",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 120,
+  "fields": {
+    "product": 17,
+    "label": "Ancho de corte",
+    "value": "2760",
+    "unit": "mm",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 127,
+  "fields": {
+    "product": 20,
+    "label": "Alcance máximo (brazo estándar)",
+    "value": "11,26",
+    "unit": "m",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 133,
+  "fields": {
+    "product": 21,
+    "label": "Transmisión",
+    "value": "Carraro",
+    "unit": "",
+    "position": 2
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "label": "Tanque de combustible",
+    "value": "175",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 9,
+  "fields": {
+    "product": 5,
+    "label": "Tanque de combustible",
+    "value": "23",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 14,
+  "fields": {
+    "product": 6,
+    "label": "Tanque de combustible",
+    "value": "42",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 19,
+  "fields": {
+    "product": 7,
+    "label": "Tanque de combustible",
+    "value": "48",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 24,
+  "fields": {
+    "product": 8,
+    "label": "Tanque de combustible",
+    "value": "67",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 29,
+  "fields": {
+    "product": 9,
+    "label": "Tanque de combustible",
+    "value": "60",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 34,
+  "fields": {
+    "product": 10,
+    "label": "Configuración",
+    "value": "Cabina",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 41,
+  "fields": {
+    "product": 12,
+    "label": "Tanque de combustible",
+    "value": "90",
+    "unit": "L",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 46,
+  "fields": {
+    "product": 13,
+    "label": "Transmisión",
+    "value": "12 adelante / 12 reversa",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 51,
+  "fields": {
+    "product": 14,
+    "label": "Transmisión",
+    "value": "16 adelante / 16 reversa",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 56,
+  "fields": {
+    "product": 15,
+    "label": "Transmisión",
+    "value": "Powershift",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 60,
+  "fields": {
+    "product": 16,
+    "label": "Desplazamiento",
+    "value": "Transmisión hidrostática",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 66,
+  "fields": {
+    "product": 2,
+    "label": "Profundidad de excavación (brazo estándar)",
+    "value": "6,7",
+    "unit": "m",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 70,
+  "fields": {
+    "product": 18,
+    "label": "Alcance máximo",
+    "value": "5350",
+    "unit": "mm",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 74,
+  "fields": {
+    "product": 19,
+    "label": "Capacidad de cucharón de referencia",
+    "value": "1,0",
+    "unit": "m³",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 80,
+  "fields": {
+    "product": 3,
+    "label": "Profundidad de excavación estándar",
+    "value": "4,60",
+    "unit": "m",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 87,
+  "fields": {
+    "product": 22,
+    "label": "Motor",
+    "value": "Kubota, 4 cilindros",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 92,
+  "fields": {
+    "product": 23,
+    "label": "Potencia nominal",
+    "value": "160",
+    "unit": "kW",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 97,
+  "fields": {
+    "product": 4,
+    "label": "Toma de fuerza",
+    "value": "540",
+    "unit": "rpm",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 110,
+  "fields": {
+    "product": 26,
+    "label": "Separación de discos",
+    "value": "270",
+    "unit": "mm",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 115,
+  "fields": {
+    "product": 24,
+    "label": "Enganche",
+    "value": "Categoría II",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 121,
+  "fields": {
+    "product": 17,
+    "label": "Peso de referencia",
+    "value": "4630",
+    "unit": "kg",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 128,
+  "fields": {
+    "product": 20,
+    "label": "Pluma estándar",
+    "value": "6,5",
+    "unit": "m",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 134,
+  "fields": {
+    "product": 21,
+    "label": "Motor según ficha",
+    "value": "Kirloskar",
+    "unit": "",
+    "position": 3
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 5,
+  "fields": {
+    "product": 1,
+    "label": "Transmisión",
+    "value": "16 adelante / 16 reversa",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 10,
+  "fields": {
+    "product": 5,
+    "label": "Tracción",
+    "value": "4WD",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 15,
+  "fields": {
+    "product": 6,
+    "label": "Transmisión",
+    "value": "8 adelante / 4 reversa",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 20,
+  "fields": {
+    "product": 7,
+    "label": "Transmisión",
+    "value": "8 adelante / 8 reversa",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 25,
+  "fields": {
+    "product": 8,
+    "label": "Transmisión",
+    "value": "8 adelante / 8 reversa",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 30,
+  "fields": {
+    "product": 9,
+    "label": "Transmisión",
+    "value": "10 adelante / 10 reversa",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 42,
+  "fields": {
+    "product": 12,
+    "label": "Transmisión",
+    "value": "8 adelante / 8 reversa",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 47,
+  "fields": {
+    "product": 13,
+    "label": "Configuración",
+    "value": "Cabina",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 52,
+  "fields": {
+    "product": 14,
+    "label": "Configuración",
+    "value": "Cabina",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 88,
+  "fields": {
+    "product": 22,
+    "label": "Transmisión",
+    "value": "Hidrostática",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 93,
+  "fields": {
+    "product": 23,
+    "label": "Motor",
+    "value": "Cummins 6CTAA8.3-C215",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 98,
+  "fields": {
+    "product": 4,
+    "label": "Profundidad máxima (serie B)",
+    "value": "25",
+    "unit": "cm",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 111,
+  "fields": {
+    "product": 26,
+    "label": "Peso de referencia",
+    "value": "1788",
+    "unit": "kg",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 116,
+  "fields": {
+    "product": 24,
+    "label": "Potencia de tractor de referencia",
+    "value": "60 a 130",
+    "unit": "HP",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 122,
+  "fields": {
+    "product": 17,
+    "label": "Motor",
+    "value": "Kubota V3800-DI-TI",
+    "unit": "",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 129,
+  "fields": {
+    "product": 20,
+    "label": "Brazo estándar",
+    "value": "3,3",
+    "unit": "m",
+    "position": 4
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 117,
+  "fields": {
+    "product": 24,
+    "label": "Toma de fuerza",
+    "value": "540 / 1000 (según configuración)",
+    "unit": "rpm",
+    "position": 5
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 123,
+  "fields": {
+    "product": 17,
+    "label": "Tanque de combustible",
+    "value": "105",
+    "unit": "L",
+    "position": 5
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 130,
+  "fields": {
+    "product": 20,
+    "label": "Motor según ficha",
+    "value": "Hino J08ETM-KSDL",
+    "unit": "",
+    "position": 5
+  }
+},
+{
+  "model": "content.specification",
+  "pk": 124,
+  "fields": {
+    "product": 17,
+    "label": "Configuración",
+    "value": "Sin cabina",
+    "unit": "",
+    "position": 6
+  }
+},
+{
+  "model": "content.article",
+  "pk": 1,
+  "fields": {
+    "title": "Morgillo estará presente en AgriExpo Perú 2026",
+    "slug": "morgillo-agriexpo-peru-2026",
+    "excerpt": "Del 22 al 24 de octubre, conoce nuestras soluciones de maquinaria agrícola en el Centro de Convenciones Arena 1, San Miguel, Lima.",
+    "body": "Morgillo Selva S.A.C., empresa peruana dedicada a la comercialización y distribución de maquinaria agrícola y pesada, participará en la 15.ª edición de AgriExpo Perú 2026. Durante la feria presentará tractores Kubota, incluido el modelo agrícola M108S, además de soluciones de maquinaria para el trabajo del campo. La empresa también ofrece equipos de construcción y maquinaria pesada de marcas reconocidas, acompañados de servicio postventa. Con una propuesta orientada a la productividad, el rendimiento y el respaldo técnico, Morgillo acercará a agricultores, empresarios y profesionales del sector equipos para distintas necesidades de operación. Los visitantes podrán conocer el Kubota M108S, consultar sobre sus aplicaciones y recibir asesoría especializada. AgriExpo Perú 2026 se realizará del 22 al 24 de octubre de 2026, de 11:00 a. m. a 8:00 p. m., en el Centro de Convenciones Arena 1 de la Costa Verde, San Miguel, Lima. Morgillo invita al público a visitar su stand y conocer sus soluciones para el campo.",
+    "image": "0397c631-7919-4965-98b2-1ec4018a18ee",
+    "published": true,
+    "published_at": "2026-10-09T14:14:45.770Z"
+  }
+},
+{
+  "model": "content.event",
+  "pk": 1,
+  "fields": {
+    "title": "AgriExpo Perú 2026",
+    "slug": "agriexpo-peru-2026",
+    "excerpt": "Morgillo participará en la 15.ª edición de la feria de tecnologías para la agricultura, agroindustria y agroexportación.",
+    "body": "Visítanos en AgriExpo Perú 2026 y conoce nuestras soluciones de maquinaria agrícola, incluido el tractor Kubota M108S.\n\nLa feria se realizará del 22 al 24 de octubre de 2026, de 11:00 a. m. a 8:00 p. m. cada día, en el Centro de Convenciones Arena 1, Costa Verde, San Miguel, Lima.",
+    "image": "9461434c-51c7-4412-bb1d-932bc007fde7",
+    "published": true,
+    "published_at": "2026-10-09T14:14:45.815Z",
+    "start": "2026-10-22T16:00:00Z",
+    "end": "2026-10-25T01:00:00Z",
+    "place": "Centro de Convenciones Arena 1, Costa Verde, San Miguel, Lima"
+  }
+},
+{
+  "model": "content.service",
+  "pk": 1,
+  "fields": {
+    "slug": "servicio-tecnico",
+    "title": "Servicio técnico",
+    "description": "Soporte para mantener tus equipos trabajando y atender las necesidades de tu operación.",
+    "requirements": "Marca y modelo del equipo\nDescripción de la consulta\nUbicación del equipo",
+    "published": true,
+    "position": 0
+  }
+},
+{
+  "model": "content.service",
+  "pk": 2,
+  "fields": {
+    "slug": "mantenimiento",
+    "title": "Mantenimiento",
+    "description": "Atención y mantenimiento para conservar el rendimiento y la disponibilidad de tu maquinaria.",
+    "requirements": "Marca y modelo del equipo\nDescripción de la consulta\nUbicación del equipo",
+    "published": true,
+    "position": 1
+  }
+},
+{
+  "model": "content.service",
+  "pk": 3,
+  "fields": {
+    "slug": "repuestos",
+    "title": "Repuestos",
+    "description": "Encuentra los repuestos que necesitas para continuar con tus trabajos.",
+    "requirements": "Marca y modelo del equipo\nDescripción de la consulta\nUbicación del equipo",
+    "published": true,
+    "position": 2
+  }
+},
+{
+  "model": "content.service",
+  "pk": 4,
+  "fields": {
+    "slug": "asesoria",
+    "title": "Asesoría",
+    "description": "Orientación para encontrar la maquinaria y solución adecuada para cada proyecto.",
+    "requirements": "Marca y modelo del equipo\nDescripción de la consulta\nUbicación del equipo",
+    "published": true,
+    "position": 3
+  }
+},
+{
+  "model": "content.sitesettings",
+  "pk": 1,
+  "fields": {
+    "name": "Morgillo",
+    "url": "http://localhost:3000",
+    "phone": "994 974 243",
+    "office": "976 080 995",
+    "service": "942 420 214",
+    "whatsapp": "51994974243",
+    "email": "",
+    "address": "Vía de Evitamiento Cdra. 28, Tarapoto",
+    "hours": "Lunes a sábado · 8:00 – 19:00",
+    "facebook": "https://www.facebook.com/maquinariapesadaconstruccionyagricultura",
+    "instagram": "https://www.instagram.com/morgillomaquinaria/",
+    "linkedin": "https://www.linkedin.com/company/morgillo-selva-sac/",
+    "youtube": "https://www.youtube.com/channel/UC5hn7bljPrZB2HIeuwAIzRw/videos",
+    "logo": "d0b672a3-7c94-56bd-ac21-dc69c87df483",
+    "hero_image": "3592b859-3a3c-564f-b9e4-02cbdabc1fb5",
+    "hero_title": "Maquinaria para hacer avanzar tus proyectos.",
+    "hero_description": "Soluciones en maquinaria agrícola, construcción e implementos, con respaldo comercial y servicio técnico.",
+    "company_title": "Maquinaria que mueve proyectos.",
+    "company_description": "Maquinaria agrícola, construcción e implementos, con asesoría, repuestos y servicio técnico.",
+    "seo_description": "Maquinaria agrícola, construcción, implementos, repuestos y servicio técnico."
+  }
+}
+]
