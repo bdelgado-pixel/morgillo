@@ -8,6 +8,17 @@ from .validators import validate_upload, validate_link
 
 def upload_path(instance, filename): return f'library/{uuid.uuid4().hex}{Path(filename).suffix.lower()}'
 
+class PersistentMediaFile(models.Model):
+    """File bytes for the trial; content references remain in MediaAsset."""
+    name = models.CharField(max_length=500, primary_key=True)
+    data = models.BinaryField(editable=False)
+    size = models.PositiveIntegerField(editable=False)
+    sha256 = models.CharField(max_length=64, editable=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['name']
+
 class MediaAsset(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField('Título', max_length=180)

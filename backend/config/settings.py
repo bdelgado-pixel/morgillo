@@ -3,6 +3,7 @@ from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 from .database import database_config
+from .media import media_storage_config
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(Path(os.environ.get('DJANGO_ENV_FILE', BASE_DIR / '.env')))
 def flag(key, default=False): return os.environ.get(key, str(default)).lower() in ('1', 'true', 'yes')
@@ -31,7 +32,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR/'static']
 MEDIA_ROOT = Path(os.environ.get('MEDIA_ROOT', str(BASE_DIR/'media')))
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STORAGES = {'default':{'BACKEND':'django.core.files.storage.FileSystemStorage'},'staticfiles':{'BACKEND':'whitenoise.storage.CompressedManifestStaticFilesStorage'}}
+STORAGES = {'default':media_storage_config(os.environ, DATABASES['default']['ENGINE']),'staticfiles':{'BACKEND':'whitenoise.storage.CompressedManifestStaticFilesStorage'}}
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_AGE = 28800

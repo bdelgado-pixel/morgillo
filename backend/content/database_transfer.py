@@ -10,7 +10,9 @@ from django.core.management.base import CommandError
 
 def transfer_models():
     labels = ["auth.group", "auth.user", "admin.logentry"]
-    labels.extend(model._meta.label_lower for model in apps.get_app_config("content").get_models())
+    # File bytes belong to the media archive, not the portable content fixture.
+    labels.extend(model._meta.label_lower for model in apps.get_app_config("content").get_models()
+                  if model._meta.label_lower != "content.persistentmediafile")
     return [apps.get_model(label) for label in labels]
 
 

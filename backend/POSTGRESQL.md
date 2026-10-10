@@ -73,10 +73,40 @@ En Vercel: `CONTENT_SOURCE=cms` y
 `CMS_INTERNAL_URL=https://<dominio-del-backend>.onrender.com`.
 Vercel consulta Django; las credenciales PostgreSQL pertenecen al backend.
 
-Esta fase usa la base gratuita de prueba. Según los [límites de Render](https://render.com/docs/free),
-caduca a los 30 días y el servicio web gratuito tiene un sistema de archivos
-efímero. Antes de alojar el CMS hay que resolver el almacenamiento de fotos y
-PDF; migrar la base no copia los archivos al servidor Django.
+## Fotos y PDF en la prueba gratuita
+
+En Render, los archivos de la biblioteca ahora se guardan en PostgreSQL mediante
+`DatabaseMediaStorage`. `RENDER=true` activa este modo automáticamente; también
+puede elegirse explícitamente con `MEDIA_STORAGE=database`. Los identificadores,
+rutas públicas, fotografías seleccionadas y relaciones del catálogo se conservan.
+Las nuevas subidas del administrador usan el mismo almacenamiento y no dependen
+del disco temporal del servicio. La API de contenido no incluye los bytes de los archivos.
+
+Los 104 archivos originales registrados ocupan 132.688.944 bytes (unos 127 MiB).
+Los demás archivos locales sin referencias permanecen en la PC y en el respaldo.
+Para restaurarlos desde la PC con PostgreSQL configurado, en `backend`:
+
+```powershell
+.\.venv\Scripts\python.exe manage.py migrate --noinput
+.\.venv\Scripts\python.exe manage.py restore_media --source media --dry-run
+.\.venv\Scripts\python.exe manage.py restore_media --source media
+```
+
+Se valida todo el origen antes de guardar, se comprueban SHA-256 y tamaños,
+y se permite repetir el traslado sin duplicar ni sobrescribir archivos distintos.
+No se modifica `MediaAsset`, el contenido ni el catálogo. Los archivos originales
+se mantienen en el equipo. El respaldo anterior sigue siendo compatible.
+
+Para que el administrador local también use los archivos compartidos de PostgreSQL,
+añadir `MEDIA_STORAGE=database` a su `.env` privado y reiniciar Django.
+SQLite y el desarrollo con `MEDIA_STORAGE=filesystem` conservan la carpeta local.
+Un servicio de pago con disco puede elegir `MEDIA_STORAGE=filesystem` y su `MEDIA_ROOT`.
+
+Este almacenamiento está pensado para la prueba de este catálogo. Para una web
+definitiva con más archivos, preparar almacenamiento de objetos o un disco persistente.
+Las copias de PostgreSQL deben incluir `content_persistentmediafile`, además del contenido.
+Según los [límites de Render](https://render.com/docs/free), la base gratuita tiene
+1 GB y caduca a los 30 días; almacenar allí las fotos no cambia ese plazo.
 
 Referencias: [Django PostgreSQL](https://docs.djangoproject.com/en/5.2/ref/databases/#postgresql-notes),
 [fixtures](https://docs.djangoproject.com/en/5.2/ref/django-admin/#loaddata),
