@@ -190,3 +190,36 @@ class SiteSettings(models.Model):
     class Meta:verbose_name='configuración general';verbose_name_plural='Configuración general';constraints=[models.CheckConstraint(condition=models.Q(id=1),name='singleton_site')]
     def __str__(self):return 'Configuración de Morgillo'
     def save(self,*args,**kwargs):self.id=1;super().save(*args,**kwargs)
+
+
+# ============================================
+# MORGILLO - CLIENTES INTERESADOS
+# ============================================
+
+class ClienteInteresado(models.Model):
+    nombre = models.CharField(max_length=100)
+    celular = models.CharField(max_length=9)
+    ciudad = models.CharField(max_length=100)
+    maquina = models.CharField(max_length=100)
+    modelo = models.CharField(max_length=100, blank=True)
+    origen = models.CharField(max_length=250, blank=True)
+
+    consentimiento_at = models.DateTimeField(
+        default=timezone.now
+    )
+
+    creado_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    contactado = models.BooleanField(
+        default=False
+    )
+
+    class Meta:
+        verbose_name = "Cliente interesado"
+        verbose_name_plural = "Clientes interesados"
+        ordering = ["-creado_at"]
+
+    def __str__(self):
+        return f"{self.nombre} - {self.maquina}"

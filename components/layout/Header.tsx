@@ -5,6 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
+import {
+  FaInstagram,
+  FaLinkedinIn,
+  FaTiktok,
+  FaFacebookF,
+  FaYoutube
+} from "react-icons/fa";
 
 import {
 
@@ -315,52 +322,88 @@ export default function Header({
           TOP BAR
 
       ====================================================== */}
+     
+ 
+<div className="morgillo-header__topbar">
+  <div className="morgillo-container morgillo-header__topbar-inner">
 
-      <div className="morgillo-header__topbar">
+    {/* TEXTO ORIGINAL DE LA IZQUIERDA */}
+    <div className="morgillo-header__topbar-label">
+      <span />
+      <p>Maquinaria agrícola y de construcción</p>
+    </div>
 
-        <div className="morgillo-container morgillo-header__topbar-inner">
+    {/* REDES SOCIALES Y CONTACTO */}
+    <div className="morgillo-header__topbar-right">
 
-          <div className="morgillo-header__topbar-label">
 
-            <span />
+      <div className="morgillo-header__socials">
+        
+        <a
+          href="https://www.youtube.com/channel/UC5hn7bljPrZB2HIeuwAIzRw/videos"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Yotube de Morgillo"
+          title="Yotube"
+        >
+          <FaYoutube />
+        </a>
+        <a
+          href="https://www.instagram.com/morgillomaquinaria/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram de Morgillo"
+          title="Instagram"
+        >
+          <FaInstagram />
+        </a>
 
-            <p>
+        <a
+          href="https://www.linkedin.com/company/morgillo-maquinaria/home/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn de Morgillo"
+          title="LinkedIn"
+        >
+          <FaLinkedinIn />
+        </a>
 
-              Maquinaria agrícola y de construcción
+        <a
+          href="https://www.tiktok.com/@morgillo.maquinaria?_r=1&_t=ZS-9Alvf7PvHP7"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok de Morgillo"
+          title="TikTok"
+        >
+          <FaTiktok />
+        </a>
 
-            </p>
-
-          </div>
-
-          <div className="morgillo-header__topbar-contact">
-
-            <span>
-
-              Ventas
-
-            </span>
-
-            <a
-
-              href={`tel:+51${site.phone.replaceAll(
-
-                " ",
-
-                "",
-
-              )}`}
-
-            >
-
-              {site.phone}
-
-            </a>
-
-          </div>
-
-        </div>
-
+        <a
+          href="https://www.facebook.com/maquinariapesadaconstruccionyagricultura"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook de Morgillo"
+          title="Facebook"
+        >
+          <FaFacebookF />
+        </a>
       </div>
+
+      {/* TELÉFONO ORIGINAL */}
+      <div className="morgillo-header__topbar-contact">
+        <span>Ventas</span>
+
+        <a
+          href={`tel:+51${site.phone.replaceAll(" ", "")}`}
+        >
+          {site.phone}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
       {/* =====================================================
 
@@ -396,7 +439,7 @@ export default function Header({
 
                 site.logo ||
 
-                "/images/logo-morgillo.webp"
+                "/images/logo_morgillo_2026.webp"
 
               }
 

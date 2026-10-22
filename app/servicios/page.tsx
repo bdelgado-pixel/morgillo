@@ -178,18 +178,8 @@ export default async function ServicesPage() {
               styles.heroRail
             }
           >
-            <div>
-              <span>
-                Servicios
-              </span>
-
-              <strong>
-                {
-                  services.length
-                }
-              </strong>
-            </div>
-
+           
+          
 
             <p>
               Atención · asesoría ·

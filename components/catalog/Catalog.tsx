@@ -143,6 +143,66 @@ export default function Catalog({
 
       : query;
 
+function getProductHP(product: Product): number {
+  const specs = product.specifications ?? [];
+
+  const powerSpecs = specs.filter((spec) => {
+    const label = normalize(spec.label);
+    const unit = normalize(spec.unit ?? "");
+    const value = normalize(spec.value);
+
+    return (
+      label.includes("potencia") ||
+      label.includes("horsepower") ||
+      label.includes("caballos") ||
+      unit === "hp" ||
+      unit === "cv" ||
+      /\b(hp|cv)\b/.test(value)
+    );
+  });
+
+  const priority = (label: string) => {
+    const normalized = normalize(label);
+
+    if (normalized.includes("motor")) return 0;
+    if (normalized.includes("nominal")) return 1;
+    if (normalized.includes("potencia")) return 2;
+    return 3;
+  };
+
+  powerSpecs.sort(
+    (a, b) => priority(a.label) - priority(b.label)
+  );
+
+  for (const spec of powerSpecs) {
+    const match = spec.value.match(
+      /\d+(?:[.,]\d+)?/
+    );
+
+    if (!match) continue;
+
+    const value = Number(
+      match[0].replace(",", ".")
+    );
+
+    if (!Number.isFinite(value) || value <= 0) {
+      continue;
+    }
+
+    const unit = normalize(
+      `${spec.unit ?? ""} ${spec.value}`
+    );
+
+    if (/\bcv\b/.test(unit)) {
+      return value * 0.98632;
+    }
+
+    return value;
+  }
+
+  return Number.POSITIVE_INFINITY;
+}
+      
   function setSearch(
 
     value: string,
@@ -297,8 +357,7 @@ export default function Catalog({
 
         normalize(query);
 
-      return products.filter(
-
+return products.filter(   
         (product) => {
 
           const matchesCategory =
@@ -387,10 +446,14 @@ export default function Catalog({
 
         },
 
-      );
+         ).sort((a, b) => {
+        const hpA = getProductHP(a);
+        const hpB = getProductHP(b);
+
+        return hpA - hpB;
+      });
 
     }, [
-
       products,
 
       brands,
@@ -1034,46 +1097,6 @@ export default function Catalog({
           }
 
         >
-
-          <div
-
-            className={
-
-              styles.resultCount
-
-            }
-
-          >
-
-            <strong
-
-              role="status"
-
-              aria-live="polite"
-
-            >
-
-              {
-
-                results.length
-
-              }
-
-            </strong>
-
-            <span>
-
-              {results.length ===
-
-              1
-
-                ? "equipo encontrado"
-
-                : "equipos encontrados"}
-
-            </span>
-
-          </div>
 
           <div
 

@@ -20201,3 +20201,55 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .morgillo-product-page *, .morgillo-product-page *::before, .morgillo-product-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* =========================================
+   MORGILLO - CORRECCIÓN DEL MENÚ MÓVIL
+   Alinear texto, flechas y desplegables
+========================================= */
+
+@media (max-width: 1279px) {
+
+  .morgillo-mobile-menu__main-link,
+  .morgillo-mobile-menu__group > summary {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    grid-template-columns: none !important;
+    gap: 16px !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Nombre de cada sección */
+  .morgillo-mobile-menu__main-link > span:first-child,
+  .morgillo-mobile-menu__group > summary > span:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+  }
+
+  /* Flechas y signos + */
+  .morgillo-mobile-menu__main-link > span:last-child:not(:first-child),
+  .morgillo-mobile-menu__group > summary > span:last-child:not(:first-child) {
+    flex: 0 0 auto;
+    margin-left: auto;
+    position: static !important;
+    transform: none;
+    color: #d71920;
+    line-height: 1;
+    text-align: right;
+  }
+
+  /* Mantener el fondo blanco */
+  .morgillo-mobile-menu__nav {
+    background: #ffffff;
+    opacity: 1;
+  }
+
+  /* Mantener separadores grises */
+  .morgillo-mobile-menu__main-link,
+  .morgillo-mobile-menu__group > summary {
+    border-bottom-color: #dedede;
+  }
+}

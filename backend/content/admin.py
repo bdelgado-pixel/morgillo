@@ -2147,3 +2147,50 @@ class SettingsAdmin(admin.ModelAdmin):
         obj=None,
     ):
         return False
+
+
+# ============================================
+# ADMINISTRACIÓN DE CLIENTES INTERESADOS
+# ============================================
+
+from .models import ClienteInteresado
+
+
+@admin.register(ClienteInteresado)
+class ClienteInteresadoAdmin(admin.ModelAdmin):
+    list_display = (
+        "nombre",
+        "celular",
+        "ciudad",
+        "maquina",
+        "modelo",
+        "creado_at",
+        "contactado",
+    )
+
+    list_filter = (
+        "maquina",
+        "contactado",
+        "creado_at",
+    )
+
+    search_fields = (
+        "nombre",
+        "celular",
+        "ciudad",
+        "maquina",
+        "modelo",
+    )
+
+    list_editable = ("contactado",)
+
+    readonly_fields = (
+        "nombre",
+        "celular",
+        "ciudad",
+        "maquina",
+        "modelo",
+        "origen",
+        "consentimiento_at",
+        "creado_at",
+    )
