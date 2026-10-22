@@ -72,14 +72,6 @@ export default function Categories() {
             >
               <span
                 className={
-                  styles.number
-                }
-              >
-                02
-              </span>
-
-              <span
-                className={
                   styles.eyebrowLine
                 }
               />

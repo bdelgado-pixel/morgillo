@@ -780,12 +780,6 @@ return products.filter(
 
           >
 
-            <span>
-
-              01
-
-            </span>
-
             <strong>
 
               Categoría
@@ -941,12 +935,6 @@ return products.filter(
               }
 
             >
-
-              <span>
-
-                02
-
-              </span>
 
               <strong>
 

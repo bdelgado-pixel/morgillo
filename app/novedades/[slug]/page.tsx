@@ -588,14 +588,6 @@ export default async function ArticlePage({
 
                 >
 
-                  <span>
-
-                    01
-
-                  </span>
-
-
-
                   <i />
 
 
@@ -1021,14 +1013,6 @@ export default async function ArticlePage({
             >
 
               <div>
-
-                <span>
-
-                  03
-
-                </span>
-
-
 
                 <h2
 

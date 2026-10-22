@@ -10,6 +10,7 @@ import {
   MapPin,
   MessageCircle,
   Phone,
+  Package,
   Wrench,
 } from "lucide-react";
 
@@ -119,10 +120,6 @@ export default async function ContactPage() {
                 styles.eyebrow
               }
             >
-              <span>
-                01
-              </span>
-
               <i />
 
               <p>
@@ -276,10 +273,6 @@ export default async function ContactPage() {
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  02
-                </span>
-
                 <i />
 
                 <p>
@@ -481,6 +474,17 @@ export default async function ContactPage() {
                 </a>
 
 
+                <a href="tel:+51942012195" className={styles.channel}>
+                  <div className={styles.channelIcon}>
+                    <Package size={22} strokeWidth={1.7} />
+                  </div>
+                  <div className={styles.channelContent}>
+                    <span>Repuestos</span>
+                    <strong>942 012 195</strong>
+                    <p>Consultas y atención de repuestos.</p>
+                  </div>
+                  <ArrowUpRight size={19} strokeWidth={1.8} />
+                </a>
                 {/* EMAIL */}
 
                 {site.email && (
@@ -545,9 +549,7 @@ export default async function ContactPage() {
               }
             >
               <ContactForm
-                whatsappNumber={
-                  site.whatsapp
-                }
+                whatsappNumber="51994974243"
               />
             </div>
           </div>
@@ -593,10 +595,6 @@ export default async function ContactPage() {
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  03
-                </span>
-
                 <i />
 
                 <p>
@@ -710,10 +708,6 @@ export default async function ContactPage() {
               }
             >
               <div>
-                <span>
-                  04
-                </span>
-
                 <h2>
                   También estamos en
                   nuestras redes.

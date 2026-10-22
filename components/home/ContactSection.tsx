@@ -8,6 +8,7 @@ import {
   MapPin,
   MessageCircle,
   Phone,
+  Package,
   Wrench,
 } from "lucide-react";
 
@@ -83,14 +84,6 @@ export default async function ContactSection() {
                 styles.eyebrow
               }
             >
-              <span
-                className={
-                  styles.number
-                }
-              >
-                08
-              </span>
-
               <span
                 className={
                   styles.eyebrowLine
@@ -472,6 +465,21 @@ export default async function ContactSection() {
                 />
               </div>
             </a>
+
+            <a href="tel:+51942012195" className={styles.detail}>
+              <div className={styles.detailIcon}>
+                <Package size={22} strokeWidth={1.7} />
+              </div>
+              <div className={styles.detailContent}>
+                <span>Repuestos</span>
+                <strong>942 012 195</strong>
+                <p>Consultas y atención de repuestos.</p>
+              </div>
+              <div className={styles.detailArrow} aria-hidden="true">
+                <ArrowUpRight size={18} strokeWidth={1.8} />
+              </div>
+            </a>
+
 
 
             {/* =============================================

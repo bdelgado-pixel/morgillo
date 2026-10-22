@@ -959,3 +959,15 @@
     transition: none;
   }
 }
+/* Explicit colors keep the native options readable in both site themes. */
+.field select,
+.field select:focus {
+  color-scheme: light;
+  color: #171818;
+  background: #ffffff;
+}
+
+.field select option {
+  color: #171818;
+  background: #ffffff;
+}

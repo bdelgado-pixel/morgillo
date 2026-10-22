@@ -106,14 +106,6 @@ export default function NewsSection({
             >
               <span
                 className={
-                  styles.number
-                }
-              >
-                07
-              </span>
-
-              <span
-                className={
                   styles.eyebrowLine
                 }
               />

@@ -93,14 +93,6 @@ export default function BrandsSection({
             >
               <span
                 className={
-                  styles.number
-                }
-              >
-                03
-              </span>
-
-              <span
-                className={
                   styles.eyebrowLine
                 }
               />

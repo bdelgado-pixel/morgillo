@@ -8,7 +8,6 @@ import {
 import {
   ArrowUpRight,
   CheckCircle2,
-  Mail,
   MessageCircle,
   Send,
   TriangleAlert,
@@ -31,13 +30,6 @@ type FormStatus =
   | "sending"
   | "success"
   | "error";
-
-
-type ApiResponse = {
-  ok?: boolean;
-  message?: string;
-  error?: string;
-};
 
 
 export default function ContactForm({
@@ -116,112 +108,38 @@ export default function ContactForm({
     );
 
 
-  async function handleSubmit(
-    event:
-      FormEvent<HTMLFormElement>,
-  ) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (company) return;
 
-
-    if (
-      status ===
-      "sending"
-    ) {
+    if (!name.trim() || message.trim().length < 10) {
+      setStatus("error");
+      setFeedback("Escribe tu nombre y un mensaje de al menos 10 caracteres.");
       return;
     }
 
+    const text = [
+      "Hola Morgillo, quisiera realizar una consulta.",
+      "",
+      `Nombre: ${name.trim()}`,
+      ...(phone.trim() ? [`Teléfono: ${phone.trim()}`] : []),
+      `Correo: ${email.trim()}`,
+      `Consulta sobre: ${topic}`,
+      "",
+      "Mensaje:",
+      message.trim(),
+    ].join("\n");
 
-    setStatus(
-      "sending",
-    );
-
-    setFeedback("");
-
-
-    try {
-      const response =
-        await fetch(
-          "/api/contact",
-          {
-            method:
-              "POST",
-
-            headers: {
-              "Content-Type":
-                "application/json",
-            },
-
-            body:
-              JSON.stringify({
-                name,
-                phone,
-                email,
-                topic,
-                message,
-                company,
-              }),
-          },
-        );
-
-
-      const data =
-        (
-          await response
-            .json()
-            .catch(
-              () => ({}),
-            )
-        ) as ApiResponse;
-
-
-      if (
-        !response.ok
-      ) {
-        throw new Error(
-          data.error ||
-            "No pudimos enviar tu consulta.",
-        );
-      }
-
-
-      setStatus(
-        "success",
-      );
-
-
-      setFeedback(
-        "Consulta enviada correctamente. El equipo Morgillo podrá responder al correo indicado.",
-      );
-
-
-      setName("");
-      setPhone("");
-      setEmail("");
-
-      setTopic(
-        "Maquinaria",
-      );
-
-      setMessage("");
-      setCompany("");
-
-    } catch (
-      error
-    ) {
-      setStatus(
-        "error",
-      );
-
-
-      setFeedback(
-        error instanceof Error
-          ? error.message
-          : "No pudimos enviar tu consulta. Intenta nuevamente.",
-      );
+    const number = whatsappNumber.replace(/\D/g, "");
+    const destination = number.length === 9 ? `51${number}` : number;
+    if (!destination) {
+      setStatus("error");
+      setFeedback("El número de WhatsApp no está disponible. Utiliza los canales de atención.");
+      return;
     }
+
+    window.location.assign(whatsapp(text, destination));
   }
-
-
   return (
     <div
       className={
@@ -241,13 +159,13 @@ export default function ContactForm({
           <span />
 
           <strong>
-            Correo directo
+            WhatsApp directo
           </strong>
         </div>
 
 
         <span>
-          MRG / MAIL
+          MRG / WHATSAPP
         </span>
       </div>
 
@@ -266,7 +184,7 @@ export default function ContactForm({
             styles.icon
           }
         >
-          <Mail
+          <MessageCircle
             size={26}
             strokeWidth={1.7}
           />
@@ -292,10 +210,7 @@ export default function ContactForm({
             styles.description
           }
         >
-          Tu mensaje llegará al
-          correo corporativo de
-          Morgillo para que nuestro
-          equipo pueda responderte.
+          Al continuar, se abrirá WhatsApp con los datos de tu consulta. Revisa el mensaje y pulsa enviar allí.
         </p>
       </div>
 
@@ -657,8 +572,8 @@ export default function ContactForm({
 
             {status ===
             "sending"
-              ? "Enviando…"
-              : "Enviar consulta"}
+              ? "Abriendo WhatsApp…"
+              : "Enviar por WhatsApp"}
           </span>
 
 

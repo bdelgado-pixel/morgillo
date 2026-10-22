@@ -75,14 +75,6 @@ export default async function ServicesSection() {
             >
               <span
                 className={
-                  styles.number
-                }
-              >
-                05
-              </span>
-
-              <span
-                className={
                   styles.eyebrowLine
                 }
               />

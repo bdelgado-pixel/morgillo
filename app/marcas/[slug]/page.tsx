@@ -294,10 +294,6 @@ export default async function BrandPage({
                   styles.eyebrow
                 }
               >
-                <span>
-                  01
-                </span>
-
                 <i />
 
                 <p>
@@ -534,10 +530,6 @@ export default async function BrandPage({
                     styles.sectionEyebrow
                   }
                 >
-                  <span>
-                    02
-                  </span>
-
                   <i />
 
                   <p>
@@ -654,10 +646,6 @@ export default async function BrandPage({
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  03
-                </span>
-
                 <i />
 
                 <p>

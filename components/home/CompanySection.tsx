@@ -175,14 +175,6 @@ export default async function CompanySection() {
             >
               <span
                 className={
-                  styles.number
-                }
-              >
-                04
-              </span>
-
-              <span
-                className={
                   styles.eyebrowLine
                 }
               />

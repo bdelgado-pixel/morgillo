@@ -81,10 +81,6 @@ export default async function MachineryPage() {
                 styles.eyebrow
               }
             >
-              <span>
-                01
-              </span>
-
               <i />
 
               <p>

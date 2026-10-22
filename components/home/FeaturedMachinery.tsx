@@ -63,14 +63,6 @@ export default function FeaturedMachinery({
             >
               <span
                 className={
-                  styles.number
-                }
-              >
-                01
-              </span>
-
-              <span
-                className={
                   styles.line
                 }
               />

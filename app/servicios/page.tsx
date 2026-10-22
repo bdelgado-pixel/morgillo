@@ -95,10 +95,6 @@ export default async function ServicesPage() {
                 styles.eyebrow
               }
             >
-              <span>
-                01
-              </span>
-
               <i />
 
               <p>
@@ -212,10 +208,6 @@ export default async function ServicesPage() {
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  02
-                </span>
-
                 <i />
 
                 <p>
@@ -431,10 +423,6 @@ export default async function ServicesPage() {
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  03
-                </span>
-
                 <i />
 
                 <p>

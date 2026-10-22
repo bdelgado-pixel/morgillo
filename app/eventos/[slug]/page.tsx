@@ -660,12 +660,6 @@ export default async function EventPage({
 
                 >
 
-                  <span>
-
-                    01
-
-                  </span>
-
                   <i />
 
                   <p>
@@ -1265,12 +1259,6 @@ export default async function EventPage({
             >
 
               <div>
-
-                <span>
-
-                  03
-
-                </span>
 
                 <h2
 

@@ -314,14 +314,6 @@ export default async function NewsPage() {
 
             >
 
-              <span>
-
-                01
-
-              </span>
-
-
-
               <i />
 
 
@@ -793,14 +785,6 @@ export default async function NewsPage() {
                   >
 
                     <div>
-
-                      <span>
-
-                        02
-
-                      </span>
-
-
 
                       <h2>
 

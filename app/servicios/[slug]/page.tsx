@@ -231,10 +231,6 @@ export default async function ServicePage({
                   styles.eyebrow
                 }
               >
-                <span>
-                  01
-                </span>
-
                 <i />
 
                 <p>
@@ -308,10 +304,6 @@ export default async function ServicePage({
                   styles.eyebrow
                 }
               >
-                <span>
-                  02
-                </span>
-
                 <i />
 
                 <p>
@@ -477,10 +469,6 @@ export default async function ServicePage({
               }
             >
               <div>
-                <span>
-                  03
-                </span>
-
                 <h2>
                   Otros servicios.
                 </h2>

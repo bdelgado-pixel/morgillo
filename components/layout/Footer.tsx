@@ -200,10 +200,6 @@ export default async function Footer() {
                   styles.columnTitle
                 }
               >
-                <span>
-                  01
-                </span>
-
                 <h2>
                   Navegación
                 </h2>
@@ -289,10 +285,6 @@ export default async function Footer() {
                   styles.columnTitle
                 }
               >
-                <span>
-                  02
-                </span>
-
                 <h2>
                   Contacto
                 </h2>
@@ -444,10 +436,6 @@ export default async function Footer() {
                   styles.columnTitle
                 }
               >
-                <span>
-                  03
-                </span>
-
                 <h2>
                   Síguenos
                 </h2>

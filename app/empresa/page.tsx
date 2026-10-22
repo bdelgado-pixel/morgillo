@@ -115,10 +115,6 @@ export default async function CompanyPage() {
                 styles.eyebrow
               }
             >
-              <span>
-                01
-              </span>
-
               <i />
 
               <p>
@@ -285,10 +281,6 @@ export default async function CompanyPage() {
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  02
-                </span>
-
                 <i />
 
                 <p>
@@ -387,10 +379,6 @@ export default async function CompanyPage() {
                     styles.sectionEyebrow
                   }
                 >
-                  <span>
-                    03
-                  </span>
-
                   <i />
 
                   <p>
@@ -541,10 +529,6 @@ export default async function CompanyPage() {
                     styles.sectionEyebrowLight
                   }
                 >
-                  <span>
-                    04
-                  </span>
-
                   <i />
 
                   <p>
@@ -690,10 +674,6 @@ export default async function CompanyPage() {
                     styles.sectionEyebrow
                   }
                 >
-                  <span>
-                    05
-                  </span>
-
                   <i />
 
                   <p>
@@ -814,10 +794,6 @@ export default async function CompanyPage() {
                   styles.sectionEyebrow
                 }
               >
-                <span>
-                  06
-                </span>
-
                 <i />
 
                 <p>
