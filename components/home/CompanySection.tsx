@@ -225,7 +225,7 @@ export default async function CompanySection() {
 
 
               <Link
-                href="/empresa"
+                href="/"
                 className={
                   styles.companyLink
                 }

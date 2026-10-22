@@ -164,80 +164,8 @@ export default async function MachineryPage() {
           </div>
 
 
-          {/* =============================================
-              DYNAMIC DATA
-          ============================================== */}
-
-          <div
-            className={
-              styles.stats
-            }
-          >
-            <div
-              className={
-                styles.stat
-              }
-            >
-              <span>
-                Equipos
-              </span>
-
-              <strong>
-                {
-                  products.length
-                }
-              </strong>
-            </div>
-
-
-            <div
-              className={
-                styles.stat
-              }
-            >
-              <span>
-                Categorías
-              </span>
-
-              <strong>
-                {
-                  categories.length
-                }
-              </strong>
-            </div>
-
-
-            <div
-              className={
-                styles.stat
-              }
-            >
-              <span>
-                Marcas
-              </span>
-
-              <strong>
-                {
-                  brands.length
-                }
-              </strong>
-            </div>
-
-
-            <div
-              className={
-                styles.statText
-              }
-            >
-              <span />
-
-              <p>
-                Agricultura ·
-                Construcción ·
-                Implementos
-              </p>
-            </div>
-          </div>
+          
+        
         </div>
       </section>
 
