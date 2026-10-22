@@ -1,45 +1,36 @@
-import type {
-  Metadata,
-} from "next";
+
+import type { Metadata } from "next";
 
 import "./globals.css";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CampaignFeed from "@/components/campaigns/CampaignFeed";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 import {
   getContent,
   getSite,
 } from "@/lib/content";
 
-
-export const dynamic =
-  "force-dynamic";
-
+export const dynamic = "force-dynamic";
 
 /* =========================================================
    METADATA GLOBAL
 ========================================================= */
 
 export async function generateMetadata(): Promise<Metadata> {
-  const site =
-    await getSite();
-
+  const site = await getSite();
 
   return {
     /*
-     * IMPORTANTE:
      * Las páginas internas ya definen:
      *
      * "Maquinaria | Morgillo"
      * "Servicios | Morgillo"
-     * etc.
      *
-     * Por eso NO usamos title.template aquí.
-     * Así evitamos:
-     *
-     * Maquinaria | Morgillo | Morgillo
+     * No usamos title.template para evitar
+     * títulos duplicados.
      */
 
     title:
@@ -49,18 +40,14 @@ export async function generateMetadata(): Promise<Metadata> {
       site.seoDescription,
 
     metadataBase:
-      new URL(
-        site.url,
-      ),
+      new URL(site.url),
 
     openGraph: {
       type: "website",
 
-      locale:
-        "es_PE",
+      locale: "es_PE",
 
-      siteName:
-        site.name,
+      siteName: site.name,
 
       images: [
         site.heroImage ||
@@ -69,7 +56,6 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
 
 /* =========================================================
    THEME
@@ -97,7 +83,6 @@ const themeScript = `
 })();
 `;
 
-
 /* =========================================================
    ROOT LAYOUT
 ========================================================= */
@@ -105,12 +90,9 @@ const themeScript = `
 export default async function RootLayout({
   children,
 }: {
-  children:
-    React.ReactNode;
+  children: React.ReactNode;
 }) {
-  const content =
-    await getContent();
-
+  const content = await getContent();
 
   return (
     <html
@@ -120,14 +102,13 @@ export default async function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html:
-              themeScript,
+            __html: themeScript,
           }}
         />
       </head>
 
-
       <body>
+
         {/* ACCESSIBILITY */}
 
         <a
@@ -137,35 +118,21 @@ export default async function RootLayout({
           Saltar al contenido
         </a>
 
-
         {/* HEADER GLOBAL */}
 
         <Header
-          site={
-            content.site
-          }
-          categories={
-            content.categories
-          }
+          site={content.site}
+          categories={content.categories}
           brands={content.brands.filter(
             (brand) =>
-              brand.primary !==
-              false,
+              brand.primary !== false,
           )}
         />
 
-
         {/*
          * No usamos <main> aquí.
-         *
-         * Cada página pública nueva
-         * ya tiene su propio <main>.
-         *
-         * De esta forma evitamos:
-         *
-         * <main>
-         *   <main>...</main>
-         * </main>
+         * Cada página tiene su propio <main>.
+         * Evitamos elementos main anidados.
          */}
 
         <div
@@ -175,23 +142,24 @@ export default async function RootLayout({
           {children}
         </div>
 
-
         {/* FOOTER GLOBAL */}
 
         <Footer />
 
-
         {/* CAMPAIGN POPUP GLOBAL */}
 
         <CampaignFeed
-          initial={
-            content.campaigns
-          }
-          serverNow={
-            content.serverNow
-          }
+          initial={content.campaigns}
+          serverNow={content.serverNow}
           placement="popup"
         />
+
+        {/* =====================================
+            WHATSAPP FLOTANTE MORGILLO
+        ===================================== */}
+
+        <WhatsAppButton />
+
       </body>
     </html>
   );
