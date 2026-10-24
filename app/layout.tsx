@@ -7,6 +7,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CampaignFeed from "@/components/campaigns/CampaignFeed";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { getContactNumbers } from "@/lib/contact";
 
 import {
   getContent,
@@ -158,7 +159,7 @@ export default async function RootLayout({
             WHATSAPP FLOTANTE MORGILLO
         ===================================== */}
 
-        <WhatsAppButton />
+        <WhatsAppButton numbers={getContactNumbers(content.site)} />
 
       </body>
     </html>

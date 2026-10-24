@@ -13,6 +13,7 @@ import {
 } from "@react-three/fiber";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 
 import * as THREE from "three";
 
@@ -145,14 +146,10 @@ function disposeMachine(
 
 
 /* =========================================================
-   PREPARE ORIGINAL GLB
+   PREPARE GLB
 
-   NO:
-   - cambia UV
-   - cambia colores
-   - cambia texturas
-   - comprime
-   - usa Meshopt
+   La compresión de almacenamiento es sin pérdida.
+   Conserva geometría, UV, colores y texturas originales.
 ========================================================= */
 
 function prepareMachine(
@@ -490,7 +487,7 @@ function MachineStage({
 
 
   /* =====================================================
-     LOAD ORIGINAL GLB
+     LOAD LOSSLESS GLB
   ====================================================== */
 
   useEffect(() => {
@@ -510,7 +507,9 @@ function MachineStage({
 
 
     const loader =
-      new GLTFLoader();
+      new GLTFLoader().setMeshoptDecoder(
+        MeshoptDecoder,
+      );
 
 
     loader.load(

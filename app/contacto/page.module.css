@@ -1733,3 +1733,188 @@
     transition: none !important;
   }
 }
+
+/* Photographic context, with solid contrast behind the text. */
+.heroPhoto {
+  z-index: -3;
+  object-fit: cover;
+  object-position: right 48%;
+}
+.heroVeil {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,.97) 30%, rgba(255,255,255,.76) 53%, rgba(255,255,255,.08) 100%);
+}
+.heroSide {
+  padding: 24px;
+  background: rgba(255,255,255,.95);
+  border-left: 3px solid var(--red);
+  box-shadow: 0 8px 30px rgba(30,40,30,.05);
+}
+.heroRail {
+  position: relative;
+  background: rgba(255,255,255,.94);
+}
+:global(.dark) .heroVeil {
+  background: linear-gradient(90deg, #111 0%, rgba(17,17,17,.96) 30%, rgba(17,17,17,.68) 53%, rgba(17,17,17,.08) 100%);
+}
+:global(.dark) .heroSide,
+:global(.dark) .heroRail {
+  background: rgba(22,24,23,.95);
+}
+@media(max-width:1000px) {
+  .heroSide { justify-self:start; max-width:520px; }
+  .heroVeil { background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.93) 40%,rgba(255,255,255,.42) 100%); }
+  :global(.dark) .heroVeil { background:linear-gradient(90deg,#111 0%,rgba(17,17,17,.93) 40%,rgba(17,17,17,.42) 100%); }
+}
+@media(max-width:600px) {
+  .heroPhoto { object-position:60% center; }
+  .heroVeil { background:linear-gradient(180deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.86) 45%,rgba(255,255,255,.3) 100%); }
+  .heroSide { padding:19px; }
+  :global(.dark) .heroVeil { background:linear-gradient(180deg,rgba(17,17,17,.98) 0%,rgba(17,17,17,.86) 45%,rgba(17,17,17,.3) 100%); }
+}
+
+/* UBICACIONES MORGILLO */
+
+.locationIntro {
+  margin-top: 22px;
+  max-width: 360px;
+  color: #666;
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+.branchesSection {
+  padding: 70px 0 85px;
+}
+
+.branchesHeading {
+  margin-bottom: 32px;
+}
+
+.branchesHeading h3 {
+  margin: 18px 0 10px;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #252525;
+}
+
+.branchesHeading > p {
+  max-width: 580px;
+  color: #666;
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+.branchesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.branchCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 32px;
+  background: #f7f7f7;
+  border: 1px solid #dedede;
+  border-top: 4px solid #e31822;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.branchCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07);
+}
+
+.branchTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.branchTop > span {
+  color: #747474;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.branchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  background: #df1420;
+  color: white;
+}
+
+.branchCard h4 {
+  margin: 0 0 12px;
+  font-size: 23px;
+  font-weight: 800;
+  color: #252525;
+  line-height: 1.2;
+}
+
+.branchCard > p {
+  margin: 0 0 26px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+.branchLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 0;
+  border-top: 1px solid #ddd;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #252525;
+  transition: color 0.2s ease;
+}
+
+.branchLink:hover {
+  color: #e31822;
+}
+
+.branchLink svg {
+  flex-shrink: 0;
+  color: #e31822;
+}
+
+@media (max-width: 1024px) {
+  .branchesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .branchesSection {
+    padding: 45px 0 60px;
+  }
+
+  .branchesGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .branchCard {
+    padding: 25px;
+  }
+}

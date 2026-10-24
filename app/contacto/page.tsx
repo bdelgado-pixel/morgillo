@@ -1,6 +1,7 @@
 import type {
   Metadata,
 } from "next";
+import Image from "next/image";
 
 import {
   ArrowUpRight,
@@ -23,6 +24,7 @@ import {
 } from "@/data/site";
 
 import ContactForm from "@/components/contact/ContactForm";
+import { getContactNumbers, partsPhone } from "@/lib/contact";
 
 import styles from "./page.module.css";
 
@@ -60,6 +62,45 @@ function telHref(
 }
 
 
+const sedesMorgillo = [
+ 
+  {
+    nombre: "Pucallpa",
+    region: "Ucayali",
+    direccion: "Sector Santa Teresita, parcela El Arca de Noé, lote B2, Campo Verde, Ucayali, Perú",
+  },
+  {
+    nombre: "Cusco",
+    region: "Cusco",
+    direccion: "Chingo Grande S/N, Saylla, Cusco, Perú",
+  },
+  {
+    nombre: "Ica",
+    region: "Ica",
+    direccion: "Panamericana Sur, km 296.20, Subtanjalla, Ica, Perú",
+  },
+  {
+    nombre: "Huancayo",
+    region: "Junín",
+    direccion: "Carretera Central, km 13.5, Hualhuas, Junín, Perú",
+  },
+  {
+    nombre: "Lambayeque",
+    region: "Lambayeque",
+    direccion: "Sector Mocce, sublote 02, Lambayeque, Perú",
+  },
+  {
+    nombre: "Callao",
+    region: "Callao",
+    direccion: "Av. Guardia Chalaca 1802, Bellavista, Callao, Perú",
+  },
+];
+
+function googleMapsSearch(direccion: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(direccion)}`;
+}
+
+
 export default async function ContactPage() {
   const site =
     await getSite();
@@ -94,6 +135,9 @@ export default async function ContactPage() {
         }
         aria-labelledby="contact-page-title"
       >
+        <Image src="/images/company/maquinaria-morgillo.webp" alt="Tractores Kubota en las instalaciones de Morgillo" fill priority sizes="100vw" className={styles.heroPhoto} />
+        <div className={styles.heroVeil} aria-hidden="true" />
+
         <div
           className={
             styles.heroGrid
@@ -235,7 +279,7 @@ export default async function ContactPage() {
 
               <p>
                 Ventas · oficina ·
-                servicio
+                servicio · repuestos
               </p>
             </div>
           </div>
@@ -480,7 +524,7 @@ export default async function ContactPage() {
                   </div>
                   <div className={styles.channelContent}>
                     <span>Repuestos</span>
-                    <strong>942 012 195</strong>
+                    <strong>{partsPhone}</strong>
                     <p>Consultas y atención de repuestos.</p>
                   </div>
                   <ArrowUpRight size={19} strokeWidth={1.8} />
@@ -549,7 +593,7 @@ export default async function ContactPage() {
               }
             >
               <ContactForm
-                whatsappNumber="51994974243"
+                numbers={getContactNumbers(site)}
               />
             </div>
           </div>
@@ -561,133 +605,111 @@ export default async function ContactPage() {
           LOCATION
       ================================================== */}
 
-      <section
-        className={
-          styles.location
-        }
-        aria-labelledby="location-title"
-      >
-        <div
-          className={
-            styles.locationGridBackground
-          }
-          aria-hidden="true"
-        />
+{/* LOCATION */}
+<section
+  className={styles.location}
+  aria-labelledby="location-title"
+>
+  <div
+    className={styles.locationGridBackground}
+    aria-hidden="true"
+  />
 
-
-        <div className="morgillo-container">
-          <div
-            className={
-              styles.locationGrid
-            }
-          >
-            {/* =========================================
-                HEADING
-            ========================================== */}
-
-            <div
-              className={
-                styles.locationHeading
-              }
-            >
-              <div
-                className={
-                  styles.sectionEyebrow
-                }
-              >
-                <i />
-
-                <p>
-                  Ubicación
-                </p>
-              </div>
-
-
-              <h2
-                id="location-title"
-              >
-                Visita
-                <span>
-                  {" "}
-                  Morgillo.
-                </span>
-              </h2>
-            </div>
-
-
-            {/* =========================================
-                ADDRESS
-            ========================================== */}
-
-            <div
-              className={
-                styles.address
-              }
-            >
-              <div
-                className={
-                  styles.addressIcon
-                }
-              >
-                <MapPin
-                  size={28}
-                  strokeWidth={1.6}
-                />
-              </div>
-
-
-              <span>
-                Dirección
-              </span>
-
-              <h3>
-                {
-                  site.address
-                }
-              </h3>
-
-
-              <div
-                className={
-                  styles.addressHours
-                }
-              >
-                <Clock3
-                  size={18}
-                  strokeWidth={1.8}
-                />
-
-                <p>
-                  {
-                    site.hours
-                  }
-                </p>
-              </div>
-
-
-              <a
-                href={
-                  mapHref
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className={
-                  styles.mapButton
-                }
-              >
-                <span>
-                  Abrir en Google Maps
-                </span>
-
-                <ArrowUpRight
-                  size={19}
-                  strokeWidth={1.8}
-                />
-              </a>
-            </div>
-          </div>
+  <div className="morgillo-container">
+    <div className={styles.locationGrid}>
+      <div className={styles.locationHeading}>
+        <div className={styles.sectionEyebrow}>
+          <i />
+          <p>Ubicación</p>
         </div>
-      </section>
+
+        <h2 id="location-title">
+          Visita
+          <span> Morgillo.</span>
+        </h2>
+
+        <p className={styles.locationIntro}>
+          Encuentra nuestra oficina principal
+          y conoce las demás ubicaciones registradas
+          de Morgillo en el Perú.
+        </p>
+      </div>
+
+      <div className={styles.address}>
+        <div className={styles.addressIcon}>
+          <MapPin size={28} strokeWidth={1.6} />
+        </div>
+
+        <span>OFICINA PRINCIPAL · TARAPOTO</span>
+
+        <h3>{site.address}</h3>
+
+        <div className={styles.addressHours}>
+          <Clock3 size={18} strokeWidth={1.8} />
+          <p>{site.hours}</p>
+        </div>
+
+        <a
+          href={mapHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.mapButton}
+        >
+          <span>Abrir en Google Maps</span>
+          <ArrowUpRight size={19} strokeWidth={1.8} />
+        </a>
+      </div>
+    </div>
+
+    <div className={styles.branchesSection}>
+      <div className={styles.branchesHeading}>
+        <div className={styles.sectionEyebrow}>
+          <i />
+          <p>Presencia nacional</p>
+        </div>
+
+        <h3>Otras ubicaciones de Morgillo</h3>
+
+        <p>
+          Consulta las direcciones registradas
+          de nuestros establecimientos.
+          Confirma la atención antes de visitarnos.
+        </p>
+      </div>
+
+      <div className={styles.branchesGrid}>
+        {sedesMorgillo.map((sede) => (
+          <article
+            key={sede.nombre}
+            className={styles.branchCard}
+          >
+            <div className={styles.branchTop}>
+              <div className={styles.branchIcon}>
+                <MapPin size={22} strokeWidth={1.7} />
+              </div>
+              <span>{sede.region}</span>
+            </div>
+
+            <h4>Morgillo {sede.nombre}</h4>
+
+            <p>{sede.direccion}</p>
+
+            <a
+              href={googleMapsSearch(sede.direccion)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.branchLink}
+              aria-label={`Buscar dirección de Morgillo ${sede.nombre} en Google Maps`}
+            >
+              Buscar en Google Maps
+              <ArrowUpRight size={18} strokeWidth={1.8} />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
 
       {/* =================================================

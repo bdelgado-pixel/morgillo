@@ -1100,13 +1100,9 @@ export default async function NewsPage() {
 
                 <p>
 
-                  Esta sección se
+                  Mientras llegan nuevas publicaciones, conoce nuestros
 
-                  actualizará con el
-
-                  contenido publicado
-
-                  desde el CMS.
+                  equipos y entregas junto a clientes de Morgillo.
 
                 </p>
 
@@ -1116,11 +1112,11 @@ export default async function NewsPage() {
 
                 <Link
 
-                  href="/contacto"
+                  href="/empresa#en-campo"
 
                 >
 
-                  Contactar Morgillo
+                  Ver equipos y entregas
 
 
 

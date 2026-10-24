@@ -24,6 +24,7 @@ import {
   whatsapp,
 } from "@/data/site";
 
+import { getContactDestination, getContactNumbers } from "@/lib/contact";
 import styles from "./page.module.css";
 
 
@@ -125,7 +126,7 @@ export default async function ServicePage({
   const whatsappHref =
     whatsapp(
       `Hola, quisiera información sobre el servicio "${service.title}" de Morgillo.`,
-      site.whatsapp,
+      getContactDestination(service.slug, getContactNumbers(site)).number,
     );
 
 

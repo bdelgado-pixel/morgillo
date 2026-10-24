@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,98 +13,96 @@ import {
   whatsapp,
 } from "@/data/site";
 
-import {
-  getSite,
-} from "@/lib/content";
-
+import { getSite } from "@/lib/content";
+import { partsPhone } from "@/lib/contact";
 import styles from "./Footer.module.css";
 
+/* =========================================
+   SEDES MORGILLO
+========================================= */
 
-/* =========================================================
-   PHONE
-========================================================= */
+const sedesMorgillo = [
 
-function phoneHref(
-  value: string,
-) {
-  const digits =
-    value.replace(
-      /\D/g,
-      "",
-    );
+  {
+    nombre: "Pucallpa",
+    direccion:
+      "Sector Santa Teresita, parcela El Arca de Noé, lote B2, Campo Verde, Ucayali, Perú",
+  },
+  {
+    nombre: "Cusco",
+    direccion:
+      "Chingo Grande S/N, Saylla, Cusco, Perú",
+  },
+  {
+    nombre: "Ica",
+    direccion:
+      "Panamericana Sur, km 296.20, Subtanjalla, Ica, Perú",
+  },
+  {
+    nombre: "Huancayo",
+    direccion:
+      "Carretera Central, km 13.5, Hualhuas, Junín, Perú",
+  },
+  {
+    nombre: "Lambayeque",
+    direccion:
+      "Sector Mocce, sublote 02, Lambayeque, Perú",
+  },
+  {
+    nombre: "Callao",
+    direccion:
+      "Av. Guardia Chalaca 1802, Bellavista, Callao, Perú",
+  },
+];
 
+function mapsHref(address: string) {
+  return (
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(address)
+  );
+}
 
-  const normalized =
-    digits.startsWith(
-      "51",
-    )
-      ? digits
-      : `51${digits}`;
+function phoneHref(value: string) {
+  const digits = value.replace(/\D/g, "");
 
+  const normalized = digits.startsWith("51")
+    ? digits
+    : `51${digits}`;
 
   return `tel:+${normalized}`;
 }
 
-
-/* =========================================================
+/* =========================================
    FOOTER
-========================================================= */
+========================================= */
 
 export default async function Footer() {
-  const site =
-    await getSite();
-
-
-  const year =
-    new Date().getFullYear();
-
+  const site = await getSite();
+  const year = new Date().getFullYear();
 
   return (
-    <footer
-      className={
-        styles.footer
-      }
-    >
-      {/* =====================================================
-          RED LINE
-      ====================================================== */}
+    <footer className={styles.footer}>
 
+      {/* RED LINE */}
       <div
-        className={
-          styles.topLine
-        }
+        className={styles.topLine}
         aria-hidden="true"
       >
         <span />
       </div>
 
+      <div className="morgillo-container">
+        <div className={styles.main}>
 
-      {/* =====================================================
-          MAIN
-      ====================================================== */}
-
-      <div
-        className="morgillo-container"
-      >
-        <div
-          className={
-            styles.main
-          }
-        >
-          {/* =================================================
+          {/* =================================
               BRAND
-          ================================================== */}
+          ================================= */}
 
-          <div
-            className={
-              styles.brandColumn
-            }
-          >
+          <div className={styles.brandColumn}>
+
             <Link
               href="/"
-              className={
-                styles.brand
-              }
+              className={styles.brand}
               aria-label="Morgillo, inicio"
             >
               <Image
@@ -114,37 +113,21 @@ export default async function Footer() {
                 alt="Morgillo"
                 width={190}
                 height={70}
-                className={
-                  styles.logo
-                }
+                className={styles.logo}
               />
             </Link>
 
-
-            <p
-              className={
-                styles.description
-              }
-            >
-              {
-                site.companyDescription
-              }
+            <p className={styles.description}>
+              {site.companyDescription}
             </p>
-
 
             <Link
               href="/maquinaria"
-              className={
-                styles.primaryCta
-              }
+              className={styles.primaryCta}
             >
-              <span>
-                Ver maquinaria
-              </span>
+              <span>Ver maquinaria</span>
 
-              <span
-                aria-hidden="true"
-              >
+              <span aria-hidden="true">
                 <ArrowUpRight
                   size={18}
                   strokeWidth={1.8}
@@ -152,65 +135,32 @@ export default async function Footer() {
               </span>
             </Link>
 
-
-            <div
-              className={
-                styles.areas
-              }
-            >
-              <span>
-                Agricultura
-              </span>
-
+            <div className={styles.areas}>
+              <span>Agricultura</span>
               <i />
-
-              <span>
-                Construcción
-              </span>
-
+              <span>Construcción</span>
               <i />
-
-              <span>
-                Implementos
-              </span>
+              <span>Implementos</span>
             </div>
+
           </div>
 
+          {/* =================================
+              COLUMNAS
+          ================================= */}
 
-          {/* =================================================
-              COLUMNS
-          ================================================== */}
+          <div className={styles.links}>
 
-          <div
-            className={
-              styles.links
-            }
-          >
-            {/* ===============================================
-                NAVIGATION
-            ================================================ */}
+            {/* NAVEGACIÓN */}
 
-            <div
-              className={
-                styles.column
-              }
-            >
-              <div
-                className={
-                  styles.columnTitle
-                }
-              >
-                <h2>
-                  Navegación
-                </h2>
+            <div className={styles.column}>
+              <div className={styles.columnTitle}>
+                <h2>Navegación</h2>
               </div>
-
 
               <nav
                 aria-label="Navegación del pie de página"
-                className={
-                  styles.nav
-                }
+                className={styles.nav}
               >
                 <FooterLink
                   href="/maquinaria"
@@ -222,44 +172,21 @@ export default async function Footer() {
                   label="Marcas"
                 />
 
-
-                {navigation.map(
-                  (
-                    item,
-                  ) => (
-                    <FooterLink
-                      key={
-                        item.href
-                      }
-                      href={
-                        item.href
-                      }
-                      label={
-                        item.label
-                      }
-                    />
-                  ),
-                )}
-
-
-                {/* ===========================================
-                    WEBMAIL
-                    Igual que cualquier otro enlace.
-                ============================================ */}
+                {navigation.map((item) => (
+                  <FooterLink
+                    key={item.href}
+                    href={item.href}
+                    label={item.label}
+                  />
+                ))}
 
                 <a
-                  href={
-                    siteConfig.webmail
-                  }
+                  href={siteConfig.webmail}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={
-                    styles.navLink
-                  }
+                  className={styles.navLink}
                 >
-                  <span>
-                    Webmail
-                  </span>
+                  <span>Webmail</span>
 
                   <ArrowUpRight
                     size={15}
@@ -270,148 +197,84 @@ export default async function Footer() {
               </nav>
             </div>
 
+            {/* =================================
+                CONTACTO
+            ================================= */}
 
-            {/* ===============================================
-                CONTACT
-            ================================================ */}
-
-            <div
-              className={
-                styles.column
-              }
-            >
-              <div
-                className={
-                  styles.columnTitle
-                }
-              >
-                <h2>
-                  Contacto
-                </h2>
+            <div className={styles.column}>
+              <div className={styles.columnTitle}>
+                <h2>Contacto</h2>
               </div>
 
+              <div className={styles.contact}>
 
-              <div
-                className={
-                  styles.contact
-                }
-              >
                 <div>
                   <span>
-                    Dirección
+                    Oficina principal · Tarapoto
                   </span>
 
-                  <p>
-                    {
-                      site.address
-                    }
-                  </p>
+                  <p>{site.address}</p>
                 </div>
 
-
                 <div>
-                  <span>
-                    Ventas
-                  </span>
-
-                  <a
-                    href={phoneHref(
-                      site.phone,
-                    )}
-                  >
-                    {
-                      site.phone
-                    }
+                  <span>Ventas</span>
+                  <a href={phoneHref(site.phone)}>
+                    {site.phone}
                   </a>
                 </div>
 
-
                 <div>
-                  <span>
-                    Oficina
-                  </span>
-
-                  <a
-                    href={phoneHref(
-                      site.office,
-                    )}
-                  >
-                    {
-                      site.office
-                    }
+                  <span>Oficina</span>
+                  <a href={phoneHref(site.office)}>
+                    {site.office}
                   </a>
                 </div>
 
-
                 <div>
-                  <span>
-                    Servicio
-                  </span>
-
-                  <a
-                    href={phoneHref(
-                      site.service,
-                    )}
-                  >
-                    {
-                      site.service
-                    }
+                  <span>Servicio</span>
+                  <a href={phoneHref(site.service)}>
+                    {site.service}
                   </a>
                 </div>
 
+                <div>
+                  <span>Repuestos</span>
+                  <a href={phoneHref(partsPhone)}>
+                    {partsPhone}
+                  </a>
+                </div>
 
                 {site.email && (
                   <div>
-                    <span>
-                      Correo
-                    </span>
-
-                    <a
-                      href={`mailto:${site.email}`}
-                    >
-                      {
-                        site.email
-                      }
+                    <span>Correo</span>
+                    <a href={`mailto:${site.email}`}>
+                      {site.email}
                     </a>
                   </div>
                 )}
 
-
                 <div>
-                  <span>
-                    Horario
-                  </span>
-
-                  <p>
-                    {
-                      site.hours
-                    }
-                  </p>
+                  <span>Horario</span>
+                  <p>{site.hours}</p>
                 </div>
-              </div>
 
+              </div>
 
               <a
                 href={whatsapp(
                   undefined,
-                  site.whatsapp,
+                  site.whatsapp
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={
-                  styles.whatsapp
-                }
+                className={styles.whatsapp}
               >
                 <span
-                  className={
-                    styles.status
-                  }
+                  className={styles.status}
                   aria-hidden="true"
                 />
 
-                <span>
-                  Hablar por WhatsApp
-                </span>
+                <span>Hablar por WhatsApp</span>
 
                 <ArrowUpRight
                   size={16}
@@ -421,139 +284,115 @@ export default async function Footer() {
               </a>
             </div>
 
+            {/* =================================
+                SEDES - NUEVA COLUMNA
+            ================================= */}
 
-            {/* ===============================================
-                SOCIAL
-            ================================================ */}
-
-            <div
-              className={
-                styles.column
-              }
-            >
-              <div
-                className={
-                  styles.columnTitle
-                }
-              >
-                <h2>
-                  Síguenos
-                </h2>
+            <div className={styles.column}>
+              <div className={styles.columnTitle}>
+                <h2>Sedes</h2>
               </div>
 
-
-              <div
-                className={
-                  styles.social
-                }
+              <nav
+                className={styles.social}
+                aria-label="Ubicaciones de Morgillo"
               >
-                {site.social.map(
-                  (
-                    social,
-                  ) => (
-                    <a
-                      key={
-                        social.label
-                      }
-                      href={
-                        social.href
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span>
-                        {
-                          social.label
-                        }
-                      </span>
+                {sedesMorgillo.map((sede) => (
+                  <a
+                    key={sede.nombre}
+                    href={mapsHref(sede.direccion)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={sede.direccion}
+                    aria-label={
+                      `Buscar Morgillo ${sede.nombre} en Google Maps`
+                    }
+                  >
+                    <span>{sede.nombre}</span>
 
-                      <span>
-                        <ArrowUpRight
-                          size={15}
-                          strokeWidth={1.8}
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </a>
-                  ),
-                )}
+                    <span>
+                      <ArrowUpRight
+                        size={15}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            {/* =================================
+                REDES SOCIALES
+            ================================= */}
+
+            <div className={styles.column}>
+              <div className={styles.columnTitle}>
+                <h2>Síguenos</h2>
+              </div>
+
+              <div className={styles.social}>
+                {site.social.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>{social.label}</span>
+
+                    <span>
+                      <ArrowUpRight
+                        size={15}
+                        strokeWidth={1.8}
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </a>
+                ))}
               </div>
             </div>
+
           </div>
         </div>
 
-
-        {/* =====================================================
+        {/* =================================
             GIANT BRAND
-        ====================================================== */}
+        ================================= */}
 
         <div
-          className={
-            styles.giant
-          }
+          className={styles.giant}
           aria-hidden="true"
         >
-          <span>
-            MORGILLO
-          </span>
+          <span>MORGILLO</span>
         </div>
 
-
-        {/* =====================================================
+        {/* =================================
             BOTTOM
-        ====================================================== */}
+        ================================= */}
 
-        <div
-          className={
-            styles.bottom
-          }
-        >
-          <div
-            className={
-              styles.copyright
-            }
-          >
-            <span>
-              © {year} Morgillo
-            </span>
+        <div className={styles.bottom}>
 
+          <div className={styles.copyright}>
+            <span>© {year} Morgillo</span>
             <span>
-              Todos los derechos
-              reservados
+              Todos los derechos reservados
             </span>
           </div>
 
-
-          <div
-            className={
-              styles.bottomCenter
-            }
-          >
+          <div className={styles.bottomCenter}>
             <span />
-
             <p>
               Maquinaria · Servicio · Respaldo
             </p>
           </div>
 
-
-          <div
-            className={
-              styles.bottomActions
-            }
-          >
-            {/* WEBMAIL TAMBIÉN QUEDA VISIBLE ABAJO
-                COMO ACCESO UTILITARIO */}
-
+          <div className={styles.bottomActions}>
             <a
-              href={
-                siteConfig.webmail
-              }
+              href={siteConfig.webmail}
               target="_blank"
               rel="noopener noreferrer"
-              className={
-                styles.webmail
-              }
+              className={styles.webmail}
             >
               Webmail
 
@@ -564,16 +403,11 @@ export default async function Footer() {
               />
             </a>
 
-
             <a
               href="#contenido"
-              className={
-                styles.backTop
-              }
+              className={styles.backTop}
             >
-              <span>
-                Volver arriba
-              </span>
+              <span>Volver arriba</span>
 
               <span>
                 <ArrowUp
@@ -585,15 +419,15 @@ export default async function Footer() {
             </a>
           </div>
         </div>
+
       </div>
     </footer>
   );
 }
 
-
-/* =========================================================
+/* =========================================
    FOOTER LINK
-========================================================= */
+========================================= */
 
 function FooterLink({
   href,
@@ -604,16 +438,10 @@ function FooterLink({
 }) {
   return (
     <Link
-      href={
-        href
-      }
-      className={
-        styles.navLink
-      }
+      href={href}
+      className={styles.navLink}
     >
-      <span>
-        {label}
-      </span>
+      <span>{label}</span>
 
       <ArrowUpRight
         size={15}

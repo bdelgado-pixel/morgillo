@@ -117,17 +117,11 @@
 
 .logo {
   display: block;
-
-  width:
-    clamp(
-      150px,
-      15vw,
-      190px
-    );
-
+  width: 210px;
   height: auto;
-
+  max-width: none;
   object-fit: contain;
+
 }
 
 
@@ -1377,5 +1371,164 @@
   .footer *::before,
   .footer *::after {
     transition: none !important;
+  }
+}
+
+
+/* =========================================
+   FOOTER - SEDES MORGILLO
+========================================= */
+
+.footerLocations {
+  margin-top: 12px;
+  min-width: 0;
+}
+
+.footerBranches {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  margin-top: 12px;
+}
+
+.footerBranch {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 100%;
+  color: #c2c2c2;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.5;
+  transition: color 0.2s ease;
+}
+
+.footerBranch svg {
+  flex-shrink: 0;
+  color: #e31822;
+}
+
+.footerBranch > span {
+  color: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.footerBranch:hover,
+.footerBranch:focus-visible {
+  color: #ffffff;
+}
+
+.footerBranch:hover svg {
+  color: #ff3540;
+}
+
+@media (max-width: 768px) {
+  .footerLocations {
+    margin-top: 10px;
+  }
+
+  .footerBranches {
+    gap: 12px;
+  }
+
+  .footerBranch {
+    font-size: 14px;
+  }
+}
+
+/* =========================================
+   FOOTER MORGILLO
+   4 COLUMNAS
+========================================= */
+
+.main {
+  display: grid;
+  grid-template-columns:
+    minmax(240px, 0.85fr)
+    minmax(0, 2fr);
+  gap: clamp(35px, 4vw, 65px);
+  align-items: start;
+}
+
+.links {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 1.25fr)
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+  gap: clamp(16px, 1.8vw, 30px);
+  min-width: 0;
+  width: 100%;
+  align-items: start;
+}
+
+.links > .column {
+  min-width: 0;
+  width: 100%;
+}
+
+.links .columnTitle {
+  min-width: 0;
+}
+
+.links .social {
+  width: 100%;
+}
+
+.links .social a {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.links .social a > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.links .social a > span:last-child {
+  flex-shrink: 0;
+}
+
+/* TABLETS */
+
+@media (max-width: 1100px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .links {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 25px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .main {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 38px 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .links {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }

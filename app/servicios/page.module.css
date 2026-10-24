@@ -1488,3 +1488,52 @@
 
   outline-offset: 5px;
 }
+
+/* Keep the technician in a clear photographic area, away from the title. */
+.heroPhotoFrame {
+  position:absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  width:50%;
+  z-index:-3;
+}
+.heroPhoto { object-fit:cover; object-position:46% center; }
+.heroVeil {
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:linear-gradient(90deg,#fff 46%,rgba(255,255,255,.96) 49%,rgba(255,255,255,.08) 58%,transparent 65%);
+}
+.heroContent {
+  grid-template-columns:minmax(0,1fr);
+  max-width:47%;
+  gap:24px;
+  align-items:start;
+  margin-top:45px;
+}
+.heroContent h1 { font-size:clamp(44px,5.1vw,74px); line-height:.96; }
+.heroSide { max-width:490px; justify-self:start; }
+.heroSide > p { font-size:16px; }
+.heroCode { padding:8px 10px; background:rgba(255,255,255,.95); }
+.heroRail { position:relative; max-width:47%; min-height:0; padding:24px 0; border:0; background:transparent; margin-top:24px; }
+:global(.dark) .heroVeil {
+  background:linear-gradient(90deg,#111 46%,rgba(17,17,17,.96) 49%,rgba(17,17,17,.08) 58%,transparent 65%);
+}
+:global(.dark) .heroCode { background:rgba(22,24,23,.96); }
+:global(.dark) .heroRail > p { color:#b7bbbc; }
+@media(max-width:1000px) {
+  .hero { display:flex; flex-direction:column; padding-top:45px; }
+  .hero > :global(.morgillo-container) { order:0; width:100%; }
+  .heroPhotoFrame { position:relative; inset:auto; order:1; z-index:0; width:100%; height:360px; }
+  .heroPhoto { object-position:center 40%; }
+  .heroVeil { display:none; }
+  .heroContent { max-width:100%; margin-top:32px; }
+  .heroContent h1 { max-width:700px; }
+  .heroRail { max-width:none; margin-top:24px; }
+}
+@media(max-width:600px) {
+  .heroPhotoFrame { height:290px; }
+  .heroPhoto { object-position:43% center; }
+  .heroContent h1 { font-size:clamp(40px,10.5vw,58px); }
+}

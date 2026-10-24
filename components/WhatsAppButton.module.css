@@ -45,3 +45,7 @@
 @media(hover:hover) { .options button:hover { border-color:#397451; background:#f4faf6; transform:translateX(2px); } .launcher:hover { transform:translateY(-2px); background:#0e743c; } .submit:hover { background:#124e31; } .header button:hover { background:#ffffff1a; } }
 @media(max-width:480px) { .launcher { right:18px; bottom:18px; width:56px; height:56px; } .panel { right:12px; bottom:86px; max-width:calc(100vw - 24px); max-height:calc(100dvh - 102px); } .body { padding:16px; } }
 @media(prefers-reduced-motion:reduce) { .launcher,.options button { transition:none; } .spinner { animation:none; } }
+
+.destination{display:flex;align-items:center;gap:10px;padding:13px 14px;margin-top:14px;border:1px solid #cbdcd0;border-left:3px solid #17643f;border-radius:8px;background:#edf5ef;color:#4d6355;font-size:11px}
+.destination>svg{color:#17643f;flex-shrink:0}
+.destination strong{display:block;color:#214f34;font-size:13px;line-height:1.5;margin-top:4px;overflow-wrap:anywhere}

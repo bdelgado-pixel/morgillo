@@ -1,19 +1,22 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowLeft, ArrowRight, Check, ChevronRight, HardHat, Headset, MessageSquare, Package, Send, Tractor, Truck, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, ChevronRight, HardHat, Headset, MessageSquare, Package, Send, Tractor, Truck, Wrench, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { whatsapp } from "@/data/site";
+import { formatContactPhone, getContactDestination, type ContactNumbers } from "@/lib/contact";
 import styles from "./WhatsAppButton.module.css";
 
 const options = [
   { id: "Tractor", label: "Tractores agrícolas", description: "Equipos para el trabajo en campo", icon: Tractor },
   { id: "Excavadora", label: "Excavadoras", description: "Movimiento de tierra y excavación", icon: Truck },
   { id: "Construcción", label: "Maquinaria de construcción", description: "Soluciones para tu próxima obra", icon: HardHat },
-  { id: "Repuestos", label: "Repuestos y servicio", description: "Piezas, mantenimiento y soporte", icon: Package },
+  { id: "Servicio", label: "Servicio técnico", description: "Mantenimiento y atención de equipos", icon: Wrench },
+  { id: "Repuestos", label: "Repuestos", description: "Piezas y repuestos para tu maquinaria", icon: Package },
   { id: "Otro", label: "Otra consulta", description: "Cuéntanos cómo podemos ayudarte", icon: MessageSquare },
 ];
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ numbers }: { numbers: ContactNumbers }) {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(1);
   const [category, setCategory] = useState("");
@@ -25,6 +28,7 @@ export default function WhatsAppButton() {
   const [error, setError] = useState("");
   const launcher = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLElement>(null);
+  const destination = getContactDestination(category, numbers);
 
   useEffect(() => {
     if (open) panel.current?.focus();
@@ -38,10 +42,12 @@ export default function WhatsAppButton() {
       setError("Revisa tu nombre, ciudad, celular y autorización de contacto.");
       return;
     }
+    if (!destination.number) { setError("El WhatsApp de esta área no está disponible. Consulta nuestros canales de contacto."); return; }
     setError("");
     const message = [
       "Hola Morgillo, quisiera recibir asesoría.",
       "",
+      `Área: ${destination.label}`,
       `Consulta: ${options.find(option => option.id === category)?.label || category}`,
       `Equipo, modelo o detalle: ${model.trim() || "Sin especificar"}`,
       `Nombre: ${name.trim()}`,
@@ -49,7 +55,7 @@ export default function WhatsAppButton() {
       `Ciudad: ${city.trim()}`,
       "Autorizo a Morgillo a contactarme sobre esta consulta.",
     ].join("\n");
-    window.location.assign(`https://wa.me/51994974243?text=${encodeURIComponent(message)}`);
+    window.location.assign(whatsapp(message, destination.number));
   }
   return <>
     <button ref={launcher} className={styles.launcher} type="button" aria-label={open ? "Cerrar asistente Morgillo" : "Abrir asistente Morgillo"} aria-expanded={open} aria-controls="morgillo-assistant" onClick={() => open ? close() : setOpen(true)}>
@@ -58,7 +64,7 @@ export default function WhatsAppButton() {
     {open && <section ref={panel} tabIndex={-1} id="morgillo-assistant" role="dialog" aria-label="Asistente Morgillo" className={styles.panel} onKeyDown={event => { if (event.key === "Escape") close(); }}>
       <header className={styles.header}>
         <span className={styles.avatar}><Headset size={25} /></span>
-        <div><strong>Morgillo</strong><p>Asistente comercial</p></div>
+        <div><strong>Morgillo</strong><p>Maquinaria, servicio y repuestos</p></div>
         <button type="button" onClick={close} aria-label="Cerrar asistente"><X size={21} /></button>
       </header>
       <div className={styles.body}>
@@ -75,6 +81,7 @@ export default function WhatsAppButton() {
         {step === 2 && <>
           <div className={styles.reply}>{options.find(option => option.id === category)?.label}<Check size={15} /></div>
           <div className={styles.bubble}><strong>Cuéntanos un poco más.</strong><p>Completa tus datos. Al continuar se abrirá WhatsApp con tu consulta preparada; solo tendrás que pulsar Enviar allí.</p></div>
+          <div className={styles.destination} role="status"><Headset size={18} /><span>Te atenderá<strong>{destination.label} · {formatContactPhone(destination.number)}</strong></span></div>
           <form className={styles.form} onSubmit={submit}>
             <fieldset>
               <label>Equipo, modelo o consulta <small>(opcional)</small><input value={model} onChange={e => setModel(e.target.value)} maxLength={100} placeholder="Ej. Kubota M108S o repuesto necesario" /></label>

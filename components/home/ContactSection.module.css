@@ -2052,3 +2052,11 @@
     transition: none;
   }
 }
+
+.ctaPhoto { z-index:-4; object-fit:cover; object-position:65% center; }
+.ctaVeil {
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  background:linear-gradient(180deg,rgba(15,37,24,.94) 0%,rgba(15,37,24,.82) 45%,rgba(15,37,24,.55) 100%);
+}

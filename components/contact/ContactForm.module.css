@@ -971,3 +971,11 @@
   color: #171818;
   background: #ffffff;
 }
+.formHint{margin:0;color:#c5c9c7;font-size:12px;line-height:1.65}
+.fieldHint{color:#b8bdbb;font-size:11px;line-height:1.5}
+.optional{color:#c5c9c7;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none}
+.destination{display:flex;align-items:center;gap:12px;padding:15px;border:1px solid #ffffff30;border-left:3px solid var(--red);background:#ffffff07}
+.destination>svg{flex-shrink:0;color:#fff}
+.destination span{display:block;font-size:11px;color:#c5c9c7;margin-bottom:5px}
+.destination strong{display:block;font-size:14px;line-height:1.5;color:#fff;overflow-wrap:anywhere}
+.field textarea{min-height:130px}

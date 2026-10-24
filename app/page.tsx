@@ -6,6 +6,7 @@ import ServicesSection from "@/components/home/ServicesSection";
 import CompanySection from "@/components/home/CompanySection";
 import ContactSection from "@/components/home/ContactSection";
 import NewsSection from "@/components/home/NewsSection";
+import CustomerGallery from "@/components/home/CustomerGallery";
 
 import CampaignFeed from "@/components/campaigns/CampaignFeed";
 
@@ -78,11 +79,9 @@ export default async function Home() {
         placement="home"
       />
 
-      <NewsSection
-        articles={
-          articles
-        }
-      />
+      <CustomerGallery />
+
+      {articles.length > 0 && <NewsSection articles={articles} />}
 
       <ContactSection />
     </main>

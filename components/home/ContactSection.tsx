@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -165,6 +166,8 @@ export default async function ContactSection() {
               styles.cta
             }
           >
+            <Image src="/images/company/arrozales-morgillo.webp" alt="" fill sizes="(max-width: 1000px) 100vw, 50vw" className={styles.ctaPhoto} />
+            <div className={styles.ctaVeil} aria-hidden="true" />
             <div
               className={
                 styles.ctaGrid

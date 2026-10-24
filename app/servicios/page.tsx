@@ -3,6 +3,7 @@ import type {
 } from "next";
 
 import Link from "next/link";
+import Image from "next/image";
 
 import {
   ArrowUpRight,
@@ -69,6 +70,11 @@ export default async function ServicesPage() {
         }
         aria-labelledby="services-title"
       >
+        <div className={styles.heroPhotoFrame}>
+          <Image src="/images/company/servicio-tecnico-morgillo.webp" alt="Técnico de Morgillo realizando mantenimiento de un tractor" fill priority sizes="(max-width: 1000px) 100vw, 50vw" className={styles.heroPhoto} />
+        </div>
+        <div className={styles.heroVeil} aria-hidden="true" />
+
         <div
           className={
             styles.heroGrid
@@ -229,9 +235,9 @@ export default async function ServicesPage() {
 
 
             <p>
-              Cada servicio publicado
-              aquí se administra desde
-              el CMS de Morgillo.
+              Encuentra mantenimiento,
+              repuestos y asesoría
+              para tu maquinaria.
             </p>
           </div>
 

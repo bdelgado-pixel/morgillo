@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import {
@@ -124,6 +125,11 @@ export default async function ServicesSection() {
           </div>
         </div>
 
+
+        <figure className={styles.servicePhoto}>
+          <Image src="/images/company/servicio-tecnico-morgillo.webp" alt="Mantenimiento de maquinaria por el equipo técnico de Morgillo" fill sizes="(max-width: 768px) 100vw, 1200px" />
+          <figcaption><strong>El respaldo se demuestra trabajando.</strong><span>Servicio técnico, mantenimiento y repuestos para tu equipo.</span></figcaption>
+        </figure>
 
         {/* =================================================
             RAIL
